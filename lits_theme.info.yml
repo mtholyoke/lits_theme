@@ -1,0 +1,22 @@
+name: lits_theme
+type: theme
+'base theme': stable9
+starterkit: true
+version: VERSION
+libraries:
+  - lits_theme/base
+  - lits_theme/messages
+  - core/normalize
+libraries-extend:
+  user/drupal.user:
+    - lits_theme/user
+  core/drupal.dropbutton:
+    - lits_theme/dropbutton
+  core/drupal.dialog:
+    - lits_theme/dialog
+  file/drupal.file:
+    - lits_theme/file
+  core/drupal.progress:
+    - lits_theme/progress
+core_version_requirement: ^9
+generator: 'starterkit_theme:9.5.10'
