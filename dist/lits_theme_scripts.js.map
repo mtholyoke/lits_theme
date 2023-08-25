@@ -1,0 +1,1 @@
+{"version":3,"file":"lits_theme_scripts.js","mappings":";;AAAAA,OAAO,CAACC,GAAG,CAAC,aAAa,CAAC,C","sources":["webpack://theme-preprocess/./src/js/foo.es6.js"],"sourcesContent":["console.log(\"hello world\");\n"],"names":["console","log"],"sourceRoot":""}
