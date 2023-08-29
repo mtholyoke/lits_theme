@@ -51,7 +51,7 @@ base:
       css/components/ui-dialog.css:
         weight: -10
     theme:
-      dist/lits_theme_styles.css: {}
+      dist/lits_theme.css: {}
 dialog:
   version: VERSION
   css:

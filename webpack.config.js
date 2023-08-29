@@ -3,6 +3,7 @@
 
 const path = require('path');
 var glob = require('glob');
+const globImporter = require('node-sass-glob-importer');
 
 const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -21,7 +22,7 @@ const modules = [
 
 
 var js_files = []
-var sass_files = []
+var sass_files = ["/components/style.scss"]
 // var css_files = []
 
 for (var i of modules) { // collect all of the files
@@ -30,7 +31,7 @@ for (var i of modules) { // collect all of the files
   // add all the js files
   js_files = js_files.concat(glob.sync(dir + src_js))
   // add the sass files
-  sass_files = sass_files.concat(glob.sync(dir + src_sass))
+  // sass_files = sass_files.concat(glob.sync(dir + src_sass))
   // add the css files
   // css_files = css_files.concat(glob.sync(dir + src_css))
 }
@@ -82,7 +83,14 @@ module.exports =  {
         {
           test: /\.s(a|c)ss$/,
           exclude: /node_modules/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+          use: [MiniCssExtractPlugin.loader, 'css-loader', {
+            loader: "sass-loader",
+            options: {
+              sassOptions: {
+                importer: globImporter()
+              }
+            }
+          }]
         }
       ]
     },
