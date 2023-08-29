@@ -1,8 +1,3 @@
-/******/ (() => { // webpackBootstrap
-/******/ 	var __webpack_modules__ = ([
-/* 0 */
-/***/ (function() {
-
 /**
  * @file
  * Functions and behaviors for the header of every page.
@@ -10,13 +5,16 @@
 
 (($, Drupal) => {
   Drupal.trehub = Drupal.trehub || {};
+
   const openAccordion = hash => {
     let element;
+
     if (hash.indexOf("button") >= 0) {
       element = document.getElementById(hash.toString().slice(1));
     } else {
       element = document.getElementById(`${hash.toString().slice(1)}-button`);
     }
+
     if (element && element.getAttribute("aria-expanded") === "false") {
       element.click();
     }
@@ -34,7 +32,9 @@
     attach: context => {
       const $buttons = $(".expandable button", context);
       $buttons.click(event => {
-        const $container = $(event.target).parents(".expandable").first();
+        const $container = $(event.target)
+          .parents(".expandable")
+          .first();
         Drupal.trehub.toggleExpandable($container);
       });
     }
@@ -50,26 +50,34 @@
    */
   Drupal.behaviors.trehubLinkManager = {
     attach: context => {
-      $("a", context).once("Drupal.behaviors.trehubLinkManager").each((index, a) => {
-        // Grab links with a hostname that doesn't match the window location
-        if (a.hostname && window.location.hostname.length && window.location.hostname !== a.hostname) {
-          // just in case we want to automagically target these later for
-          // some reason
-          $(a).addClass("link--external");
-        }
-        // for links that open in new tabs
-        if ($(a).attr("target") && $(a).attr("target") === "_blank") {
-          // add rel="noopener" to external links to close security hole
-          // @see https://developers.google.com/web/tools/lighthouse/audits/noopener
-          if (!$(a).attr("rel") || $(a).attr("rel").length === 0) {
-            $(a).attr("rel", "noopener");
+      $("a", context)
+        .once("Drupal.behaviors.trehubLinkManager")
+        .each((index, a) => {
+          // Grab links with a hostname that doesn't match the window location
+          if (
+            a.hostname &&
+            window.location.hostname.length &&
+            window.location.hostname !== a.hostname
+          ) {
+            // just in case we want to automagically target these later for
+            // some reason
+            $(a).addClass("link--external");
           }
-          // Add a11y text if missing
-          if ($(a).find("span.visually-hidden").length === 0) {
-            $('<span class="visually-hidden">opens in a new tab</span>').appendTo($(a));
+          // for links that open in new tabs
+          if ($(a).attr("target") && $(a).attr("target") === "_blank") {
+            // add rel="noopener" to external links to close security hole
+            // @see https://developers.google.com/web/tools/lighthouse/audits/noopener
+            if (!$(a).attr("rel") || $(a).attr("rel").length === 0) {
+              $(a).attr("rel", "noopener");
+            }
+            // Add a11y text if missing
+            if ($(a).find("span.visually-hidden").length === 0) {
+              $(
+                '<span class="visually-hidden">opens in a new tab</span>'
+              ).appendTo($(a));
+            }
           }
-        }
-      });
+        });
     }
   };
 
@@ -90,15 +98,25 @@
         $.extend($.expr[":"], {
           focusable(el) {
             const $element = $(el, context);
-            return $element.is(":input:enabled, a[href], area[href], object, [tabindex]") && !$element.is(":hidden");
+            return (
+              $element.is(
+                ":input:enabled, a[href], area[href], object, [tabindex]"
+              ) && !$element.is(":hidden")
+            );
           }
         });
 
         // if there is a '#' in the URL (someone linking directly to an anchor):
         if (window.location.hash) {
           openAccordion(window.location.hash);
-          const scrollMore = !!navigator.userAgent.match(/Trident.*rv:11\./) || window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge
-          Drupal.trehub.scrollToHash(context, $(window.location.hash), scrollMore);
+          const scrollMore =
+            !!navigator.userAgent.match(/Trident.*rv:11\./) ||
+            window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge
+          Drupal.trehub.scrollToHash(
+            context,
+            $(window.location.hash),
+            scrollMore
+          );
         }
       });
 
@@ -108,6 +126,7 @@
         event = event || window.event;
         let clickTarget = event.target || event.srcElement;
         let $anchorTarget = null;
+
         while (clickTarget) {
           if (clickTarget instanceof HTMLAnchorElement) {
             let href = clickTarget.getAttribute("href");
@@ -118,6 +137,7 @@
           }
           clickTarget = clickTarget.parentNode;
         }
+
         if ($anchorTarget === null || $anchorTarget.length === 0) {
           return;
         }
@@ -126,6 +146,7 @@
         openAccordion(window.location.hash);
         Drupal.trehub.scrollToHash(context, $anchorTarget, false);
       });
+
       $(window).on("hashchange", () => {
         if (window.location.hash) {
           openAccordion(window.location.hash);
@@ -158,26 +179,35 @@
       } else {
         menuHeight += $("#menu-background", context).height();
       }
+
       let toolbarheight = 0;
       if ($body.hasClass("toolbar-fixed")) {
         toolbarheight = 39;
-        if ($body.hasClass("toolbar-horizontal") && $body.hasClass("toolbar-tray-open")) {
+        if (
+          $body.hasClass("toolbar-horizontal") &&
+          $body.hasClass("toolbar-tray-open")
+        ) {
           toolbarheight = 79;
         }
       }
       menuHeight += toolbarheight;
 
       // offset().top doesn't seem to work reliably in IE11 on page load
-      const scrollTop = document.getElementById($anchorTarget.attr("id")).offsetTop - menuHeight;
+      const scrollTop =
+        document.getElementById($anchorTarget.attr("id")).offsetTop -
+        menuHeight;
       let scrollDelay = 0;
       if (needsScrollDelay) {
         scrollDelay = 1500;
       }
       setTimeout(() => {
-        $("html, body").animate({
-          // Need both html and body here for cross-browseriness
-          scrollTop
-        }, 100);
+        $("html, body").animate(
+          {
+            // Need both html and body here for cross-browseriness
+            scrollTop
+          },
+          100
+        );
       }, scrollDelay);
     }
   };
@@ -195,12 +225,15 @@
     if (isOpen && action === "toggle") {
       action = "close";
     }
+
     const $button = $container.find("button");
     const $content = $container.find(`#${$button.attr("aria-controls")}`);
+
     let callback = null;
     if ($container.attr("id") === "search-toggle-container") {
       callback = Drupal.trehub.positionMenu;
     }
+
     if (action === "close") {
       $button.attr("aria-expanded", "false").attr("aria-pressed", "false");
       $("header").css("overflow", "hidden");
@@ -261,13 +294,13 @@
    */
   Drupal.behaviors.trehubShibLoginLink = {
     attach: context => {
-      var shibLoginLinks = document.querySelectorAll("#block-trehub-shibloginlink a");
-      var currentPath = location.pathname.substr(1);
-      if (currentPath && currentPath != '') {
-        shibLoginLinks.forEach(a => {
-          a.href = a.href + '?returnTo=' + currentPath;
-        });
-      }
+        var shibLoginLinks = document.querySelectorAll("#block-trehub-shibloginlink a");
+        var currentPath = location.pathname.substr(1);
+        if (currentPath && currentPath != '') {
+          shibLoginLinks.forEach((a) => {
+            a.href = a.href + '?returnTo=' + currentPath;
+          });
+        }
     }
   };
 
@@ -280,35 +313,21 @@
    *   Adjusts collapsiness of the filters
    */
   Drupal.behaviors.trehubStudySpaceFilterSize = {
-    attach: context => {
-      const $studySpaceFinderContainer = $(".study-space-finder", context);
-      const windowWidth = $(window).width();
-      if ($studySpaceFinderContainer.length > 0 && windowWidth >= 900) {
-        $(window).on("load", () => {
-          // Change toggle expandable
-          $studySpaceFinderContainer.toggleClass("expandable--open");
-          // Toggle aria-expanded and aria-pressed for button
-          $(".filters-title button", context).attr("aria-expanded", "true");
-          $(".filters-title button", context).attr("aria-pressed", "true");
-          // Show options and toggle aria
-          $(".filter-options", context).attr("style", "");
-          $(".filter-options", context).attr("aria-hidden", "false");
-        });
-      }
+  attach: context => {
+    const $studySpaceFinderContainer = $(".study-space-finder", context);
+    const windowWidth = $(window).width();
+    if ($studySpaceFinderContainer.length > 0 && windowWidth >= 900) {
+      $(window).on("load", () => {
+        // Change toggle expandable
+        $studySpaceFinderContainer.toggleClass("expandable--open");
+        // Toggle aria-expanded and aria-pressed for button
+        $(".filters-title button", context).attr("aria-expanded", "true");
+        $(".filters-title button", context).attr("aria-pressed", "true");
+        // Show options and toggle aria
+        $(".filter-options", context).attr("style", "");
+        $(".filter-options", context).attr("aria-hidden", "false");
+      });
     }
+  }
   };
 })(jQuery, Drupal);
-
-/***/ })
-/******/ 	]);
-/************************************************************************/
-/******/ 	
-/******/ 	// startup
-/******/ 	// Load entry module and return exports
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
-/******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__[0]();
-/******/ 	
-/******/ })()
-;
-//# sourceMappingURL=lits_theme_scripts.js.map

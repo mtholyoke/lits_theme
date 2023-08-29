@@ -1,0 +1,235 @@
+/**
+ * @file
+ * Variables, functions, and mixins to support responsiveness.
+ */
+
+/* Breakpoints */
+$min-width: 300px;
+$small-width: 600px;
+$medium-width: 900px;
+$large-width: 1200px;
+$max-width: 1920px;
+$content-max-width: $max-width;
+
+/**
+ * Standardized rate plus minimum size.
+ *
+ * @param number(size) $min-value
+ *   The minimum size at the zero point of linear-squish() function.
+ * @param number(size) $width
+ *   Breakpoint to pass to linear-squish() function.
+ * @return number(size)
+ *   Computed padding size.
+ *
+ * Calculation happens in CSS (not Sass), so any linear units are allowable.
+ */
+@function augmented-squish($min-value, $width) {
+  @return '(#{$min-value} + #{linear-squish($width)})';
+}
+
+/**
+ * Padding size is proportional to viewport width.
+ *
+ * @param number(size) $width
+ *   The zero-point for expansion. Usually a breakpoint.
+ * @return number(size)
+ *   Computed padding size.
+ *
+ * Calculation happens in CSS (not Sass), so any linear units are allowable.
+ */
+@function linear-squish($width) {
+  @return '((100vw - #{$width}) / #{squish-factor()})';
+}
+
+/**
+ * Convert rem to px for Sass calculation.
+ *
+ * @param number(rem) $rem
+ *   Value in rem to convert.
+ * @return number(px)
+ *   Number of pixels corresponding to input.
+ *
+ * TODO: Is there a better place for helper functions?
+ * TODO: Is 1rem => 16px explicitly specified anywhere?
+ */
+@function rem-to-px($rem) {
+  @return ($rem / 1rem) * 16px;
+}
+
+/**
+ * Assigns breakpoint-dependent values to flex-basis, and width 100% within.
+ *
+ * @param number(size) $small-basis
+ *   The flex-basis for breakpoint $small-width.
+ * @param number(size) $medium-basis
+ *   The flex-basis for breakpoint $medium-width.
+ * @param number(size) $large-basis
+ *   The flex-basis for breakpoint $large-width.
+ *
+ * Any valid size units for flex-basis are allowed.
+ */
+@mixin responsive-basis($small-basis, $medium-basis, $large-basis, $type:false) {
+  width: 100%;
+  flex-basis: auto;
+  margin: 0;
+
+  @include breakpoint($small-width) {
+    width: $small-basis;
+  }
+
+  @include breakpoint($medium-width) {
+    width: $medium-basis;
+  }
+
+  @include breakpoint($large-width) {
+    width: $large-basis;
+  }
+
+  @include breakpoint($max-width) {
+    width: auto;
+    // width needs to be whatever the stretchy outer squishy-padding is PLUS $large-basis of $max-width minus the inner side padding
+    $min-padding: 0.5rem; // from squishy-padding
+    $max-allowed: '((#{$max-width} - #{$medium-width}) / #{squish-factor()})'; // from squishy-padding
+    $padding: '(#{$min-padding} + #{$max-allowed})'; // from squishy-padding -- this is the padding for the inner/non-stretch edge
+    $padding-stretch: '(#{$padding} + ((100% - #{$max-width}) / 2))';// from squishy-padding -- this is the padding for the outer/stretchy edge
+    $unitless-basis: strip-unit($large-basis / 100);// convert percentage value (eg '62%'') to a mathy ratio value (eg '0.62')
+    $content-area-width: '((#{$content-max-width} * #{$unitless-basis}) - #{$padding})'; // width of the content, given the large basis and the maximum possible content area
+
+    @if ($type == stretch) {
+      width: calc(#{$padding-stretch} + #{$content-area-width});
+    }
+  }
+}
+
+/// Remove the unit of a length
+/// @param {Number} $number - Number to remove unit from
+/// @return {Number} - Unitless number
+/// https://css-tricks.com/snippets/sass/strip-unit-function/
+@function strip-unit($number) {
+  @if type-of($number) == 'number' and not unitless($number) {
+    @return $number / ($number * 0 + 1);
+  }
+
+  @return $number;
+}
+
+/**
+ * Smaller numbers mean faster expansion as viewport width increases.
+ *
+ * @return number(unitless)
+ *   Inverse rate of expansion.
+ *
+ * 6 => max padding 170px + min => max content width 1564px.
+ * 5 => max padding 204px + min => max content width 1496px.
+ * 4 => max padding 255px + min => max content width 1394px.
+ */
+@function squish-factor() {
+  @return 6;
+}
+
+/**
+ * Sets scalable viewport-dependent padding on one side of the element.
+ *
+ * @param unquoted-string $side
+ *   Which side to set padding for. Must be one of 'left' or 'right'.
+ * @param number(unitless) $scale
+ *   Multiply all padding values (including max) by this. Useful for gutters
+ *   split between multiple elements, such as news items on the homepage.
+ * @param number(rem) $max-padding
+ *   Do not set a padding higher than $scale times this value.
+ */
+@mixin squishy-gutter($side, $scale: 1, $max-padding: 2rem) {
+  $min-padding: 0.5rem;
+
+  padding-#{$side}: calc(#{$scale} * #{$min-padding});
+
+  @if unit($max-padding) != "rem" {
+    @error "Max padding must be specified in rem units.";
+  }
+
+  @if $max-padding > $min-padding {
+    // 900px => 8px padding, then scale up..
+    @include breakpoint($medium-width) {
+      padding-#{$side}: calc(#{$scale} * #{augmented-squish($min-padding, $medium-width)});
+    }
+
+    // Stop increasing when we reach $scale times $max-padding.
+    $delta: rem-to-px($max-padding - $min-padding);
+
+    @include breakpoint($medium-width + (squish-factor() * $delta)) {
+      padding-#{$side}: calc(#{$scale} * #{$max-padding});
+    }
+  }
+}
+
+/**
+ * Sets scalable viewport-dependent margin on one side of the element.
+ *
+ * @param unquoted-string $side
+ *   Which side to set margin for. Must be one of 'left' or 'right'.
+ * @param number(unitless) $scale
+ *   Multiply all margin values (including max) by this. Useful for gutters
+ *   split between multiple elements, such as news items on the homepage.
+ * @param number(rem) $max-margin
+ *   Do not set a margin higher than $scale times this value.
+ */
+@mixin squishy-margin($side, $scale: 1, $max-margin: 2rem) {
+  $min-margin: 0.5rem;
+
+  margin-#{$side}: calc(#{$scale} * #{$min-margin});
+
+  @if unit($max-margin) != "rem" {
+    @error "Max margin must be specified in rem units.";
+  }
+
+  @if $max-margin > $min-margin {
+    // 900px => 8px margin, then scale up..
+    @include breakpoint($medium-width) {
+      margin-#{$side}: calc(#{$scale} * #{augmented-squish($min-margin, $medium-width)});
+    }
+
+    // Stop increasing when we reach $scale times $max-margin.
+    $delta: rem-to-px($max-margin - $min-margin);
+
+    @include breakpoint($medium-width + (squish-factor() * $delta)) {
+      margin-#{$side}: calc(#{$scale} * #{$max-margin});
+    }
+  }
+}
+
+/**
+ * Sets viewport-dependent padding on one side of the element.
+ *
+ * @param unquoted-string $side
+ *   Which side to set padding for. Must be one of 'left' or 'right'.
+ * @param unquoted-string $type
+ *   Must be either:
+ *   - 'bare' (default): viewport larger than $max-width is handled elsewhere.
+ *   - 'stretch': extreme viewport size is handled on this element.
+ */
+@mixin squishy-padding($side, $type: bare) {
+  $min-padding: 0.5rem;
+  $max-allowed: '((#{$max-width} - #{$medium-width}) / #{squish-factor()})';
+
+  padding-#{$side}: $min-padding;
+
+  // 900px => 8px padding; 1200px => 66px padding; 1920px => 178px padding.
+  @include breakpoint($medium-width) {
+    $augemented-squish: augmented-squish($min-padding, $medium-width);
+
+    padding-#{$side}: calc(#{$augemented-squish});
+  }
+
+  // Above 1920px => 178px unless we need to stretch.
+  @include breakpoint($max-width) {
+    $default-padding: '#{$min-padding} + #{$max-allowed}';
+
+    $padding: calc(#{$default-padding});
+
+    @if ($type == stretch) {
+      $padding: calc(#{$default-padding} + ((100% - #{$max-width}) / 2));
+    }
+
+    padding-#{$side}: $padding;
+  }
+}

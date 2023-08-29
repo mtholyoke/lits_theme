@@ -1,4 +1,5 @@
-name: lits_theme
+name: LITS_theme
+description: LITS theme, build using the Drupal starterkit, based on stable9.
 type: theme
 'base theme': stable9
 starterkit: true
@@ -20,3 +21,8 @@ libraries:
 #     - lits_theme/progress
 core_version_requirement: ^9
 generator: 'starterkit_theme:9.5.10'
+regions:
+  header: 'Header'
+  content: 'Main content'  # the content region is required
+  sidebar: 'Sidebar'
+  footer: 'Footer'

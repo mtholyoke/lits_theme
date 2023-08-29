@@ -1,0 +1,36 @@
+{#
+/**
+ * @file
+ * Theme definition to display a single standard page.
+ *
+ * @see templates/layout/page.html.twig
+ * @see template_preprocess_page()
+ */
+#}
+{% if sidebar_location != "none" %}
+  {% set rendered_sidebar = page.sidebar|render %}
+  {% set usable_sidebar = rendered_sidebar|striptags('<img><drupal-render-placeholder>')|trim %}
+  {% if not usable_sidebar %}
+    {% set sidebar_location = "none" %}
+  {% endif %}
+{% endif %}
+{{ page.header }}
+
+<div id="imagebar" class="layout-stripe">&nbsp;{# Can’t be empty #}</div>
+
+<div id="main-content" class="main-sidebar-{{ sidebar_location }}">
+  <main id="main-wrapper" class="layout-zone">
+    <div id="messagebar" class="layout-stripe">
+     {{ page.content.trehub_messages }}
+    </div>
+    {{ page.content|without("trehub_messages") }}
+  </main>{# /#main-wrapper #}
+
+  {% if sidebar_location != 'none' %}
+  <aside id="sidebar-wrapper" class="sidebar-{{ sidebar_location }}" role="complementary">
+    {{ rendered_sidebar|raw }}
+  </aside>
+  {% endif %}
+</div>
+
+{{ page.footer }}

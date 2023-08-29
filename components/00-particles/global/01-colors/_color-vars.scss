@@ -1,0 +1,59 @@
+/**
+ * @file
+ * Color variables.
+ */
+
+/* Primary colors */
+// Top of each pair: official brand color; bottom: provided by designer.
+$dark-blue: #004876;
+// $dark-blue: #0e4977;
+$med-blue: #07c;
+// $med-blue: #2576bc;
+
+/* Background colors */
+$white: white;
+$pale-gray: #e2dfdd; // $gray + 80% tint.
+$dark-red: #6f263d;
+$charcoal: #1a1a1a;
+$black: black;
+
+/* Accent colors */
+$pale-blue: #ccdae3;
+$light-blue: #00a9e0;
+$raspberry: #a20067;
+$red: #ef3340;
+$yellow: #f1c400;
+$dark-green: #2c5234;
+$green: #5c7f1a;
+$light-orange: #ff9e1b;
+$light-green: #84bd00;
+
+// // // // // // // // //
+// TODO: colors below this line are from previous work, and should be
+// moved above it when we figure out that we need them.
+
+$gray: #6e6259;
+// TODO: change to $pale-gray throughout
+$gray-lightest: #e5e5e5;
+$gray-lighter: #ccc;
+$gray-light: #999;
+$gray-dark: #4c4c4c;
+$gray-darker: #333;
+$med-gray: #b8b8b8;
+$fully-transparent: rgba(0, 0, 0, 0);
+
+$dark-blue-90pct: rgba(0, 72, 118, 0.9);
+$darkish-blue: #0065b8;
+$med-blue-94pct: rgba(0, 112, 192, 0.94);
+$bright-blue: #74d7ed;
+$white-90pct: rgba(255, 255, 255, 0.9);
+
+$mustard: #f4c52f;
+$sun-yellow: #ffd328;
+
+/** new colors **/
+
+// Suggested by Chris 7/2/2019; not sure we’re using them.
+$orange: #ff671f;
+
+// $arrow-colors: $sun-yellow, $med-blue, $raspberry, $light-orange, $red, $light-blue, $green, $sun-yellow,  $med-blue, $raspberry, $light-orange, $red, $light-blue, $green;

@@ -1,0 +1,68 @@
+/**
+ * @file
+ * Styles for all non-homepage pages.
+ */
+
+/* Layout */
+
+#main-wrapper {
+  // .layout-zone sets clearfix and squishy edges.
+  z-index: 1;
+}
+
+#main-content.main-sidebar-side {
+  // Set up flex defaults so the sidebar position can depend on viewport size.
+  @extend .layout-container;
+
+  #main-wrapper {
+    @include responsive-basis(100%, 62%, 62%, stretch);
+    @include squishy-padding(bottom);
+
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+
+    @include breakpoint($medium-width) {
+      // Override default squishy-padding from .layout-zone:
+      @include squishy-padding(left, stretch);
+      @include squishy-gutter(right);
+
+      box-shadow: 2px 0 2px rgba(0, 0, 0, 0.4);
+    }
+  }
+
+  #sidebar-wrapper {
+    @include responsive-basis(100%, 38%, 38%, stretch);
+
+    @include breakpoint($medium-width) {
+      // Establish this as a layout-zone-right.
+      @include squishy-padding(right, stretch);
+      @include squishy-gutter(left);
+
+      #sidebar-container {
+        flex-direction: column;
+
+        & > * {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+#main-content.main-sidebar-foot {
+  #main-wrapper {
+    // TODO: doesn't show up?
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  }
+}
+
+/* Elements */
+
+#block-breadcrumbs {
+  margin-top: $space;
+  font-size: 1rem;
+}
+
+// Don't pad, even if there's a list of status messages of a single type.
+#messagebar ul {
+  padding-left: 0;
+}

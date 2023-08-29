@@ -1,0 +1,53 @@
+//////////////////////////
+// General Variables
+// Note: colors should go into
+// components/_patterns/00-base/global/01-colors/_color-vars.scss
+// and breakpoint related vars into
+// components/_patterns/00-base/_breakpoints.scss
+
+// Fonts
+$font-body: "ars-maquette-web", sans-serif;
+$font-heading: "ars-maquette-web", sans-serif;
+
+// available font-weights include: 300, 400, 500, 700
+// with italic being available in font-weights 400 and 700
+
+// Spacing
+$space: 1rem;
+
+// times
+$space-double: $space*2;
+$space-triple: $space*3;
+$space-quadruple: $space*4;
+$space-quintuple: $space*5;
+$space-sextuple: $space*6;
+$space-septuple: $space*7;
+
+// divided
+$space-one-half: $space/2;
+$space-one-third: $space/3;
+$space-one-fourth: $space/4;
+$space-one-fifth: $space/5;
+$space-one-sixth: $space/6;
+$space-one-seventh: $space/7;
+$space-one-eighth: $space/8;
+
+/**
+* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos
+*/
+// $logo-font-size: 17px;
+$logo-container-max-height: 60px;
+
+// wordmark values
+$o-ratio: 19.893 / 40.849; // height of 'o' in wordmark svg vs height of svg as measured in Illustrator
+$word-logo-image-max-height: $logo-container-max-height * $o-ratio;
+$word-default-margin: $word-logo-image-max-height / 2;
+// $word-logo-font-size: $word-default-margin; // The size of the 'o' should be the font-size also TODO: this sort of looks small...
+$word-logo-font-size: 19px;
+
+// monogram values
+$c-ratio: 64.9 / 108; // height of 'c' in wordmark svg vs height of svg as measured in Illustrator
+$mono-logo-image-max-height: $logo-container-max-height * (1 - $c-ratio);
+$mono-default-margin: $mono-logo-image-max-height / 2;
+// $mono-logo-font-size: $mono-default-margin; // The size of the 'c' should be the font-size also TODO: this sort of looks small...
+$mono-logo-font-size: 19px;

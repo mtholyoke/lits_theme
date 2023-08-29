@@ -1,0 +1,69 @@
+items:
+  - name: $dark-blue
+    value: '#004876'
+  - name: $med-blue
+    value: '#07c'
+  - name: $white
+    value: white
+  - name: $pale-gray
+    value: '#e2dfdd'
+  - name: $dark-red
+    value: '#6f263d'
+  - name: $charcoal
+    value: '#1a1a1a'
+  - name: $black
+    value: black
+  - name: $pale-blue
+    value: '#ccdae3'
+  - name: $light-blue
+    value: '#00a9e0'
+  - name: $raspberry
+    value: '#a20067'
+  - name: $red
+    value: '#ef3340'
+  - name: $yellow
+    value: '#f1c400'
+  - name: $dark-green
+    value: '#2c5234'
+  - name: $green
+    value: '#5c7f1a'
+  - name: $light-orange
+    value: '#ff9e1b'
+  - name: $light-green
+    value: '#84bd00'
+  - name: $gray
+    value: '#6e6259'
+  - name: $gray-lightest
+    value: '#e5e5e5'
+  - name: $gray-lighter
+    value: '#ccc'
+  - name: $gray-light
+    value: '#999'
+  - name: $gray-dark
+    value: '#4c4c4c'
+  - name: $gray-darker
+    value: '#333'
+  - name: $med-gray
+    value: '#b8b8b8'
+  - name: $fully-transparent
+    value: 'rgba(0, 0, 0, 0)'
+  - name: $dark-blue-90pct
+    value: 'rgba(0, 72, 118, 0.9)'
+  - name: $darkish-blue
+    value: '#0065b8'
+  - name: $med-blue-94pct
+    value: 'rgba(0, 112, 192, 0.94)'
+  - name: $bright-blue
+    value: '#74d7ed'
+  - name: $white-90pct
+    value: 'rgba(255, 255, 255, 0.9)'
+  - name: $mustard
+    value: '#f4c52f'
+  - name: $sun-yellow
+    value: '#ffd328'
+  - name: $orange
+    value: '#ff671f'
+meta:
+  description: >-
+    To add to these items, use Sass variables that start with <code>$</code> in
+    <code>.//components/_patterns/00-base/global/01-colors/_color-vars.scss</code>

@@ -1,0 +1,94 @@
+/**
+ * Breakpoint Configuration
+ * @see https://github.com/Team-Sass/breakpoint/wiki
+ *
+ */
+
+/////////
+// Singularity variables
+
+// Dawn - remove and replace all instances of this nomenclature
+// Desktop wide breakpoint
+$page-desktop-wide: 1920px;
+// Tablet horizontal breakpoint
+$page-tablet-horizontal: 1440px;
+// Tablet portrait breakpoint
+$page-tablet-portrait: 1080px;
+// Phone horizontal breakpoint
+$page-phone-horizontal: 600px;
+//Phone vertical breakpoint
+$page-phone-portrait: 400px;
+
+// Breakpoints Updated
+// $min-width: 300px;
+// $small-width: 600px;
+// $medium-width: 900px;
+// $large-width: 1200px;
+// $max-width: 1920px;
+// (moved to _02-squishiness.scss)
+
+// pairs:
+$phone: $min-width $small-width;
+$tablet: $small-width  $medium-width;
+$laptop: $medium-width $large-width;
+$desktop: $large-width $max-width;
+
+// remove rewrite of breakpoints into EM @include breakpoint-set('to ems', true);
+@include add-grid(12);
+@include add-gutter(1/4);
+
+// Original Breakpoints variables
+$xs: 25em;
+$small: 26em;
+$medium: 41em;
+$large: 48em;
+$xl: 75em;
+$max-width-old: $xl;
+
+/// Mixin - xs Breakpoint
+/// Allows easier @include xs {} syntax
+@mixin xs {
+  @include breakpoint($xs) {
+    @content;
+  }
+}
+
+/// Mixin - small Breakpoint
+/// Allows easier @include small {} syntax
+@mixin small {
+  @include breakpoint($small) {
+    @content;
+  }
+}
+
+/// Mixin - medium Breakpoint
+/// Allows easier @include medium {} syntax
+@mixin medium {
+  @include breakpoint($medium) {
+    @content;
+  }
+}
+
+/// Mixin - large Breakpoint
+/// Allows easier @include large {} syntax
+@mixin large {
+  @include breakpoint($large) {
+    @content;
+  }
+}
+
+/// Mixin - xl Breakpoint
+/// Allows easier @include xl {} syntax
+@mixin xl {
+  @include breakpoint($xl) {
+    @content;
+  }
+}
+
+/// Mixin - max-width Breakpoint
+/// Allows easier @include max-width {} syntax
+@mixin max-width {
+  @include breakpoint($max-width) {
+    @content;
+  }
+}

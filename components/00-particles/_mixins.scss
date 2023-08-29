@@ -1,0 +1,254 @@
+/////////////////////
+// General Mixins (put specific ones in component files where applicable)
+
+/// Mixin - Clearfix.
+/// Adds clearfix based on http://bourbon.io/docs/#clearfix
+/// use example =   @include cleafix
+
+@mixin clearfix {
+  &::after {
+    clear: both;
+    content: "";
+    display: table;
+  }
+}
+
+/// Mixin - list-reset
+/// Reset list item defaults when no margin, padding, list styles needed
+@mixin list-reset {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/// Mixin - With Icon
+/// Precede Text with SVG icon
+@mixin with-icon {
+  background-size: cover;
+  content: "";
+  display: inline-block;
+  margin-right: 0.1em;
+  padding: 0.8em;
+}
+
+/// Mixin - More Link
+/// Used in a number of views
+@mixin more-link {
+  a {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+    font-weight: 600;
+    text-decoration: none;
+
+    &::before {
+      content: "»";
+      font-size: 1.2rem;
+      margin-right: 0.2em;
+    }
+  }
+}
+
+/// Mixin - Back Link
+/// Used in a number of views
+@mixin back-link {
+  display: block;
+  font-size: 1.2rem;
+  line-height: 1.8rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  &::before {
+    content: "«";
+    font-size: 1.2rem;
+    margin-right: 0.2em;
+  }
+}
+
+/// Mixin - Body Copy
+@mixin body-copy {
+  font-family: $font-body;
+  font-size: 1.2rem;
+  line-height: 2rem;
+}
+
+/// Mixin - Transition
+@mixin transition($transition-property, $transition-time, $method) {
+  -webkit-transition: $transition-property $transition-time $method;
+  -moz-transition: $transition-property $transition-time $method;
+  -ms-transition: $transition-property $transition-time $method;
+  -o-transition: $transition-property $transition-time $method;
+  transition: $transition-property $transition-time $method;
+}
+
+/// Mixin - Standard Margin
+@mixin margin {
+  margin-bottom: 1em;
+}
+
+@mixin fontawesome-far {
+  font-family: "Font Awesome 5 Free", "ars-maquette-web", sans-serif;
+  font-weight: 400;
+}
+
+@mixin fontawesome-fas {
+  font-family: "Font Awesome 5 Free", "ars-maquette-web", sans-serif;
+  font-weight: 900;
+}
+
+@mixin visually-hidden {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
+}
+
+@mixin dark-blue-stripe {
+  background-color: $dark-blue;
+  color: $white;
+}
+
+@mixin med-blue-stripe {
+  background-color: $med-blue;
+  color: $white;
+}
+
+// Set up container to vertically space its contents across the entire viewport
+// Stick footer to bottom of page when there isn't enough content in the body.
+// Loosely based on this fiddle: http://jsfiddle.net/n5BaR/
+@mixin full-viewport {
+  display: flex;
+  flex-direction: column;
+  min-width: $min-width;
+  min-height: 100vh;
+
+  & #main-content {
+    flex: 1 1 auto;
+  }
+}
+
+@mixin rounded-corners {
+  border-radius: 0.25rem;
+}
+
+// BACKGROUNDS:           Possible focus colors (4.5+ vs background)
+// $white (#ffffff):      $med-blue $green $gray $raspberry $dark-blue $dark-red $charcoal $black
+// (#e5e5e5):                              $gray $raspberry $dark-blue $dark-red $charcoal $black
+// $pale-gray (#e2dfdd):                         $raspberry $dark-blue $dark-red $charcoal $black
+// $med-blue (#0077cc):   $white                                                           $black
+// $green (#5c7f1a):      $white                                                           $black
+// $raspberry (#a20067):  $white $pale-gray $pale-blue $yellow
+// $dark-blue (#004876):  $white $pale-gray $pale-blue $yellow $light-orange
+// $dark-red (#6f263d):   $white $pale-gray $pale-blue $yellow $light-orange
+// $charcoal (#1a1a1a):   $white $pale-gray $pale-blue $yellow $light-orange $light-blue $orange
+// $black (#000000):      $white $pale-gray $pale-blue $yellow $light-orange $light-blue $orange $red $med-blue $green
+//
+// Background:            focus color
+// $white (#ffffff):      $dark-blue
+// (#e5e5e5):             $dark-blue
+// $pale-gray (#e2dfdd):  $dark-blue
+// $med-blue (#0077cc):   $white
+// $green (#5c7f1a):      $white
+// $raspberry (#a20067):  $white
+// $dark-blue (#004876):  $white
+// $dark-red (#6f263d):   $white
+// $charcoal (#1a1a1a):   $white
+// $black (#000000):      $white
+//
+// Exceptions:
+// unified search on homepage uses $light-orange on $dark-blue because it's otherwise confusing with the white form fields
+@mixin focus($color: $dark-blue, $type:false) {// default should work against default white background
+  &:focus {
+    outline-offset: 2px;
+    outline: 3px solid $color;
+
+    @if $type == "link" {
+      text-decoration: underline solid;
+    }
+  }
+}
+// Force table to not be like tables anymore
+@mixin untablify() {
+  &,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+    height: 100%;
+  }
+
+  thead {
+    @include visually-hidden;
+  }
+
+  th,
+  td {
+    border-bottom: none;
+    display: flex;
+    flex-flow: row wrap;
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    position: relative;
+  }
+
+  th[scope=row] {
+    width: auto;
+  }
+
+  tbody tr:first-of-type {
+    border-top: 1px solid $gray-lighter;
+  }
+
+  .col-header {
+    display: inline-block;
+    font-weight: bold;
+    padding-right: 0;
+    width: 100%;
+    word-break: break-all;
+  }
+
+  .col-content {
+    width: 100%;
+    padding-left: 2rem;
+  }
+
+  @include breakpoint($small-width) {
+    .col-header {
+      width: 50%;
+      padding-right: 1rem;
+    }
+
+    .col-content {
+      width: 50%;
+      padding-left: 0;
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    .col-header {
+      width: 33%;
+    }
+
+    .col-content {
+      width: 67%;
+    }
+  }
+
+  @include breakpoint($large-width) {
+    .col-header {
+      width: 20%;
+    }
+
+    .col-content {
+      width: 80%;
+    }
+  }
+}

@@ -9,14 +9,14 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const EmitAllPlugin = require('webpack-emit-all-plugin');
 
 // const src_css = 'css/*.css'
-const src_sass = 'scss/*.scss'
-const src_js = 'js/*.js'
+const src_sass = '**/*.scss'
+const src_js = '**/*.js'
 
 const DEST_FOLDER = '/app/web/themes/contrib/lits_theme/dist'
 
 // relevant directories
 const modules = [
-  '/src/'
+  '/components/'
 ]
 
 
@@ -53,7 +53,7 @@ module.exports =  {
     // include the necessary plugins
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[name].css',
+        filename: 'lits_theme.css',
         chunkFilename: '[name].css',
       }),
     ],

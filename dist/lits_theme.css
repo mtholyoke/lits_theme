@@ -1,0 +1,113 @@
+/**
+* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos
+*/
+
+/**
+ * @file
+ * Variables, functions, and mixins to support responsiveness.
+ */
+/* Breakpoints */
+/**
+ * Standardized rate plus minimum size.
+ *
+ * @param number(size) $min-value
+ *   The minimum size at the zero point of linear-squish() function.
+ * @param number(size) $width
+ *   Breakpoint to pass to linear-squish() function.
+ * @return number(size)
+ *   Computed padding size.
+ *
+ * Calculation happens in CSS (not Sass), so any linear units are allowable.
+ */
+/**
+ * Padding size is proportional to viewport width.
+ *
+ * @param number(size) $width
+ *   The zero-point for expansion. Usually a breakpoint.
+ * @return number(size)
+ *   Computed padding size.
+ *
+ * Calculation happens in CSS (not Sass), so any linear units are allowable.
+ */
+/**
+ * Convert rem to px for Sass calculation.
+ *
+ * @param number(rem) $rem
+ *   Value in rem to convert.
+ * @return number(px)
+ *   Number of pixels corresponding to input.
+ *
+ * TODO: Is there a better place for helper functions?
+ * TODO: Is 1rem => 16px explicitly specified anywhere?
+ */
+/**
+ * Assigns breakpoint-dependent values to flex-basis, and width 100% within.
+ *
+ * @param number(size) $small-basis
+ *   The flex-basis for breakpoint $small-width.
+ * @param number(size) $medium-basis
+ *   The flex-basis for breakpoint $medium-width.
+ * @param number(size) $large-basis
+ *   The flex-basis for breakpoint $large-width.
+ *
+ * Any valid size units for flex-basis are allowed.
+ */
+/**
+ * Smaller numbers mean faster expansion as viewport width increases.
+ *
+ * @return number(unitless)
+ *   Inverse rate of expansion.
+ *
+ * 6 => max padding 170px + min => max content width 1564px.
+ * 5 => max padding 204px + min => max content width 1496px.
+ * 4 => max padding 255px + min => max content width 1394px.
+ */
+/**
+ * Sets scalable viewport-dependent padding on one side of the element.
+ *
+ * @param unquoted-string $side
+ *   Which side to set padding for. Must be one of 'left' or 'right'.
+ * @param number(unitless) $scale
+ *   Multiply all padding values (including max) by this. Useful for gutters
+ *   split between multiple elements, such as news items on the homepage.
+ * @param number(rem) $max-padding
+ *   Do not set a padding higher than $scale times this value.
+ */
+/**
+ * Sets scalable viewport-dependent margin on one side of the element.
+ *
+ * @param unquoted-string $side
+ *   Which side to set margin for. Must be one of 'left' or 'right'.
+ * @param number(unitless) $scale
+ *   Multiply all margin values (including max) by this. Useful for gutters
+ *   split between multiple elements, such as news items on the homepage.
+ * @param number(rem) $max-margin
+ *   Do not set a margin higher than $scale times this value.
+ */
+/**
+ * Sets viewport-dependent padding on one side of the element.
+ *
+ * @param unquoted-string $side
+ *   Which side to set padding for. Must be one of 'left' or 'right'.
+ * @param unquoted-string $type
+ *   Must be either:
+ *   - 'bare' (default): viewport larger than $max-width is handled elsewhere.
+ *   - 'stretch': extreme viewport size is handled on this element.
+ */
+
+
+/**
+ * @file
+ * Color variables.
+ */
+/* Primary colors */
+/* Background colors */
+/* Accent colors */
+/** new colors **/
+
+.grid {
+  display: flex;
+  flex-wrap: wrap; }
+
+
+/*# sourceMappingURL=lits_theme.css.map*/

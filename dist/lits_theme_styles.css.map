@@ -1,1 +1,0 @@
-{"version":3,"file":"lits_theme_styles.css","mappings":"AAAA;EACE,YAAY","sources":["webpack://theme-preprocess/./src/scss/foo.scss"],"sourcesContent":["body {\n  color: green;\n}\n"],"names":[],"sourceRoot":""}
