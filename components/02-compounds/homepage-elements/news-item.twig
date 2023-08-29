@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Template for a News Item node on the homepage.
+ *
+ * @see templates/content/node.html.twig
+ * @see template_preprocess_node()
+ */
+#}
+{% set more_decoration %}
+<i class="fas {{ more_icon }}"></i>
+{% if more_icon == "fa-share-from-square" %}
+  <span class="visually-hidden">opens in a new tab</span>
+{% endif %}
+{% endset %}
+
+<article{{ bem("node", ["news-item"]) }} style="border-top: 4px solid {{ color }}">
+{% embed "@atoms/01-links/link/_drupal-url.twig" with {
+  drupal_url: target_url,
+} %}
+  {% block link_content %}
+    {{ title_prefix }}
+    {% if not page %}
+      {% include "@atoms/02-text/00-headings/_heading.twig" with {
+        heading_level: 3,
+        heading: label,
+      } %}
+    {% endif %}
+    {{ title_suffix }}
+    <div{{ content_attributes }}>
+      {{ content | without('field_tags') }}
+    </div>
+    <div class="more-link" style="color: {{ color }}">More {{ more_decoration }}</div>
+  {% endblock link_content %}
+{% endembed %}
+
+{{ content.field_tags }}
+</article>

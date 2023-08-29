@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Theme override for a service desk card in the list of service desks.
+ *
+ * This template is meant to be used as an embed. Note that the teaser
+ * display for study space nodes is not currently using this template; it
+ * is embedded by the full display instead.
+ *
+ * @see templates/content/taxonomy-term--service-desks--teaser.html.twig
+ */
+#}
+<div class="inPerson">
+  {% if content.hours %}
+  <div class="hours">
+    {% if hide_open_now != TRUE %}
+    {{ content.open_now }}
+    {% endif %}
+    <div class="todays-hours">{{ content.hours }}</div>
+    <div class="hours-description">{{ field_hours_description }}</div>
+    <div class="all-hours-link">
+      {{ hours_link }}
+    </div>
+  </div>
+  {% endif %}
+  {% if field_location|striptags|trim %}
+  <div class="location"><i class="fas fa-location-dot fa-fw"></i><a href="{{ url }}#floorMapContainer-anchor">{{ field_location }}, {{ field_building }}</a></div>
+  {% endif %}
+</div>
+
+<div class="divider">
+  {% if field_online_service_hours|striptags|trim or field_scheduling_link %}
+  <span class="line"></span>
+  {% endif %}
+</div>
+
+<div class="notInPerson">
+  {% if field_online_service_hours|striptags|trim %}
+  <div class="online">
+    <i class="fas fa-video fa-fw"></i><div>{{ field_online_service_link }}<div class="hoursContainer">{{ field_online_service_hours|raw }}</div></div>
+  </div>
+  {% endif %}
+  {% if field_scheduling_link %}
+  <div class="appointment">
+    <i class="fas fa-calendar-days fa-fw"></i>{{ field_scheduling_link }}
+  </div>
+  {% endif %}
+</div>

@@ -1,0 +1,297 @@
+/**
+ * @file
+ * Rules for sidebar layout and formatting.
+ *
+ * 300px – 599px: single column, flush to edges.
+ * 600px – 899px: no more than 2 columns, squishy edges and gutters.
+ * 900px – 1199px:
+ * - sidebar-side: single column, squishy gutter left and padding right.
+ * - sidebar-foot: no more than 3 columns, squishy edges and gutters.
+ * 1200px and up:
+ * - sidebar-side: single column, squishy gutter left and padding right.
+ * - sidebar-foot: no more than 4 columns, squishy edges and gutters.
+ *
+ * All elements have squishy-gutter for internal padding, max of 1rem.
+ * All elements not flush to edges get a box shadow.
+ * If more than one row is necessary, group by type (menu or service desk).
+ * Form (study space finder) is always a singleton.
+ * Department blocks work like service desk teaser blocks.
+ */
+$content-max-width: $max-width;
+$sidebar-item-max-width: 520px;
+
+#sidebar-wrapper {
+  @include clearfix;
+
+  width: 100%;
+
+  @include breakpoint($small-width) {
+    background-color: $pale-gray;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.25rem;
+    line-height: 1.5rem;
+  }
+
+  // Default case, menus and desks are in a centered column, 100% wide (max of 520px), gutters above small width
+  #sidebar-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: $max-width;
+    margin: 0 auto;
+
+    .sidebar-nav-wrapper,
+    #block-views-block-service-desk-block-block-1,
+    .views-row {
+      width: 100%;
+    }
+  }
+
+  @include breakpoint($small-width) {
+    & {
+      @include squishy-gutter(top);
+      @include squishy-gutter(right, 0.5);
+      @include squishy-gutter(left, 0.5);
+    }
+
+    #sidebar-container {
+      flex-flow: row wrap;
+      align-items: flex-start;
+    }
+
+    .sidebar-nav-wrapper,
+    .views-row {
+      max-width: $sidebar-item-max-width;
+    }
+
+    .service-desk-block-container {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+
+    .sidebar-nav-wrapper,
+    .views-row {
+      @include squishy-gutter(bottom);
+      @include squishy-gutter(left, 0.5);
+      @include squishy-gutter(right, 0.5);
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    &.sidebar-side .sidebar-nav-wrapper,
+    &.sidebar-side .views-row {
+      @include squishy-gutter(bottom);
+      @include squishy-gutter(left, 0);
+      @include squishy-gutter(right, 0);
+    }
+
+    &.sidebar-side .service-desk-block-container {
+      justify-content: flex-start;
+    }
+  }
+
+  // 4 items:
+  // small:     2x2 grid
+  // med, foot: 2x2 grid
+  // lg, foot:  25% horizontal
+  // med, side: 100% vertical
+  // lg, side:  100% vertical
+  @include breakpoint($small-width) {
+    & #sidebar-container.menu-2.desk-2 {
+      .sidebar-nav-wrapper,
+      .views-row {
+        width: 50%;
+      }
+
+      #block-views-block-service-desk-block-block-1 {
+        width: 100%;
+      }
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    &.sidebar-side #sidebar-container.menu-2.desk-2 {
+      .sidebar-nav-wrapper,
+      .views-row {
+        width: 100%;
+      }
+
+      #block-views-block-service-desk-block-block-1 {
+        width: 100%;
+      }
+    }
+  }
+
+  @include breakpoint($large-width) {
+    &.sidebar-foot #sidebar-container.menu-2.desk-2 {
+      .sidebar-nav-wrapper {
+        width: 25%;
+      }
+
+      #block-views-block-service-desk-block-block-1 {
+        width: 50%;
+      }
+
+      .views-row {
+        width: 50%;
+      }
+    }
+  }
+
+  // 3 items:
+  // small:     50%, two-of-a-kind side-by-side and third centered on separate line
+  // med, foot: 33% horizontal
+  // lg, foot:  33% horizontal
+  // med, side: 100% vertical
+  // lg, side:  100% vertical
+
+  @include breakpoint($small-width) {
+    & #sidebar-container.menu-2.desk-1 {
+      .sidebar-nav-wrapper {
+        width: 50%;
+      }
+
+      #block-views-block-service-desk-block-block-1 {
+        width: 100%;
+      }
+    }
+
+    & #sidebar-container.menu-1.desk-2 {
+      .views-row {
+        width: 50%;
+      }
+
+      #block-views-block-service-desk-block-block-1 {
+        width: 100%;
+      }
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    &.sidebar-foot #sidebar-container {
+      &.menu-2.desk-1 {
+        .sidebar-nav-wrapper {
+          width: calc(100% / 3);
+        }
+
+        #block-views-block-service-desk-block-block-1 {
+          width: calc(100% / 3);
+          max-width: $sidebar-item-max-width;
+        }
+      }
+
+      &.menu-1.desk-2 {
+        .sidebar-nav-wrapper {
+          width: calc(100% / 3);
+        }
+
+        #block-views-block-service-desk-block-block-1 {
+          width: calc(100% * 2 / 3);
+          max-width: $sidebar-item-max-width * 2;
+
+          .views-row {
+            width: 50%;
+          }
+        }
+      }
+    }
+
+    &.sidebar-side #sidebar-container {
+      &.menu-1.desk-2 {
+        #block-views-block-service-desk-block-block-1 .views-row {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // 2 items:
+  // small:     50% side-by-side
+  // med, foot: 50% side-by-side
+  // lg, foot:  50% side-by-side
+  // med, side: 100% vertical
+  // lg, side:  100% vertical
+
+  @include breakpoint($small-width) {
+    #sidebar-container.menu-0.desk-2 {
+      #block-views-block-service-desk-block-block-1 {
+        width: 100%;
+
+        .views-row {
+          width: 50%;
+        }
+      }
+    }
+
+    #sidebar-container.menu-1.desk-1 {
+      .sidebar-nav-wrapper {
+        width: 50%;
+      }
+
+      #block-views-block-service-desk-block-block-1 {
+        width: 50%;
+        max-width: $sidebar-item-max-width;
+
+        .views-row {
+          width: 100%;
+        }
+      }
+    }
+
+    #sidebar-container.menu-2.desk-0 {
+      .sidebar-nav-wrapper {
+        width: 50%;
+      }
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    &.sidebar-side #sidebar-container.menu-0.desk-2,
+    &.sidebar-side #sidebar-container.menu-1.desk-1 {
+      #block-views-block-service-desk-block-block-1 {
+        width: 100%;
+
+        .views-row {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  // 1 item:
+  // small:   50% centered
+  // medium+: 100%
+  @include breakpoint($small-width) {
+    #sidebar-container.menu-0.desk-1,
+    #sidebar-container.menu-1.desk-0 {
+      .sidebar-nav-wrapper,
+      .views-row {
+        width: 50%;
+      }
+
+      #block-views-block-service-desk-block-block-1 {
+        width: 100%;
+      }
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    #sidebar-container.menu-0.desk-1,
+    #sidebar-container.menu-1.desk-0 {
+      .sidebar-nav-wrapper,
+      .views-row {
+        width: 100%;
+      }
+
+      #block-views-block-service-desk-block-block-1 {
+        width: 100%;
+      }
+    }
+  }
+}

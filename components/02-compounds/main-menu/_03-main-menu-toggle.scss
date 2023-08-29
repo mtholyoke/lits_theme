@@ -1,0 +1,52 @@
+/**
+ * @file
+ * Styles for toggling the main menu open/closed on narrow screens.
+ */
+// Toggle control
+.toggle-expand {
+  @include link-on-blue;
+
+  @media (min-width: $medium-width) {
+    display: none;
+  }
+
+  display: inline-block;
+  padding: $space 0;
+  text-decoration: none;
+  width: 100%;
+  color: $white;
+  text-align: center;
+  // See main-menu.js
+}
+
+.toggle-expand__text {
+  display: inline-block;
+  font-size: 1.2rem;
+  font-weight: 400;
+  padding-left: 10px;
+}
+
+// SVG icon
+.toggle-expand__icon {
+  height: 3rem;
+  width: 3rem;
+  margin: 0 auto;
+}
+
+.toggle-expand__open {
+  display: inline-block;
+  text-align: center;
+
+  .toggle-expand--open & {
+    display: none;
+  }
+}
+
+.toggle-expand__close {
+  display: none;
+  text-align: center;
+
+  .toggle-expand--open & {
+    display: inline-block;
+  }
+}

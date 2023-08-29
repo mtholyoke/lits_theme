@@ -1,0 +1,281 @@
+/**
+ * @file
+ * Styles for the unified search form, in the header of almsot every page.
+ */
+
+#block-trehub-litsunifiedsearchblock {
+  background-color: $dark-blue;
+  padding: 1rem;
+
+  .lits_homepage & {
+    padding: 1.6rem;
+  }
+
+  #litsunifiedsearchblock-label {
+    font-size: 1.5rem;
+    color: $white;
+    font-weight: bold;
+    margin: 0 0 1rem; // Top margin not needed, whitespace above handled by containing element padding
+  }
+}
+
+#lits-search-unified-search-form {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  /** Field containers */
+  & .search-selection-container,
+  & .search-query-container,
+  #edit-lits-search-go {
+    flex: 1 1 auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  & #edit-search-query {
+    width: 100%;
+  }
+
+  /** Fields */
+
+  // Visually separate fields
+  & .form-item {
+    margin: 0 0 2rem;
+
+    @include breakpoint($medium-width) {
+      & {
+        margin: 0; // showing fields horizontally, no bottom whitespace needed
+      }
+    }
+
+    & input,
+    & select {
+      height: 3rem;
+    }
+  }
+
+  .lits_homepage & {
+    #edit-search-selection,
+    #edit-search-query {
+      border: 1px solid $white;
+    }
+  }
+
+  #edit-search-selection,
+  #edit-search-query {
+    border-radius: 0;
+  }
+
+  & #edit-lits-search-go {
+    @include button;
+
+    .lits_homepage & {
+      border: 3px solid $light-blue;
+    }
+
+    .lits_page & {
+      padding: 12px;
+    }
+
+    /* Don't let the search button grow */
+    flex: 0 1 auto;
+    width: auto;
+    margin: auto;
+  }
+
+  /** 900px+ */
+  @include breakpoint($medium-width) {
+    & {
+      flex-flow: row wrap;
+    }
+
+    /** Field containers */
+    & .search-selection-container {
+      flex: 0 0 auto;
+      width: 13rem; // make sure pulldown text is always readable and search help doesn't wrap
+      padding-right: 1rem;
+    }
+
+    & .search-query-container {
+      flex: 1 0 auto;
+      width: 33%;
+      padding-right: 1rem;
+
+      & input {
+        max-width: 100%;
+      }
+    }
+
+    & #edit-lits-search-go {
+      min-width: 0;
+      margin: 0;
+    }
+  }
+}
+
+/* II.A.3. Description */
+
+.search-selection-container .form-item__description {
+  position: relative;
+  width: 100%;
+  margin: 0.5em 0 0;
+}
+
+/* II.A.3.a. Button */
+
+.search-detail-button {
+  width: 1em;
+  // height: calc(3em + 1px);
+  padding: 0;
+  float: right;
+  border: none;
+  background: none;
+
+  @include link-on-gray;
+
+  .lits_homepage & {
+    @include link-on-blue;
+  }
+
+  .narrow {
+    svg.fa-circle-question {
+      display: inline-block;
+    }
+
+    svg.fa-xmark {
+      display: none;
+    }
+  }
+
+  .wide {
+    display: none;
+
+    svg {
+      margin: 0 0.2rem;
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    width: auto;
+    float: none;
+    font-size: 0.9rem;
+    text-align: left;
+
+    .narrow {
+      display: none;
+    }
+
+    .wide {
+      display: inline;
+    }
+  }
+}
+
+.expandable--open > .search-detail-button {
+  .narrow {
+    svg.fa-circle-question {
+      display: none;
+    }
+
+    svg.fa-xmark {
+      display: inline-block;
+    }
+  }
+
+  .wide svg {
+    transform: rotate(180deg);
+  }
+}
+
+/* II.A.3.b. Content */
+
+#search-detail-content {
+  display: none;
+  width: 100%;
+  padding: 0.5rem;
+  clear: both;
+  border: 2px solid $med-blue;
+  background: $white;
+  color: $dark-blue;
+  font-size: 0.9rem;
+  line-height: 1.4;
+
+  $layout-container_width: calc(100vw - calc(2 * calc(0.5rem + calc(calc(100vw - #{$medium-width}) / 6))));
+
+  @include breakpoint($medium-width) {
+    // width of layout-container, then subtract the padding on the search container
+    width: calc(#{$layout-container_width} - 2rem);
+  }
+
+  @include breakpoint($max-width) {
+    // layout-container (maxes out at 1564px at and above 1920px window), then subtract the padding on the search container
+    width: calc(1564px - 2rem);
+  }
+
+  .lits_homepage & {
+    @include breakpoint($medium-width) {
+      // width of layout-container, then subtract the padding on the search container
+      width: calc(#{$layout-container_width} - 3.2rem);
+    }
+
+    @include breakpoint($large-width) {
+      // width of layout-container, then get 60% (search container size), then subtract the padding on the search container
+      width: calc(calc(#{$layout-container_width} * 0.6) - 3.2rem);
+    }
+
+    @include breakpoint($max-width) {
+      // layout-container (maxes out at 1564px at and above 1920px window), then get 60% (search container size), then subtract the padding on the search container
+      width: calc(calc(1564px * 0.6) - 3.2rem);
+    }
+  }
+
+  dl {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-start;
+
+    dt,
+    dd {
+      flex: 0 0 auto;
+      margin: 0;
+      padding: 0.5rem;
+      width: 100%;
+    }
+
+    dt {
+      font-weight: bold;
+    }
+
+    @include breakpoint($medium-width) {
+      dt {
+        width: 13rem - 1rem; // the width of the search dropdown, minus the padding on the search help text container
+        padding: 0.5rem 0;
+      }
+
+      dd {
+        width: calc(100% - 12rem); // the width of the container, minus the length of the label/dt above
+        padding: 0.5rem 0 0.5rem 0.9rem; // pad the left of the label out to line up with the text in the text field
+      }
+    }
+  }
+}
+
+/** Interior pages */
+.lits_page #searchbar {
+  #searchbar-background {
+    background-color: $pale-gray;
+    color: $dark-blue;
+  }
+
+  & #block-trehub-litsunifiedsearchblock {
+    background-color: inherit;
+    color: inherit;
+    width: 100%;
+
+    & #litsunifiedsearchblock-label {
+      color: inherit;
+    }
+  }
+}

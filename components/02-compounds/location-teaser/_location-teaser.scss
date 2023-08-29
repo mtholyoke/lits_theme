@@ -1,0 +1,116 @@
+.lits-location-teaser {
+  @include squishy-gutter(right, $max-padding:1rem);
+  @include squishy-gutter(left, $max-padding:1rem);
+  @include squishy-gutter(top, $max-padding:1rem);
+  @include squishy-gutter(bottom, $max-padding:1rem);
+
+  min-height: 15rem;
+  background-color: $raspberry;
+  color: $white;
+
+  h1,
+  h2 {
+    margin: 0;
+    font-weight: 600;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
+    color: $white;
+  }
+
+  address {
+    font-size: 1rem;
+    line-height: 1.5rem;
+    margin-bottom: 1em;
+
+    svg {
+      margin-right: 0.5em;
+    }
+  }
+
+  .location-visit {
+    font-size: 1rem;
+    line-height: 1.5rem;
+
+    .open-now-container {
+      font-size: 1.2rem;
+      margin-bottom: 0.5em;
+    }
+  }
+
+  .teaser-icon img {
+    margin: 0 auto;
+  }
+
+  a {
+    @include link-on-raspberry;
+
+    text-decoration: underline solid;
+  }
+
+  #sidebar-container & {
+    padding: 0;
+
+    .service-desk-content {
+      @include squishy-gutter(right, $max-padding:2rem);
+      @include squishy-gutter(left, $max-padding:2rem);
+      @include squishy-gutter(top, $max-padding:1rem);
+      @include squishy-gutter(bottom, $max-padding:2rem);
+    }
+
+    background-color: $white;
+    color: $charcoal;
+
+    h2.service-desk-title {
+      background-color: $raspberry;
+      color: $white;
+
+      @include squishy-gutter(right, $max-padding:1rem);
+      @include squishy-gutter(left, $max-padding:1rem);
+      @include squishy-gutter(top, $max-padding:1rem);
+      @include squishy-gutter(bottom, $max-padding:1rem);
+    }
+
+    h3.service-desk-title {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    .service-desk-slogan {
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+
+    a {
+      @include link;
+    }
+
+    @include breakpoint($medium-width) {
+      border-bottom: none;
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+    }
+  }
+}
+
+.location-teaser-social {
+  height: 100%;
+
+  ul {
+    display: flex;
+    flex-flow: row wrap;
+    width: 80%;
+    padding: 1rem 0;
+    margin: auto;
+
+    #sidebar-container & {
+      padding: 1rem 0 0;
+    }
+
+    & > li {
+      flex: 1 1 auto;
+
+      a {
+        @include link-on-green;
+      }
+    }
+  }
+}

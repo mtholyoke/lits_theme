@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override to display a numbered-list paragraph with images.
+ *
+ * @see templates/paragraphs/paragraph.html.twig
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [paragraph.bundle|clean_class] %}
+<div{{ attributes.addClass(classes) }}>
+  <ol class="paragraph--instruction-list">
+    {% for i, item in content.field_contents %}
+      {% if i matches '/^\\d+$/' %}
+        <li class="paragraph--instruction-list__item"><div>{{ item }}</div></li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</div>

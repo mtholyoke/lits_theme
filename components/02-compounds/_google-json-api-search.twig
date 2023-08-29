@@ -1,0 +1,59 @@
+{#
+/**
+ * @file
+ * Theme override for an item list.
+ *
+ * Available variables:
+ * - items: A list of items. Each item contains:
+ *   - attributes: HTML attributes to be applied to each list item.
+ *   - value: The content of the list element.
+ * - title: The title of the list.
+ * - list_type: The tag for list element ("ul" or "ol").
+ * - wrapper_attributes: HTML attributes to be applied to the list wrapper.
+ * - attributes: HTML attributes to be applied to the list.
+ * - empty: A message to display when there are no items. Allowed value is a
+ *   string or render array.
+ * - context: A list of contextual data associated with the list. May contain:
+ *   - list_style: The custom list style.
+ *
+ * @see template_preprocess_item_list()
+ */
+#}
+{%- set resultSummary      = "" -%}
+{%- set resultSummaryClass = "" -%}
+
+<div id="google-json-search-results" class="grid-item bento-1">
+	<div class="search-results">
+		<div class="search-google">
+			<h2 class="search-google-title">All results</h2>
+      {% if items or empty %}
+        {%- if title is not empty -%}
+          <h3>{{ title }}</h3>
+        {%- endif -%}
+
+        {%- if items -%}
+          {%- for item in items -%}
+            {%- if item.value['#theme'] == "google_json_api_result" -%}{# If not a real result #}
+              {%- set foo = item.attributes.addClass('search-result--no-columns') %}
+              <article{{ item.attributes }}>{{ item.value }}</article>
+              {%- if loop.last -%}
+                <div class='result-summary {{ resultSummaryClass }}'>{{ resultSummary }}</div> {# top of page message #}
+              {%- endif -%}
+            {%- elseif item.value['#theme'] == "google_json_api_results_limitation_message" -%}
+              <div class='results-limited {{ item.value['#theme'] }}'>{{ item.value }}</div>
+            {%- elseif item.value['#theme'] == "google_json_api_results_message" -%}
+              {%- set resultSummary      = item.value -%} {# save this so it can be used again later #}
+              {%- set resultSummaryClass = item.value['#theme'] -%} {# save this so it can be used again later #}
+              <div class='result-summary {{ resultSummaryClass }}'>{{ resultSummary }}</div> {# top of page message #}    
+            {%- else -%}
+            <div{{item.attributes}}>{{ item.value }}</div>
+            {%- endif -%}
+          {%- endfor -%}
+        {%- else -%}
+          {{- empty -}}
+        {%- endif -%}
+      {%- endif %}
+		</div>
+	</div>
+</div>
+

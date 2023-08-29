@@ -1,0 +1,17 @@
+/**
+ * @file
+ * Styles for the Course Reserves form.
+ *
+ * Currently only used at /materials/course-reserves-students .
+ *
+ * TODO: unwrap it to a single line for wide screens?
+ */
+#lits-search-course-reserves-form {
+  .form-item {
+    max-width: 100%;
+  }
+
+  #edit-course-reserves-search-query {
+    width: 100%;
+  }
+}

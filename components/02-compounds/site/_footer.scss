@@ -1,0 +1,320 @@
+/**
+ * @file
+ * Styles for footer elements.
+ *
+ * @see _masthead.scss
+ * @see footer.twig
+ */
+
+footer h2 {
+  margin-top: 0;
+}
+
+/* I. Contact bar */
+
+#contactbar {
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  color: $white;
+  background-color: $dark-red;
+  // Contains div.layout-container for flex.
+
+  .layout-container {
+    flex-flow: row wrap;
+
+    @include breakpoint($small-width) {
+      flex-flow: row nowrap; // don't wrap the two sections until very small so that the contact tiles wrap instead
+    }
+  }
+}
+
+/* I.A. Contactbar > Hours wrapper */
+
+#hours-wrapper {
+  // .layout-zone-left sets squishy padding on left and gutter on right.
+  @include responsive-basis(38%, 33%, 28%);
+  @include squishy-gutter(top);
+  @include squishy-gutter(bottom);
+
+  flex: 0 1 auto; // hours should not grow to take up extra space, contact should
+  display: flex;
+  flex-flow: column wrap;
+  min-width: 14rem; // Just to keep the header from wrapping, really
+
+  .more-hours {
+    @include button-on-dark-red;
+
+    max-width: 100%;
+    margin: 3.5rem 1rem 1rem;
+
+    &::before {
+      display: none;
+    }
+
+    &:focus,
+    &:hover {
+      text-decoration: underline solid;
+    }
+  }
+
+  @include breakpoint($max-width) {
+    #footer-hours-container {
+      width: 330px;
+    }
+
+    .more-hours {
+      max-width: 330px;
+    }
+  }
+}
+
+#footer-hours-container {
+  @include breakpoint($medium-width) {
+    @include squishy-gutter(left);
+
+    border-left: 1px solid $yellow;
+  }
+}
+
+#footer-hours-content {
+  margin: 0 auto;
+}
+
+#footer-hours-location {
+  margin: 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: normal;
+
+  @include breakpoint($small-width) {
+    text-align: left;
+  }
+}
+
+#footer-hours-schedule {
+  margin: 0;
+  text-align: center;
+
+  @include breakpoint($small-width) {
+    text-align: left;
+  }
+}
+
+/* I.A. Contactbar > Contact Us wrapper */
+
+#contact-us-wrapper {
+  // .layout-zone-right sets squishy gutter on left and padding on right.
+  @include responsive-basis(62%, 67%, 72%);
+  @include squishy-gutter(top);
+  @include squishy-gutter(bottom);
+
+  flex: 1 1 auto; // stretch to fill space
+  background-color: $dark-blue;
+
+  @include breakpoint($max-width) {
+    padding-right: 0.5rem; // Let the max width take the lead here instead of calculating right padding because this makes Chrome Grumpy
+  }
+
+  & > * {
+    max-width: 1170px; // contact tiles/header should not exceed this width
+  }
+}
+
+#contact-us-title {
+  margin-bottom: 1em;
+}
+
+#footer-social-wrapper {
+  margin-bottom: 1em;
+
+  a {
+    @include link-on-blue;
+  }
+}
+
+#block-sharewithlits {
+  .social-media-links--platforms {
+    margin: auto;
+
+    li {
+      padding: 0 0.35em; // remove top and bottom padding provided by module stylesheet
+    }
+  }
+}
+
+#contact-us-tiles {
+  @include list-reset;
+
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  font-size: 1rem;
+  line-height: 1.25rem;
+}
+
+.contact-us-tile {
+  @include rounded-corners;
+
+  background-color: white;
+  flex: 1 0 auto;
+  width: 100%;
+  margin: 0.25rem 0;
+  font-weight: bold;
+
+  @include breakpoint($medium-width) {
+    width: 48%;
+    margin: 0.25rem;
+  }
+
+  @include breakpoint($large-width) {
+    width: 32%;
+  }
+
+  > a {
+    @include link;
+
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    height: 100%;
+    text-decoration: none;
+    padding: 1.2rem;
+
+    &:active,
+    &:hover {
+      text-decoration: underline solid;
+    }
+
+    @include focus($light-orange);
+
+    svg {
+      flex: 0 1 auto;
+      font-size: 1.75rem;
+      margin: auto 0.5rem auto 0;
+    }
+
+    div {
+      flex: 1 1 auto;
+
+      .subtitle {
+        margin-left: 0;
+        font-weight: normal;
+        font-style: normal;
+      }
+    }
+  }
+}
+
+/* II. LITS bar */
+
+#litsbar {
+  @include squishy-gutter(top);
+  @include squishy-gutter(bottom);
+
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  background-color: $black;
+  color: $white;
+  // Contains div.layout-container for flex.
+
+  .layout-container {
+    justify-content: center;
+  }
+
+  a {
+    @include link-on-black;
+  }
+}
+
+#about-lits-container {
+  // .layout-zone-right sets squishy gutter on left and padding on right.
+  @include responsive-basis(62%, 67%, 72%);
+  @include squishy-gutter(top);
+  @include squishy-gutter(bottom);
+
+  flex: 1 1 auto; // stretch to fill space
+  text-align: center;
+
+  @include breakpoint($small-width) {
+    text-align: left;
+  }
+
+  @include breakpoint($max-width) {
+    padding-right: 0.5rem; // Let the max width take the lead here instead of calculating right padding because this makes Chrome Grumpy
+  }
+
+  & > * {
+    margin: 0.25rem; // to match contact tiles
+  }
+}
+
+#block-aboutlits-2 .menu {
+  @include list-reset;
+
+  @include breakpoint($small-width) {
+    -webkit-column-count: 2;
+    -moz-column-count: 2;
+    column-count: 2;
+    -webkit-column-gap: 10px;
+    -moz-column-gap: 10px;
+    column-gap: 10px;
+    margin-left: 0;
+    -webkit-margin-before: 0;
+    -webkit-padding-start: 0;
+  }
+
+  @include breakpoint($medium-width) {
+    -webkit-column-count: 3;
+    -moz-column-count: 3;
+    column-count: 3;
+  }
+
+  @include breakpoint($large-width) {
+    -webkit-column-count: 4;
+    -moz-column-count: 4;
+    column-count: 4;
+  }
+}
+
+#block-aboutlits-2 .menu__item {
+  break-inside: avoid;
+  font-size: 1rem;
+}
+
+/* III. Copyright bar */
+
+#copyrightbar {
+  @include squishy-gutter(top);
+  @include squishy-gutter(bottom);
+
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  background-color: $charcoal;
+  color: $white;
+  // Contains div.layout-container.layout-zone for flex and squishy edges.
+
+  a {
+    @include link-on-black;
+  }
+}
+
+.copyright {
+  font-size: 0.9rem;
+  text-align: center;
+
+  ul {
+    @include list-reset;
+
+    text-align: center;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  .grid-item {
+    flex: 1 1 auto;
+    width: 100%;
+
+    @include breakpoint($medium-width) {
+      width: 33%;
+    }
+  }
+}

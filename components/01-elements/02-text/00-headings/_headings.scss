@@ -1,0 +1,225 @@
+//
+// Generic header styles:
+// All arguments are optional. If not defined, the defaults below will be used
+//
+
+@mixin heading-xl($font-family: $font-heading, $font-size: 2rem, $line-height: 1.4, $color: inherit, $color-link: inherit, $color-link-hover: inherit, $font-weight: 700, $margin: 20px 0 0.5em) {
+  color: #{$charcoal};
+  font-family: #{$font-family};
+  font-weight: #{$font-weight};
+  font-style: normal;
+  font-size: #{$font-size};
+  line-height: #{$line-height};
+  margin: #{$margin};
+  width: auto;
+
+  &__link {
+    color: $med-blue;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+@mixin heading-large($font-family: $font-heading, $font-size: 1.8rem, $line-height: 1.4, $color: inherit, $color-link: inherit, $color-link-hover: inherit, $font-weight: 700, $margin: 10px 0 0.5em) {
+  color: #{$color};
+  font-family: #{$font-family};
+  font-weight: #{$font-weight};
+  font-style: normal;
+  font-size: #{$font-size};
+  line-height: #{$line-height};
+  margin: #{$margin};
+  width: auto;
+
+  &__link {
+    color: $med-blue;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+@mixin heading-medium($font-family: $font-heading, $font-size: 1.4rem, $line-height: 1.6, $color: inherit, $color-link: inherit, $color-link-hover: inherit, $font-weight: 700, $margin: 10px 0 0.5em) {
+  color: #{$color};
+  font-family: #{$font-family};
+  font-weight: #{$font-weight};
+  font-style: normal;
+  font-size: #{$font-size};
+  line-height: #{$line-height};
+  margin: #{$margin};
+  width: auto;
+
+  &__link {
+    color: $med-blue;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+@mixin heading-small($font-family: $font-heading, $font-size: 1.2rem, $line-height: 1.6, $color: inherit, $color-link: inherit, $color-link-hover: inherit, $font-weight: 600, $margin: 10px 0 0.5em) {
+  color: #{$color};
+  font-family: #{$font-family};
+  font-weight: #{$font-weight};
+  font-style: normal;
+  font-size: #{$font-size};
+  line-height: #{$line-height};
+  margin: #{$margin};
+  width: auto;
+
+  &__link {
+    color: $med-blue;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+@mixin heading-xs($font-family: $font-heading, $font-size: 1.1rem, $line-height: 2, $color: inherit, $color-link: inherit, $color-link-hover: inherit, $font-weight: 600, $margin: 10px 0 0.5em) {
+  color: #{$color};
+  font-family: #{$font-family};
+  font-weight: #{$font-weight};
+  font-style: normal;
+  font-size: #{$font-size};
+  line-height: #{$line-height};
+  margin: #{$margin};
+  width: auto;
+
+  &__link {
+    color: $med-blue;
+
+    &:hover {
+      color: $color-link-hover;
+    }
+  }
+}
+
+.h1 {
+  @include heading-xl();
+}
+
+.h2 {
+  @include heading-large($color: $charcoal);
+}
+
+.h3 {
+  @include heading-medium($color: $green);
+
+  font-weight: bold;
+}
+
+.h4 {
+  @include heading-small($color: $gray);
+
+  text-transform: uppercase;
+  font-weight: normal;
+}
+
+.h5,
+.h6 {
+  @include heading-xs($color: $gray);
+}
+
+// TODO: BEM selectors should be applied to wysiwyg-created content
+
+h1 {
+  @extend .h1;
+}
+
+.text-long {
+  h1 {
+    @extend .h1;
+  }
+
+  h2 {
+    @extend .h2;
+  }
+
+  h3 {
+    @extend .h3;
+  }
+
+  h4 {
+    @extend .h4;
+  }
+
+  h5 {
+    @extend .h5;
+  }
+
+  h6 {
+    @extend .h6;
+  }
+}
+
+/** hours open title **/
+#logobar-hours-content h3 {
+  @include heading-medium($color: $dark-blue);
+
+  font-size: 1rem;
+  margin-bottom: 0;
+}
+
+/** Search query styling **/
+h1 span.search-query {
+  font-style: italic;
+  color: $raspberry;
+}
+
+/** Search Result Title **/
+
+.search-results h2 {
+  font-size: 1.6rem;
+  font-weight: normal;
+  background-color: $dark-blue;
+  color: $white;
+  padding: 10px 15px;
+  -webkit-margin-after: 5px;
+  margin: 0 0 5px;
+}
+
+/** style the element **/
+.search-website {
+  & h3.search-result-title,
+  & h2.search-result-title {
+    -webkit-margin-before: 0.5em;
+    -webkit-margin-after: 0.5em;
+  }
+}
+
+.library-accounts-wrap h2 {
+  display: inline-block;
+  margin: auto 0;
+  text-align: left;
+  padding: 0;
+  font-weight: normal;
+}
+
+.bentos {
+  /** Search page heading styling **/
+
+  & h2.search-result-title,
+  & h3.search-result-title {
+    margin: 15px 0;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 1.85rem;
+  }
+
+  & h4.search-result-authors {
+    margin-top: 0;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    font-weight: 300;
+    font-size: 1rem;
+    line-height: 1.7rem;
+  }
+}
+
+.staff-card h2 {
+  margin-bottom: 0;
+}

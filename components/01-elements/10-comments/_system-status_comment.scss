@@ -1,0 +1,83 @@
+.comment {
+  border: 1px solid $gray-lighter;
+  padding: 1rem;
+  margin-bottom: 1rem;
+
+  h4 {
+    margin: 0;
+  }
+
+  section {
+    margin-left: 1rem;
+  }
+
+  footer {
+    margin-top: 1rem;
+    display: flex;
+    flex-flow: column nowrap;
+
+    @include breakpoint($medium-width) {
+      flex-flow: row nowrap;
+    }
+
+    & > a:first-of-type { // Permalink
+      margin-right: 1rem;
+    }
+  }
+
+  .submitted {
+    font-style: italic;
+    font-weight: normal;
+    color: $gray-dark;
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+  }
+
+  .links.inline {
+    list-style: none;
+    display: flex;
+    flex-flow: column nowrap;
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint($medium-width) {
+      flex-flow: row nowrap;
+
+      li {
+        margin: 0 1rem;
+      }
+    }
+
+    .comment-reply {
+      display: none;
+    }
+  }
+}
+
+.comment-form input {
+  width: 100%;
+}
+
+// TABLE PAGE ONLY
+.article {
+  .comment-form,
+  .status-updates h2,
+  .comment .links.inline,
+  .comment footer a {
+    display: none; // don't show on table page
+  }
+
+  .comment {
+    border: none;
+    padding: 0;
+    margin: 0;
+
+    section {
+      margin-left: 0;
+    }
+
+    footer {
+      margin-top: 0;
+    }
+  }
+}

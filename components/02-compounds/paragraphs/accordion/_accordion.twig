@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override to display an accordion paragraph.
+ *
+ * @see templates/paragraphs/paragraph.html.twig
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = ['accordion', 'expandable'] %}
+<div{{ attributes.addClass(classes) }}>
+  <h2 class="accordion-heading">
+    <button class="h2" aria-controls="paragraph-{{ paragraph.id() }}" aria-expanded="false" aria-pressed="false" type="button" id="paragraph-{{ paragraph.id() }}-button">
+      {{ content.field_heading }}
+      <i class="fas fa-chevron-down"></i>
+    </button>
+  </h2>
+  <div class="accordion-content" aria-hidden="true" id="paragraph-{{ paragraph.id() }}">
+    {{ content.field_contents }}
+  </div>
+</div>

@@ -1,0 +1,20 @@
+{#
+/**
+ * @file
+ * Theme override for a person card on a department detail page.
+ *
+ * @see templates/content/node--view--about-lits-staff--embed-1.html.twig
+ */
+#}
+<article class="department-person">
+  <div class="grid-container">
+    <div class="department-person-photo grid-item">
+      {{ content.field_staff_image }}
+    </div>
+    <div class="department-person-info grid-item">
+      <h3><a href="{{ url }}">{{ label }}</a></h3>
+      {{ content.field_pronouns }}
+      {{ content.field_professional_title }}
+    </div>
+  </div>
+</article>

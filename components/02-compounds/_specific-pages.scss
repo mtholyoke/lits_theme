@@ -1,0 +1,60 @@
+/**
+ * @file
+ * Styles that apply to specific pages.
+ *
+ * TODO: these should probably be moved to a less general location.
+ */
+
+.study-space-finder header {
+  @include breakpoint($page-tablet-portrait) {
+    width: 100%;
+  }
+}
+
+// Departments list gets a <header> in the view row.
+.views-row header {
+  margin: 0;
+  border: none;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+/** search page styling **/
+h2.bentos {
+  font-style: italic;
+}
+
+.bentos.grid-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-gap: 10px;
+  list-style: none;
+  margin: 0 0 1em auto;
+  padding: 0;
+  grid-template-areas:
+    "websiteSearch"
+    "guidesSearch";
+
+  /** @media (min-width: $small-width) and (max-width: $large-width) {
+      grid-template-areas:
+        "bento-1 bento-2"
+        "bento-3 .";
+      }
+  **/
+
+  @include breakpoint($large-width) {
+    grid-template-areas: "websiteSearch guidesSearch";
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.bento-1 {
+  grid-area: websiteSearch;
+}
+
+.bento-3 {
+  grid-area: guidesSearch;
+}

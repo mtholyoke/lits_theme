@@ -1,0 +1,154 @@
+/**
+ * @file
+ * Styles for elements common to all pages (homepage and not)
+ */
+
+html {
+  box-sizing: border-box;
+
+  // TODO: remove this!
+  // overflow-x: hidden;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+@include focus;
+
+// Skip to main link should be fixed behind the header by default and pop above the header on focus
+#skip-to-main {
+  position: fixed;
+  top: 0;
+  z-index: -1;
+  background-color: $white;
+  padding: 1rem;
+}
+
+#skip-to-main:focus {
+  z-index: 3;
+}
+
+body .dialog-off-canvas-main-canvas {
+  @include full-viewport;
+}
+
+/* III. Imagebar */
+
+#imagebar {
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  display: none;
+  height: 0;
+  margin-top: 60px; // TODO deal with admin toolbars later
+  // margin-bottom: -108px;
+  // TODO: allow node to override:
+
+  @include breakpoint($medium-width) {
+    display: block;
+    height: 256px;
+    background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
+    background-size: 100%;
+  }
+
+  @include breakpoint($large-width) {
+    background: $white url('../images/banners/williston-beauty-xl-banner.jpg') no-repeat center center;
+    background-size: 100%;
+  }
+
+  @include breakpoint($max-width) {
+    background: $white url('../images/banners/williston-beauty-full-banner.jpg') no-repeat center center;
+    background-size: 100%;
+  }
+
+  body.alert-active & {
+    display: none;
+  }
+}
+
+#main-content {
+  // @extend .layout-stripe;
+  //
+  width: 100%;
+  margin-bottom: 1rem;
+
+  body.alert-active & {
+    background-color: $white;
+  }
+}
+
+body:not(.alert-active) #main-content {
+  margin-top: 108px; // TODO deal with} admin toolbars later
+  // padding-top: 108px;
+
+  @include breakpoint($medium-width) {
+    margin-top: 0;
+  }
+}
+
+/* V. Messages */
+
+// #messagebar {
+//   padding-top: calc(60px + 48px); // search toggle + menubar
+//
+//   @include breakpoint($medium-width) {
+//     & {
+//       padding-top: 0;
+//     }
+//   }
+// }
+
+.layout-container {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}
+
+.layout-stripe {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.layout-zone {
+  @include clearfix;
+  @include squishy-padding(right);
+  @include squishy-padding(left);
+
+  max-width: $max-width;
+  margin: 0 auto;
+
+  .service_desk &,
+  .study_space & {
+    margin: 0;
+    padding: 0;
+
+    @include breakpoint($small-width) {
+      @include squishy-padding(right);
+      @include squishy-padding(left);
+
+      margin: 0 auto;
+    }
+  }
+}
+
+.layout-zone-left {
+  @include clearfix;
+  @include squishy-gutter(right);
+  @include squishy-padding(left, stretch);
+}
+
+.layout-zone-right {
+  @include clearfix;
+  @include squishy-padding(right, stretch);
+  @include squishy-gutter(left);
+}
+
+// TODO: find a better place for this in 01-atoms.
+.fa-share-square,
+.fa-share-from-square {
+  margin-bottom: 0.1em;
+  padding-left: 0.1em;
+  font-size: 0.85em;
+}

@@ -1,0 +1,46 @@
+{#
+/**
+ * Available variables:
+ * - link_content - the content of the link (typically text)
+ * - link_url - the url this link should poing to
+ * - link_attributes - array of attribute,value pairs
+ * - link_base_class - the base class name
+ * - link_modifiers - array of modifiers to add to the base classname
+ * - link_blockname - blockname prepended to the base classname
+ *
+ * Available blocks:
+ * - link_content - used to replace the content of the link
+ *     Example: to insert the image component
+ */
+#}
+{% set link_base_class = link_base_class|default('link') %}
+{# Handle a Drupal link object #}
+{% if link_url.title and not link_content %}
+  {% set link_content = link_url.title %}
+{% endif %}
+{% if link_url.options and link_url.options.attributes %}
+  {% if link_attributes %}
+    {% set link_attributes = link_attributes|merge(link_url.options.attributes) %}
+  {% else %}
+    {% set link_attributes = link_url.options.attributes %}
+  {% endif %}
+{% endif %}
+
+<a{{ bem(link_base_class, (link_modifiers), link_blockname) }}
+  {% for attribute, value in link_attributes %}
+    {{ attribute }}="{{- value -}}"
+  {% endfor %}
+  href="{{- link_url -}}">
+
+  {%- if link_icon_class -%}
+    <i class="{{- link_icon_class -}}"></i>
+  {%- endif -%}
+
+  {%- if link_icon_tag -%}
+    {{- link_icon_tag | raw -}}
+  {%- endif -%}
+
+  {%- block link_content -%}
+    {{- link_content -}}
+  {%- endblock -%}
+</a>

@@ -1,0 +1,84 @@
+@mixin button($bg:$med-blue, $color:$white, $hoverBg: $gray, $hoverColor: $white, $focusColor: null) {
+  background-color: $bg;
+  border: none;
+  outline: none;
+  color: $color;
+  cursor: pointer;
+  font-size: 0.9em;
+  line-height: 1.4;
+  padding: 10px;
+  margin: 15px 0;
+  font-weight: normal;
+  font-style: normal;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+
+  &:visited {
+    color: $color;
+  }
+
+  &:hover {
+    background-color: $hoverBg;
+    color: $hoverColor;
+  }
+
+  @if ($focusColor) {
+    @include focus($focusColor);
+  }
+
+  @else {
+    @include focus;
+  }
+
+  .lits_homepage #block-trehub-litsunifiedsearchblock & {
+    @include focus($light-orange);
+  }
+}
+
+@mixin button-on-dark-red {
+  @include button($bg:$white, $color:$dark-red, $hoverBg:$white, $hoverColor:$med-blue, $focusColor:$white);
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin button-on-green {
+  @include button($bg:$med-blue, $color:$white, $focusColor:$white);
+
+  border: 3px solid $white;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+@mixin button-alt /** smaller blue button**/ {
+  @include button($med-blue, $white, $gray);
+
+  font-weight: normal;
+  font-size: 0.8rem;
+}
+
+@mixin button-alt-2 /** green raspberr **/ {
+  @include button($green, $white, $raspberry);
+
+  font-size: 0.8rem;
+  font-weight: normal;
+  text-transform: none;
+}
+
+.button {
+  @include button;
+
+  &--alt {
+    @include button;
+    @include button-alt;
+  }
+
+  &--alt-2 {
+    @include button;
+    @include button-alt-2;
+  }
+}

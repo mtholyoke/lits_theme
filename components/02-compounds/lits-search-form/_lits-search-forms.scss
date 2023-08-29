@@ -1,0 +1,102 @@
+/**
+ * @file
+ * Styles for the unified search form, in the header of almost every page.
+ */
+
+#search-blocks-container {
+  width: 100%;
+
+  .lits_homepage & {
+    margin: 1rem 0;
+  }
+
+  #search-blocks-wrapper {
+    display: flex;
+    flex-flow: column wrap;
+
+    @include breakpoint($medium-width) {
+      flex-flow: row wrap;
+    }
+  }
+
+  .search-query-container {
+    margin: auto;
+
+    @include breakpoint($medium-width) {
+      margin: inherit;
+    }
+  }
+
+  label {
+    font-size: 1.5rem;
+    color: $white;
+    font-weight: bold;
+    padding-bottom: 0;
+  }
+
+  #edit-lits-site-search-query--description,
+  #edit-library-materials-search-query--description {
+    color: $charcoal;
+    font-style: italic;
+    font-size: 0.85em;
+    padding-bottom: 0.6em;
+
+    .lits_homepage & {
+      color: $pale-blue;
+    }
+  }
+
+  input {
+    width: 100%;
+
+    .lits_homepage & {
+      @include focus($light-orange, link);
+
+      &:focus {
+        text-decoration: none;
+      }
+    }
+  }
+
+  button {
+    @include focus($dark-blue, link);
+
+    margin: 15px auto;
+
+    .lits_homepage & {
+      @include focus($light-orange, link);
+
+      border: 3px solid $light-blue;
+    }
+
+    @include breakpoint($medium-width) {
+      margin: 15px 0;
+    }
+  }
+
+  #block-trehub-librarymaterialssearchblock,
+  #block-trehub-litssitesearchblock {
+    flex: 1 1 auto;
+    background-color: $dark-blue;
+    padding: 1em;
+  }
+}
+
+/** Interior pages */
+.lits_page #searchbar {
+  #searchbar-background {
+    background-color: $pale-gray;
+    color: $dark-blue;
+  }
+
+  & #block-trehub-librarymaterialssearchblock,
+  & #block-trehub-litssitesearchblock {
+    background-color: inherit;
+    color: inherit;
+    // width: 50%;
+
+    label {
+      color: $dark-blue;
+    }
+  }
+}

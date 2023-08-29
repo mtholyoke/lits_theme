@@ -1,0 +1,68 @@
+{#
+/**
+ * @file
+ * Theme override to display a tab-group paragraph.
+ *
+ * Adapted from http://simplyaccessible.com/article/danger-aria-tabs/
+ *
+ * @see templates/paragraphs/paragraph.html.twig
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{{ attach_library('trehub/tab_group') }}
+{% set pid = paragraph.id() %}
+{% set tab_labels = [] %}
+{% set tab_anchors = [] %}
+{% set tab_bodies = [] %}
+{% for i, tab in content.field_tabs %}
+  {% if i matches '/^\\d+$/' %}
+    {% set label = tab['#paragraph'].get('field_heading').getValue()[0]['value'] %}
+    {% set tab_labels = tab_labels|merge([label]) %}
+    {% set tab_anchors = tab_anchors|merge([label|lower|replace({' ': '-'})]) %}
+    {% set tab_bodies = tab_bodies|merge([tab['#paragraph'].get('field_content').getValue()[0]['value']|raw]) %}
+  {% endif %}
+{% endfor %}
+{% set classes = [paragraph.bundle|clean_class] %}
+<div{{ attributes.addClass(classes) }}>
+  <ul class="tabs__nav">
+    {% for i, label in tab_labels %}
+      {% set li_classes = ['tabs__item'] %}
+      {% set link_attr = create_attribute()
+        .setAttribute('href', '#tab-' ~ tab_anchors[i])
+        .setAttribute('id', 'tablabel-' ~ tab_anchors[i])
+        .setAttribute('aria-selected', 'false')
+        .addClass('tabs__link')
+      %}
+      {% if i == 0 %}
+        {% set li_classes = li_classes|merge(['tabs__item--open']) %}
+        {% set link_attr = link_attr
+          .setAttribute('aria-selected', 'true')
+          .addClass('is-active')
+        %}
+      {% endif %}
+      <li class="{{ li_classes|join(' ') }}">
+        <a{{ link_attr }}>{{ label }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+  {% for i, body in tab_bodies %}
+    {% set body_attr = create_attribute()
+      .setAttribute('id', 'tab-' ~ tab_anchors[i] ~ '__content')
+      .setAttribute('aria-hidden', 'true')
+      .setAttribute('aria-labelledby', 'tab-' ~ tab_anchors[i])
+      .addClass('tabs__content', 'text-long')
+    %}
+    {% if i == 0 %}
+      {% set body_attr = body_attr
+        .setAttribute('aria-hidden', 'false')
+        .addClass('tabs__content--open')
+      %}
+    {% endif %}
+    <div{{ body_attr }}>
+      <h2 id="tab-{{ tab_anchors[i] }}" tabindex="-1">{{ tab_labels[i] }}</h2>
+      {{ body|raw }}
+    </div>
+  {% endfor %}
+</div>

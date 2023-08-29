@@ -1,0 +1,56 @@
+/**
+ * @file
+ * Styles for the weekly display of hours on service desk or study space.
+ */
+
+.location-hours h2 {
+  margin-top: 5px;
+  color: $gray;
+  text-align: center;
+}
+
+.lits-hours-week {
+  display: flex;
+  flex-flow: column nowrap;
+  padding: 1rem 0;
+
+  & > :first-child {
+    border-top: 1px solid $pale-blue;
+  }
+
+  .lits-hours-day {
+    width: 100%;
+    padding: 0.5em 0;
+    clear: both;
+    border-bottom: 1px solid $pale-blue;
+    text-align: left;
+
+    .row {
+      display: flex;
+      flex-flow: column nowrap;
+
+      @include breakpoint($small-width) {
+        flex-flow: row nowrap;
+      }
+
+      .lits-hours-day-hours {
+        flex: 1 1 auto;
+      }
+    }
+
+    .lits-hours-day-label {
+      min-width: 7rem;
+      margin-right: 2rem;
+      font-weight: bold;
+    }
+
+    &.lits-hours-day.today {
+      background-color: $pale-gray;
+    }
+
+    .lits-hours-day-message {
+      font-style: italic;
+      width: 100%;
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override for a study space detail field.
+ *
+ * @see templates/field/field--node--study-space--detail-single.html.twig
+ * @see template_preprocess_field()
+ */
+#}
+{% if label_display == 'visually_hidden' %}
+  {% set title_attributes = title_attributes.addClass('visually-hidden') %}
+{% endif %}
+{% if label and not label_hidden %}
+  <div{{ title_attributes }}>{{ label }}</div>
+{% endif %}
+{% for item in items %}
+  {% set item_content = item.content|render %}
+  {% if item_content|striptags|trim %}
+    <div{{ attributes }}>{{ item_content|raw }}</div>
+  {% endif %}
+{% endfor %}

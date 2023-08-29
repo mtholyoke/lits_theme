@@ -1,0 +1,168 @@
+.main-menu__item {
+  padding: 0.5rem;
+  text-align: left;
+
+  a.main-menu__link--sub {
+    display: block;
+  }
+
+  & > button,
+  & > a {
+    @include focus($dark-blue);
+  }
+
+  &.main-menu__item--root {
+    text-align: center;
+    padding: 0;
+    flex: 1 1 auto;
+
+    & > button,
+    & > a,
+    & > button svg {
+      @include focus($white);
+    }
+
+    @include breakpoint($medium-width) {
+      width: 20%;
+
+      &:nth-child(2) {
+        text-align: left;
+      }
+
+      &:nth-child(3) {
+        text-align: left;
+        padding-left: 3%;
+      }
+
+      &:nth-child(4) {
+        text-align: center;
+      }
+
+      &:nth-child(5) {
+        text-align: right;
+        padding-right: 6%;
+      }
+
+      &:nth-child(6) {
+        text-align: right;
+      }
+    }
+  }
+
+  @include breakpoint($small-width) {
+    padding: 0.25rem;
+  }
+
+  button,
+  &#main-menu_hours-accounts a {
+    background-color: $fully-transparent;
+    color: $white;
+    border: none;
+    white-space: nowrap;
+    font-size: 1rem;
+    font-weight: 400;
+    padding: 0.5rem 0;
+    margin: 0 auto;
+    cursor: pointer;
+
+    &:hover,
+    &:active,
+    &:focus { // match standard focus rule
+      outline-offset: 2px;
+      outline: 3px solid $white;
+      color: $pale-blue; // to match open style
+    }
+  }
+
+  &#main-menu_hours-accounts {
+    display: flex;
+    flex-flow: row wrap;
+    background-color: $dark-blue;
+
+    @include breakpoint($medium-width) {
+      display: none;
+    }
+
+    div {
+      flex: 1 1 auto;
+      width: 49%;
+      padding: 1rem;
+
+      &#main-menu_hours-accounts-divider {
+        padding-left: 0;
+        padding-right: 0;
+        width: 1px;
+
+        span {
+          border-right: 1px solid $gray-lightest;
+          display: block;
+          height: 100%;
+        }
+      }
+
+      a {
+        padding: 0;
+        white-space: normal;
+        display: block;
+      }
+    }
+  }
+
+  & .main-submenu--wrapper {
+    display: none;
+
+    @include breakpoint($medium-width) {
+      width: 581px; // old styles did this, idk
+      border: 2px solid $light-blue;
+      max-height: calc(-108px + 100vh);
+      overflow-y: auto;
+    }
+  }
+
+  &.main-menu__item.expandable--open button {
+    color: $pale-blue;
+
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+
+  &.main-menu__item--root .submenu-flex-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    background-color: $white;
+
+    @include breakpoint($small-width) {
+      flex-flow: row nowrap;
+    }
+
+    div.main-menu--sub {
+      flex: 1 1 auto;
+      width: 100%;
+      padding: 0 1rem;
+
+      @include breakpoint($small-width) {
+        width: 50%;
+      }
+
+      & li {
+        border-bottom: 1px solid $gray-lightest;
+      }
+
+      @include breakpoint($small-width) {
+        & {
+          margin: 1rem 0;
+        }
+
+        &:nth-child(2n) {
+          border-left: 1px solid $charcoal;
+        }
+
+        & li:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+  }
+}

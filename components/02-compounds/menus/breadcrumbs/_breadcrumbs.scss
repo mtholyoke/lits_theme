@@ -1,0 +1,35 @@
+/**
+ * @file
+ * Styles for breadcrumbs.
+ */
+
+.breadcrumb {
+  @include list-reset;
+
+  line-height: 1.4rem;
+}
+
+.breadcrumb__item {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+
+  &::after {
+    content: "/";
+  }
+
+  &:last-child {
+    color: $dark-blue;
+
+    &::after {
+      content: "";
+    }
+  }
+}
+
+.breadcrumb__link {
+  @include link;
+
+  text-decoration: none;
+  font-weight: 400;
+}

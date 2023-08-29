@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Wrapper template to render a Drupal Url object as a link
+ *
+ * This partial expects a variable `drupal_url` containing the render array of
+ * a \Drupal\Core\Url object, and a block (or variable?) `link_content` to pass
+ * through to link.twig.
+ */
+#}
+{% set link_content %}
+  {% block link_content %}
+  {% endblock link_content %}
+{% endset %}
+{# This level of checking may be overkill, but we were ignoring any attributes added before the downloadable image paragraph type was added (whether intentionally or as an oversight). #}
+{% if drupal_url['#attributes'] is defined and
+  drupal_url['#attributes']['class'] is defined and
+  drupal_url['#attributes']['class'] == 'downloadable-basic-image'
+%}
+{% set link_attributes = drupal_url['#attributes'] %}
+{% else %}
+{% set link_attributes = {} %}
+{% endif %}
+{% if drupal_url['#title'] %}
+  {% set link_attributes = link_attributes|merge({'title': drupal_url['#title']}) %}
+{% endif %}
+{% include "@atoms/01-links/link/link.twig" with {
+  link_url: drupal_url['#url'],
+} %}

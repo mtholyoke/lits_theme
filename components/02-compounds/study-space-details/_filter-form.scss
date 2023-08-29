@@ -1,0 +1,88 @@
+/**
+ * @file
+ * Custom styles for the study spaces filter.
+ *
+ * @see lits_search_form_views_exposed_form_alter().
+ */
+.study-space-filters {
+  @include breakpoint($small-width) {
+    width: 100%;
+  }
+
+  line-height: 1rem;
+  background-color: $white;
+
+  #views-exposed-form-study-spaces-page-1 {
+    @include breakpoint($small-width) {
+      height: 1000px;
+      display: grid;
+      grid-template-columns: 50% 50%;
+    }
+
+    @include breakpoint($medium-width) {
+      height: auto;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .form-item-intro {
+    background-color: $green;
+
+    @include breakpoint($small-width) {
+      max-width: none;
+      grid-column-end: span 2;
+    }
+  }
+
+  .filters-title {
+    display: none;
+  }
+
+  .js-form-item {
+    padding-left: 1rem;
+    padding-right: 1rem;
+
+    @include breakpoint($small-width) {
+      grid-column-end: span 2;
+    }
+  }
+
+  .form-item-scope {
+    padding-bottom: 0.5rem;
+    padding-left: 1rem;
+    margin: 1rem;
+
+    @include breakpoint($small-width) {
+      grid-column-end: span 2;
+    }
+  }
+
+  fieldset {
+    border: 1px dashed $pale-gray;
+    margin: 1rem;
+  }
+
+  .form-actions {
+    margin: 1rem;
+  }
+
+  legend {
+    padding: 0 15px;
+  }
+
+  label,
+  .space-search {
+    font-weight: 400;
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .space-search-type {
+    color: $raspberry;
+    font-size: 1.1rem;
+    font-weight: bold;
+    font-style: italic;
+    padding-top: 5px;
+  }
+}

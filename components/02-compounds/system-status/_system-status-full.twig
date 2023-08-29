@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Theme override to display a system-status content type.
+ *
+ * @see templates/content/node.html.twig
+ * @see template_preprocess_node()
+ *
+ * @ingroup themeable
+ */
+ #}
+ {{ attach_library('trehub/system_status_group') }}
+ <div id="system-status">
+  <p>For additional help, please <a href="/about-lits/service-desks/technology-help-desk">contact the Technology Help Desk</a>.</p>
+  <h2 id="last-loaded">Current as of: </h2>
+  <table class="no-table">
+    <thead>
+      <tr>
+        <th scope="col">System</th>
+        <th scope="col" class="status">Status</th>
+        <th scope="col">System notes</th>
+        <th scope="col">Status updates</th>
+        {% if user.hasPermission('edit any system_status content') %}
+        <th scope="col">Edit</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {% include "@molecules/system-status/_system-status-teaser.twig" %}
+    </tbody>
+  </table>
+</div>

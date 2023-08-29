@@ -1,0 +1,94 @@
+/**
+ * @file
+ * Style rules for the news item teasers on homepage and news archive page.
+ */
+
+#news-items-container {
+  // .layout-container provides flex row wrap space-between.
+  @include squishy-margin(right, -0.5);
+  @include squishy-margin(left, -0.5);
+
+  .news-item {
+    flex-basis: auto;
+    margin-bottom: 2rem;
+    width: 100%; // TODO: does this break IE/Edge?
+
+    @include breakpoint($small-width) {
+      width: 50%;
+
+      article.node--news-item {
+        @include squishy-margin(right, 0.5);
+        @include squishy-margin(left, 0.5);
+      }
+    }
+
+    @include breakpoint($large-width) {
+      margin-bottom: 1rem;
+      width: 25%;
+
+      article.node--news-item {
+        @include squishy-margin(right, 0.5);
+        @include squishy-margin(left, 0.5);
+      }
+    }
+  }
+}
+
+article.node--news-item {
+  background-color: $white;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+  height: 100%;
+  font-size: 1rem;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: space-between;
+
+  > a {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    color: $charcoal;
+    text-decoration: none;
+    padding: 1rem 1rem 0.5rem;
+
+    > div {
+      flex-grow: 1;
+    }
+
+    &:active,
+    &:hover,
+    &:focus {
+      color: $med-blue;
+      text-decoration: underline solid;
+
+      h3 {
+        color: $med-blue;
+      }
+    }
+  }
+
+  h3 {
+    margin: 0;
+    color: $charcoal;
+    font-size: 1.25rem;
+  }
+
+  time {
+    flex-grow: 0;
+    color: $med-blue;
+  }
+
+  .more-link {
+    flex-grow: 0;
+    font-size: 0.9rem;
+    text-align: right;
+  }
+}
+
+body.news_item article.node {
+  time {
+    display: inline-block;
+    color: $gray;
+    margin-bottom: 1rem;
+  }
+}

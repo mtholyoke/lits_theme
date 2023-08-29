@@ -1,0 +1,62 @@
+/**
+* @file
+*
+* Kind of use sidebar-like styles for the filters
+*/
+
+.study-space-finder {
+  // Set up flex defaults so the sidebar position can depend on viewport size.
+  @extend .layout-container;
+
+  align-items: flex-start; // don't stretch the height of the filters/results
+
+  .filters-title {
+    margin: 0;
+
+    button {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      background-color: $green;
+      color: $white;
+      line-height: normal;
+      padding: 10px 15px;
+      border: 0;
+      font-size: 1.6rem;
+    }
+  }
+
+  &.expandable button svg {
+    &.fa-chevron-down {
+      margin-left: 0.25em;
+    }
+  }
+
+  &.expandable--open button svg {
+    &.fa-chevron-down {
+      transform: rotate(180deg);
+    }
+  }
+
+  .filters {
+    @include responsive-basis(100%, 38%, 38%, stretch);
+
+    margin-bottom: 1em;
+
+    @include breakpoint($medium-width) {
+      box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+      border-left: 1px solid rgba(0, 0, 0, 0.4);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.4);
+      margin-bottom: 0;
+    }
+  }
+
+  .results {
+    @include responsive-basis(100%, 62%, 62%, stretch);
+
+    @include breakpoint($medium-width) {
+      // Establish this as a layout-zone-left.
+      @include squishy-gutter('left');
+    }
+  }
+}

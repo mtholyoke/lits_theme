@@ -1,0 +1,82 @@
+.layout-container.tagged-items-container {
+  @include list-reset;
+
+  justify-content: flex-start;
+
+  .site-tags-index-page & {
+    flex-flow: column wrap;
+  }
+}
+
+.taxonomy-term-tags,
+.field-field-tags {
+  &,
+  h2,
+  div,
+  img,
+  article {
+    display: inline;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+
+  h2,
+  #newsbar & h2 {
+    font-size: 1em;
+    font-weight: normal;
+  }
+
+  img {
+    height: 1.5em;
+    width: auto;
+    vertical-align: middle;
+    margin: 0;
+  }
+}
+
+.views-view-list-site-tag-index-page-1 .taxonomy-term-tags {
+  &[data-num-parents="1"] {
+    margin-left: 1em;
+  }
+
+  &[data-num-parents="2"] {
+    margin-left: 2em;
+  }
+
+  &[data-num-parents="3"] {
+    margin-left: 3em;
+  }
+
+  &[data-num-parents="4"] {
+    margin-left: 4em;
+  }
+
+  &[data-num-parents="5"] {
+    margin-left: 5em;
+  }
+}
+
+.tag-page .node--news-item > div,
+article.node--news-item .field-field-tags {
+  padding: 0 1rem 0.5rem;
+}
+
+.tag-page .tagged-items-container > li {
+  width: 100%;
+
+  article.node--news-item {
+    @include squishy-margin(right, 0.5);
+    @include squishy-margin(left, 0.5);
+  }
+
+  @include breakpoint($small-width) {
+    width: 50%;
+  }
+
+  @include breakpoint($large-width) {
+    margin-bottom: 1rem;
+    width: 25%;
+  }
+}

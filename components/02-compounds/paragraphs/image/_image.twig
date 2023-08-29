@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Theme override to display an image paragraph.
+ *
+ * @see templates/paragraphs/paragraph.html.twig
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [paragraph.bundle|clean_class] %}
+<div{{ attributes.addClass(classes) }}>
+  {% if content.field_heading|render|trim %}
+    {% include "@atoms/02-text/00-headings/_heading.twig" with {
+      heading_level: 2,
+      heading: content.field_heading,
+    } %}
+  {% endif %}
+  {{ content.field_content }}
+  <figure>
+    {% if content.field_link[0] %}
+      {% embed "@atoms/01-links/link/_drupal-url.twig" with {
+        drupal_url: content.field_link[0],
+      } %}
+        {% block link_content %}
+          {{ content.field_image }}
+        {% endblock link_content %}
+      {% endembed %}
+    {% else %}
+      {{ content.field_image }}
+    {% endif %}
+    {% if content.field_caption|render|trim %}
+      <figcaption>
+        {{ content.field_caption }}
+      </figcaption>
+    {% endif %}
+  </figure>
+</div>

@@ -1,0 +1,38 @@
+/**
+ * @file
+ * Layout rules for main navigation.
+ */
+
+#main-menu-toggle-expand {
+  padding: 0.5rem 0;
+}
+
+nav#block-trehub-mainnavigation {
+  width: 100%;
+
+  ul {
+    @include list-reset;
+  }
+
+  #main-nav {
+    display: none;
+
+    @include breakpoint($medium-width) {
+      display: block;
+    }
+
+    & > ul.main-menu {
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    #main-nav > ul.main-menu {
+      flex-flow: row nowrap;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+  }
+}

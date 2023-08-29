@@ -1,0 +1,22 @@
+.department-person {
+  margin: 1rem 0;
+
+  .grid-container {
+    display: grid;
+    grid-column-gap: 1rem;
+    grid-template-columns: 14% 86%;
+  }
+
+  h3 {
+    margin: 0;
+  }
+
+  .department-person-photo img {
+    margin-top: 0;
+  }
+}
+
+// TODO: could this be folded in above?
+.views-row .department-person-photo img {
+  border-radius: 50%;
+}

@@ -1,0 +1,99 @@
+table.lits-hours-month {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+
+  thead {
+    display: none;
+  }
+
+  tr,
+  tbody {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-column: 1 / 2;
+    width: 100%;
+  }
+
+  td,
+  th {
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+  }
+
+  td {
+    // Scheduled special hours:
+    &.break {
+      background-color: lighten($sun-yellow, 25%);
+    }
+
+    // Emergency closing: snow day, &c.
+    &.override {
+      color: $black;
+      background-color: $light-orange;
+
+      .day {
+        color: $black;
+      }
+    }
+
+    .day {
+      width: 2rem;
+      color: $raspberry;
+      text-align: center;
+    }
+
+    &.today {
+      border: 1px solid $raspberry;
+
+      .day {
+        background-color: $raspberry;
+        color: $white;
+      }
+    }
+
+    // Hidden except on larger views.
+    &.other-month {
+      display: none;
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    font-size: 90%;
+    grid-template-columns: repeat(7, 1fr);
+
+    tr,
+    thead,
+    tbody {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      grid-column: 1 / -1;
+      width: 100%;
+    }
+
+    td {
+      text-align: center;
+      min-height: 7rem;
+
+      .day {
+        display: block;
+      }
+
+      .lits-hours-day-hours {
+        padding: 0.25rem;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      &.other-month {
+        display: flex;
+        background-color: $gray-lighter;
+      }
+    }
+  }
+}
+
+.academic-calendar {
+  text-align: right;
+}

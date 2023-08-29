@@ -1,0 +1,34 @@
+// A
+.topbar-menu__link {
+  color: $white;
+  display: block;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  padding: $space $space-triple $space $space-double;
+  text-decoration: none;
+  font-weight: normal;
+
+  @include breakpoint($small-width) {
+    border-bottom: none;
+    display: inline-block;
+    font-size: 0.8rem;
+    padding: 5px $space;
+    text-transform: none;
+    position: relative;
+    width: auto;
+  }
+}
+
+a.topbar-menu__link:link,
+a.topbar-menu__link:visited {
+  color: $white;
+
+  &.active,
+  &:active {
+    color: $gray-lighter;
+  }
+
+  &:hover {
+    color: $light-blue;
+  }
+}

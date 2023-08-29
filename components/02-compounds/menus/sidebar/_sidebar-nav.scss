@@ -1,0 +1,62 @@
+/**
+ * @file
+ * Rules for sidebar nav menus.
+ */
+
+#sidebar-container .sidebar-nav {
+  background-color: $white;
+
+  @include breakpoint($small-width) {
+    box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+  }
+
+  h2 {
+    @include squishy-gutter(right, $max-padding:1rem);
+    @include squishy-gutter(left, $max-padding:1rem);
+    @include squishy-gutter(top, $max-padding:1rem);
+    @include squishy-gutter(bottom, $max-padding:1rem);
+
+    background-color: $green;
+    color: $white;
+
+    a {
+      @include link-on-green;
+
+      text-decoration: underline solid;
+    }
+  }
+
+  .menu__item {
+    padding: 0.4rem 0;
+
+    .subtitle {
+      padding-left: 1.2rem;
+    }
+  }
+
+  ul {
+    @include list-reset;
+    @include squishy-gutter(right, $max-padding:2rem);
+    @include squishy-gutter(left, $max-padding:2rem);
+    @include squishy-gutter(top, $max-padding:1rem);
+    @include squishy-gutter(bottom, $max-padding:1rem);
+
+    font-size: 1.2rem;
+
+    a:active,
+    a:hover {
+      color: $green;
+      text-decoration: underline $green solid;
+    }
+
+    a.menu__link--active {
+      font-weight: bold;
+    }
+
+    ul {
+      padding: 0 2rem;
+      color: $green;
+      list-style-type: disc;
+    }
+  }
+}

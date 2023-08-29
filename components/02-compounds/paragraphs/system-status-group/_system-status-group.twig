@@ -1,0 +1,72 @@
+{#
+/**
+ * @file
+ * Theme override to display a system-status-group paragraph.
+ *
+ * @see templates/paragraphs/paragraph.html.twig
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ *
+#}
+{{ attach_library('trehub/system_status_group') }}
+
+<div id="system-status">
+  <h2 id="last-loaded">Current as of: </h2>
+
+  {#
+  /**
+  * Enable Datatables (class=sortable)
+  *   - Disable searching
+  *     (data-searching=false, built into Datatables)
+  *   - Disable "Showing x of y entries" message below table
+  *     (data-info=false, built into Datatables)
+  *   - Order by status on load (column 1, ascending sort)
+  *     (data-order-on-load=[[1, "asc"]], implemented in init.js by LITS)
+  *   - Set status and edit columns to a small fixed width, and distribute the remaining width amongst the other columns evenly
+  *     (data-auto-width=false, built into Datatables)
+  *     (data-column-defs=[{"width": <width>, "targets": [column-index, ...]}, ...], built into Datatables)
+  */
+  #}
+  <table class="sortable"
+    data-searching="false"
+    data-info="false"
+    data-order-on-load='[[1, "asc"], [3, "asc"], [0, "asc"]]'
+    data-auto-width='false'
+    data-column-defs='[
+      {"width": "45px", "targets": [1{% if user.hasPermission('edit any system_status content') %},4{% endif %}]},
+      {"width": "90px", "targets": [0,2] },
+      {"width": "auto", "targets": [3] }
+    ]'
+    >
+    <thead>
+      <tr>
+        <th scope="col">
+          System
+          <i class="fas fa-caret-down fa-fw"></i>
+          <i class="fas fa-caret-up fa-fw"></i>
+          <i class="fas fa-sort fa-fw"></i>
+        </th>
+        <th scope="col" class="status">
+          Status
+          <i class="fas fa-caret-down fa-fw"></i>
+          <i class="fas fa-caret-up fa-fw"></i>
+          <i class="fas fa-sort fa-fw"></i>
+        </th>
+        <th scope="col" data-orderable="false">System notes</th>
+        <th scope="col" >
+          Status updates
+          <i class="fas fa-caret-down fa-fw"></i>
+          <i class="fas fa-caret-up fa-fw"></i>
+          <i class="fas fa-sort fa-fw"></i>
+        </th>
+        {% if user.hasPermission('edit any system_status content') %}
+        <th scope="col" data-orderable="false">Edit</th>
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+      {{ content }}
+    </tbody>
+  </table>
+</div>

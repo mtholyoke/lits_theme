@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override to display a numbered-list paragraph.
+ *
+ * @see templates/paragraphs/paragraph.html.twig
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [paragraph.bundle|clean_class] %}
+<div{{ attributes.addClass(classes) }}>
+  <ol class="paragraph--numbered-list">
+    {% for i, item in content.field_list_item %}
+      {% if i matches '/^\\d+$/' %}
+        <li class="paragraph--numbered-list__item"><div>{{ item }}</div></li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</div>

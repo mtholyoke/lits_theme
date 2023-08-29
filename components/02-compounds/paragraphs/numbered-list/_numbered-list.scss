@@ -1,0 +1,44 @@
+/**
+ * @file
+ * Styles for the Numbered List paragraph type.
+ */
+
+ol.paragraph--numbered-list {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+}
+
+ol.paragraph--numbered-list li {
+  counter-increment: my-awesome-counter;
+  display: flex;
+  width: 100%;
+  margin-bottom: 0.5rem;
+}
+
+ol.paragraph--numbered-list li {
+  &::before {
+    content: counter(my-awesome-counter, decimal-leading-zero);
+    font-size: 3.5rem;
+    margin-right: 9px;
+    font-family: 'chronicle-bold', serif;
+    line-height: 6rem;
+    color: $gray-light;
+    position: absolute;
+  }
+
+  p {
+    margin-left: 5rem;
+
+    @include breakpoint($medium-width) {
+      margin-left: calc(5rem + calc(calc(100vw - 900px) / 10));
+    }
+
+    @include breakpoint($large-width) {
+      margin-left: calc(5rem + 30px);
+    }
+  }
+}

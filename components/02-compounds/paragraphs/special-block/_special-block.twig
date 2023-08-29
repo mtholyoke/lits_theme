@@ -1,0 +1,21 @@
+{#
+/**
+ * @file
+ * Theme override to display a paragraph containing a special block.
+ *
+ * @see templates/paragraphs/paragraph.html.twig
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [paragraph.bundle|clean_class] %}
+<div{{ attributes.addClass(classes) }}>
+  {% if content.field_heading[0] %}
+    {% include "@atoms/02-text/00-headings/_heading.twig" with {
+      heading_level: 2,
+      heading: content.field_heading
+    } %}
+  {% endif %}
+  {{ content|without('field_heading') }}
+</div>

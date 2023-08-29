@@ -1,0 +1,16 @@
+{#
+/**
+ * @file
+ * Template for “Today’s Hours” widget.
+ */
+#}
+
+<div id="footer-hours-container">
+  <div id="footer-hours-content">
+    <h2 id="footer-hours-heading">{{ label }}</h2>
+    <div id="footer-hours-location">{{ content.location }}</div>
+    <div id="footer-hours-schedule">{{ content.hours }}</div>
+  </div>
+</div>
+{{ content.link }}
+{# <a href="/about-lits/service-desks" class="more-hours">See service options</a> #}

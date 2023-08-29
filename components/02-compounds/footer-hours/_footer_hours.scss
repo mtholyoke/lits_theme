@@ -1,0 +1,72 @@
+/**
+ * @file
+ * Styles for the “Today’s Hours” widget.
+ */
+
+// Needs relative position so we can expand the content in the right place.
+.logobar-hours-wrap {
+  position: relative;
+  margin: auto 0;
+}
+
+#logobar-hours-heading {
+  padding: 0;
+  font-weight: normal;
+}
+
+.expandable--open #logobar-hours-content {
+  display: block;
+}
+
+#logobar-hours-content {
+  display: none;
+  position: absolute;
+  z-index: 1000;
+  width: 250px;
+  padding: 20px;
+  border: 1px solid $dark-blue;
+  background-color: $white;
+  text-align: center;
+
+  @include breakpoint($small-width) {
+    top: 88px;
+    left: -60px;
+  }
+
+  @include breakpoint($medium-width) {
+    top: 72px;
+    left: -25px;
+  }
+
+  .office-hours {
+    @include heading-medium($color: $gray);
+
+    margin: 0 0 1em;
+  }
+
+  .office-hours__item-label,
+  .office-hours__item-comment {
+    display: none;
+  }
+}
+
+.more-hours {
+  @include button;
+
+  margin: 0 auto 0.5em;
+  padding: $space;
+  font-size: 1.2rem;
+
+  // WARNING: This no longer works. See PRs 365 and 366 for details.
+  &::before {
+    @include fontawesome-far;
+
+    padding-right: 5px;
+    content: '\f254';
+  }
+
+  @include breakpoint($small-width) {
+    max-width: 150px;
+    font-size: 0.9rem;
+  }
+}

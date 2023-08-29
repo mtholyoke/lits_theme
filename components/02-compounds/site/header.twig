@@ -1,0 +1,54 @@
+{#
+/**
+ * @file
+ * Header region template.
+ *
+ * This region contains header elements that are not part of the masthead.
+ * Note that it also contains some hidden elements, so everything must be
+ * rendered explicitly.
+ *
+ * @see templates/layout/region.html.twig
+ * @see template_preprocess_region()
+ */
+#}
+{% set classes = elements.litssitealertblock['#attributes']['class'] %}
+<header id="page-header" {{ attributes.addClass(classes) }}>
+{{ elements.litssitealertblock }}
+<div id="search-toggle-container" class="expandable">
+  <div id="logobar" class="layout-stripe">
+    <div id="logobar-container" class="layout-zone bluebg">
+      <div class="logo-container">
+        <a href="https://www.mtholyoke.edu" id="logo-small" class="mhc-logo scaling-logo" aria-label="Mount Holyoke College logo">
+          <img src="/themes/contrib/lits_theme/images/logos/MHC-monogram-logo.png" alt="Mount Holyoke College logo" />
+        </a>
+        <a href="https://www.mtholyoke.edu" id="logo" class="mhc-logo scaling-logo" aria-label="Mount Holyoke College logo">
+          <img src="/themes/contrib/lits_theme/images/logos/MHC-wordmark-logo.png" alt="Mount Holyoke College logo"/>
+        </a>
+        {{ elements.trehub_branding }}
+      </div>
+      <div class="topnav-container">
+        <a class="hours" href="/about-lits/service-desks">LITS hours</a><a class="accounts" href="/my-library-accounts">My library accounts</a><button id="search-toggle" aria-controls="search-blocks-container" aria-expanded="false" aria-pressed="false">Search <i class="fa fa-chevron-down"></i></button>
+      </div>
+    </div>
+  </div>
+  <div id="searchbar" class="layout-stripe">
+    <div id="searchbar-background">
+      <div class="layout-zone layout-container">
+        <div id="search-blocks-container">
+          <div id="search-blocks-wrapper">
+            {{ elements.trehub_librarymaterialssearchblock }}
+            {{ elements.trehub_litssitesearchblock }}
+            {{ elements.trehub_litsunifiedsearchblock }}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div id="menubar" class="layout-stripe">
+  <div id="menu-background"></div>
+  <div class="layout-zone layout-container">
+    {{ elements.trehub_mainnavigation }}
+  </div>
+</div>
+</header>

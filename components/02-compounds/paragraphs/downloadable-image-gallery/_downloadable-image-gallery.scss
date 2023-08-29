@@ -1,0 +1,24 @@
+.downloadable-image-gallery .grid > div {
+  display: flex;
+  flex-flow: row wrap;
+  flex: 1 1 auto;
+  justify-content: space-between;
+
+  @include breakpoint($small-width) {
+    & > div {
+      max-width: calc(50% - 1em);
+    }
+  }
+
+  @include breakpoint($large-width) {
+    & > div {
+      max-width: calc(33% - 1em);
+    }
+  }
+
+  div.downloadable-basic-image {
+    display: flex;
+    flex-flow: column nowrap;
+    height: 100%;
+  }
+}

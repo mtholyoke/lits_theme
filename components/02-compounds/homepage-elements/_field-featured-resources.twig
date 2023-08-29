@@ -1,0 +1,21 @@
+<div id="featured-resources-wrapper" class="layout-zone sidebar-side">
+  <div id="featured-resources" class="has-link-tiles">
+    <h2>Featured resources</h2>
+    <ul>
+      <li class="tdx-tile">
+        <a href="https://asklits.mtholyoke.edu/TDClient/50/Portal/Home/">
+          <img src="/themes/contrib/lits_theme/images/logos/jorge-lits-flag.png" />
+          <span>AskLITS portal</span>
+        </a>
+      </li>
+    {% for item in items %}
+      <li>
+        <a href="{{ item.content.field_link[0] }}">
+          {{ item.content.field_icon }}
+          <span>{{ item.content.field_heading }}</span>
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>

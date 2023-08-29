@@ -1,0 +1,60 @@
+{#
+/**
+ * @file
+ * Theme override to display the LITS homepage.
+ *
+ * @see templates/layout/page.html.twig
+ * @see template_preprocess_page()
+*/
+#}
+{% set unified_search_block = page.header.trehub_litsunifiedsearchblock %}
+{% set library_materials_search_block = page.header.trehub_librarymaterialssearchblock %}
+{% set lits_site_search_block = page.header.trehub_litssitesearchblock %}
+
+
+{% set lits_heading = {
+  "trehub_litsunifiedsearchblock": {
+    "#markup": "",
+  },
+  "trehub_librarymaterialssearchblock": {
+    "#markup": "",
+},
+  "trehub_litssitesearchblock": {
+    "#markup": "",
+}} %}
+
+{% if page.header %}
+  {{ page.header|merge(lits_heading) }}
+{% endif %}
+
+<div id="imagebar" class="layout-stripe">&nbsp;{# Can’t be empty #}</div>
+
+<main id="main-content" role="main" class="main main-home">
+<div id="messagebar" class="layout-stripe">
+ {{ page.content.trehub_messages }}
+</div>
+<div id="titlebar" class="layout-stripe">
+  <div class="layout-zone layout-container">
+    <div id="title-wrapper">
+      <h1>Welcome to LITS: <br><span class="subtitle">Library, Information, and Technology Services</span></h1>
+      <p>Your place to do research, find library materials and get technology support.</p>
+    </div>
+    <div id="search-blocks-container">
+<div id="search-blocks-wrapper">
+
+        {{ library_materials_search_block }}
+        {{ lits_site_search_block }}
+        {{ unified_search_block }}
+      </div>
+    </div>
+
+    {{ page.content.trehub_local_tasks }}
+    {{ page.content.trehub_local_actions }}
+  </div>
+</div>
+
+{{ page.content|without("trehub_messages")|without("trehub_local_tasks")|without("trehub_local_actions") }} {# go see  @templates/homepage-elements/lits-homepage-page-content.twig #}
+
+</main>
+
+{{ page.footer }}

@@ -1,0 +1,23 @@
+/**
+ * @file
+ * Styles for LITS site branding link in the masthead.
+ */
+
+.logobar-branding-wrap {
+  margin: auto 0; // center the "LITS" vertically
+  flex: 0 1 auto;
+
+  a {
+    display: block;
+    margin-bottom: 5px; // because of the underline on the logo, perfectly centering "LITS" is too low @see _header.scss for accompanying rule for the topnav items
+    border-left: 1px solid $white;
+    text-align: left; // align to logo
+    font-size: $mono-logo-font-size; // to match 'c' in logo
+    padding-left: $mono-logo-font-size;
+
+    @include breakpoint($small-width) {
+      font-size: $word-logo-font-size; // to match 'o' in logo
+      padding-left: $word-logo-font-size;
+    }
+  }
+}

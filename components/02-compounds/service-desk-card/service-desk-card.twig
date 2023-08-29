@@ -1,0 +1,38 @@
+{#
+/**
+ * @file
+ * Theme override for a service desk card in the list of service desks.
+ *
+ * This template is meant to be used as an embed. Note that the teaser
+ * display for study space nodes is not currently using this template; it
+ * is embedded by the full display instead.
+ *
+ * @see templates/content/taxonomy-term--service-desks--teaser.html.twig
+ */
+#}
+<div{{ attributes }}>
+  <div class="service-desk-card-icon">
+  {% if content.field_icon %}
+    {{ content.field_icon[0] }}
+  {% else %}
+    <img src="{{ watermark_url }}" alt="" role="presentation">
+  {% endif %}
+  </div>
+  <div class="service-desk-card-title-hours">
+    <div class="title">
+      <h2 class><a href="{{ url }}">{{ name[0] }}</a></h2>
+      <div class="slogan">{{ content.field_slogan }}</div>
+    </div>
+    {% if content.field_scheduling_link[0]['#title']|striptags|trim %}
+    {% set field_scheduling_link = content.field_scheduling_link %}
+    {% endif %}
+    {% include "@molecules/service-desk-card/service-desk-hours.twig" with {
+      field_location: content.field_location[0]['#context']['value'],
+      field_building: content.field_building[0]['#markup']|split('<br>')[0],
+      field_hours_description: content.field_hours_description,
+      field_online_service_hours: content.field_online_service_hours[0]['#text'],
+      field_online_service_link: content.field_online_service_link,
+      field_scheduling_link: field_scheduling_link
+    } %}
+  </div>
+</div>

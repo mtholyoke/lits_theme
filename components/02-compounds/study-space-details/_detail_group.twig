@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override for a fieldgroup of study space attributes.
+ *
+ * @see templates/content/field-group-html-element--study-space.html.twig
+ */
+#}
+{% if attributes.empty_message %}
+  {% set empty_message = attributes.empty_message %}
+  {% set attributes = attributes|without('empty_message') %}
+{% endif %}
+<{{ wrapper_element }}{{ attributes }}>
+  {% if title %}
+    <{{ title_element }}{% if collapsible %} class="field-group-toggler"{% endif %}>{{ title }}</{{ title_element }}>
+  {% endif %}
+  {% if collapsible %}
+    <div class="field-group-wrapper">
+  {% endif %}
+  {% set content = children|render %}
+  {% if content|striptags|trim %}
+    {{ content|raw }}
+  {% else %}
+    {{ empty_message }}
+  {% endif %}
+  {% if collapsible %}
+    </div>
+  {% endif %}
+</{{ wrapper_element }}>

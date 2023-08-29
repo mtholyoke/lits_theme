@@ -1,0 +1,112 @@
+{#
+/**
+ * @file
+ * Theme override for a service desk teaser or study space basic info.
+ *
+ * This template is meant to be used as an embed. Note that the teaser
+ * display for study space nodes is not currently using this template; it
+ * is embedded by the full display instead.
+ *
+ * @see templates/content/taxonomy-term--service-desks--teaser.html.twig
+ */
+#}
+<div class="lits-location-teaser {{ original_type }}">
+  {% if page or service_desk_page %}
+    <h1 class="service-desk-title">{{ name }}</h1>
+  {% else %}
+    <h2 class="service-desk-title">Need more help?</h2>
+    <div class="service-desk-content">
+      <h3 class="service-desk-title"><a href="{{ url }}">{{ name[0] }}</a></h3>
+  {% endif %}
+
+  {% if original_type == 'service-desk' %}
+    {% if page or service_desk_page %}
+      {{ content.field_slogan[0] }}
+    {% else %}
+      <p class="service-desk-slogan">{{ content.field_slogan[0] }}</p>
+    {% endif %}
+    <address>
+      <br>
+      {% if content.field_phone_number[0]["#context"]['value'] %}
+      {% include "@atoms/01-links/link/link.twig" with {
+        link_base_class: 'telephone',
+        link_attributes: {'itemprop': 'telephone'},
+        link_url: 'tel:' ~ content.field_phone_number[0]["#context"]['value'],
+        link_icon_class: 'fas fa-phone  fa-fw',
+        link_content: content.field_phone_number[0]["#context"]['value'],
+      } %}
+      <br>
+      {% endif %}
+      {% if content.field_chat_link[0]['#url'] %}
+      {% include "@atoms/01-links/link/link.twig" with {
+        link_base_class: 'chat',
+        link_attributes: {'itemprop': 'chat-link'},
+        link_url: content.field_chat_link[0]['#url'],
+        link_icon_class: 'fas fa-comment fa-fw',
+        link_content: content.field_chat_link[0]['#title'],
+      } %}
+      <br>
+      {% endif %}
+
+      {% if content.field_scheduling_link[0]['#url'] %}
+      {% include "@atoms/01-links/link/link.twig" with {
+        link_base_class: 'scheduling',
+        link_attributes: {'itemprop': 'scheduling-link'},
+        link_url: content.field_scheduling_link[0]['#url'],
+        link_icon_class: 'fas fa-calendar-days fa-fw',
+        link_content: content.field_scheduling_link[0]['#title'],
+      } %}
+      <br>
+      {% endif %}
+
+      {% if content.field_generic_links %}
+        {% for link in content.field_generic_links %}
+          {% if link['#url'] %}
+            {% include "@atoms/01-links/link/link.twig" with {
+                    link_base_class: 'generic',
+                    link_attributes: {'itemprop': 'generic-link'},
+                    link_url: link['#url'],
+                    link_icon_tag: link['#link_icon_tag'],
+                    link_content: link['#title'],
+                  } %}
+            <br>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+
+      {% include "@atoms/01-links/link/link.twig" with {
+        link_base_class: 'email',
+        link_attributes: {'itemprop': 'email'},
+        link_url: 'mailto:' ~ content.field_email[0]["#context"]['value'],
+        link_icon_class: 'fas fa-envelope fa-fw',
+        link_content: content.field_email[0]["#context"]['value'],
+      } %}
+    </address>
+  {% endif %}
+
+  <div class="layout-container">
+    <div class="location-visit">
+      {% if content.open_now %}
+      {{ content.open_now }}
+      {% endif %}
+      {{ content.field_location[0] }}
+      <br>
+      {{ content.field_building[0] }}
+    </div>
+    {% if content.field_icon %}
+    <div class="teaser-icon grid-item">
+      {{ content.field_icon[0] }}
+    </div>
+    {% endif %}
+  </div>
+
+  {% if content.field_social_media_links %}
+    <div class="location-teaser-social">
+      {{ content.field_social_media_links }}
+    </div>
+  {% endif %}
+
+  {% if not page and not service_desk_page %}
+  </div><!-- .service-desk-content -->
+  {% endif %}
+</div>

@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * Theme override to display a system-status content type.
+ *
+ * @see templates/content/node.html.twig
+ * @see template_preprocess_node()
+ *
+ * @ingroup themeable
+ */
+ #}
+{#
+/**
+ * Custom sort order for status, in ascending (default) order:
+ * Unavailable, Degraded, Normal, Hidden, Unknown
+ */
+#}
+{% set protected_system = content['#protected_system'] %}
+
+{% if (not protected_system) or (user.hasPermission('edit any system_status content')) %}
+  <tr class="service">
+    <th class="label" scope="row">
+      <span class="col-header" aria-hidden="true">System:</span>
+      <span class="col-content">
+        <h3>
+          {% if content['#system_status_uri'] != content['#current_uri'] %}
+          <a href="{{ content['#system_status_uri'] }}">
+          {% endif %}
+            {{ label }}
+          {% if content['#system_status_uri'] != content['#current_uri'] %}
+          </a>
+          {% endif %}
+        </h3>
+        {{ content.field_bite }}
+      </span>
+    </th>
+    <td class="status status-{{ content['#status_id'] }}" data-order="{{ content['#status_id'] }}">
+      <span class="col-header" aria-hidden="true">Status:</span>
+      <span class="col-content">
+        <span class='icon-and-label'>
+        {% if content['#fontawesome'] %}
+          {% set icon %}
+            <i class="{{ content['#fontawesome'] }}" aria-hidden="true"></i>
+          {% endset %}
+        {% endif %}
+        {{ icon|raw }}
+
+        {% if content['#field_status_override'] %}
+        <div>{{ content['#field_status_override'] }}</div>
+        {% else %}
+        {{ content.field_status }}
+        {% endif %}
+        </span>
+      </span>
+    </td>
+    {% set notes = '' %}
+    {% if content.field_notes|render|striptags|trim %}
+      {% set notes = content.field_notes %}
+    {% endif %}
+    <td class="notes">
+      <span class="col-header" aria-hidden="true">System notes:</span>
+      <span class="col-content">
+        {{ notes }}
+      </span>
+    </td>
+    <td class="status-updates">
+      <span class="col-header" aria-hidden="true">Status updates:</span>
+      <span class="col-content">
+        {{ content.field_comments }}
+        {% if content.field_comments[0]['comments']|length > 0 and content['#system_status_uri'] != content['#current_uri'] %}
+        <a href="{{ content['#system_status_uri'] }}">More...</a>
+        {% endif %}
+      </span>
+    </td>
+    {% if user.hasPermission('edit any system_status content') and content['#system_status_uri'] != content['#current_uri'] %}
+    <td class="edit-link">
+      <span class="col-header" aria-hidden="true">Edit:</span>
+      <span class="col-content">
+        (<a href="{{ content['#system_status_edit_uri'] }}?destination={{ content['#current_uri'] }}">edit</a>)
+      </td>
+    {% endif %}
+  </tr>
+{% endif %}

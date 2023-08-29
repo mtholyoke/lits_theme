@@ -1,0 +1,19 @@
+.main-menu__link {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  text-decoration: none;
+}
+
+.menu-link-complex {
+  display: flex;
+  flex-flow: row nowrap;
+
+  .menu-link-icon {
+    padding-right: 1rem;
+    flex: 0 0 auto;
+
+    img {
+      margin: 0;
+    }
+  }
+}

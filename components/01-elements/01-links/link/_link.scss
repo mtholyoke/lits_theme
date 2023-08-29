@@ -1,0 +1,207 @@
+/**
+ * @file
+ * Reusable styles for links.
+ */
+
+/**
+ * Standard links in running text on white background.
+ *
+ * Contrast ratios for $med-blue:
+ * - $white      => 4.65
+ * - $pale-gray  => 3.51 not sufficient for standard size text
+ * - $charcoal   => 3.49 acceptable as contrasting text
+ *
+ * Contrast ratios for $dark-blue:
+ * - $white      => 9.60
+ * - $pale-gray  => 7.23
+ * - $charcoal   => 1.81 not distinct at all
+ */
+@mixin link {
+  color: $med-blue;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: $med-blue;
+  }
+
+  &:active,
+  &:hover {
+    color: $dark-blue;
+    text-decoration: underline solid;
+  }
+
+  @include focus($type:link);
+}
+
+/**
+ * Links on $black or $charcoal backgrounds should include or extend this.
+ *
+ * Contrast ratios for $light-blue:
+ * - $black    =>  7.75
+ * - $charcoal =>  6.42
+ * - $white    =>  2.71 not sufficiently distinct without underline
+ *
+ * Contrast ratios for $pale-gray:
+ * - $black    => 15.83
+ * - $charcoal => 13.12
+ * - $white    =>  1.33 not distinct at all
+ */
+@mixin link-on-black {
+  color: $light-blue;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: $light-blue;
+  }
+
+  &:active,
+  &:hover {
+    color: $pale-gray;
+    text-decoration: underline solid;
+  }
+
+  @include focus($white, link);
+
+  & svg {
+    @include focus($white, link);
+  }
+}
+
+/**
+ * Links on blue backgrounds should include or extend this.
+ *
+ * Most are obvious as navigation because of context; no underline necessary.
+ *
+ * Contrast ratios for $white:
+ * - $dark-blue => 9.60
+ * - $med-blue  => 4.66
+ *
+ * Contrast ratios for $light-blue:
+ * - $dark-blue => 3.54
+ * - $med-blue  => 1.72
+ */
+@mixin link-on-blue {
+  color: $white;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: $white;
+  }
+
+  &:active,
+  &:hover {
+    color: $pale-blue;
+    text-decoration: underline solid;
+  }
+
+  @include focus($white, link);
+
+  & svg {
+    @include focus($white, link);
+  }
+}
+
+/**
+ * Link on Blue Background
+ *
+ * Used by:
+ * - @organisms/location-teaser
+ */
+@mixin link-bluebg {
+  @include link-on-blue;
+}
+
+a {
+  @include link;
+}
+
+.bluebg a,
+a.bluebg {
+  @include link-on-blue;
+}
+
+/**
+ * Links on green backgrounds should include or extend this.
+ *
+ * Contrast ratios for $green background
+ * $white     => 4.66
+ * $pale-gray => 3.51 not sufficient for standard size text
+ */
+@mixin link-on-green {
+  color: $white;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: $white;
+  }
+
+  &:active,
+  &:hover {
+    color: $pale-gray;
+    text-decoration: underline solid;
+  }
+
+  @include focus($white, link);
+
+  & svg {
+    @include focus($white, link);
+  }
+}
+
+/**
+ * Links on $pale-gray backgrounds should include or extend this.
+ *
+ * Contrast ratios for $pale-gray background
+ * $dark-blue     => 7.23
+ * $med-gray => 3.51 not sufficient for standard size text
+ */
+@mixin link-on-gray {
+  color: $dark-blue;
+
+  &:link,
+  &:visited {
+    color: $dark-blue;
+  }
+
+  &:active,
+  &:hover {
+    color: $med-blue;
+    text-decoration: underline solid;
+  }
+
+  @include focus($dark-blue, link);
+
+  .lits_homepage #block-trehub-litsunifiedsearchblock & {
+    @include focus($light-orange, link);
+
+    & svg {
+      @include focus($light-orange, link);
+    }
+  }
+}
+
+@mixin link-on-raspberry {
+  color: $white;
+  text-decoration: none;
+
+  &:link,
+  &:visited {
+    color: $white;
+  }
+
+  &:active,
+  &:hover {
+    color: $pale-blue;
+    text-decoration: underline solid;
+  }
+
+  @include focus($white, link);
+
+  & svg {
+    @include focus($white, link);
+  }
+}

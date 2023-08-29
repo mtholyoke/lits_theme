@@ -1,0 +1,53 @@
+.google-json-api-search {
+  #search-form {
+    display: none; // there is no way to remove the default search module's form, even if it doesn't have any _fields_
+  }
+
+  h1 {
+    margin-bottom: 0;
+  }
+
+  h2 {
+    display: none;
+
+    &.didyoumean {
+      margin: 0.25em 0 0.5em;
+      font-style: italic;
+      display: block;
+    }
+
+    &.search-google-title {
+      display: block;
+    }
+  }
+
+  div.result-summary,
+  div.results-limited {
+    padding: 0;
+    border-bottom: 1px solid #e2dfdd;
+  }
+
+  div.results-limited {
+    font-style: italic;
+    padding: 0 0 0 15px;
+
+    .fa-triangle-exclamation {
+      display: inline-block;
+      color: $orange;
+      padding: 0;
+    }
+
+    .gjas-results-limitation--message {
+      display: inline-block;
+      padding: 0;
+    }
+  }
+
+  .gjas-results-no-results--message,
+  .gjas-results--message,
+  .gjas-results-no-keywords--message,
+  .gjas-results-limitation--message {
+    font-size: 0.9rem;
+    padding: 0 15px;
+  }
+}

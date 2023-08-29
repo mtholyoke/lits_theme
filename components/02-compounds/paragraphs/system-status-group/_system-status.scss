@@ -1,0 +1,195 @@
+#system-status {
+  #last-loaded {
+    font-size: 1rem;
+    font-weight: normal;
+    font-style: italic;
+    color: $gray;
+
+    span {
+      font-style: normal;
+    }
+  }
+
+  td:not(.edit-link) a {
+    overflow-wrap: break-word;
+    word-break: break-word;
+  }
+
+  table {
+    text-align: left;
+    border-collapse: collapse;
+    margin: 2rem auto;
+    width: 100%;
+    // height: 1px; // because full height table cells are inexplicable
+
+    tr {
+      height: 100%; // because full height table cells are inexplicable
+    }
+
+    th,
+    td {
+      padding: 1rem 1.5rem;
+      vertical-align: top;
+      height: 100%; // because full height table cells are inexplicable
+    }
+
+    thead th:last-of-type,
+    td:last-of-type {
+      padding-right: 1rem;
+    }
+
+    th:first-of-type,
+    th[scope="row"] {
+      padding-left: 1rem;
+
+      .col-content h3 {
+        margin: 0;
+      }
+
+      .text-long {
+        font-weight: normal;
+        color: $gray;
+      }
+    }
+
+    thead tr {
+      border-top: 1px solid $gray;
+      border-bottom: 1px solid $gray;
+
+      th {
+        @include heading-medium($color: $charcoal);
+
+        white-space: nowrap;
+      }
+    }
+
+    tbody tr {
+      border-bottom: 1px solid $gray-lighter;
+    }
+
+    .svg-inline--fa {
+      padding-left: 1rem;
+      color: $gray;
+    }
+
+    .sorting {
+      background-image: none;
+
+      .fa-caret-up,
+      .fa-caret-down {
+        display: none;
+      }
+
+      .fa-sort {
+        display: inline-block;
+        vertical-align: middle;
+      }
+    }
+
+    .sorting_asc {
+      background-image: none;
+
+      .fa-sort,
+      .fa-caret-down {
+        display: none;
+      }
+
+      .fa-caret-up {
+        display: inline-block;
+        vertical-align: top;
+      }
+    }
+
+    .sorting_desc {
+      background-image: none;
+
+      .fa-sort,
+      .fa-caret-up {
+        display: none;
+      }
+
+      .fa-caret-down {
+        display: inline-block;
+        vertical-align: bottom;
+      }
+    }
+
+    .status {
+      text-align: center;
+
+      .icon-and-label {
+        display: inline-block;
+        text-align: center;
+      }
+
+      .col-content svg {
+        font-size: 3rem;
+        padding: 0;
+      }
+
+      // normal
+      .fa-square-check {
+        color: $green;
+      }
+
+      // degraded
+      .fa-triangle-exclamation {
+        color: $orange;
+      }
+
+      // unavailable
+      .fa-circle-xmark {
+        color: $red;
+      }
+
+      // planned maintenece
+      // hidden
+      // unpublished
+      // unknown
+      .fa-screwdriver-wrench,
+      .fa-eye-slash,
+      .fa-pen-to-square,
+      .fa-circle-question {
+        color: $gray-dark;
+      }
+    }
+
+    .notes {
+      p {
+        margin: 0;
+      }
+
+      .modified {
+        font-style: italic;
+        font-size: 1rem;
+        color: $gray;
+
+        span {
+          font-style: normal;
+        }
+      }
+    }
+
+    .status-updates article {
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .col-header {
+      @include heading-medium($color: $charcoal);
+
+      margin: 0;
+      display: none;
+    }
+  }
+
+  @include breakpoint(0 ($large-width - 1)) {
+    table {
+      @include untablify;
+
+      .status {
+        text-align: left;
+      }
+    }
+  }
+}

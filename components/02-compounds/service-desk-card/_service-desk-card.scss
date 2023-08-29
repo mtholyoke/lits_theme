@@ -1,0 +1,114 @@
+.service-desk-index.grid-container {
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-rows: auto;
+  grid-auto-rows: 1fr;
+
+  header {
+    grid-column: 1/-1;
+  }
+
+  // minimum must be smaller than 300 because of page pad/margin
+  grid-template-columns: minmax(0, 1fr);
+
+  @include breakpoint($small-width) {
+    grid-template-columns: repeat(2, minmax(300px - 16px, 1fr));
+  }
+
+  @include breakpoint($large-width) {
+    grid-template-columns: repeat(3, minmax(300px - 16px, 1fr)); // cap at 3 columns
+  }
+}
+
+$service-desk-card-whitespace: 1.5rem;
+
+.service-desk-card {
+  border: 1px solid $med-blue;
+  padding: $service-desk-card-whitespace;
+
+  & .title h2 {
+    margin: 0;
+  }
+
+  & .service-desk-card-content {
+    display: flex;
+    flex-flow: row nowrap;
+    height: 100%;
+
+    & .service-desk-card-icon {
+      flex: 0 0 auto;
+      width: 3rem;
+
+      & img {
+        margin: 0 auto;
+      }
+    }
+
+    & .service-desk-card-title-hours {
+      flex: 1 1 auto;
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: space-between;
+    }
+  }
+}
+
+.service-desk-card,
+.location-hours {
+  .divider {
+    flex: 1 1 auto;
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    .line {
+      border: 1px solid $pale-gray;
+      margin: 1em 0;
+      width: 75%;
+    }
+  }
+
+  .location,
+  .online,
+  .online > div,
+  .appointment {
+    display: flex;
+    align-items: baseline;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .hours {
+    margin-bottom: 1rem;
+
+    .todays-hours,
+    .hours-description,
+    .all-hours-link {
+      margin-left: 2rem;
+    }
+
+    .hours-description {
+      font-style: italic;
+
+      p:last-of-type {
+        margin: 0;
+      }
+    }
+  }
+
+  .online a {
+    margin-right: 0.5em;
+  }
+
+  .slogan {
+    font-style: italic;
+    color: $green;
+    margin-bottom: $service-desk-card-whitespace;
+  }
+
+  svg {
+    margin-right: 0.5em;
+  }
+}

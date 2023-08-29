@@ -1,0 +1,326 @@
+/**
+ * @file
+ * Styles for header elements.
+ *
+ * @see _masthead.scss
+ * @see header.twig
+ * @see header.js
+ */
+// a stupid height, but whatever that's how tall it is
+$node-preview-height: 156px;
+
+body:not(.alert-active) {
+  // Make the Drupal toolbar for logged-in user consistent about not scrolling.
+  #toolbar-administration.toolbar-oriented .toolbar-bar {
+    position: fixed;
+  }
+
+  header#page-header {
+    z-index: 2;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    // start handling overflow of fixed element
+    max-height: 100vh;
+    overflow-y: auto;
+    // end handling overflow of fixed element
+
+    // TODO: Hack- This is needed to avoid unnecessary random vertical scroll in the header for...reasons
+    padding-bottom: 1px;
+  }
+
+  &.toolbar-vertical header#page-header,
+  &.toolbar-horizontal header#page-header {
+    top: 39px;
+  }
+
+  &.toolbar-horizontal.toolbar-tray-open header#page-header {
+    top: 79px;
+  }
+}
+
+/* Fix node preview pages to keep the preview controls from overtaking the header. */
+body.node-preview-enabled {
+  .node-preview-container {
+    background-color: $white;
+
+    label {
+      display: block;
+    }
+  }
+
+  #imagebar {
+    margin-top: calc(60px + $node-preview-height);
+  }
+
+  &:not(.alert-active) {
+    &.toolbar-vertical header#page-header,
+    &.toolbar-horizontal header#page-header {
+      top: 39px + $node-preview-height;
+    }
+
+    &.toolbar-horizontal.toolbar-tray-open header#page-header {
+      top: 79px + $node-preview-height;
+    }
+  }
+
+  &.alert-active header {
+    padding-top: $node-preview-height;
+  }
+}
+
+/* 0. Site alerts */
+#block-litssitealertblock {
+  display: none;
+  word-break: break-word;
+
+  .alert-active & {
+    display: block;
+  }
+
+  &.emergency {
+    background-color: $white;
+    position: relative;
+    z-index: 2;
+
+    #site-alert-container {
+      background-color: $white;
+      border: 3px solid $raspberry;
+      margin: 10px;
+      outline: 10px solid $white;
+      padding: 1.5em;
+
+      .mhc-alert-level-emergency {
+        display: flex;
+        flex-flow: row nowrap;
+        justify-content: center;
+        align-items: flex-start;
+        max-width: 75rem;
+        margin: auto;
+
+        .fa-circle-exclamation {
+          color: $raspberry;
+          font-size: 3.25rem;
+          margin: 0 1.25rem;
+        }
+
+        .text {
+          margin: -1em 1.25rem;
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
+
+#search-toggle-container {
+  width: 100%;
+
+  body.alert-active & {
+    background: #fff url(../images/banners/williston-beauty-full-banner.jpg) no-repeat center center;
+    background-size: 100%;
+  }
+}
+
+/* I. Logobar */
+
+#logobar {
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  @include dark-blue-stripe;
+
+  a,
+  button,
+  button svg {
+    @include focus($white);
+  }
+}
+
+#logobar-container {
+  // .layout-zone sets clearfix and squishy edges.
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* I.A. Logobar > Logo section */
+
+#logobar .logo-container {
+  flex: 1 0 auto;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  min-height: 60px;
+
+  & > * {
+    flex: 0 0 auto;
+  }
+
+  // Always use wordmark on homepage
+  .lits_homepage & {
+    & #logo {
+      display: inline-block;
+    }
+
+    & #logo-small {
+      display: none;
+    }
+  }
+
+  // On interior pages, there's always other stuff in the logobar
+  // Use wordmark logo only above small width
+  .lits_page & {
+    justify-content: flex-start;
+    align-items: center;
+
+    & #logo {
+      display: none;
+    }
+
+    & #logo-small {
+      display: flex; // pretty much just to vertically center the svg block element
+    }
+
+    @include breakpoint($small-width) {
+      & #logo {
+        display: flex; // pretty much just to vertically center the svg block element
+      }
+
+      & #logo-small {
+        display: none;
+      }
+    }
+  }
+
+  @include breakpoint($medium-width) {
+    // at breakpoint on homepage, more stuff shows up in logobar so left align logo.
+    body.lits_homepage & {
+      justify-content: flex-start;
+    }
+  }
+
+  & #logo {
+    margin-top: $word-default-margin;
+    margin-bottom: $word-default-margin;
+    padding-left: $word-default-margin - 8px;
+    padding-right: $word-default-margin;
+
+    & img {
+      max-height: $word-logo-image-max-height;
+      display: block;// must be block; inline-block reserves veritcal height for hanging letters, which we do not want
+      margin: auto;
+    }
+  }
+
+  & #logo-small {
+    margin-top: $mono-default-margin;
+    margin-bottom: $mono-default-margin;
+    padding-left: $mono-default-margin - 8px;
+    padding-right: $mono-default-margin;
+
+    & img {
+      max-height: $mono-logo-image-max-height;
+      display: block;// must be block; inline-block reserves veritcal height for hanging letters, which we do not want
+      margin: auto;
+    }
+  }
+}
+
+/* I.B. Logobar > TopNav section */
+
+#logobar .topnav-container {
+  margin: auto 0;
+  // because of the underline on the logo, perfectly centering text is too low @see _logobar_branding.scss for accompanying rule for "LITS" in the lockup
+  & > * {
+    margin-bottom: 5px;
+  }
+
+  #search-toggle {
+    @include link-bluebg;
+
+    display: inline-block;
+    padding-left: 1rem;
+    padding-right: 0;
+    border: none;
+    background: transparent;
+    font-size: 1rem;
+    white-space: nowrap; // Don't let the carat float below the text at small widths.
+
+    .expandable.expandable--open & svg {
+      transform: rotate(180deg);
+    }
+
+    .lits_homepage & {
+      display: none;
+    }
+  }
+
+  a {
+    display: none;
+    padding: 0 1rem;
+    border-right: 1px solid $white;
+    font-size: 1rem;
+
+    @include focus($white);
+
+    @include breakpoint($medium-width) {
+      display: inline-block;
+    }
+
+    .lits_homepage &.accounts {
+      padding-right: 0;
+      border-right: none;
+    }
+  }
+}
+
+/* II. Searchbar */
+
+// @see 02-molecules/lits-search-form/_unified-search-form.scss
+// @see 04-templates/_lits-homepage.scss
+#searchbar {
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  // Contains div.layout-container.layout-zone for flex and squishy edges.
+  @include breakpoint($medium-width) {
+    min-height: 208px;
+  }
+
+  //TODO add drupal menu offsets too?
+
+  #search-blocks-container {
+    display: none;
+
+    .layout-container {
+      @include breakpoint($medium-width) {
+        height: 208px;
+      }
+
+      align-items: center;
+    }
+  }
+}
+
+/* IV. Menubar */
+
+#menubar {
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  // @include med-blue-stripe; // TODO add this back ONLY below 900px
+  #menu-background {
+    display: none;
+  }
+
+  background-color: $med-blue;
+
+  @include breakpoint($medium-width) {
+    // padding-top: 256px - 48px; // height of imagebar - height of menubar
+    background-color: $fully-transparent;
+
+    #menu-background {
+      display: block;
+      height: 48px;
+      margin-bottom: -48px;
+      background-color: $med-blue;
+    }
+  }
+}

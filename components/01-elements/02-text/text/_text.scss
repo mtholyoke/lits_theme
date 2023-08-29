@@ -1,0 +1,102 @@
+// Create a mixin for paragraph styles that can be implemented
+// in components with other classnames.
+@mixin paragraph($margin: 0 0 1em) {
+  margin: #{$margin};
+}
+
+@mixin no-bottom {
+  margin-bottom: 0;
+}
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: $charcoal;
+
+  @include body-copy;
+}
+
+.paragraph {
+  @include paragraph;
+}
+
+.blockquote {
+  font-style: italic;
+  border-left: solid 3px $gray-light;
+  margin-left: 1em;
+  padding-left: 1em;
+}
+
+.hr {
+  border-style: solid;
+  border-width: 1px 0 0;
+  color: currentColor;
+}
+
+// TODO: BEM selectors should be applied to wysiwyg-created content
+
+.text-long {
+  p {
+    @extend .paragraph;
+  }
+
+  blockquote {
+    @extend .blockquote;
+  }
+
+  hr {
+    @extend .hr;
+  }
+}
+
+address {
+  font-style: normal;
+}
+
+hr.divider {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  color: $green;
+}
+
+/** Closing soon, open now, closed styling **/
+.open-now-container {
+  svg.border {
+    color: $white;
+  }
+
+  .closing_soon svg.indicator {
+    color: $light-orange;
+  }
+
+  .open_now svg.indicator {
+    color: $green;
+  }
+
+  .closed_now svg.indicator {
+    color: $red;
+  }
+}
+
+.ampm {
+  font-variant: small-caps;
+}
+
+/** Accessibility text **/
+.nav .visually-hidden {
+  color: $white;
+}
+
+/** Shown Temporarily **/
+
+img.lits_filter.inline {
+  display: inline;
+  margin: 0;
+
+  &.mhcgetit {
+    vertical-align: middle;
+  }
+}

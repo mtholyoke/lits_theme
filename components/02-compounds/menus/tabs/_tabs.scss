@@ -1,0 +1,43 @@
+// Tab Navigation
+.tabs__nav {
+  @include list-reset;
+
+  @include breakpoint($small-width) {
+    display: flex;
+  }
+}
+
+// Tab Content (hidden only in full #tabs js version)
+.tabs__tab {
+  display: none;
+
+  &.is-active {
+    display: block;
+  }
+}
+
+.tabs__content {
+  padding: 1.5rem;
+}
+
+// No-js fallback
+.tabs.no-js {
+  .tabs__tab.is-active {
+    display: block;
+  }
+}
+
+// Drupal Local Tasks variant
+.tabs__nav--local-tasks {
+  margin-top: 1rem;
+  padding: 0;
+
+  body.service_desk &,
+  body.study_space & {
+    margin-bottom: -1rem;
+  }
+}
+
+// .tabs__link--local-tasks {
+//   padding: 0.3em 1.5em;
+// }

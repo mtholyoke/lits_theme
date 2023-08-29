@@ -1,0 +1,31 @@
+.tabs__content {
+  padding: 30px 0;
+  border-top: 1px dashed $med-blue;
+  display: none;
+  margin-top: 20px;
+
+  @include breakpoint($small-width) {
+    margin-top: 0;
+  }
+}
+
+.tabs__content--open {
+  display: block;
+}
+
+.tab-group > li.tabs-item {
+  position: absolute;
+  left: -200vw;
+
+  &--open {
+    border-color: $med-blue;
+    border-bottom: 1px solid $white;
+    margin-bottom: -1px;
+  }
+}
+
+.tab-group > a.tabs_link:hover::after,
+.tab-group > a.tabs_link:focus + a.tabs_link::after,
+.tab-group > a.tabs_link:checked + a.tabs_link::after {
+  background: $light-blue;
+}

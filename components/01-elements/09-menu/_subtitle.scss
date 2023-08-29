@@ -1,0 +1,19 @@
+.subtitle {
+  color: $gray;
+  font-style: italic;
+  font-size: 0.85em;
+  line-height: 1em;
+  display: block;
+}
+
+.footer .subtitle {
+  margin-left: 10%;
+}
+
+.main-menu__link--sub .subtitle {
+  padding: 2px 0;
+}
+
+// #sidebar-container .subtitle {
+//   color: $gray;
+// }

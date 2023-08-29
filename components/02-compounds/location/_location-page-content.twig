@@ -1,0 +1,47 @@
+{#
+/**
+ * @file
+ * Theme override for the content of a service desk or study space page.
+ *
+ * This template is meant to be used as an embed to provide page content
+ * for the templates referenced below:
+ *
+ * @see templates/content/node--study-space--full.html.twig
+ * @see templates/views/views-view-fields--about-lits-service-desks--detail-page.html.twig
+ */
+#}
+<article class="lits-location {{ original_type }}">
+  <div class="layout-container">
+    <div class="location-left">
+      <div class="location-teaser-bite">
+        <div class="location-teaser">
+          {% block location_teaser %}
+          {% endblock location_teaser %}
+        </div>
+        <div class="location-bite">
+          {% block location_bite %}
+          {% endblock location_bite %}
+        </div>
+      </div>
+      <div class="location-hours">
+        {% block location_hours %}
+        {% endblock location_hours %}
+      </div>
+    </div>
+    <div class="location-right">
+      <div class="location-images">
+        {% block location_images %}
+        {% endblock location_images %}
+      </div>
+      <div class="location-sidebar">
+        {% block location_sidebar %}
+        {% endblock location_sidebar %}
+      </div>
+    </div>
+  </div>{# /.layout-container #}
+  <hr class="divider">
+  <div class="location-content">
+    {% block location_content %}
+    {% endblock location_content %}
+  </div>
+</article>

@@ -1,0 +1,228 @@
+/**
+ * @file
+ * Styles for Location pages (Study Space nodes and Service Desk terms).
+ *
+ * @see templates/content/node--study-space--full.html.twig
+ * @see templates/views/views-view-fields--about-lits-service-desks--detail-page.html.twig
+ */
+
+.service_desk #block-breadcrumbs,
+.study_space #block-breadcrumbs {
+  @include squishy-padding('right');
+  @include squishy-padding('left');
+
+  @include breakpoint($small-width) {
+    padding: 0;
+  }
+}
+
+.lits-location {
+  margin-top: 1rem;
+
+  .location-left,
+  .location-right {
+    flex-basis: auto;
+    width: 100%;
+  }
+
+  @include breakpoint($medium-width) {
+    .location-left {
+      width: 38%;
+    }
+
+    .location-right {
+      width: 62%;
+    }
+  }
+
+  .location-bite {
+    padding: 1rem;
+    background-color: $med-blue;
+    color: $white;
+    font-size: 1rem;
+    font-weight: 300;
+    line-height: 1.7rem;
+    border-top: 1px solid white;
+  }
+
+  .location-hours {
+    margin-bottom: 1rem;
+    padding: 1rem;
+    border-bottom: 1px dashed $green;
+
+    @include breakpoint($medium-width) {
+      margin-bottom: 0;
+      border-bottom: none;
+    }
+
+    h2 {
+      text-align: left;
+      font-weight: bold;
+      color: $charcoal;
+    }
+
+    .all-hours-link {
+      margin: 1rem auto;
+      text-align: center;
+      border: 2px solid $dark-red;
+      padding: 0.5rem;
+
+      a {
+        color: $dark-red;
+      }
+    }
+  }
+
+  .location-images img {
+    margin: 0;
+  }
+
+  .location-sidebar {
+    background-color: $green;
+    color: white;
+    padding: 1rem;
+
+    h3.wheelchair {
+      width: 100%;
+      align-self: stretch;
+      margin: 0;
+      padding: 1rem;
+      border: 1px dashed $white;
+      font-size: 1.2rem;
+      font-weight: 500;
+    }
+
+    a:not(.button) {
+      @include link-on-green;
+    }
+
+    a.button {
+      @include button-on-green;
+    }
+
+    .study-space-details {
+      display: flex;
+      flex-flow: row wrap;
+      align-items: flex-start;
+
+      .detail-group {
+        flex: 1 1 auto;
+        width: 100%;
+
+        @include breakpoint($medium-width) {
+          width: 48%;
+        }
+
+        h3 {
+          border-bottom: 1px dashed $white;
+        }
+
+        .grid-item {
+          width: 80%;
+        }
+      }
+    }
+
+    .study-space-detail-label {
+      display: inline-block;
+    }
+
+    svg {
+      margin-right: 9px;
+      width: 1.2rem;
+    }
+
+    li::before {
+      padding-right: 10px;
+    }
+  }
+
+  .location-content {
+    @include squishy-padding('right');
+    @include squishy-padding('left');
+
+    @include breakpoint($small-width) {
+      margin: 0;
+      padding: 0;
+    }
+
+    h3 {
+      @extend .h3;
+    }
+  }
+
+  .service-desk-staff {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+
+    @include breakpoint($small-width) {
+      justify-content: space-between;
+    }
+
+    .views-row {
+      flex-basis: auto;
+      width: 100%;
+
+      @include breakpoint($small-width) {
+        width: 48%;
+      }
+
+      @include breakpoint($medium-width) {
+        width: 30%;
+      }
+
+      @include breakpoint($large-width) {
+        width: 21%;
+      }
+    }
+
+    .department-person-photo {
+      width: 80%;
+      margin: 0 auto;
+    }
+
+    .department-person-info {
+      margin-bottom: 2em;
+      font-size: 90%;
+
+      h3 {
+        margin: 0;
+      }
+    }
+  }
+
+  .floorMapContainer {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+
+    @include breakpoint($medium-width) {
+      flex-flow: row nowrap;
+    }
+
+    .floorMap-wrapper {
+      width: 100%;
+
+      @include breakpoint($medium-width) {
+        width: 50%;
+        // max-width: 50%;
+      }
+    }
+
+    .floorMap {
+      flex: 1 1 auto;
+      padding: 1em;
+      max-width: 100%;
+
+      svg {
+        width: 100%;
+      }
+    }
+
+    .campus-map-link {
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  }
+}

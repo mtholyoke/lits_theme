@@ -1,0 +1,67 @@
+/**
+ * @file
+ * Styles for person detail pages.
+ */
+
+.person-intro {
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: space-between;
+  width: 100%;
+
+  @include breakpoint($small-width) {
+    flex-direction: row;
+  }
+}
+
+.person-info,
+.person-image {
+  @include breakpoint($small-width) {
+    width: 50%;
+  }
+}
+
+.person-image {
+  margin: 0 auto;
+
+  @include breakpoint($small-width) {
+    margin: 0;
+    padding-left: 9px;
+  }
+
+  @include breakpoint($medium-width) {
+    padding-left: 1vw;
+  }
+}
+
+.subject-expert {
+  @include breakpoint($medium-width) {
+    width: 80%;
+    margin: 0 auto;
+    padding: 2% 5%;
+    border: 1px solid $med-blue;
+  }
+}
+
+/* Sidebar */
+.department-block .views-row {
+  @include squishy-gutter(bottom);
+
+  & > div {
+    border-top: 16px solid $raspberry;
+  }
+}
+
+.department-block .views-row > div {
+  @include squishy-gutter(top);
+  @include squishy-gutter(right);
+  @include squishy-gutter(bottom);
+  @include squishy-gutter(left);
+
+  background-color: $white;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+
+  .text-long p {
+    margin: 0;
+  }
+}

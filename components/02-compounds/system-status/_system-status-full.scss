@@ -1,0 +1,17 @@
+body.system_status {
+  #system-status table.no-table {
+    @include untablify;
+
+    .status {
+      text-align: left;
+    }
+
+    .form-item {
+      max-width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+    }
+  }
+}

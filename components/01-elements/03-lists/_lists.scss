@@ -1,0 +1,35 @@
+#main-content.main-sidebar-side article.node,
+#sidebar-container {
+  ul,
+  ol {
+    padding-left: 0;
+    margin-left: 2em;
+  }
+}
+
+ul {
+  list-style-type: circle;
+  list-style-position: outside;
+}
+
+ol {
+  list-style-type: decimal;
+}
+
+.list-item {
+  margin-bottom: 0.2em;
+  padding-left: 1em;
+}
+
+// TODO: BEM selectors should be applied to wysiwyg-created content
+
+/**
+.text-long {
+  ol,
+  ul {
+    li {
+      @extend .list-item;
+    }
+  }
+}
+**/

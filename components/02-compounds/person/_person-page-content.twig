@@ -1,0 +1,73 @@
+{#
+/**
+ * @file
+ * Theme override for the content of a person.
+ *
+ * This template is meant to be used as an embed to provide page content
+ * for the templates referenced below:
+ *
+ * @see templates/content/node--person--full.html.twig
+ *
+ */
+#}
+<article class="person">
+  <div class="person-intro">
+    <div class="person-info">
+      {% if content.field_pronouns['#items'] is not empty %}
+        <p class="pronouns">{{ content.field_pronouns }}</p>
+      {% endif %}
+      <p itemprop="jobTitle">{{ content.field_professional_title }}</p>
+      <p>Division{{ content.divisions_plural }}:
+        {% for div in content.divisions %}{{ div }}{{- not loop.last ? ',' : '' -}}{% endfor %}
+      </p>
+      {% if content.show_departments %}
+        <p>Department{{ content.departments_plural }}:
+          {% for dept in content.departments %}{{ dept }}{{- not loop.last ? ', ' : '' -}}{% endfor %}
+        </p>
+      {% endif %}
+      <p itemprop="email">{{ content.field_email }}</p>
+      <p><a itemprop="telephone" tel:"{ content.field_phone_number }}">{{ content.field_phone_number }}</a></p>
+      <p>{{ content.field_office }}</p>
+      <p class="quote"><i>{{ content.field_quote }}</i></p>
+
+    </div>
+    <div class="person-image">
+      {{ content.field_staff_image }}
+    </div>
+  </div>
+<hr class="divider">
+{% if content.field_bio|render|striptags|trim %}
+<div class="person-bio">
+  <h3>Biography</h3>
+    <div class="bio">
+      {{ content.field_bio }}
+    </div>
+</div>
+{% endif %}
+{% if content.field_social_media|render|trim %}
+<div class="social-media">
+  <h3>Social media</h3>
+    <div class="bio">
+      {{ content.field_social_media }}
+    </div>
+</div>
+{% endif %}
+{% if content.field_specialties|render|striptags|trim %}
+<div class="person-specialities">
+    <h3>Specialties</h3>
+  <p> {{ content.field_specialities }} </p>
+</div>
+{% endif %}
+{% if content.field_responsibilities|render|striptags|trim %}
+<div class="person-responsibilities">
+    <h3>Responsibilities</h3>
+  <p> {{ content.field_responsibilities }} </p>
+</div>
+{% endif %}
+{% if content.field_education|render|striptags|trim %}
+<div class="person-education">
+  <h3>Education</h3>
+  <p> {{ content.field_education }}
+</div>
+{% endif %}
+</article>

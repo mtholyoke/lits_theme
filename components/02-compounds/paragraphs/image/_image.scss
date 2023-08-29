@@ -1,0 +1,26 @@
+div.image figure {
+  margin-bottom: 1.5rem;
+
+  img {
+    margin-bottom: 0;
+  }
+
+  figcaption {
+    padding: 0.5rem 1rem;
+    background-color: $pale-gray;
+
+    a,
+    a:link,
+    a:visited {
+      color: $darkish-blue;
+    }
+
+    a:hover {
+      color: $light-blue;
+    }
+
+    p {
+      margin: 0;
+    }
+  }
+}
