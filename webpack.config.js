@@ -5,12 +5,9 @@ const path = require('path');
 var glob = require('glob');
 const globImporter = require('node-sass-glob-importer');
 
-const webpack = require('webpack')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const EmitAllPlugin = require('webpack-emit-all-plugin');
 
 // const src_css = 'css/*.css'
-const src_sass = '**/*.scss'
 const src_js = '**/*.js'
 
 const DEST_FOLDER = '/app/web/themes/contrib/lits_theme/dist'
@@ -22,18 +19,12 @@ const modules = [
 
 
 var js_files = []
-var sass_files = ["/components/style.scss"]
-// var css_files = []
+var sass_files = ["/components/style.scss"] // all of the sass files to include are managed inside of style.scss
 
 for (var i of modules) { // collect all of the files
-  // dir = path.resolve(__filename, i)
   dir = __dirname + i
   // add all the js files
   js_files = js_files.concat(glob.sync(dir + src_js))
-  // add the sass files
-  // sass_files = sass_files.concat(glob.sync(dir + src_sass))
-  // add the css files
-  // css_files = css_files.concat(glob.sync(dir + src_css))
 }
 
 
@@ -42,7 +33,6 @@ module.exports =  {
     entry: {
       lits_theme_scripts: js_files,
       lits_theme_styles: sass_files,
-      // CSS: css_files
     },
 
     output: {
@@ -69,15 +59,6 @@ module.exports =  {
            test: /\.(js|jsx)$/,
            exclude: /node_modules/,
            use: ['babel-loader']
-        },
-        // css
-        {
-          test: /\.css$/,
-          exclude: /node_modules/,
-          loader: 'file-loader',
-          options: {
-            emitFile: false, // exclude images (Note that file-loader is now deprecated, so Asset Modules might be a better alternative)
-          }
         },
         // sass
         {
