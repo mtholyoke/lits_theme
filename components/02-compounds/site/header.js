@@ -4,7 +4,7 @@
  */
 
 (($, Drupal) => {
-  Drupal.trehub = Drupal.trehub || {};
+  Drupal.lits_theme = Drupal.lits_theme || {};
 
   /**
    * Hides hours and main menu closables on click elsewhere.
@@ -14,7 +14,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Listen for clicks and close any non-accordions that are open.
    */
-  Drupal.behaviors.trehubClosableHandler = {
+  Drupal.behaviors.litsThemeClosableHandler = {
     attach: context => {
       const $document = $(document, context);
       $document.click(event => {
@@ -25,7 +25,7 @@
           .not($closest);
         if ($expandables.length) {
           $expandables.each((i, element) => {
-            Drupal.trehub.toggleExpandable($(element), "close");
+            Drupal.lits_theme.toggleExpandable($(element), "close");
           });
         }
       });
@@ -40,13 +40,13 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Calls the resize function on DOM ready and window resize.
    */
-  Drupal.behaviors.trehubMainMenuDropdownPositioning = {
+  Drupal.behaviors.litsThemeMainMenuDropdownPositioning = {
     attach: context => {
       // attach() is fired by drupal.js inside a $(document).ready()
-      Drupal.trehub.mainMenuDropdownPositioning(context);
+      Drupal.lits_theme.mainMenuDropdownPositioning(context);
 
       $(window).resize(() => {
-        Drupal.trehub.mainMenuDropdownPositioning(context);
+        Drupal.lits_theme.mainMenuDropdownPositioning(context);
       });
     }
   };
@@ -59,7 +59,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Calls the resize function on window resize.
    */
-  Drupal.behaviors.trehubMainMenuMobile = {
+  Drupal.behaviors.litsThemeMainMenuMobile = {
     attach: context => {
       const $toggleExpand = $("#main-menu-toggle-expand", context);
       const $menuWrapper = $("#main-nav", context);
@@ -84,16 +84,16 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Tests the current amount of scroll and assigns a sticky class.
    */
-  Drupal.behaviors.trehubStickyHeader = {
+  Drupal.behaviors.litsThemeStickyHeader = {
     attach: context => {
-      Drupal.trehub.positionMenu(context, false);
+      Drupal.lits_theme.positionMenu(context, false);
 
       $(document).scroll(() => {
-        Drupal.trehub.positionMenu(context, false);
+        Drupal.lits_theme.positionMenu(context, false);
       });
 
       $(window).resize(() => {
-        Drupal.trehub.positionMenu(context, false);
+        Drupal.lits_theme.positionMenu(context, false);
       });
     }
   };
@@ -104,16 +104,16 @@
    * @param {object} context
    *   The scoping context provided by Drupal.
    */
-  Drupal.trehub.mainMenuDropdownPositioning = context => {
+  Drupal.lits_theme.mainMenuDropdownPositioning = context => {
     // Position the submenus for the middle menu items in a centered location
-    // below their parent.
+    // below their parent
     const $body = $("body", context);
     if ($(window).width() < 900) {
       $("#main-nav .main-menu .main-menu__item--root.expandable", context).each(
         (i, element) => {
           const $subMenu = $(element).find(".main-submenu--wrapper");
           $subMenu.css("margin-left", "");
-          if ($body.hasClass("alert-active")) {
+          if ($body.hasClass("alert-active") && false) {
             $subMenu.css("position", "static").css("z-index", "0");
           }
         }
@@ -147,7 +147,7 @@
 
         // Reset before recalculating position.
         $subMenu.css("margin-left", "");
-        if ($body.hasClass("alert-active")) {
+        if ($body.hasClass("alert-active") && false) {
           $subMenu.css("position", "absolute").css("z-index", "2"); // z-index to lift above the control on the select box on LITS search on the homepage
         } else {
           $subMenu.css("position", "").css("z-index", "");
@@ -181,7 +181,7 @@
    * @param {boolean} collapsed
    *   Whether the imagebar should just be collapsed or not (relevant for anchor scrolling)
    */
-  Drupal.trehub.positionMenu = (context, collapsed) => {
+  Drupal.lits_theme.positionMenu = (context, collapsed) => {
     const $body = $("body", context);
     if (!$body.hasClass("alert-active")) {
       // searchbar should have a height equal to the distance to main, with a max of 208px

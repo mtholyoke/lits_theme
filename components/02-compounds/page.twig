@@ -21,9 +21,9 @@
 <div id="main-content" class="main-sidebar-{{ sidebar_location }}">
   <main id="main-wrapper" class="layout-zone">
     <div id="messagebar" class="layout-stripe">
-     {{ page.content.trehub_messages }}
+     {{ page.content.lits_theme_messages }}
     </div>
-    {{ page.content|without("trehub_messages") }}
+    {{ page.content|without("lits_theme_messages") }}
   </main>{# /#main-wrapper #}
 
   {% if sidebar_location != 'none' %}

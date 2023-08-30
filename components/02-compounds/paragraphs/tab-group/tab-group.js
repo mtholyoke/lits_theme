@@ -14,7 +14,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Listen for clicks and close any non-accordions that are open.
    */
-  Drupal.behaviors.trehubTabGroupHandler = {
+  Drupal.behaviors.litsThemeTabGroupHandler = {
     attach: context => {
       const $tabLists = $(".tab-group ul.tabs__nav", context);
       const $tabLinks = $tabLists.find("a");

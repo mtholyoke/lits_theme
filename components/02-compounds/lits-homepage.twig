@@ -7,19 +7,19 @@
  * @see template_preprocess_page()
 */
 #}
-{% set unified_search_block = page.header.trehub_litsunifiedsearchblock %}
-{% set library_materials_search_block = page.header.trehub_librarymaterialssearchblock %}
-{% set lits_site_search_block = page.header.trehub_litssitesearchblock %}
+{% set unified_search_block = page.header.lits_theme_litsunifiedsearchblock %}
+{% set library_materials_search_block = page.header.lits_theme_librarymaterialssearchblock %}
+{% set lits_site_search_block = page.header.lits_theme_litssitesearchblock %}
 
 
 {% set lits_heading = {
-  "trehub_litsunifiedsearchblock": {
+  "lits_theme_litsunifiedsearchblock": {
     "#markup": "",
   },
-  "trehub_librarymaterialssearchblock": {
+  "lits_theme_librarymaterialssearchblock": {
     "#markup": "",
 },
-  "trehub_litssitesearchblock": {
+  "lits_theme_litssitesearchblock": {
     "#markup": "",
 }} %}
 
@@ -31,7 +31,7 @@
 
 <main id="main-content" role="main" class="main main-home">
 <div id="messagebar" class="layout-stripe">
- {{ page.content.trehub_messages }}
+ {{ page.content.lits_theme_messages }}
 </div>
 <div id="titlebar" class="layout-stripe">
   <div class="layout-zone layout-container">
@@ -48,12 +48,12 @@
       </div>
     </div>
 
-    {{ page.content.trehub_local_tasks }}
-    {{ page.content.trehub_local_actions }}
+    {{ page.content.lits_theme_local_tasks }}
+    {{ page.content.lits_theme_local_actions }}
   </div>
 </div>
 
-{{ page.content|without("trehub_messages")|without("trehub_local_tasks")|without("trehub_local_actions") }} {# go see  @templates/homepage-elements/lits-homepage-page-content.twig #}
+{{ page.content|without("lits_theme_messages")|without("lits_theme_local_tasks")|without("lits_theme_local_actions") }} {# go see  @templates/homepage-elements/lits-homepage-page-content.twig #}
 
 </main>
 

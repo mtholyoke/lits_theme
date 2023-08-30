@@ -279,6 +279,13 @@
   display: flex;
   flex-wrap: wrap; }
 
+.text-long figure figcaption {
+  padding: 0.5rem 1rem;
+  background-color: #e2dfdd; }
+
+.text-long figure img {
+  margin: 0; }
+
 /**
  * @file
  * Reusable styles for links.
@@ -326,7 +333,7 @@
  * Link on Blue Background
  *
  * Used by:
- * - @organisms/location-teaser
+ * - @compounds/location-teaser
  */
 a {
   color: #07c;
@@ -671,7 +678,7 @@ svg.svg-inline--other {
   .form-item__select:focus {
     outline-offset: 2px;
     outline: 3px solid #004876; }
-  .lits_homepage #block-trehub-litsunifiedsearchblock .form-item__select:focus {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock .form-item__select:focus {
     outline-offset: 2px;
     outline: 3px solid #ff9e1b; }
 
@@ -720,7 +727,7 @@ svg.svg-inline--other {
   .form-item__textfield:focus {
     outline-offset: 2px;
     outline: 3px solid #004876; }
-  .lits_homepage #block-trehub-litsunifiedsearchblock .form-item__textfield:focus {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock .form-item__textfield:focus {
     outline-offset: 2px;
     outline: 3px solid #ff9e1b; }
   .form-item__textfield::-webkit-input-placeholder {
@@ -766,7 +773,7 @@ svg.svg-inline--other {
   .button:focus {
     outline-offset: 2px;
     outline: 3px solid #004876; }
-  .lits_homepage #block-trehub-litsunifiedsearchblock .button:focus {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock .button:focus {
     outline-offset: 2px;
     outline: 3px solid #ff9e1b; }
   .button--alt {
@@ -808,7 +815,7 @@ svg.svg-inline--other {
     .button--alt:focus {
       outline-offset: 2px;
       outline: 3px solid #004876; }
-    .lits_homepage #block-trehub-litsunifiedsearchblock .button--alt:focus {
+    .lits_homepage #block-lits-theme-litsunifiedsearchblock .button--alt:focus {
       outline-offset: 2px;
       outline: 3px solid #ff9e1b; }
     .button--alt:visited {
@@ -819,7 +826,7 @@ svg.svg-inline--other {
     .button--alt:focus {
       outline-offset: 2px;
       outline: 3px solid #004876; }
-    .lits_homepage #block-trehub-litsunifiedsearchblock .button--alt:focus {
+    .lits_homepage #block-lits-theme-litsunifiedsearchblock .button--alt:focus {
       outline-offset: 2px;
       outline: 3px solid #ff9e1b; }
   .button--alt-2 {
@@ -862,7 +869,7 @@ svg.svg-inline--other {
     .button--alt-2:focus {
       outline-offset: 2px;
       outline: 3px solid #004876; }
-    .lits_homepage #block-trehub-litsunifiedsearchblock .button--alt-2:focus {
+    .lits_homepage #block-lits-theme-litsunifiedsearchblock .button--alt-2:focus {
       outline-offset: 2px;
       outline: 3px solid #ff9e1b; }
     .button--alt-2:visited {
@@ -873,7 +880,7 @@ svg.svg-inline--other {
     .button--alt-2:focus {
       outline-offset: 2px;
       outline: 3px solid #004876; }
-    .lits_homepage #block-trehub-litsunifiedsearchblock .button--alt-2:focus {
+    .lits_homepage #block-lits-theme-litsunifiedsearchblock .button--alt-2:focus {
       outline-offset: 2px;
       outline: 3px solid #ff9e1b; }
 
@@ -1391,11 +1398,11 @@ body:not(.alert-active) #main-content {
   #titlebar .layout-container #search-container, #titlebar #newsbar.newsbar-sidebar-side #search-container, #titlebar #main-content.main-sidebar-side #search-container, #titlebar .study-space-finder #search-container {
     width: 100%;
     max-width: 1200px; }
-  #titlebar .layout-container #block-trehub-local-tasks, #titlebar #newsbar.newsbar-sidebar-side #block-trehub-local-tasks, #titlebar #main-content.main-sidebar-side #block-trehub-local-tasks, #titlebar .study-space-finder #block-trehub-local-tasks,
-  #titlebar .layout-container #block-trehub-local-actions,
-  #titlebar #newsbar.newsbar-sidebar-side #block-trehub-local-actions,
-  #titlebar #main-content.main-sidebar-side #block-trehub-local-actions,
-  #titlebar .study-space-finder #block-trehub-local-actions {
+  #titlebar .layout-container #block-lits-theme-local-tasks, #titlebar #newsbar.newsbar-sidebar-side #block-lits-theme-local-tasks, #titlebar #main-content.main-sidebar-side #block-lits-theme-local-tasks, #titlebar .study-space-finder #block-lits-theme-local-tasks,
+  #titlebar .layout-container #block-lits-theme-local-actions,
+  #titlebar #newsbar.newsbar-sidebar-side #block-lits-theme-local-actions,
+  #titlebar #main-content.main-sidebar-side #block-lits-theme-local-actions,
+  #titlebar .study-space-finder #block-lits-theme-local-actions {
     align-self: flex-start; }
 
 #title-wrapper {
@@ -1478,7 +1485,7 @@ h1 .subtitle {
     #newsbar a.see-all-posts:focus {
       outline-offset: 2px;
       outline: 3px solid #004876; }
-    .lits_homepage #block-trehub-litsunifiedsearchblock #newsbar a.see-all-posts:focus {
+    .lits_homepage #block-lits-theme-litsunifiedsearchblock #newsbar a.see-all-posts:focus {
       outline-offset: 2px;
       outline: 3px solid #ff9e1b; }
     #newsbar a.see-all-posts:focus {
@@ -1664,11 +1671,11 @@ h1 .subtitle {
           outline-offset: 2px;
           outline: 3px solid #004876;
           text-decoration: underline solid; }
-        .lits_homepage #block-trehub-litsunifiedsearchblock .lits_homepage .has-link-tiles ul li a:focus {
+        .lits_homepage #block-lits-theme-litsunifiedsearchblock .lits_homepage .has-link-tiles ul li a:focus {
           outline-offset: 2px;
           outline: 3px solid #ff9e1b;
           text-decoration: underline solid; }
-        .lits_homepage #block-trehub-litsunifiedsearchblock .lits_homepage .has-link-tiles ul li a svg:focus {
+        .lits_homepage #block-lits-theme-litsunifiedsearchblock .lits_homepage .has-link-tiles ul li a svg:focus {
           outline-offset: 2px;
           outline: 3px solid #ff9e1b;
           text-decoration: underline solid; }
@@ -2100,7 +2107,7 @@ h2.bentos {
   .card__button:focus {
     outline-offset: 2px;
     outline: 3px solid #004876; }
-  .lits_homepage #block-trehub-litsunifiedsearchblock .card__button:focus {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock .card__button:focus {
     outline-offset: 2px;
     outline: 3px solid #ff9e1b; }
 
@@ -2169,7 +2176,7 @@ h2.bentos {
  * Link on Blue Background
  *
  * Used by:
- * - @organisms/location-teaser
+ * - @compounds/location-teaser
  */
 a {
   color: #07c;
@@ -2593,7 +2600,7 @@ ol {
   .more-hours:focus {
     outline-offset: 2px;
     outline: 3px solid #004876; }
-  .lits_homepage #block-trehub-litsunifiedsearchblock .more-hours:focus {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock .more-hours:focus {
     outline-offset: 2px;
     outline: 3px solid #ff9e1b; }
   .more-hours::before {
@@ -2933,8 +2940,8 @@ table.lits-hours-month {
     @media (min-width: 900px) {
       #search-blocks-container button {
         margin: 15px 0; } }
-  #search-blocks-container #block-trehub-librarymaterialssearchblock,
-  #search-blocks-container #block-trehub-litssitesearchblock {
+  #search-blocks-container #block-lits-theme-librarymaterialssearchblock,
+  #search-blocks-container #block-lits-theme-litssitesearchblock {
     flex: 1 1 auto;
     background-color: #004876;
     padding: 1em; }
@@ -2944,24 +2951,24 @@ table.lits-hours-month {
   background-color: #e2dfdd;
   color: #004876; }
 
-.lits_page #searchbar #block-trehub-librarymaterialssearchblock,
-.lits_page #searchbar #block-trehub-litssitesearchblock {
+.lits_page #searchbar #block-lits-theme-librarymaterialssearchblock,
+.lits_page #searchbar #block-lits-theme-litssitesearchblock {
   background-color: inherit;
   color: inherit; }
-  .lits_page #searchbar #block-trehub-librarymaterialssearchblock label,
-  .lits_page #searchbar #block-trehub-litssitesearchblock label {
+  .lits_page #searchbar #block-lits-theme-librarymaterialssearchblock label,
+  .lits_page #searchbar #block-lits-theme-litssitesearchblock label {
     color: #004876; }
 
 /**
  * @file
  * Styles for the unified search form, in the header of almsot every page.
  */
-#block-trehub-litsunifiedsearchblock {
+#block-lits-theme-litsunifiedsearchblock {
   background-color: #004876;
   padding: 1rem; }
-  .lits_homepage #block-trehub-litsunifiedsearchblock {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock {
     padding: 1.6rem; }
-  #block-trehub-litsunifiedsearchblock #litsunifiedsearchblock-label {
+  #block-lits-theme-litsunifiedsearchblock #litsunifiedsearchblock-label {
     font-size: 1.5rem;
     color: white;
     font-weight: bold;
@@ -3024,7 +3031,7 @@ table.lits-hours-month {
     #lits-search-unified-search-form #edit-lits-search-go:focus {
       outline-offset: 2px;
       outline: 3px solid #004876; }
-    .lits_homepage #block-trehub-litsunifiedsearchblock #lits-search-unified-search-form #edit-lits-search-go:focus {
+    .lits_homepage #block-lits-theme-litsunifiedsearchblock #lits-search-unified-search-form #edit-lits-search-go:focus {
       outline-offset: 2px;
       outline: 3px solid #ff9e1b; }
     .lits_homepage #lits-search-unified-search-form #edit-lits-search-go {
@@ -3073,11 +3080,11 @@ table.lits-hours-month {
     outline-offset: 2px;
     outline: 3px solid #004876;
     text-decoration: underline solid; }
-  .lits_homepage #block-trehub-litsunifiedsearchblock .search-detail-button:focus {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock .search-detail-button:focus {
     outline-offset: 2px;
     outline: 3px solid #ff9e1b;
     text-decoration: underline solid; }
-  .lits_homepage #block-trehub-litsunifiedsearchblock .search-detail-button svg:focus {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock .search-detail-button svg:focus {
     outline-offset: 2px;
     outline: 3px solid #ff9e1b;
     text-decoration: underline solid; }
@@ -3176,11 +3183,11 @@ table.lits-hours-month {
   background-color: #e2dfdd;
   color: #004876; }
 
-.lits_page #searchbar #block-trehub-litsunifiedsearchblock {
+.lits_page #searchbar #block-lits-theme-litsunifiedsearchblock {
   background-color: inherit;
   color: inherit;
   width: 100%; }
-  .lits_page #searchbar #block-trehub-litsunifiedsearchblock #litsunifiedsearchblock-label {
+  .lits_page #searchbar #block-lits-theme-litsunifiedsearchblock #litsunifiedsearchblock-label {
     color: inherit; }
 
 .search-results {
@@ -3625,7 +3632,7 @@ div.search-result-details.btn a {
       .lits-location .location-sidebar a.button:focus {
         outline-offset: 2px;
         outline: 3px solid white; }
-      .lits_homepage #block-trehub-litsunifiedsearchblock .lits-location .location-sidebar a.button:focus {
+      .lits_homepage #block-lits-theme-litsunifiedsearchblock .lits-location .location-sidebar a.button:focus {
         outline-offset: 2px;
         outline: 3px solid #ff9e1b; }
       .lits-location .location-sidebar a.button:hover {
@@ -3745,23 +3752,23 @@ div.search-result-details.btn a {
 #main-menu-toggle-expand {
   padding: 0.5rem 0; }
 
-nav#block-trehub-mainnavigation {
+nav#block-lits-theme-mainnavigation {
   width: 100%; }
-  nav#block-trehub-mainnavigation ul {
+  nav#block-lits-theme-mainnavigation ul {
     list-style: none;
     margin: 0;
     padding: 0; }
-  nav#block-trehub-mainnavigation #main-nav {
+  nav#block-lits-theme-mainnavigation #main-nav {
     display: none; }
     @media (min-width: 900px) {
-      nav#block-trehub-mainnavigation #main-nav {
+      nav#block-lits-theme-mainnavigation #main-nav {
         display: block; } }
-    nav#block-trehub-mainnavigation #main-nav > ul.main-menu {
+    nav#block-lits-theme-mainnavigation #main-nav > ul.main-menu {
       display: flex;
       flex-flow: column nowrap;
       justify-content: center; }
   @media (min-width: 900px) {
-    nav#block-trehub-mainnavigation #main-nav > ul.main-menu {
+    nav#block-lits-theme-mainnavigation #main-nav > ul.main-menu {
       flex-flow: row nowrap;
       justify-content: space-between;
       align-items: flex-start; } }
@@ -4877,7 +4884,7 @@ footer h2 {
     #hours-wrapper .more-hours:focus {
       outline-offset: 2px;
       outline: 3px solid white; }
-    .lits_homepage #block-trehub-litsunifiedsearchblock #hours-wrapper .more-hours:focus {
+    .lits_homepage #block-lits-theme-litsunifiedsearchblock #hours-wrapper .more-hours:focus {
       outline-offset: 2px;
       outline: 3px solid #ff9e1b; }
     #hours-wrapper .more-hours:hover {

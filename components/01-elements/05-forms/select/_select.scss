@@ -34,7 +34,7 @@
   // WARNING: this may not meet accessibility guidelines for focus.
   @include focus;
 
-  .lits_homepage #block-trehub-litsunifiedsearchblock & {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock & {
     @include focus($light-orange);
   }
 }

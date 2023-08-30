@@ -3,7 +3,7 @@
  * Styles for the unified search form, in the header of almsot every page.
  */
 
-#block-trehub-litsunifiedsearchblock {
+#block-lits-theme-litsunifiedsearchblock {
   background-color: $dark-blue;
   padding: 1rem;
 
@@ -269,7 +269,7 @@
     color: $dark-blue;
   }
 
-  & #block-trehub-litsunifiedsearchblock {
+  & #block-lits-theme-litsunifiedsearchblock {
     background-color: inherit;
     color: inherit;
     width: 100%;

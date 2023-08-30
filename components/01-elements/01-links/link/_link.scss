@@ -175,7 +175,7 @@ a.bluebg {
 
   @include focus($dark-blue, link);
 
-  .lits_homepage #block-trehub-litsunifiedsearchblock & {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock & {
     @include focus($light-orange, link);
 
     & svg {

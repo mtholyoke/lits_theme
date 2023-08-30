@@ -28,7 +28,7 @@
 
   @include focus;
 
-  .lits_homepage #block-trehub-litsunifiedsearchblock & {
+  .lits_homepage #block-lits-theme-litsunifiedsearchblock & {
     @include focus($light-orange);
   }
 

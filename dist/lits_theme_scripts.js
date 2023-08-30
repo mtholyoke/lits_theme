@@ -119,7 +119,7 @@
  */
 
 (($, Drupal) => {
-  Drupal.trehub = Drupal.trehub || {};
+  Drupal.lits_theme = Drupal.lits_theme || {};
   const openAccordion = hash => {
     let element;
     if (hash.indexOf("button") >= 0) {
@@ -140,12 +140,12 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Listen for clicks on expandable elements and call the toggle function.
    */
-  Drupal.behaviors.trehubExpandableHandler = {
+  Drupal.behaviors.litsThemeExpandableHandler = {
     attach: context => {
       const $buttons = $(".expandable button", context);
       $buttons.click(event => {
         const $container = $(event.target).parents(".expandable").first();
-        Drupal.trehub.toggleExpandable($container);
+        Drupal.lits_theme.toggleExpandable($container);
       });
     }
   };
@@ -158,9 +158,9 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Adds rel="noopener", a11y hidden text, and a CSS class to non-LITS links.
    */
-  Drupal.behaviors.trehubLinkManager = {
+  Drupal.behaviors.litsThemeLinkManager = {
     attach: context => {
-      $("a", context).once("Drupal.behaviors.trehubLinkManager").each((index, a) => {
+      $("a", context).once("Drupal.behaviors.litsThemeLinkManager").each((index, a) => {
         // Grab links with a hostname that doesn't match the window location
         if (a.hostname && window.location.hostname.length && window.location.hostname !== a.hostname) {
           // just in case we want to automagically target these later for
@@ -193,7 +193,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Focuses on element linked to/activated by id
    */
-  Drupal.behaviors.trehubLinkFocusManager = {
+  Drupal.behaviors.litsThemeLinkFocusManager = {
     attach: context => {
       $(window).on("load", () => {
         // Extend the definition of :focusable to include more elements than the default (I think?)
@@ -208,7 +208,7 @@
         if (window.location.hash) {
           openAccordion(window.location.hash);
           const scrollMore = !!navigator.userAgent.match(/Trident.*rv:11\./) || window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge
-          Drupal.trehub.scrollToHash(context, $(window.location.hash), scrollMore);
+          Drupal.lits_theme.scrollToHash(context, $(window.location.hash), scrollMore);
         }
       });
 
@@ -234,12 +234,12 @@
 
         // Scroll to hash
         openAccordion(window.location.hash);
-        Drupal.trehub.scrollToHash(context, $anchorTarget, false);
+        Drupal.lits_theme.scrollToHash(context, $anchorTarget, false);
       });
       $(window).on("hashchange", () => {
         if (window.location.hash) {
           openAccordion(window.location.hash);
-          Drupal.trehub.scrollToHash(context, $(window.location.hash), false);
+          Drupal.lits_theme.scrollToHash(context, $(window.location.hash), false);
         }
       });
     }
@@ -251,45 +251,9 @@
    * @param {object} context
    *   The scoping context provided by Drupal.
    */
-  Drupal.trehub.scrollToHash = (context, $anchorTarget, needsScrollDelay) => {
+  Drupal.lits_theme.scrollToHash = (context, $anchorTarget, needsScrollDelay) => {
     const $body = $("body", context);
-    if (!$body.hasClass("alert-active")) {
-      // focus the element
-      Drupal.trehub.focusOnElement($anchorTarget);
-
-      // position menu, collapsing the imagebar if needed to prepare to scroll to hash
-      Drupal.trehub.positionMenu(context, true);
-
-      // now set up the final scroll now that the menu is/should be at an appropriate level of collapsiness for the final anchor position
-      let menuHeight = $("#search-toggle-container", context).height();
-      // Menubar has different height markers at different page sizes
-      if ($(window).width() < 900) {
-        menuHeight += $("#menubar", context).height();
-      } else {
-        menuHeight += $("#menu-background", context).height();
-      }
-      let toolbarheight = 0;
-      if ($body.hasClass("toolbar-fixed")) {
-        toolbarheight = 39;
-        if ($body.hasClass("toolbar-horizontal") && $body.hasClass("toolbar-tray-open")) {
-          toolbarheight = 79;
-        }
-      }
-      menuHeight += toolbarheight;
-
-      // offset().top doesn't seem to work reliably in IE11 on page load
-      const scrollTop = document.getElementById($anchorTarget.attr("id")).offsetTop - menuHeight;
-      let scrollDelay = 0;
-      if (needsScrollDelay) {
-        scrollDelay = 1500;
-      }
-      setTimeout(() => {
-        $("html, body").animate({
-          // Need both html and body here for cross-browseriness
-          scrollTop
-        }, 100);
-      }, scrollDelay);
-    }
+    if (!$body.hasClass("alert-active") && false) {}
   };
 
   /**
@@ -300,7 +264,7 @@
    * @param {string} action
    *   One of 'open', 'close', or (default) 'toggle'.
    */
-  Drupal.trehub.toggleExpandable = ($container, action = "toggle") => {
+  Drupal.lits_theme.toggleExpandable = ($container, action = "toggle") => {
     const isOpen = $container.hasClass("expandable--open");
     if (isOpen && action === "toggle") {
       action = "close";
@@ -309,7 +273,7 @@
     const $content = $container.find(`#${$button.attr("aria-controls")}`);
     let callback = null;
     if ($container.attr("id") === "search-toggle-container") {
-      callback = Drupal.trehub.positionMenu;
+      callback = Drupal.lits_theme.positionMenu;
     }
     if (action === "close") {
       $button.attr("aria-expanded", "false").attr("aria-pressed", "false");
@@ -348,7 +312,7 @@
    * @param {string} action
    *   One of 'open', 'close', or (default) 'toggle'.
    */
-  Drupal.trehub.focusOnElement = $element => {
+  Drupal.lits_theme.focusOnElement = $element => {
     if (!$element.length) {
       return;
     }
@@ -369,9 +333,9 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Focuses on element linked to/activated by id
    */
-  Drupal.behaviors.trehubShibLoginLink = {
+  Drupal.behaviors.litsThemeShibLoginLink = {
     attach: context => {
-      var shibLoginLinks = document.querySelectorAll("#block-trehub-shibloginlink a");
+      var shibLoginLinks = document.querySelectorAll("#block-lits-theme-shibloginlink a");
       var currentPath = location.pathname.substr(1);
       if (currentPath && currentPath != '') {
         shibLoginLinks.forEach(a => {
@@ -389,7 +353,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Adjusts collapsiness of the filters
    */
-  Drupal.behaviors.trehubStudySpaceFilterSize = {
+  Drupal.behaviors.litsThemeStudySpaceFilterSize = {
     attach: context => {
       const $studySpaceFinderContainer = $(".study-space-finder", context);
       const windowWidth = $(window).width();
@@ -419,7 +383,7 @@
  */
 
 (($, Drupal) => {
-  Drupal.trehub = Drupal.trehub || {};
+  Drupal.lits_theme = Drupal.lits_theme || {};
 
   /**
    * Prints out the page load time.
@@ -429,7 +393,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Print out the page load time.
    */
-  Drupal.behaviors.trehubSystemStatusLoaded = {
+  Drupal.behaviors.litsThemeSystemStatusLoaded = {
     attach: context => {
       const $lastLoadedElement = $("#last-loaded", context);
       const dayOptions = {
@@ -473,7 +437,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Listen for clicks and close any non-accordions that are open.
    */
-  Drupal.behaviors.trehubTabGroupHandler = {
+  Drupal.behaviors.litsThemeTabGroupHandler = {
     attach: context => {
       const $tabLists = $(".tab-group ul.tabs__nav", context);
       const $tabLinks = $tabLists.find("a");
@@ -532,7 +496,7 @@
  */
 
 (($, Drupal) => {
-  Drupal.trehub = Drupal.trehub || {};
+  Drupal.lits_theme = Drupal.lits_theme || {};
 
   /**
    * Hides hours and main menu closables on click elsewhere.
@@ -542,7 +506,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Listen for clicks and close any non-accordions that are open.
    */
-  Drupal.behaviors.trehubClosableHandler = {
+  Drupal.behaviors.litsThemeClosableHandler = {
     attach: context => {
       const $document = $(document, context);
       $document.click(event => {
@@ -550,7 +514,7 @@
         const $expandables = $(".expandable--open").not(".accordion").not("#search-toggle-container").not($closest);
         if ($expandables.length) {
           $expandables.each((i, element) => {
-            Drupal.trehub.toggleExpandable($(element), "close");
+            Drupal.lits_theme.toggleExpandable($(element), "close");
           });
         }
       });
@@ -565,12 +529,12 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Calls the resize function on DOM ready and window resize.
    */
-  Drupal.behaviors.trehubMainMenuDropdownPositioning = {
+  Drupal.behaviors.litsThemeMainMenuDropdownPositioning = {
     attach: context => {
       // attach() is fired by drupal.js inside a $(document).ready()
-      Drupal.trehub.mainMenuDropdownPositioning(context);
+      Drupal.lits_theme.mainMenuDropdownPositioning(context);
       $(window).resize(() => {
-        Drupal.trehub.mainMenuDropdownPositioning(context);
+        Drupal.lits_theme.mainMenuDropdownPositioning(context);
       });
     }
   };
@@ -583,7 +547,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Calls the resize function on window resize.
    */
-  Drupal.behaviors.trehubMainMenuMobile = {
+  Drupal.behaviors.litsThemeMainMenuMobile = {
     attach: context => {
       const $toggleExpand = $("#main-menu-toggle-expand", context);
       const $menuWrapper = $("#main-nav", context);
@@ -608,14 +572,14 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Tests the current amount of scroll and assigns a sticky class.
    */
-  Drupal.behaviors.trehubStickyHeader = {
+  Drupal.behaviors.litsThemeStickyHeader = {
     attach: context => {
-      Drupal.trehub.positionMenu(context, false);
+      Drupal.lits_theme.positionMenu(context, false);
       $(document).scroll(() => {
-        Drupal.trehub.positionMenu(context, false);
+        Drupal.lits_theme.positionMenu(context, false);
       });
       $(window).resize(() => {
-        Drupal.trehub.positionMenu(context, false);
+        Drupal.lits_theme.positionMenu(context, false);
       });
     }
   };
@@ -626,17 +590,15 @@
    * @param {object} context
    *   The scoping context provided by Drupal.
    */
-  Drupal.trehub.mainMenuDropdownPositioning = context => {
+  Drupal.lits_theme.mainMenuDropdownPositioning = context => {
     // Position the submenus for the middle menu items in a centered location
-    // below their parent.
+    // below their parent
     const $body = $("body", context);
     if ($(window).width() < 900) {
       $("#main-nav .main-menu .main-menu__item--root.expandable", context).each((i, element) => {
         const $subMenu = $(element).find(".main-submenu--wrapper");
         $subMenu.css("margin-left", "");
-        if ($body.hasClass("alert-active")) {
-          $subMenu.css("position", "static").css("z-index", "0");
-        }
+        if ($body.hasClass("alert-active") && false) {}
       });
       return;
     }
@@ -663,9 +625,7 @@
 
       // Reset before recalculating position.
       $subMenu.css("margin-left", "");
-      if ($body.hasClass("alert-active")) {
-        $subMenu.css("position", "absolute").css("z-index", "2"); // z-index to lift above the control on the select box on LITS search on the homepage
-      } else {
+      if ($body.hasClass("alert-active") && false) {} else {
         $subMenu.css("position", "").css("z-index", "");
       }
 
@@ -696,7 +656,7 @@
    * @param {boolean} collapsed
    *   Whether the imagebar should just be collapsed or not (relevant for anchor scrolling)
    */
-  Drupal.trehub.positionMenu = (context, collapsed) => {
+  Drupal.lits_theme.positionMenu = (context, collapsed) => {
     const $body = $("body", context);
     if (!$body.hasClass("alert-active")) {
       // searchbar should have a height equal to the distance to main, with a max of 208px

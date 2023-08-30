@@ -4,7 +4,7 @@
  */
 
 (($, Drupal) => {
-  Drupal.trehub = Drupal.trehub || {};
+  Drupal.lits_theme = Drupal.lits_theme || {};
 
   const openAccordion = hash => {
     let element;
@@ -28,14 +28,14 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Listen for clicks on expandable elements and call the toggle function.
    */
-  Drupal.behaviors.trehubExpandableHandler = {
+  Drupal.behaviors.litsThemeExpandableHandler = {
     attach: context => {
       const $buttons = $(".expandable button", context);
       $buttons.click(event => {
         const $container = $(event.target)
           .parents(".expandable")
           .first();
-        Drupal.trehub.toggleExpandable($container);
+        Drupal.lits_theme.toggleExpandable($container);
       });
     }
   };
@@ -48,10 +48,10 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Adds rel="noopener", a11y hidden text, and a CSS class to non-LITS links.
    */
-  Drupal.behaviors.trehubLinkManager = {
+  Drupal.behaviors.litsThemeLinkManager = {
     attach: context => {
       $("a", context)
-        .once("Drupal.behaviors.trehubLinkManager")
+        .once("Drupal.behaviors.litsThemeLinkManager")
         .each((index, a) => {
           // Grab links with a hostname that doesn't match the window location
           if (
@@ -91,7 +91,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Focuses on element linked to/activated by id
    */
-  Drupal.behaviors.trehubLinkFocusManager = {
+  Drupal.behaviors.litsThemeLinkFocusManager = {
     attach: context => {
       $(window).on("load", () => {
         // Extend the definition of :focusable to include more elements than the default (I think?)
@@ -112,7 +112,7 @@
           const scrollMore =
             !!navigator.userAgent.match(/Trident.*rv:11\./) ||
             window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge
-          Drupal.trehub.scrollToHash(
+          Drupal.lits_theme.scrollToHash(
             context,
             $(window.location.hash),
             scrollMore
@@ -144,13 +144,13 @@
 
         // Scroll to hash
         openAccordion(window.location.hash);
-        Drupal.trehub.scrollToHash(context, $anchorTarget, false);
+        Drupal.lits_theme.scrollToHash(context, $anchorTarget, false);
       });
 
       $(window).on("hashchange", () => {
         if (window.location.hash) {
           openAccordion(window.location.hash);
-          Drupal.trehub.scrollToHash(context, $(window.location.hash), false);
+          Drupal.lits_theme.scrollToHash(context, $(window.location.hash), false);
         }
       });
     }
@@ -162,14 +162,14 @@
    * @param {object} context
    *   The scoping context provided by Drupal.
    */
-  Drupal.trehub.scrollToHash = (context, $anchorTarget, needsScrollDelay) => {
+  Drupal.lits_theme.scrollToHash = (context, $anchorTarget, needsScrollDelay) => {
     const $body = $("body", context);
-    if (!$body.hasClass("alert-active")) {
+    if (!$body.hasClass("alert-active") && false) {
       // focus the element
-      Drupal.trehub.focusOnElement($anchorTarget);
+      Drupal.lits_theme.focusOnElement($anchorTarget);
 
       // position menu, collapsing the imagebar if needed to prepare to scroll to hash
-      Drupal.trehub.positionMenu(context, true);
+      Drupal.lits_theme.positionMenu(context, true);
 
       // now set up the final scroll now that the menu is/should be at an appropriate level of collapsiness for the final anchor position
       let menuHeight = $("#search-toggle-container", context).height();
@@ -220,7 +220,7 @@
    * @param {string} action
    *   One of 'open', 'close', or (default) 'toggle'.
    */
-  Drupal.trehub.toggleExpandable = ($container, action = "toggle") => {
+  Drupal.lits_theme.toggleExpandable = ($container, action = "toggle") => {
     const isOpen = $container.hasClass("expandable--open");
     if (isOpen && action === "toggle") {
       action = "close";
@@ -231,7 +231,7 @@
 
     let callback = null;
     if ($container.attr("id") === "search-toggle-container") {
-      callback = Drupal.trehub.positionMenu;
+      callback = Drupal.lits_theme.positionMenu;
     }
 
     if (action === "close") {
@@ -271,7 +271,7 @@
    * @param {string} action
    *   One of 'open', 'close', or (default) 'toggle'.
    */
-  Drupal.trehub.focusOnElement = $element => {
+  Drupal.lits_theme.focusOnElement = $element => {
     if (!$element.length) {
       return;
     }
@@ -292,9 +292,9 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Focuses on element linked to/activated by id
    */
-  Drupal.behaviors.trehubShibLoginLink = {
+  Drupal.behaviors.litsThemeShibLoginLink = {
     attach: context => {
-        var shibLoginLinks = document.querySelectorAll("#block-trehub-shibloginlink a");
+        var shibLoginLinks = document.querySelectorAll("#block-lits-theme-shibloginlink a");
         var currentPath = location.pathname.substr(1);
         if (currentPath && currentPath != '') {
           shibLoginLinks.forEach((a) => {
@@ -312,7 +312,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Adjusts collapsiness of the filters
    */
-  Drupal.behaviors.trehubStudySpaceFilterSize = {
+  Drupal.behaviors.litsThemeStudySpaceFilterSize = {
   attach: context => {
     const $studySpaceFinderContainer = $(".study-space-finder", context);
     const windowWidth = $(window).width();

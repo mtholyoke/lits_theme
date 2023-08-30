@@ -74,8 +74,8 @@
     }
   }
 
-  #block-trehub-librarymaterialssearchblock,
-  #block-trehub-litssitesearchblock {
+  #block-lits-theme-librarymaterialssearchblock,
+  #block-lits-theme-litssitesearchblock {
     flex: 1 1 auto;
     background-color: $dark-blue;
     padding: 1em;
@@ -89,8 +89,8 @@
     color: $dark-blue;
   }
 
-  & #block-trehub-librarymaterialssearchblock,
-  & #block-trehub-litssitesearchblock {
+  & #block-lits-theme-librarymaterialssearchblock,
+  & #block-lits-theme-litssitesearchblock {
     background-color: inherit;
     color: inherit;
     // width: 50%;

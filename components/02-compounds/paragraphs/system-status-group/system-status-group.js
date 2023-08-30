@@ -4,7 +4,7 @@
  */
 
 (($, Drupal) => {
-  Drupal.trehub = Drupal.trehub || {};
+  Drupal.lits_theme = Drupal.lits_theme || {};
 
   /**
    * Prints out the page load time.
@@ -14,7 +14,7 @@
    * @prop {Drupal~behaviorAttach} attach
    *   Print out the page load time.
    */
-  Drupal.behaviors.trehubSystemStatusLoaded = {
+  Drupal.behaviors.litsThemeSystemStatusLoaded = {
     attach: context => {
       const $lastLoadedElement = $("#last-loaded", context);
       const dayOptions = {
