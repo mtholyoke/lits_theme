@@ -1,4 +1,15 @@
 <?php
+/**
+ * @file
+ * Functions to support theming in the LITS Theme theme.
+ */
+
+use Drupal\Component\Render\FormattableMarkup;
+use Drupal\Core\Field\EntityReferenceFieldItemList;
+use Drupal\Core\Url;
+use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
+use Drupal\taxonomy\Entity\Term;
 
 /**
  * @file
@@ -19,3 +30,1445 @@ function lits_theme_preprocess_image_widget(array &$variables) {
     unset($data['preview']);
   }
 }
+/**
+ * Attaches icons to the render array for study space detail fields.
+ *
+ * @param array $variables
+ *   The variables array being amended.
+ * @param array $exclusions
+ *   List of fields to skip for this particular render.
+ */
+function _lits_theme_attach_study_space_icons(array &$variables, array $exclusions = []) {
+  $node = $variables['node'];
+
+  $boolean_field_icons = [
+    // Icons from Font Awesome:
+    'field_computers' => 'fas fa-desktop fa-fw',
+    'field_printers' => 'fas fa-print fa-fw',
+    'field_projector' => 'fas fa-video fa-fw',
+    'field_soft_seating' => 'fas fa-couch fa-fw',
+    'field_wheelchair_accessible' => 'fas fa-wheelchair-move fa-fw',
+    'field_whiteboard' => 'fas fa-chalkboard fa-fw',
+    // Icon from Noun Project:
+    'field_large_tables' => '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" aria-hidden="true" focusable="false" role="img" class="svg-inline--other"><path fill="currentColor" d="M94.8,20.6c-0.4-0.8-1.1-1.4-2-1.5L27,9.8c-0.9-0.1-1.8,0.3-2.4,1L5.5,37.5C4.7,38.6,4.9,40.2,6,41c0.3,0.2,0.7,0.4,1.1,0.5 l4.6,0.7v37.8c0,1.4,1.1,2.5,2.5,2.5s2.5-1.1,2.5-2.5V42.8l11.1,1.6v13.1c0,1.4,1.1,2.5,2.5,2.5s2.5-1.1,2.5-2.5V45.1l34.1,4.8v37.8 c0,1.4,1.1,2.5,2.5,2.5s2.5-1.1,2.5-2.5V50.6l0.9,0.1c0.1,0,0.2,0,0.3,0c0.8,0,1.5-0.4,2-1l7.9-11v26.5c0,1.4,1.1,2.5,2.5,2.5 s2.5-1.1,2.5-2.5V31.8l6.3-8.8C95,22.3,95.1,21.4,94.8,20.6z"/></svg>',
+    // Manually constructed icon:
+    'field_adjustable_tables' => '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" aria-hidden="true" focusable="false" role="img" class="svg-inline--other"><polygon fill="currentColor" points="488.5,143.4 412.2,262.2 469.3,262.2 469.3,262.2 469.3,500.1 412.2,500.1 488.5,618.9 564.5,500.1 507.5,500.1 507.5,262.2 564.5,262.2"/><path fill="currentColor" d="M357.4,194.6c-2.4-5.6-7.6-9.4-13.6-10.1l-291.2-41c0,79.4,0,154.9,0,234.2L168.7,394v257.3c0,9.4,7.6,17,17,17 c9.4,0,17-7.6,17-17V398.8l6,0.8c0.8,0.1,1.6,0.1,2.4,0c5.3,0,10.4-2.6,13.6-6.8l53.8-74.5v180.5c0,9.4,7.6,17,17,17 c9.4,0,17-7.6,17-17V271.1l43.1-59.9C358.9,206.3,359.6,200,357.4,194.6z"/></svg>',
+    // Manually constructed icon:
+    'field_standing_tables' => '<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 612 792" aria-hidden="true" focusable="false" role="img" class="svg-inline--other"><circle fill="currentColor" cx="150.4" cy="195.6" r="48.8"/><path fill="currentColor" d="M403.4,268.3c-4.7-0.7-9.4,1.3-12.2,5.1l-98.1,136.4c-4.1,5.7-2.9,13.6,2.8,17.8c1.7,1.2,3.7,2,5.8,2.3 l23.7,3.4v193.2c0,7.1,5.7,12.8,12.8,12.8c7.1,0,12.8-5.7,12.8-12.8V436.8l56.8,8v67.1c0,7.1,5.7,12.8,12.8,12.8 c7.1,0,12.8-5.7,12.8-12.8v-63.5l87.2,12.3c0-59.6,0-116.2,0-175.8L403.4,268.3z"/><path fill="currentColor" d="M327.2,332.4c1.5-3.6,2.1-7.2,2.1-11.3c0-10.8-9.3-22.6-21.6-22.6c-2.6,0-62.2-5.1-62.2-5.1l-84.3-36  c-12.3-3.6-22.1-6.2-35-1c-17.5,6.7-22.1,22.6-23.7,40.1c1.5,15.9,2.1,32.9,2.1,50.4c0,19.5-1,38.6-2.6,55.5v6.2 c0,25.2,11.8,46.8,34.4,46.8l0.5,147c1,11.8,8.7,22.1,20.6,26.2c15.4,4.6,31.9-3.6,37-19c1-2.6,1-5.1,1.5-7.7l6.7-207.7 c0-0.5,0-1,0-1.5l-0.5-56l-33.9-11.3l2.1-6.7l64.8,22.1c0,0,6.7,1,10.3,1l65.8,5.1c4.1-1.5,7.7-3.6,10.8-6.2 c0,0.1-0.1,0.1-0.1,0.2c3.3-3.4,6.3-7,8.4-10.9C329.3,330.7,328.2,331.5,327.2,332.4z"/></svg>',
+  ];
+  foreach ($boolean_field_icons as $field => $icon) {
+    if (in_array($field, $exclusions)) {
+      continue;
+    }
+    if (!isset($variables['content'][$field])) {
+      continue;
+    }
+    if ($node->get($field)->getValue()[0]['value'] === '1') {
+      if (substr($icon, 0, 4) === '<svg') {
+        $variables['content'][$field]['#local-svg'] = $icon;
+      }
+      else {
+        $variables['content'][$field]['#fontawesome'] = $icon;
+      }
+    }
+  }
+
+  if (isset($variables['content']['field_noise_level'])) {
+    $noise_levels = [
+      '1' => 'fas fa-volume-off fa-fw',
+      '2' => 'fas fa-volume-low fa-fw',
+      '3' => 'fas fa-volume-high fa-fw',
+      '4' => 'fas fa-mobile-screen-button fa-fw',
+    ];
+    $value = $node->get('field_noise_level')->getValue()[0]['value'];
+    $variables['content']['field_noise_level']['#fontawesome'] = $noise_levels[$value];
+  }
+
+  if (isset($variables['content']['field_group_size'])) {
+    $group_sizes = [
+      '1' => 'fas fa-user fa-fw',
+      '2' => 'fas fa-user-group fa-fw',
+      '3' => 'fas fa-users fa-fw',
+    ];
+    $values = $node->get('field_group_size')->getValue();
+    foreach ($values as $value) {
+      $variables['content']['field_group_size']['#fontawesome'][] = $group_sizes[$value['value']];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Adds appropriate aria-hidden attribute to the LITS Unified Search form.
+ * Adds links to the sidebar title for Archives and Special Collections.
+ */
+function lits_theme_preprocess_block(&$variables) {
+  // Search form is hidden on most pages, but shows on homepage.
+  if ($variables['attributes']['id'] === 'block-lits_theme-litsunifiedsearchblock') {
+    $variables['attributes']['aria-hidden'] = 'true';
+    $route = \Drupal::service('current_route_match');
+    if ($route->getRouteName() === 'entity.node.canonical') {
+      $node = $route->getParameters()->get('node');
+      if ($node->bundle() === 'lits_homepage') {
+        $variables['attributes']['aria-hidden'] = 'false';
+      }
+    }
+  }
+
+  // TODO: remove this when ASC gets its own menu.
+  if ($variables['attributes']['id'] != 'block-ascsidebarlinks') {
+    // dpm($variables['attributes']['id']);
+    return;
+  }
+  $variables['attributes']['class'][] = 'sidebar-nav';
+  $variables['label'] = [
+    '#markup' => '<a href="/about-lits/service-desks/archives-special-collections">' . $variables['label'] . '</a>',
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Customize sidebar nav menus.
+ */
+function lits_theme_preprocess_block__system_menu_block(&$variables) {
+  if ($variables['configuration']['id'] == 'system_menu_block:main') {
+    return;
+  }
+
+  // Make the sidebar title a link to its landing page.
+  $markup = '<a href="/' . $variables['derivative_plugin_id'] . '">' . $variables['configuration']['label'] . '</a>';
+
+  // Sidebar menus need a shared class for styling.
+  if ($variables['content']['#attributes']['data-region'] === 'sidebar') {
+    $variables['attributes']['class'][] = 'sidebar-nav';
+    $markup = 'In the ' . $markup . ' section';
+  }
+
+  $variables['configuration']['label'] = ['#markup' => $markup];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Adds breadcrumbs on pages where Drupal doesn’t automatically provide.
+ */
+function lits_theme_preprocess_breadcrumb(&$variables) {
+  // Apparently if you mess with breadcrumbs they can get cached.
+  $variables['#cache']['contexts'][] = 'url.path';
+
+  // ASC pages have the Service Desk page itself as their section home, but
+  // because its URL doesn’t match the subpages, we have to insert it.
+  $path = \Drupal::service('path.current')->getPath();
+  $alias = \Drupal::service('path_alias.manager')->getAliasByPath($path);
+  if (substr($alias, 0, 30) === '/archives-special-collections/') {
+    array_splice($variables['breadcrumb'], 1, 0, [[
+      'text' => t('Archives & Special Collections'),
+      'url' => '/about-lits/service-desks/archives-special-collections',
+    ]]);
+  }
+
+  // In most cases, all we need to do is add the current page title to the end.
+  $route = \Drupal::service('current_route_match');
+  $title = $route->getRouteObject()->getDefault('_title');
+  switch ($route->getRouteName()) {
+    case 'entity.node.canonical':
+      $node = $route->getParameters()->get('node');
+      $title = $node->getTitle();
+      break;
+
+    case 'entity.taxonomy_term.canonical':
+      $term = $route->getParameters()->get('taxonomy_term');
+      $title = $term->getName();
+      switch ($term->bundle()) {
+        case 'departments':
+          $division = NULL;
+          if (count($variables['breadcrumb']) === 2) {
+            $division = $variables['breadcrumb'][1];
+            unset($variables['breadcrumb'][1]);
+          }
+          $variables['breadcrumb'][] = [
+            'text' => t('About LITS'),
+            'url' => '/about-lits',
+          ];
+          $variables['breadcrumb'][] = [
+            'text' => t('Departments'),
+            'url' => '/about-lits/departments',
+          ];
+          if (!is_null($division)) {
+            $variables['breadcrumb'][] = $division;
+          }
+          break;
+
+        case 'service_desks':
+          switch ($term->id()) {
+            case 128:
+              // SAW is different from other service desks.
+              $variables['breadcrumb'][] = [
+                'text' => t('Places'),
+                'url' => '/places',
+              ];
+              break;
+
+            case 129:
+              // Frances Perk Café is different from other service desks.
+              $variables['breadcrumb'][] = [
+                'text' => t('Places'),
+                'url' => '/places',
+              ];
+              break;
+
+            default:
+              $variables['breadcrumb'][] = [
+                'text' => t('About LITS'),
+                'url' => '/about-lits',
+              ];
+              $variables['breadcrumb'][] = [
+                'text' => t('Service desks'),
+                'url' => '/about-lits/service-desks',
+              ];
+          }
+          break;
+
+        case 'tags':
+          // The base /tagged/ page doesn't show up in breadcrumbs for some reason, so add it
+          // View / site tag index page must be handled separately
+          $insertBreadcrumbs = [
+            [
+              'text' => t('Site tags'),
+              'url' => '/tagged',
+            ]
+          ];
+
+          $breadcrumbs = $variables['breadcrumb'];
+          $startBreadcrumbs = array_slice($breadcrumbs, 0, 1);
+          $endBreadcrumbs = array_slice($breadcrumbs, 1);
+          $breadcrumbs = array_merge($startBreadcrumbs, $insertBreadcrumbs, $endBreadcrumbs);
+
+          $variables['breadcrumb'] = $breadcrumbs;
+          break;
+      }
+      break;
+
+    case 'view.study_spaces.page_1':
+      // If we give multiple args to the study space finder it thinks
+      // it’s a subpage.
+      if (isset($variables['breadcrumb'][3])) {
+        unset($variables['breadcrumb'][3]);
+      }
+      break;
+
+    case 'view.site_tag_index.page_1':
+      // Default !empty below doesn't work on views, I guess?
+      // Add /tagged/ page to the site tag index page
+      $variables['breadcrumb'][] = [
+        'text' => t('Site tags'),
+      ];
+      break;
+  }
+  if (!empty($title)) {
+    $variables['breadcrumb'][] = ['text' => $title];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Reformats reservation information for a study space detail page.
+ */
+function lits_theme_preprocess_field_group_html_element__study_space(&$variables) {
+  if ($variables['element']['#group_name'] === 'group_reservation') {
+    $node = $variables['element']['field_reservable']['#object'];
+
+    $variables['title'] = t('Reservable');
+    $variables['children'] = [
+      '#type' => 'link',
+      '#title' => t('<i class="fas fa-envelope fa-fw"></i> Contact LITS for more information'),
+      '#url' => Url::fromRoute('entity.node.canonical', ['node' => 147]),
+    ];
+
+    if ($node->get('field_reservable')->getValue()[0]['value'] !== '1') {
+      $variables['title'] = t('Not reservable');
+      return;
+    }
+
+    $reservation = NULL;
+    $method = $node->get('field_reservation_method')->getValue();
+    if (!empty($method) && array_key_exists(0, $method)) {
+      switch ($method[0]['value']) {
+        case 'form':
+          $reservation = $variables['element']['field_reservation_link'];
+          $reservation[0]['#options']['attributes']['class'][] = 'button';
+          // Re-render this element:
+          $reservation['#printed'] = FALSE;
+          unset($reservation['#children']);
+          unset($reservation['#markup']);
+          break;
+
+        case 'paper':
+          $reservation = $variables['element']['field_reservation_method'];
+          $reservation['#fontawesome'] = 'fas fa-file-lines fa-fw';
+          break;
+
+        default:
+          \Drupal::logger('lits_theme')->warning('Unknown reservation method %rm for node @nid', [
+            '%rm' => $method[0]['value'],
+            '@nid' => $node->id(),
+          ]);
+          break;
+      }
+    }
+    if (!is_null($reservation)) {
+      $variables['children'] = $reservation;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Adds CSS attributes so News Item teasers can be styled on the homepage.
+ */
+function lits_theme_preprocess_field__field_news_items(&$variables) {
+  $variables['attributes'] = [
+    'class' => ['layout-container'],
+    'id' => 'news-items-container',
+  ];
+  foreach( $variables['items'] as $i => $item) {
+    $variables['items'][$i]['attributes']->addClass('news-item');
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Makes it possible for a form within a block to have a target attribute,
+ * since it would normally be consumed by the block during rendering.
+ */
+function lits_theme_preprocess_form(&$variables) {
+  if (array_key_exists('#target', $variables['element'])) {
+    $variables['attributes']['target'] = $variables['element']['#target'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * Adds a class to the body tag to indicate that there is an active alert.
+ * This class turns off all of the fancy header behavior.
+ */
+function lits_alert_preprocess_html(&$variables) {
+  $variables['attributes']['class'][] = 'alert-active';
+}
+
+/**
+ * Search no results message for Site Restricted Search API queries.
+ */
+function lits_theme_preprocess_google_json_api_no_results_message(&$variables) {
+  if (!$variables['term']) {
+    $variables['term'] = ""; // Twig does not play nicely with NULL
+  }
+}
+
+
+/**
+ * Implements hook_preprocess_html().
+ *
+ * Sets a class on Service Desk pages for style rules.
+ */
+function lits_theme_preprocess_html(&$variables) {
+  $route_match = \Drupal::service('current_route_match');
+
+  if ($route_match->getRouteName() == 'entity.taxonomy_term.canonical') {
+    $term = $route_match->getParameter('taxonomy_term');
+    if ($term->bundle() === 'service_desks') {
+      $variables['node_type'] = 'service_desk';
+    }
+  }
+  else if ($route_match->getRouteName() == 'search.view_google_json_api_search') {
+     $variables['attributes']['class'][] = "google-json-api-search";
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Performs modifications to sidebar menus.
+ */
+function lits_theme_preprocess_menu__extras(&$variables) {
+  // Main menu handled in lits_theme_preprocess_menu__extras__main().
+  if ($variables['menu_name'] === 'main') {
+    return;
+  }
+
+  // Add external link icon when needed.
+  if (!empty($variables['items'])) {
+    _lits_theme_traverse_sidebar_menu($variables['items']);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * If the main nav menu item is supposed to have an icon but none is present
+ * on the link, load one from the link target instead.
+ */
+function lits_theme_preprocess_menu__extras__main(&$variables) {
+  foreach ($variables['items'] as $plid => $parent_link) {
+    if (!array_key_exists('below', $parent_link) || empty($parent_link['below'])) {
+      continue;
+    }
+    foreach ($parent_link['below'] as $id => $link) {
+      // Strip explicit server name for easier testing.
+      if (!$link['url']->isRouted()) {
+        if (substr($link['url']->getUri(), 0, 27) === 'https://lits.mtholyoke.edu/') {
+          $variables['items'][$plid]['below'][$id]['url'] = substr($link['url']->getUri(), 26);
+        }
+      }
+
+      // Add icon for external tool.
+      $external_tool = $link['entity']->get('field_external_tool')->getString();
+      if ($external_tool === '1') {
+        $variables['items'][$plid]['below'][$id]['title'] = [
+          '#markup' => $link['title'] . ' <i class="fas fa-share-from-square"></i><span class="visually-hidden">opens in a new tab</span>',
+        ];
+      }
+
+      // Add service desk icon.
+      if ($link['entity']->get('field_show_icon')->getString() !== '1') {
+        continue;
+      }
+      $field_icon = $link['entity']->get('field_icon');
+      if (!$field_icon->isEmpty()) {
+        $variables['items'][$plid]['below'][$id]['field_icon'] = _lits_theme_render_menu_icon($field_icon);
+      }
+      elseif (!$link['url']->isRouted()) {
+        continue;
+      }
+      else {
+        try {
+          $params = $link['url']->getRouteParameters();
+          $entity_type = key($params);
+          $entity = \Drupal::entityTypeManager()->getStorage($entity_type)->load($params[$entity_type]);
+          if ($entity->hasField('field_icon')) {
+            $field_icon = $entity->get('field_icon');
+            if (!$field_icon->isEmpty()) {
+              $variables['items'][$plid]['below'][$id]['field_icon'] = _lits_theme_render_menu_icon($field_icon);
+            }
+          }
+        }
+        catch (\UnexpectedValueException $e) {
+          \Drupal::logger('lits_theme')->warning(
+            'Problem using route to get icon for main menu link %p > %l (mlid %m).',
+            [
+              '%p' => $parent_link['title'],
+              '%l' => $link['title'],
+              '%m' => $link['entity']->id(),
+            ]
+          );
+          continue;
+        }
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function lits_theme_preprocess_node__article__search_result(&$variables) {
+  // Standardize variable names for the shared lits-search-result template.
+  // No authors: The authors/editors of the result.
+  // No availability: Availability information for the result.
+  // Keep content: The text content to be shown with the result.
+  // Remove date: The publication date of the result.
+  $variables['date'] = NULL;
+  // Add details: link text for more information about the result.
+  $variables['details'] = t('More...');
+  // Change heading_level: Tag to wrap the title in.
+  $variables['heading_level'] = 2;
+  // No subjects: Subjects or topics of the result.
+  // Add title: Title of the result.
+  $variables['title'] = $variables['label'];
+  // Maybe thumbnail: An image to be shown with the result.
+  // No type: The format/type of the result.
+  // Keep url: URL of the result web page or detail record.
+}
+
+/**
+* Implements hook_preprocess_node().
+*
+* If field_meal empty, then show the contents of field_bite instead
+*/
+function lits_theme_preprocess_node__news_item__full(&$variables) {
+
+  $node = $variables['node'];
+  $meal = $node->get('field_meal')->getValue();
+
+  if (is_array($meal) && empty($meal)) {
+    $bite = $node->get('field_bite')->getValue();
+    $uri = 'entity:node/' . $node->id();
+    $val = $node->get('field_url')->getValue();
+    if (is_array($val) && !empty($val) && is_array($val[0]) && array_key_exists('uri', $val[0]) && !empty($val[0]['uri'])) {
+      $uri = $val[0]['uri'];
+    }
+
+    $variables['content']['no-meal'] = [
+      '#markup' =>  $bite[0]['value'] . $uri ,
+    ];
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Determine what URL to make the link to.
+ */
+function lits_theme_preprocess_node__news_item__teaser(&$variables) {
+  $node = $variables['node'];
+  $uri = 'entity:node/' . $node->id();
+  $val = $node->get('field_url')->getValue();
+  if (is_array($val) && !empty($val) && is_array($val[0]) && array_key_exists('uri', $val[0]) && !empty($val[0]['uri'])) {
+    $uri = $val[0]['uri'];
+  }
+  $url = Url::fromUri($uri);
+  $variables['target_url'] = $url->toRenderArray();
+  $variables['more_icon'] = 'fa-chevron-right';
+  if ($url->isExternal()) {
+    $variables['more_icon'] = 'fa-share-from-square';
+  }
+  $variables['color'] = '#a20067';
+  $color = $node->get('field_color')->getValue();
+  if (is_array($color) && !empty($color)) {
+    $variables['color'] = $color[0]['color'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Decorate detail fields with icons.
+ * Hours preprocessing happens in the LITS Hours module.
+ */
+function lits_theme_preprocess_node__study_space__full(&$variables) {
+  _lits_theme_attach_study_space_icons($variables);
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Basically a copy of lits_search_preprocess_node__lits_search_result(),
+ * plus some extra magic for the detail icons.
+ */
+function lits_theme_preprocess_node__study_space__search_result_long(&$variables) {
+  // Standardize variable names for the shared lits-search-result template.
+  // No authors: The authors/editors of the result.
+  // No availability: Availability information for the result.
+  // Amend content: The text content to be shown with the result.
+
+  if (array_key_exists('field_service_desk', $variables['content'])) {
+    $term = $variables['node']->get('field_service_desk')->getValue()[0];
+    if (!empty($term)) {
+      $tid = $term['target_id'];
+      unset($variables['content']['field_service_desk'][0]['#plain_text']);
+      $open_now = '<div class="open-now-container" data-service-desk="' . $tid . '"></div>';
+      $variables['content']['field_service_desk'][0] = [
+        '#markup' => $open_now,
+        '#attached' => ['library' => ['lits_hours/open_now']],
+      ];
+    }
+  }
+
+  $details = $variables['elements']['#fieldgroups']['group_study_space_details'];
+  foreach ($details->children as $field) {
+    // Don’t show icons for features that don't exist.
+    if ($variables['node']->get($field)->getValue()[0]['value'] === '0') {
+      unset($variables['content'][$field]);
+    }
+  }
+  _lits_theme_attach_study_space_icons($variables);
+
+  // Remove date: The publication date of the result.
+  $variables['date'] = NULL;
+  // Add details: link text for more information about the result.
+  $variables['details'] = t('More...');
+  // Add heading_level: Tag to wrap the title in.
+  $variables['heading_level'] = 2;
+  // No subjects: Subjects or topics of the result.
+  // Add title: Title of the result.
+  $variables['title'] = $variables['label'];
+
+  // Maybe thumbnail: An image to be shown with the result.
+  if (array_key_exists('field_location_photos', $variables['content'])) {
+    if (array_key_exists(0, $variables['content']['field_location_photos'])) {
+      $variables['thumbnail'] = $variables['content']['field_location_photos'][0];
+      unset($variables['content']['field_location_photos']);
+    }
+  }
+
+  // No type: The format/type of the result.
+  // Keep url: URL of the result web page or detail record.
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Add status icons, modification date if recent enough
+ */
+function lits_theme_preprocess_node__system_status__full(&$variables) {
+  lits_theme_add_system_status_icon($variables);
+  lits_theme_sort_system_status_updates($variables, true);
+}
+function lits_theme_preprocess_node__system_status__teaser(&$variables) {
+  lits_theme_add_system_status_icon($variables);
+  lits_theme_sort_system_status_updates($variables, false);
+}
+
+function lits_theme_sort_system_status_updates(&$variables, $returnAllUpdates) {
+  // Comments are ordered by ascending ID order by default, so reverse them
+  // IMPORTANT NOTES:
+  //   - It seems that comments are sorted base on their ID, not post time.
+  //   - Adding a reply to a comment does not change the parent comment's
+  //     position in the list.
+  $variables['content']['field_comments'][0]['comments'] = array_reverse($variables['content']['field_comments'][0]['comments']);
+
+  // If not returning all updates, just return the most recent one
+  if (!$returnAllUpdates) {
+    if (count($variables['content']['field_comments'][0]['comments']) > 0) {
+      $mostRecentUpdate = $variables['content']['field_comments'][0]['comments'][0];
+      // Only add comments with modification dates that are reasonably current
+      $cutoff = strtotime('-7 days');
+      $modified = $mostRecentUpdate['#comment']->getChangedTime();
+      if($cutoff < $modified) {
+        $variables['content']['field_comments'][0]['comments'] = [
+          0 => $mostRecentUpdate,
+          'pager' => $variables['content']['field_comments'][0]['comments']['pager'],
+          '#pre_render' => $variables['content']['field_comments'][0]['comments']['#pre_render'],
+          '#sorted' => $variables['content']['field_comments'][0]['comments']['#sorted']
+        ];
+      } else {
+        $variables['content']['field_comments'][0]['comments'] = NULL;
+      }
+    }
+  }
+}
+function lits_theme_add_system_status_icon(&$variables) {
+  $node = $variables['node'];
+  $current_uri = \Drupal::request()->getRequestUri();
+  $variables['content']['#current_uri'] = $current_uri;
+
+  $system_status_uri = Url::fromRoute('entity.node.canonical', ['node' => $node->id()]);
+  $variables['content']['#system_status_uri'] = $system_status_uri->toString();
+  $system_status_edit_uri = Url::fromRoute('entity.node.edit_form', ['node' => $node->id()]);
+  $variables['content']['#system_status_edit_uri'] = $system_status_edit_uri->toString();
+
+  $variables['content']['#status_id'] = $node->get('field_status')->getValue()[0]['value'];
+
+  // Custom variable logic for iconography, label, sorting, etc
+  //   $variables['content']['#status_id']: comes from the field settings in the db
+  //   $variables['content']['#status_sort']: status sort order in table
+  //   $variables['content']['#fontawesome']: status icon class for FontAwesome
+  //   $variables['content']['#protected_system']: whether visible to non-authorized folks
+  //   $variables['content']['#field_status_override']: optional label override for status
+  switch ($variables['content']['#status_id']) {
+    case 10:
+      // unavailable
+      $variables['content']['#fontawesome'] = 'fas fa-circle-xmark';
+      $variables['content']['#protected_system'] = FALSE;
+      break;
+    case 20:
+      // degraded
+      $variables['content']['#fontawesome'] = 'fas fa-triangle-exclamation';
+      $variables['content']['#protected_system'] = FALSE;
+      break;
+    case 30:
+      // planned maintenance
+      $variables['content']['#fontawesome'] = 'fas fa-screwdriver-wrench';
+      $variables['content']['#protected_system'] = FALSE;
+      break;
+    case 40:
+      // normal
+      $variables['content']['#fontawesome'] = 'fas fa-square-check';
+      $variables['content']['#protected_system'] = FALSE;
+      break;
+    case 99:
+      // hidden
+      $variables['content']['#fontawesome'] = 'fas fa-eye-slash';
+      $variables['content']['#protected_system'] = TRUE;
+      break;
+    default:
+        // unknown
+        $variables['content']['#fontawesome'] = 'fas fa-circle-question';
+        $variables['content']['#protected_system'] = TRUE;
+      break;
+  }
+
+  // Override the status for unpublished nodes/systems
+  if (!$node->isPublished()) {
+    $variables['content']['#status_id']  = '100';
+    $variables['content']['#fontawesome'] = 'fas fa-pen-to-square';
+    $variables['content']['#field_status_override']  = 'UNPUBLISHED';
+    $variables['content']['#protected_system'] = TRUE;
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Make sure people have the placeholder staff image if their Person
+ * record is missing an image.
+ *
+ * NOTE: This does NOT run on the department/division pages for some
+ * inexplicable reason. We've added placeholders on those pages through the
+ * about_lits_staff view structure configuration itself.
+ */
+function lits_theme_preprocess_node__person(&$variables) {
+  // We don't show staff images in teasers, so don't waste time/resources.
+  if ($variables['view_mode'] == 'teaser') {
+    return;
+  }
+
+  // TODO: move into our development documentation.
+  // phpcs:disable
+  // Kudos to https://drupal.stackexchange.com/questions/186315/how-to-get-instance-of-referenced-entity/186317#18631
+  // $referencedEntity = $node // Drupal\node\Entity\Node
+  //   ->get('field_staff_image')// Drupal\Core\Field\EntityReferenceFieldItemList
+  //   ->first()// Drupal\Core\Field\Plugin\Field\FieldType\EntityReferenceItem
+  //   ->get('entity')// Drupal\Core\Field\Plugin\DataType\EntityReference
+  //   ->getTarget()// Drupal\Core\Field\Plugin\DataType\EntityAdapter
+  //   ->getValue()// Drupal\media\Entity\Media
+  // ;
+  // phpcs:enable
+  $node = $variables['node'];
+
+  // Look for staff image and load in placeholder if needed.
+  if (!is_null($node->get('field_staff_image'))) {
+    if (!is_null($node->get('field_staff_image')->first())) {
+      // TODO: does this need more robust null checking?
+      $media = $node->get('field_staff_image')->first()->get('entity')->getTarget()->getValue();
+
+      if (!is_null($media)) {
+        // Already has an image.
+        return;
+      }
+    }
+    else {
+      // Has a field_staff_image, but no entity reference item (this seems to
+      // be where BOTH nodes that have not been edited AND edited nodes without
+      // an image end up. The other else statements don't seem to ever occur.
+      // Missing an image.
+      // Load placeholder.
+      // TODO: does this need null checking?
+      $media = \Drupal::entityTypeManager()->getStorage('media')->loadByProperties(['name' => 'Staff.png']);
+
+      // There's only 1 media entity, but the load returns an array anyway
+      // TODO: does this need null checking?
+      $field_staff_image = \Drupal::entityTypeManager()->getViewBuilder('media')->viewMultiple($media, $variables['view_mode']);
+
+      // Put the placeholder image in the content.
+      $variables['content']['field_staff_image'] = $field_staff_image;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_node().
+ *
+ * Get the person’s division from their department(s).
+ */
+function lits_theme_preprocess_node__person__full(&$variables) {
+  $node = $variables['elements']['#node'];
+  $values = $node->get('field_department')->getValue();
+
+  $dept = [];
+  $divs = [];
+  foreach ($values as $d) {
+    $tid = $d['target_id'];
+    $dept[$tid] = $d;
+
+    // Find the division for this department.
+    $parents = \Drupal::service('entity_type.manager')->getStorage("taxonomy_term")->loadAllParents($tid);
+    foreach ($parents as $p) {
+      $pid = $p->id();
+      if ($tid === $pid && count($parents) > 1) {
+        // Terms show as their own parent. Skip unless there’s no other parent.
+        continue;
+      }
+      if (!isset($divs[$pid])) {
+        $divs[$pid] = $p;
+      }
+    }
+  }
+
+  // We always show divisions.
+  if (count(array_keys($divs)) > 1) {
+    $variables['content']['divisions_plural'] = 's';
+  }
+  foreach ($divs as $tid => $d) {
+    $variables['content']['divisions'][] = [
+      '#type' => 'link',
+      '#title' => $d->label(),
+      '#url' => Url::fromRoute('entity.taxonomy_term.canonical', [
+        'view_id' => 'taxonomy_term',
+        'display_id' => 'page_1',
+        'taxonomy_term' => $tid,
+      ]),
+    ];
+  }
+
+  // Only show departments if they’re not the same as divisions.
+  if (array_keys($dept) == array_keys($divs)) {
+    $variables['content']['show_departments'] = FALSE;
+  }
+  else {
+    $variables['content']['show_departments'] = TRUE;
+    if (count(array_keys($dept)) > 1) {
+      $variables['content']['departments_plural'] = 's';
+    }
+    foreach ($dept as $tid => $d) {
+      $term = Term::load($tid);
+      $variables['content']['departments'][] = [
+        '#type' => 'link',
+        '#title' => $term->label(),
+        '#url' => Url::fromRoute('entity.taxonomy_term.canonical', [
+          'view_id' => 'taxonomy_term',
+          'display_id' => 'page_1',
+          'taxonomy_term' => $tid,
+        ]),
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_page().
+ *
+ * Forces max cache time of 5 min on location pages.
+ * Suppresses sidebar on location and other pages.
+ * Suppresses page title outside main content on location pages.
+ */
+function lits_theme_preprocess_page(&$variables) {
+  // Set to 'none' for no sidebar, or 'foot' to have it below main content.
+  $variables['sidebar_location'] = 'side';
+
+  // Tweaks for specific node types and non-node pages.
+  if (isset($variables['node'])) {
+    $node = $variables['node'];
+    $variables['node_type'] = $node->bundle();
+    switch ($variables['node_type']) {
+      case 'article':
+        $sidebar_position = $node->get('field_sidebar_position')->getValue();
+        if (!empty($sidebar_position)) {
+          switch ($sidebar_position[0]['value']) {
+            case 'hidden':
+              $variables['sidebar_location'] = 'none';
+              break;
+
+            case 'footer':
+              $variables['sidebar_location'] = 'foot';
+              break;
+          }
+        }
+        break;
+
+      case 'lits_homepage':
+        $variables['sidebar_location'] = 'none';
+        // $variables['page']['content']['system_main']['#cache']['max-age'] = 300;
+        $variables['page']['#cache']['max-age'] = 0;
+        \Drupal::service('page_cache_kill_switch')->trigger();
+        // \Drupal::service('page_cache_kill_switch')->trigger();
+        // return [
+        //   '#markup' => time(),
+        //   // '#cache' => ['max-age' => 0,],
+        // ];
+        break;
+
+      case 'study_space':
+        unset($variables['page']['content']['lits_theme_page_title']);
+        $variables['page']['#cache']['max-age'] = 300;
+        $variables['sidebar_location'] = 'none';
+        break;
+    }
+  }
+  else {
+    // Not a node. Figure out what it is and act accordingly.
+    $route = \Drupal::service('current_route_match');
+    switch ($route->getRouteName()) {
+      case 'entity.taxonomy_term.canonical':
+        $term = $route->getParameters()->get('taxonomy_term');
+        $variables['term'] = $term;
+        $variables['term_type'] = $term->bundle();
+
+        if ($variables['term_type'] === 'service_desks') {
+          unset($variables['page']['content']['lits_theme_page_title']);
+          $variables['page']['#cache']['max-age'] = 300;
+          $variables['sidebar_location'] = 'none';
+        }
+        break;
+
+      // Service desk hours pages.
+      // Bento search results page.
+      // Service desks index page.
+      case 'lits_hours.service_desk_hours':
+      case 'lits_search.lits':
+        $variables['sidebar_location'] = 'none';
+        break;
+
+      // Study space finder page.
+      case 'view.study_spaces.page_1':
+        // In lits_theme_preprocess_views_view() below, we set the title only if
+        // there are arguments to the view. Otherwise, we need to set it here
+        // so we affect only the <h1>, not the <title> or breadcrumbs.
+        if ($variables['page']['#title'] === 'Study spaces') {
+          $variables['page']['content']['lits_theme_page_title'] = [
+            '#markup' => t('<h1 class="h1">Search results for <span class="search-query">all study spaces</span></h1>'),
+          ];
+        }
+        break;
+      case 'search.view_google_json_api_search':        
+        // Set the <h1> and <title> to indicate these are search results.
+        $variables['page']['content']['lits_theme_page_title'] = [
+            '#markup' =>  t(
+              '<h1 class="h1">Search results for <span class="search-query">@q</span></h1>
+              <h2 class="didyoumean">Did you mean to <a href="/search/library?q=@q">search for library materials</a>?</h2>',
+              ['@q' => \Drupal::request()->get('keys')]
+            )
+        ];
+
+        break;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Adds downloadable attribute to downloadable basic image paragraph type
+ */
+function lits_theme_preprocess_paragraph__downloadable_basic_image(&$variables) {
+  $media = $variables['content']['field_image'][0]['#media'];
+  $fid = $media->getSource()->getSourceFieldValue($media);
+  $file = File::load($fid);
+
+  // Get the image URL and the media name information
+  $url_generator = \Drupal::service('file_url_generator');
+  $uri = $file->getFileUri();
+  $url = $url_generator->generateAbsoluteString($uri);
+  $filename = $media->getName();
+
+  // Modify link to add download attribute and class, set the URL to the image URL, and make the link title more descriptive.
+  $variables['content']['field_link'][0]['#title'] = "Download " . $filename;
+  $variables['content']['field_link'][0]['#url'] = $url;
+  $variables['content']['field_link'][0]['#attributes'] = [
+    'download' => $filename,
+    'class'    => "downloadable-basic-image"
+  ];
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Sets up style selectors for the sidebar based on its contents.
+ */
+function lits_theme_preprocess_region__sidebar(&$variables) {
+  $variables['attributes']['id'] = 'sidebar-container';
+
+  $contents = [
+    'menu' => 0,
+    'desk' => 0,
+    'dept' => 0,
+    'form' => 0,
+  ];
+  $forms = [
+    'exposedformstudy_spacespage_1_2',
+  ];
+  foreach ($variables['elements'] as $key => $value) {
+    if (substr($key, 0, 7) === 'lits_theme_' || $key === 'ascsidebarlinks') {
+      if ($value['#markup'] !== '') {
+        $contents['menu'] += 1;
+      }
+    }
+    elseif ($key === 'views_block__service_desk_block_block_1') {
+      if (array_key_exists('content', $value)) {
+        $contents['desk'] += $value['content']['#view']->total_rows;
+      }
+    }
+    elseif ($key === 'views_block__department_block_block_1') {
+      if (array_key_exists('content', $value)) {
+        $contents['dept'] += $value['content']['#view']->total_rows;
+      }
+    }
+    elseif (in_array($key, $forms)) {
+      $contents['form'] += 1;
+    }
+  }
+
+  foreach ($contents as $type => $count) {
+    $variables['attributes']['class'][] = $type . '-' . $count;
+  }
+}
+
+/**
+ * Implements hook_preprocess_taxonomy_term().
+ *
+ * Sets useful attributes for rendering:
+ * - Service desk index page gets a class on the SD slogans.
+ * - Service desk teaser contains the main page title on an SD page.
+ */
+function lits_theme_preprocess_taxonomy_term__service_desks(&$variables) {
+  switch ($variables['view_mode']) {
+    case 'search_result_long':
+      $tid = $variables['elements']['#taxonomy_term']->id();
+      $open_now = '<div class="open-now-container" data-service-desk="' . $tid . '"></div>';
+      $variables['content']['open_now'] = [
+        '#markup' => $open_now,
+        '#attached' => ['library' => ['lits_hours/open_now']],
+      ];
+
+      // Insert watermark url.
+      $filename = "/dist/img/watermarks/$tid.png";
+      $url_generator = \Drupal::service('file_url_generator');
+      $theme_path = \Drupal::service('extension.list.theme')->getPath('lits_theme');
+      $url = $url_generator->generateAbsoluteString($theme_path . $filename);
+      $variables['watermark_url'] = $url;
+      $variables['attributes']['class'][] = 'service-desk-card-content';
+      break;
+
+    case 'teaser':
+      $route = \Drupal::service('current_route_match');
+      if ($route->getRouteName() === 'entity.taxonomy_term.canonical') {
+        $params = $route->getParameters();
+        $view_id = $params->get('view_id');
+        $display_id = $params->get('display_id');
+        if ($view_id === 'taxonomy_term' && $display_id === 'page_1') {
+          $variables['elements']['#cache']['max-age'] = 300;
+          $variables['service_desk_page'] = TRUE;
+        }
+      }
+      if (array_key_exists('#items', $variables['content']['field_generic_links'])) {
+        foreach ($variables['content']['field_generic_links']['#items'] as $index => $link) {
+          if(preg_match('~^http(s)?://asklits.mtholyoke.edu.*~', $link->getValue('url')['uri'])) {
+            $variables['content']['field_generic_links'][$index]['#link_icon_tag'] = '<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 62 62" fill="currentColor" height="28px" width="35px" style="overflow: hidden;" class="svg-inline--fa fa-fw"  aria-hidden="true" focusable="false" transform="scale (-1, 1)" transform-origin="center">
+                <g>
+                  <path d="m.24,17.87c.57-3.52,3.9-3.42,7.21-4.27,3.41-.86,7.17-2.34,10-4.26,1.74-1.19,2.66-3.37,4.27-4.85C24.61,1.79,29.17-.31,35.69.36c2.31.24,6.11,1.39,8.09,2.35,1.93.93,5.01,3.94,6.03,5.89,2.28,4.3,1.22,9.91,1.33,15.3.05,2.36-.22,5.18-.73,7.94-.53,2.78-.6,5.73-1.18,8.39-.18.8-.71,1.54-.88,2.35-.59,2.66-.84,5.38-1.62,8.09-1.86,6.4-4.62,15.09-3.83,21.77.26,2.15.96,3.5,1.92,5.15.99,1.7,1.75,3.42,3.09,4.85,2.02,2.16,4.07,4.51,6.32,6.62,1.63,1.52,3.3,3.26,4.71,5,.92,1.15,2.06,2.09,3.09,3.24.92,1.04,1.56,2.35,2.5,3.39.9,1,2.12,1.79,2.94,2.79.53.65.78,1.54,1.32,2.21.52.64,1.15,1.12,1.62,1.76.91,1.25,1.79,2.61,2.95,3.83.22.38.14,1.04.44,1.33,2.72,3.11,4.82,6.69,7.21,10,3.12,4.31,7.97,6.14,13.39,8.24-.27,1.71-1.68,2.81-2.79,3.97-1.1,1.14-1.98,2.54-3.09,3.68-1.18,1.19-2.55,2.13-3.68,3.24-2.28,2.22-4.32,4.84-6.33,7.5-1.98,2.63-3.78,4.96-6.32,7.21-1.21,1.08-2.49,2.02-3.68,3.1,1.59,1.25.97,2.65.88,4.7-.12,2.78-.37,6.18-.15,9.42.11,1.61.6,3.2.88,4.86.18,1.04.08,2.12.29,3.09.38,1.64,1.32,4.07,1.92,6.03.09.33.16.72.29,1.04.28.71.32,1.21.58,2.35.13.55.46,1,.44,1.33-.03.88-1.06,1.96-1.18,2.94-.18,1.58.84,3.35,1.04,5.15.43,3.93-1.06,7.25-3.68,9.41-2.69.19-5.19-.49-7.8-.14-1.24.16-2.36,1.14-3.53,1.18-1.73.05-3.01-2.08-4.41-2.65-2.4-.97-4.45-.7-6.47-1.18-.92-2.31,1.26-3.22,2.5-3.82,1.6-.79,3.54-1.05,5.15-1.62.85-.3,1.85-1,2.95-1.48,3.1-1.35,5.48-3.16,7.21-6.03,1.41-2.36,1.84-5.27,1.62-9.71-.09-1.89-.6-4.06-.88-6.32-.65-5.15-.89-10.81-3.53-14.27-2.93,1.29-6.19,2.47-10.01,2.79-3.69.31-7.38-1.47-9.12,2.35-1.05,2.33-1.62,5.54-2.21,8.53-.56,2.81-1.48,5.71-2.06,8.53-.17.87-.1,1.81-.29,2.65-.25,1.14-.73,2.25-.88,3.38-.33,2.56-.13,4.99-1.47,6.62-2.32,1.02-4.52,2.26-6.92,3.24-2.33.96-4.64,2.03-7.07,2.95-2.7.21-4.51,1.32-7.21,1.18-2.45-2.86-7.68-2.69-11.91-3.24,1.08-1.71,2.28-3.83,4.12-4.71,3.65-1.73,9.68-.78,14.41-1.47,4.17-.6,9.44-2.48,11.33-5.74.63-1.08,1.13-2.99,1.77-4.7,1.16-3.11,1.88-6.71,2.64-10.3.55-2.62.85-4.2,1.18-7.05.17-1.5.9-3.07.15-4.27-.45-.71-2.99-2-3.83-2.64-1.31-1.02-2.83-1.83-3.82-2.65-3.69-3.08-5.88-8.09-8.39-12.35-3.55-6.04-7.6-11.02-11.03-17.07-1.68-1.78-3.27-4.43-4.56-7.06-1.32-2.7-2.02-5.87-3.83-7.95-.61-2.94-1.09-5.44-1.47-8.98-.33-3.1-.87-5.73-.15-8.53.17-.62.55-1.25.74-1.91,1.91-6.33,5.23-11.78,8.97-16.47,1.67-2.09,3.54-4.11,5.16-6.18,2.73-3.5,5.62-7.18,6.91-11.77.25-.91.22-1.92.44-2.94.23-1.08.69-2.18.58-3.39.81-1.89,1.6-5.02,2.21-7.65.51-2.22,1.22-4.63,1.32-6.62.32-6.44-2.19-10.84-6.03-14.12-2.58-1.14-5.17-2.58-8.09-3.68-4.64-1.74-9.99-2.14-13.97-4.7Z"/>
+                </g>
+              </svg>';
+          }
+          else {
+            $variables['content']['field_generic_links'][$index]['#link_icon_tag'] = '<i class="fas fa-globe fa-fw" aria-hidden="true"></i>';
+          }
+        }
+      }
+      break;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function lits_theme_preprocess_field__field_tags(&$variables) {
+  $variables['attributes']['class'][] = 'field-field-tags';
+  $itemsWithSeps = [];
+  foreach ($variables['items'] as $key => $item) {
+    $itemsWithSeps[] = $item;
+    if ($key != array_key_last($variables['items'])) {
+      $itemsWithSeps[] = [
+        'content' => [
+          '#markup' => ', ',
+        ]
+      ];
+    }
+  }
+  $variables['items'] = $itemsWithSeps;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function lits_theme_preprocess_field__media__name__document(&$variables) {
+  $media = $variables["element"]["#object"];
+  $fid = $media->getSource()->getSourceFieldValue($media);
+  $file = File::load($fid);
+
+  // Add PDF icon to PDF file links, link straight to PDF file and not to the media entity
+  if ($file->getMimeType() == "application/pdf") {
+    $path = \Drupal::service('extension.list.module')->getPath('lits_filter');
+    $url_generator = \Drupal::service('file_url_generator');
+    $pdficon_url = $url_generator->generateAbsoluteString($path . '/images/pdf.png');
+    $pdficon_replacement = '<img class="lits_filter inline pdficon" alt="PDF" src="' . $pdficon_url . '">'; 
+
+    $url = \Drupal::service('file_url_generator')->generate($file->getFileUri());
+
+    foreach($variables["items"] as $iid => &$item) {
+      $item["icon"] = $pdficon_replacement;
+      $item["content"]["#url"] = $url;
+    }
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function lits_theme_preprocess_taxonomy_term__tags(&$variables) {
+  $variables['attributes']['class'][] = 'taxonomy-term-tags';
+  switch ($variables['view_mode']) {
+    case 'teaser':
+      $tid = intval($variables['term']->id());
+      $parentsArray = _lits_theme_generate_all_ancestors_of_tag('parents', $tid, '<i class="fa-solid fa-chevron-right"></i>');
+      $parents = $parentsArray['array'];
+      $num_parents = $parentsArray['num_ancestors'];
+      $variables['title_prefix'] = $parents;
+      $variables['attributes']['data-num-parents'][] = $num_parents;
+      $last_parent = reset($variables['title_prefix']);
+      $pid = $tid;
+      if ($last_parent) {
+        $pid = $last_parent['#taxonomy_term']->id();
+      }
+      $variables['attributes']['data-highest-ancestor'][] = $pid;
+      break;
+    case 'full':
+      $tid = intval($variables['term']->id());
+      $childrenArray = _lits_theme_generate_all_ancestors_of_tag('children', $tid, ', ');
+      $children = $childrenArray['array'];
+      $num_children = $childrenArray['num_ancestors'];
+      if ($num_children > 0) {
+        $variables['content'] ['children'] = [
+          'title' => [ '#markup' => '<span class="related-tags">Related site tags:</span>' ],
+          'related-tags' => $children,
+        ];
+      }
+      break;
+  }
+}
+
+/**
+ * Helper function that loads all ancestors (parents or children) of the given id
+ * 
+ */
+function _lits_theme_generate_all_ancestors_of_tag($ancestor_type, $tid, $separator) {
+  $ancestors = [];
+  _lits_theme_generate_all_ancestors_of_tag_details($ancestor_type, $tid, $separator, $ancestors);
+  $num_ancestors = count($ancestors);
+
+  if ($ancestor_type == 'parents') {
+    $ancestors = array_reverse($ancestors);
+  }
+
+  $ancestorsWithSeparators = [];
+  foreach($ancestors as $aid => $ancestor) {
+    if ($ancestor_type == 'children' && count($ancestorsWithSeparators) > 0) {
+      $ancestorsWithSeparators["$aid-separator"] = [
+        'content' => [
+          '#markup' => $separator,
+        ]
+      ];
+    }
+    $ancestorsWithSeparators[$aid] = $ancestor;
+    if ($ancestor_type == 'parents') {
+      $ancestorsWithSeparators["$aid-separator"] = [
+        'content' => [
+          '#markup' => $separator,
+        ]
+      ];
+    }      
+  }
+  return [
+    'array' => $ancestorsWithSeparators,
+    'num_ancestors' => $num_ancestors,
+  ];
+}
+
+/**
+ * Helper-to-the-helper function that loads all ancestors (parents or children) of the given id
+ * 
+ */
+function _lits_theme_generate_all_ancestors_of_tag_details($ancestor_type, $tid, $separator, &$ancestors=[]) {
+  if ($ancestor_type == 'children') {
+    $a = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->loadChildren($tid);
+  }
+  elseif ($ancestor_type == 'parents') {
+    $a = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->loadParents($tid);
+  }
+  $last_aid = array_key_last($a);
+  foreach ($a as $aid => $ancestor) {
+    // Use token view_mode to avoid recursively finding ancestors
+    $ancestorRenderArray = \Drupal::entityTypeManager()->getViewBuilder('taxonomy_term')->view($ancestor, 'token');
+    $ancestors[$aid] = $ancestorRenderArray;
+    _lits_theme_generate_all_ancestors_of_tag_details($ancestor_type, $aid, $separator, $ancestors);
+  }
+  return $ancestors;
+}
+
+/**
+ * Helper function that loads all site tags, sorts them out, and returns an array containing:
+ *   - a flat map of each tag ID and its parent tag ID
+ *   - a nested map of parent tags and their child tags
+ */
+function _lits_theme_sort_site_tags() {
+  $tagTree = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->loadTree('tags');
+  $sortedTags = [];
+  $allTags = [];
+  $pid = 0;
+  foreach ($tagTree as $tag) {
+    $tid = intval($tag->tid);
+    $pid = intval($tag->parents[0]);
+    $depth = $tag->depth;
+    $sortedTags[$tid] = [
+      'tid' => $tid,
+      'depth' => $depth,
+    ];
+    $allTags[$tid] = $pid;
+  }
+  return $sortedTags;
+}
+
+/**
+ * Helper function that loads the tag for the given tag ID and generates a render array
+ */
+function _lits_theme_get_site_tag_render_array($tid) {
+  $termRenderArray = [];
+  if ($tid) {
+    $termLoaded = \Drupal::entityTypeManager()->getStorage('taxonomy_term')->load($tid);
+    $termRenderArray = \Drupal::entityTypeManager()->getViewBuilder('taxonomy_term')->view($termLoaded, 'teaser');
+  }
+  return $termRenderArray;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function lits_theme_preprocess_views_view_list__site_tag_index__page_1(&$variables) {
+  $variables['attributes']['class'][] = 'views-view-list-site-tag-index-page-1';
+  
+  // Figure out what the tag relationships are since Drupal doesn't seem to care
+  $sortedTags = _lits_theme_sort_site_tags();
+  // Index the view rows by tid
+  $rowMapByTid = [];
+  foreach ($variables['rows'] as $rowId => $row) {
+    $tid = intval($row['content']['#taxonomy_term']->id());
+    $rowMapByTid[$tid] = $row;
+  }
+  // Sort the view rows, using the order we found earlier
+  $sortedRows = [];
+  foreach ($sortedTags as $tid => $term) {
+    if (array_key_exists($tid, $rowMapByTid)) {
+      $termRow = $rowMapByTid[$tid];
+      $termRow['content']['#parents'] = "";
+      $sortedRows[] = $termRow;
+    }
+  }
+  $variables['rows'] = $sortedRows;
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * For the News Archive page:
+ * Adds a container id so we can use the same style rule as the homepage.
+ *
+ * For the Service Desk Block in Article page sidebars:
+ * Adds a container class so we can flex the contents.
+ *
+ * For the Study Space Finder:
+ * Sets appropriate title elements when we are showing search results. If not,
+ * the <h1> is set in lits_theme_preprocess_page() above. Function
+ * lits_theme_preprocess_views_view_unformatted__study_spaces() only applies
+ * when there are results, so we have to use this general preprocessor.
+ */
+function lits_theme_preprocess_views_view(&$variables) {
+  switch($variables['id']) {
+    case 'news_archive':
+      $variables['attributes']['id'] = 'news-items-container';
+      break;
+
+    case 'service_desk_block':
+      $variables['attributes']['class'][] = 'service-desk-block-container';
+      break;
+
+    case 'study_spaces':
+      $args = $variables['view']->args;
+      if (!empty($args)) {
+        if (!isset($args[1])) {
+          $args[1] = 'selected study spaces';
+        }
+        // Set the <h1> and <title> to indicate these are search results.
+        $variables['view']->element['#title']['#markup'] = t(
+          '<h1 class="h1">Search results for <span class="search-query">@q</span></h1>',
+          ['@q' => $args[1]]
+        );
+        // Put the same text in the breadcrumbs, too.
+        $route = \Drupal::service('current_route_match');
+        $route->getRouteObject()->setDefault('_title', 'Search results for ' . $args[1]);
+      }
+      break;
+  }
+}
+
+function lits_theme_preprocess_feed_icon(&$variables) {
+  // The title of 'feed icon' on the /tagged/<tag> pages is encoded one too many times for Reasons(??) and well...
+  //  fix quotation marks
+  $title =  $variables['title'] . " RSS feed";
+  $stop_over_encoding_things = html_entity_decode($title, ENT_QUOTES);
+  $variables['title'] = $stop_over_encoding_things;
+  $variables['icon'] = "<i class='fa-solid fa-square-rss'></i>";
+}
+
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Adds the division to a department detail page.
+ */
+function lits_theme_preprocess_views_view_fields__about_lits_departments__page_2(&$variables) {
+  $tid = intval($variables['row']->tid);
+  $ancestors = \Drupal::service('entity_type.manager')->getStorage('taxonomy_term')->loadAllParents($tid);
+  $parent = [];
+  foreach ($ancestors as $pid => $pterm) {
+    if ($pid === $tid || !empty($parent)) {
+      continue;
+    }
+    $parent = [
+      '#type' => 'container',
+      'content' => [
+        'label' => ['#markup' => 'Division: '],
+        'link' => [
+          '#type' => 'link',
+          '#title' => $pterm->label(),
+          '#url' => Url::fromRoute('entity.taxonomy_term.canonical', [
+            'view_id' => 'taxonomy_term',
+            'display_id' => 'page_1',
+            'taxonomy_term' => $pid,
+          ]),
+        ],
+      ],
+    ];
+  }
+  if (!empty($parent)) {
+    $variables['fields'] = ['parent' => $parent] + $variables['fields'];
+  }
+}
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Removes duplicates from the index pages displays.
+ */
+function lits_theme_preprocess_views_view_unformatted__index_pages(&$variables) {
+  $nids = [];
+  foreach ($variables['rows'] as $row_id => $row) {
+    $nid = $row['content']['#row']->nid;
+    if (in_array($nid, $nids)) {
+      unset($variables['rows'][$row_id]);
+      continue;
+    }
+    $nids[] = $nid;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Removes duplicates from the landing page node lists.
+ */
+function lits_theme_preprocess_views_view_unformatted__landing_page_content_bites(&$variables) {
+  $nids = [];
+  foreach ($variables['rows'] as $row_id => $row) {
+    $nid = $row['content']['#node']->id();
+    if (in_array($nid, $nids)) {
+      unset($variables['rows'][$row_id]);
+      continue;
+    }
+    $nids[] = $nid;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK().
+ *
+ * Removes duplicates from the menu root landing page node lists.
+ */
+function lits_theme_preprocess_views_view_unformatted__menu_root_landing_page(&$variables) {
+  $nids = [];
+  foreach ($variables['rows'] as $row_id => $row) {
+    $nid = $row['content']['#node']->id();
+    if (in_array($nid, $nids)) {
+      unset($variables['rows'][$row_id]);
+      continue;
+    }
+    $nids[] = $nid;
+  }
+}
+
+/**
+ * Applies the correct image style to an icon for the main nav menu.
+ *
+ * @param \Drupal\Core\Field\EntityReferenceFieldItemList $field_icon
+ *   The icon field on the link or its target entity.
+ *
+ * @return array
+ *   The render array for the icon with the correct view mode set.
+ */
+function _lits_theme_render_menu_icon(EntityReferenceFieldItemList $field_icon) {
+  $entity = $field_icon->first()->view()['#options']['entity'];
+  $builder = \Drupal::entityTypeManager()->getViewBuilder($entity->getEntityTypeId());
+  return $builder->view($entity, 'main_nav_menu');
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter().
+ *
+ * Study space fields get their own templates. Most are single-value, but
+ * there are a few special cases.
+ */
+function lits_theme_theme_suggestions_field_alter(&$suggestions, $variables) {
+  $elt = $variables['element'];
+  if ($elt['#entity_type'] === 'node' && $elt['#bundle'] === 'study_space') {
+    $singles = [
+      'field_adjustable_tables',
+      'field_computers',
+      'field_large_tables',
+      'field_noise_level',
+      'field_printers',
+      'field_projector',
+      'field_reservation_method',
+      'field_soft_seating',
+      'field_standing_tables',
+      'field_wheelchair_accessible',
+      'field_whiteboard',
+    ];
+    $others = [
+      'field_group_size' => 'field__node__study_space__detail_multiple',
+      'field_reservation_link' => 'field__node__study_space__detail_button',
+    ];
+    if (in_array($elt['#field_name'], $singles)) {
+      $suggestions[] = 'field__node__study_space__detail_single';
+    }
+    elseif (array_key_exists($elt['#field_name'], $others)) {
+      $suggestions[] = $others[$elt['#field_name']];
+    }
+  }
+}
+
+/**
+ * Adds the external tool icon in sidebar menus.
+ *
+ * @param array $items
+ *   An array of menu links being rendered.
+ */
+function _lits_theme_traverse_sidebar_menu(array &$items) {
+  foreach ($items as $id => &$link) {
+    if ($link['entity']->hasField('field_external_tool')) {
+      $external_tool = $link['entity']->get('field_external_tool')->getString();
+      if ($external_tool === '1') {
+        $link['title'] = [
+          '#markup' => $link['title'] . ' <i class="fas fa-share-from-square"></i><span class="visually-hidden">opens in a new tab</span>',
+        ];
+      }
+    }
+    if (!empty($link['below'])) {
+      _lits_theme_traverse_sidebar_menu($link['below']);
+    }
+  }
+}
+
+?>
