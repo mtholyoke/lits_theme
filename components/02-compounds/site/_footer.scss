@@ -246,7 +246,7 @@ footer h2 {
   }
 }
 
-#block-aboutlits-2 .menu {
+#block-lits-theme-aboutlits-2 .menu {
   @include list-reset;
 
   @include breakpoint($small-width) {
@@ -274,7 +274,7 @@ footer h2 {
   }
 }
 
-#block-aboutlits-2 .menu__item {
+#block-lits-theme-aboutlits-2 .menu__item {
   break-inside: avoid;
   font-size: 1rem;
 }

@@ -5131,12 +5131,12 @@ footer h2 {
   #about-lits-container > * {
     margin: 0.25rem; }
 
-#block-aboutlits-2 .menu {
+#block-lits-theme-aboutlits-2 .menu {
   list-style: none;
   margin: 0;
   padding: 0; }
   @media (min-width: 600px) {
-    #block-aboutlits-2 .menu {
+    #block-lits-theme-aboutlits-2 .menu {
       -webkit-column-count: 2;
       -moz-column-count: 2;
       column-count: 2;
@@ -5147,17 +5147,17 @@ footer h2 {
       -webkit-margin-before: 0;
       -webkit-padding-start: 0; } }
   @media (min-width: 900px) {
-    #block-aboutlits-2 .menu {
+    #block-lits-theme-aboutlits-2 .menu {
       -webkit-column-count: 3;
       -moz-column-count: 3;
       column-count: 3; } }
   @media (min-width: 1200px) {
-    #block-aboutlits-2 .menu {
+    #block-lits-theme-aboutlits-2 .menu {
       -webkit-column-count: 4;
       -moz-column-count: 4;
       column-count: 4; } }
 
-#block-aboutlits-2 .menu__item {
+#block-lits-theme-aboutlits-2 .menu__item {
   break-inside: avoid;
   font-size: 1rem; }
 
