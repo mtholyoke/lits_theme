@@ -19,7 +19,7 @@ libraries:
 #     - lits_theme/file
 #   core/drupal.progress:
 #     - lits_theme/progress
-core_version_requirement: ^9
+core_version_requirement: ^9 || ^10
 generator: 'starterkit_theme:9.5.10'
 regions:
   header: 'Header'
