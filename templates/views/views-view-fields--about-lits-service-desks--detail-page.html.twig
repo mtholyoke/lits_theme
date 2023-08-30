@@ -1,0 +1,114 @@
+{#
+/**
+ * @file
+ * Theme override to display all the fields in a service desk detail row.
+ *
+ * @see /core/themes/stable/templates/views/views-view-fields.html.twig
+ * @see template_preprocess_views_view_fields()
+ */
+#}
+{% set hours_title = fields.field_hours_title.content|render %}
+{% if not hours_title|striptags|trim %}
+  {% set hours_title = 'Hours this week' %}
+{% endif %}
+{% set field_phone_number = {} %}
+{% if fields.field_phone_number %}
+  {% set phone_number = {
+    '#context': {
+      'value': row._entity.get('field_phone_number')[0].getValue().value
+    }
+  } %}
+{% endif %}
+{% set chat_link = {} %}
+{% if fields.field_chat_link %}
+  {% set chat_link = {
+    '#url': row._entity.get('field_chat_link')[0].getValue().uri,
+    '#title': row._entity.get('field_chat_link')[0].getValue().title
+  } %}
+{% endif %}
+{% set scheduling_link = {} %}
+{% if fields.field_scheduling_link %}
+  {% set scheduling_link = {
+    '#url': row._entity.get('field_scheduling_link')[0].getValue().uri,
+    '#title': row._entity.get('field_scheduling_link')[0].getValue().title
+  } %}
+{% endif %}
+{% set email = {} %}
+{% if fields.field_email %}
+  {% set email = {
+    '#context': {
+      'value': row._entity.get('field_email')[0].getValue().value
+      }
+  } %}
+{% endif %}
+{% if fields.field_generic_links %}
+{% set generic_links = [] %}
+  {% for index, item in row._entity.get('field_generic_links') %}
+    {% set uri = row._entity.get('field_generic_links')[index].getValue().uri %}
+    {% set link_icon_tag = '<i class="fas fa-globe fa-fw" aria-hidden="true"></i>' %}
+    {% if uri matches '~^http(s)?://asklits.mtholyoke.edu.*~' %}
+      {% set link_icon_tag = '<svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 62 62" fill="currentColor" height="28px" width="35px" style="overflow: hidden;" class="svg-inline--fa fa-fw"  aria-hidden="true" focusable="false" transform="scale (-1, 1)" transform-origin="center">
+              <g>
+                <path d="m.24,17.87c.57-3.52,3.9-3.42,7.21-4.27,3.41-.86,7.17-2.34,10-4.26,1.74-1.19,2.66-3.37,4.27-4.85C24.61,1.79,29.17-.31,35.69.36c2.31.24,6.11,1.39,8.09,2.35,1.93.93,5.01,3.94,6.03,5.89,2.28,4.3,1.22,9.91,1.33,15.3.05,2.36-.22,5.18-.73,7.94-.53,2.78-.6,5.73-1.18,8.39-.18.8-.71,1.54-.88,2.35-.59,2.66-.84,5.38-1.62,8.09-1.86,6.4-4.62,15.09-3.83,21.77.26,2.15.96,3.5,1.92,5.15.99,1.7,1.75,3.42,3.09,4.85,2.02,2.16,4.07,4.51,6.32,6.62,1.63,1.52,3.3,3.26,4.71,5,.92,1.15,2.06,2.09,3.09,3.24.92,1.04,1.56,2.35,2.5,3.39.9,1,2.12,1.79,2.94,2.79.53.65.78,1.54,1.32,2.21.52.64,1.15,1.12,1.62,1.76.91,1.25,1.79,2.61,2.95,3.83.22.38.14,1.04.44,1.33,2.72,3.11,4.82,6.69,7.21,10,3.12,4.31,7.97,6.14,13.39,8.24-.27,1.71-1.68,2.81-2.79,3.97-1.1,1.14-1.98,2.54-3.09,3.68-1.18,1.19-2.55,2.13-3.68,3.24-2.28,2.22-4.32,4.84-6.33,7.5-1.98,2.63-3.78,4.96-6.32,7.21-1.21,1.08-2.49,2.02-3.68,3.1,1.59,1.25.97,2.65.88,4.7-.12,2.78-.37,6.18-.15,9.42.11,1.61.6,3.2.88,4.86.18,1.04.08,2.12.29,3.09.38,1.64,1.32,4.07,1.92,6.03.09.33.16.72.29,1.04.28.71.32,1.21.58,2.35.13.55.46,1,.44,1.33-.03.88-1.06,1.96-1.18,2.94-.18,1.58.84,3.35,1.04,5.15.43,3.93-1.06,7.25-3.68,9.41-2.69.19-5.19-.49-7.8-.14-1.24.16-2.36,1.14-3.53,1.18-1.73.05-3.01-2.08-4.41-2.65-2.4-.97-4.45-.7-6.47-1.18-.92-2.31,1.26-3.22,2.5-3.82,1.6-.79,3.54-1.05,5.15-1.62.85-.3,1.85-1,2.95-1.48,3.1-1.35,5.48-3.16,7.21-6.03,1.41-2.36,1.84-5.27,1.62-9.71-.09-1.89-.6-4.06-.88-6.32-.65-5.15-.89-10.81-3.53-14.27-2.93,1.29-6.19,2.47-10.01,2.79-3.69.31-7.38-1.47-9.12,2.35-1.05,2.33-1.62,5.54-2.21,8.53-.56,2.81-1.48,5.71-2.06,8.53-.17.87-.1,1.81-.29,2.65-.25,1.14-.73,2.25-.88,3.38-.33,2.56-.13,4.99-1.47,6.62-2.32,1.02-4.52,2.26-6.92,3.24-2.33.96-4.64,2.03-7.07,2.95-2.7.21-4.51,1.32-7.21,1.18-2.45-2.86-7.68-2.69-11.91-3.24,1.08-1.71,2.28-3.83,4.12-4.71,3.65-1.73,9.68-.78,14.41-1.47,4.17-.6,9.44-2.48,11.33-5.74.63-1.08,1.13-2.99,1.77-4.7,1.16-3.11,1.88-6.71,2.64-10.3.55-2.62.85-4.2,1.18-7.05.17-1.5.9-3.07.15-4.27-.45-.71-2.99-2-3.83-2.64-1.31-1.02-2.83-1.83-3.82-2.65-3.69-3.08-5.88-8.09-8.39-12.35-3.55-6.04-7.6-11.02-11.03-17.07-1.68-1.78-3.27-4.43-4.56-7.06-1.32-2.7-2.02-5.87-3.83-7.95-.61-2.94-1.09-5.44-1.47-8.98-.33-3.1-.87-5.73-.15-8.53.17-.62.55-1.25.74-1.91,1.91-6.33,5.23-11.78,8.97-16.47,1.67-2.09,3.54-4.11,5.16-6.18,2.73-3.5,5.62-7.18,6.91-11.77.25-.91.22-1.92.44-2.94.23-1.08.69-2.18.58-3.39.81-1.89,1.6-5.02,2.21-7.65.51-2.22,1.22-4.63,1.32-6.62.32-6.44-2.19-10.84-6.03-14.12-2.58-1.14-5.17-2.58-8.09-3.68-4.64-1.74-9.99-2.14-13.97-4.7Z"/>
+              </g>
+            </svg>' %}
+    {% endif %}
+    {% set generic_links = generic_links|merge([{ 
+      '#url': uri,
+      '#title': row._entity.get('field_generic_links')[index].getValue().title,
+      '#link_icon_tag': link_icon_tag
+    }]) %}
+  {% endfor %}
+{% endif %}
+{% embed "@compounds/location/_location-page-content.twig" with {
+  original_type: 'service-desk'
+} %}
+  {% block location_teaser %}
+    {% include "@compounds/location-teaser/location-teaser.twig" with {
+      service_desk_page: TRUE,
+      original_type: 'service-desk',
+      name: fields.name.content,
+      content: {
+        field_slogan: [fields.field_slogan.content],
+        field_phone_number: [phone_number],
+        field_chat_link: [chat_link],
+        field_scheduling_link: [scheduling_link],
+        field_generic_links: generic_links,
+        field_email: [email],
+        open_now: content.open_now,
+        field_location: [fields.field_location.content],
+        field_building: [fields.field_building.content],
+        field_icon: [fields.field_icon.content],
+        field_social_media_links: fields.field_social_media_links.content
+      }
+    } %}
+  {% endblock location_teaser %}
+  {% block location_bite %}
+    {{ fields.field_bite.content }}
+  {% endblock location_bite %}
+  {% block location_hours %}
+    <h2>{{ hours_title|raw }}</h2>
+    {{ lits_hours_header|raw }}
+    {{ fields.field_hours_description.content }}
+    {% include "@compounds/service-desk-card/service-desk-hours.twig" with {
+      hide_open_now: TRUE,
+      field_online_service_hours: fields.field_online_service_hours.content|raw,
+      field_online_service_link: fields.field_online_service_link.content
+    } %}
+  {% endblock location_hours %}
+  {% block location_images %}
+    {{ fields.field_location_photos.content }}
+  {% endblock location_images %}
+  {% block location_sidebar %}
+    <h2>{{ fields.field_sidebar_title.content }}</h2>
+    <div class="sidebar-content">
+    {{ fields.field_sidebar.content }}
+    </div>
+  {% endblock location_sidebar %}
+  {% block location_content %}
+    {{ fields.field_description.content }}
+    {{ fields.field_related_content.content }}
+    <div id="floorMapContainer-anchor">{{ fields.field_room_number.content }}</div>
+    {{ fields.field_location_description.content }}
+  {% endblock location_content %}
+{% endembed %}

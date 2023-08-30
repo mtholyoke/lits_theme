@@ -15,13 +15,13 @@
 {% endset %}
 
 <article{{ bem("node", ["news-item"]) }} style="border-top: 4px solid {{ color }}">
-{% embed "@atoms/01-links/link/_drupal-url.twig" with {
+{% embed "@elements/01-links/link/_drupal-url.twig" with {
   drupal_url: target_url,
 } %}
   {% block link_content %}
     {{ title_prefix }}
     {% if not page %}
-      {% include "@atoms/02-text/00-headings/_heading.twig" with {
+      {% include "@elements/02-text/00-headings/_heading.twig" with {
         heading_level: 3,
         heading: label,
       } %}

@@ -43,14 +43,14 @@
     {% if menu_class == 'main-menu' %}
       <div {{ bem(menu_class, (menu_modifiers), menu_blockname) }}>
     {% endif %}
-    {% embed "@atoms/03-lists/00-ul.twig" with {
+    {% embed "@elements/03-lists/00-ul.twig" with {
       ul_base_class: menu_class,
       ul_modifiers: menu_modifiers,
       ul_blockname: menu_blockname
     } %}
       {% block list_content %}
         {% for item in items %}
-          {% include "@molecules/menus/_menu-item.twig" with {
+          {% include "@compounds/menus/_menu-item.twig" with {
             li_base_class: item_base_class,
             li_modifiers: item_modifiers,
             li_blockname: item_blockname,

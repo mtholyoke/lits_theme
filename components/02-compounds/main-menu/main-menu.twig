@@ -13,7 +13,7 @@
   </span>
 </a>
 <div id="main-nav" class="main-nav">
-  {% embed "@atoms/03-lists/00-ul.twig" with {
+  {% embed "@elements/03-lists/00-ul.twig" with {
     ul_base_class: menu_class,
     ul_modifiers: menu_modifiers,
     ul_blockname: menu_blockname,
@@ -25,7 +25,7 @@
         <div><a class="accounts" href="/my-library-accounts">My library accounts</a></span></div>
       </li>
       {% for item in items %}
-        {% include "@organisms/main-menu/main-menu-item-root.twig" %}
+        {% include "@compounds/main-menu/main-menu-item-root.twig" %}
       {% endfor %}
     {% endblock %}
   {% endembed %}

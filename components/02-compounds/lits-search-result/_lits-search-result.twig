@@ -22,7 +22,7 @@
 {% endif %}
 <article class="{{ wrapper_class }}">
   <h3 class="search-result-title">
-    {% include "@atoms/01-links/link/link.twig" with {
+    {% include "@elements/01-links/link/link.twig" with {
       link_content: title,
       link_url: url,
     } %}
@@ -31,7 +31,7 @@
   <div class="grid-container">
     <div class="search-result-first-column grid-item">
       <div class="search-result-thumbnail">
-        {% include "@atoms/01-links/link/link.twig" with {
+        {% include "@elements/01-links/link/link.twig" with {
           link_content: thumbnail,
           link_url: url,
         } %}
@@ -58,7 +58,7 @@
     <div class="search-result-availability">{{ availability }}</div>
   {% endif %}
     <div class="search-result-details btn">
-      {% include "@atoms/01-links/link/link.twig" with {
+      {% include "@elements/01-links/link/link.twig" with {
         link_content: details,
         link_url: url,
       } %}

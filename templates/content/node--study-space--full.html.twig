@@ -1,0 +1,48 @@
+{#
+/**
+ * @file
+ * Theme override to display a study space node.
+ *
+ * @see templates/content/node.html.twig
+ * @see template_preprocess_node()
+ */
+#}
+{% embed "@compounds/location/_location-page-content.twig" with {
+  original_type: 'study-space',
+} %}
+  {% block location_teaser %}
+    {% include "@compounds/location-teaser/location-teaser.twig" with {
+      name: label,
+      original_type: 'study-space',
+    } %}
+  {% endblock location_teaser %}
+  {% block location_bite %}
+    {{ content.field_bite }}
+  {% endblock location_bite %}
+  {% block location_hours %}
+    <h2>{{ content.field_hours_title }}</h2>
+    {{ content.field_hours_description }}
+    {{ content.field_service_desk }}
+    <div class="all-hours-link">{{ content.hours_link }}</div>
+  {% endblock location_hours %}
+  {% block location_images %}
+    {{ content.field_location_photos }}
+  {% endblock location_images %}
+  {% block location_sidebar %}
+    <h2>Location details</h2>
+    <div class="sidebar-content">
+    <div class="study-space-details">
+      <h3 class="wheelchair">{{ content.field_wheelchair_accessible }}</h3>
+      <div class="detail-group collaboration">{{ content.group_collaboration }}</div>
+      <div class="detail-group amenities">{{ content.group_amenities }}</div>
+      <div class="detail-group reservation">{{ content.group_reservation }}</div>
+      <div class="detail-group furniture">{{ content.group_furniture }}</div>
+    </div>
+    </div>
+  {% endblock location_sidebar %}
+  {% block location_content %}
+    {{ content.field_description }}
+    {{ content.field_room_number }}
+    {{ content.field_location_description }}
+  {% endblock location_content %}
+{% endembed %}

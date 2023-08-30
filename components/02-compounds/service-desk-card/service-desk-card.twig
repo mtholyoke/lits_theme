@@ -26,7 +26,7 @@
     {% if content.field_scheduling_link[0]['#title']|striptags|trim %}
     {% set field_scheduling_link = content.field_scheduling_link %}
     {% endif %}
-    {% include "@molecules/service-desk-card/service-desk-hours.twig" with {
+    {% include "@compounds/service-desk-card/service-desk-hours.twig" with {
       field_location: content.field_location[0]['#context']['value'],
       field_building: content.field_building[0]['#markup']|split('<br>')[0],
       field_hours_description: content.field_hours_description,

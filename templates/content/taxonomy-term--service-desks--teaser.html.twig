@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Theme override for a service desk info box.
+ *
+ * Available variables:
+ * - term: The term object.
+ * - name: The term name.
+ * - url: The term URL as a string.
+ * - content: The content of the term.
+ * - page: Boolean for whether this is being rendered as a page by itself.
+ *
+ * @see /core/themes/stable/templates/content/taxonomy-term.html.twig
+ * @see template_preprocess_taxonomy_term()
+ */
+#}
+{% include "@compounds/location-teaser/location-teaser.twig" with {
+  original_type: 'service-desk'
+} %}

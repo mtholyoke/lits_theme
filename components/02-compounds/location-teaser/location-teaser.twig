@@ -28,7 +28,7 @@
     <address>
       <br>
       {% if content.field_phone_number[0]["#context"]['value'] %}
-      {% include "@atoms/01-links/link/link.twig" with {
+      {% include "@elements/01-links/link/link.twig" with {
         link_base_class: 'telephone',
         link_attributes: {'itemprop': 'telephone'},
         link_url: 'tel:' ~ content.field_phone_number[0]["#context"]['value'],
@@ -38,7 +38,7 @@
       <br>
       {% endif %}
       {% if content.field_chat_link[0]['#url'] %}
-      {% include "@atoms/01-links/link/link.twig" with {
+      {% include "@elements/01-links/link/link.twig" with {
         link_base_class: 'chat',
         link_attributes: {'itemprop': 'chat-link'},
         link_url: content.field_chat_link[0]['#url'],
@@ -49,7 +49,7 @@
       {% endif %}
 
       {% if content.field_scheduling_link[0]['#url'] %}
-      {% include "@atoms/01-links/link/link.twig" with {
+      {% include "@elements/01-links/link/link.twig" with {
         link_base_class: 'scheduling',
         link_attributes: {'itemprop': 'scheduling-link'},
         link_url: content.field_scheduling_link[0]['#url'],
@@ -62,7 +62,7 @@
       {% if content.field_generic_links %}
         {% for link in content.field_generic_links %}
           {% if link['#url'] %}
-            {% include "@atoms/01-links/link/link.twig" with {
+            {% include "@elements/01-links/link/link.twig" with {
                     link_base_class: 'generic',
                     link_attributes: {'itemprop': 'generic-link'},
                     link_url: link['#url'],
@@ -74,7 +74,7 @@
         {% endfor %}
       {% endif %}
 
-      {% include "@atoms/01-links/link/link.twig" with {
+      {% include "@elements/01-links/link/link.twig" with {
         link_base_class: 'email',
         link_attributes: {'itemprop': 'email'},
         link_url: 'mailto:' ~ content.field_email[0]["#context"]['value'],

@@ -8,7 +8,7 @@
   {% endif %}
 {% endfor %}
 {% set label = item.title|lower|replace({' ': '_'}) %}
-{% embed "@atoms/03-lists/_list-item.twig" with {
+{% embed "@elements/03-lists/_list-item.twig" with {
   li_base_class: menu_class ~ '__item',
   li_modifiers: ['root'],
   li_extra_classes: ['expandable'],
@@ -20,7 +20,7 @@
     </button>
     <div id="main-submenu-{{ label }}" class="main-submenu--wrapper" aria-hidden="true">
       <div class="submenu-flex-container">
-        {% import "@molecules/menus/_menu.twig" as menus %}
+        {% import "@compounds/menus/_menu.twig" as menus %}
         {{ menus.menu_links(plain_subs, [], 1, menu_class, ['no-icon']) }}
         {{ menus.menu_links(icon_subs, [], 1, menu_class, ['icon']) }}
       </div>

@@ -24,6 +24,6 @@
 {% if drupal_url['#title'] %}
   {% set link_attributes = link_attributes|merge({'title': drupal_url['#title']}) %}
 {% endif %}
-{% include "@atoms/01-links/link/link.twig" with {
+{% include "@elements/01-links/link/link.twig" with {
   link_url: drupal_url['#url'],
 } %}
