@@ -353,16 +353,6 @@ function lits_theme_preprocess_form(&$variables) {
 }
 
 /**
- * Implements hook_preprocess_html().
- *
- * Adds a class to the body tag to indicate that there is an active alert.
- * This class turns off all of the fancy header behavior.
- */
-function lits_alert_preprocess_html(&$variables) {
-  $variables['attributes']['class'][] = 'alert-active';
-}
-
-/**
  * Search no results message for Site Restricted Search API queries.
  */
 function lits_theme_preprocess_google_json_api_no_results_message(&$variables) {
