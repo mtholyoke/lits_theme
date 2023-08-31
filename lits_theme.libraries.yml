@@ -1,7 +1,7 @@
 base:
   version: 1.0
   js:
-    dist/lits_theme_scripts.js: {}
+    dist/lits_theme.js: {}
   css:
     theme:
       dist/lits_theme.css: {}

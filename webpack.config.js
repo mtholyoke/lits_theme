@@ -31,7 +31,7 @@ for (var i of modules) { // collect all of the files
 module.exports =  {
     devtool: 'source-map',
     entry: {
-      lits_theme_scripts: js_files,
+      lits_theme: js_files,
       lits_theme_styles: sass_files,
     },
 
