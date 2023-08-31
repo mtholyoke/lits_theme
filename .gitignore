@@ -1,3 +1,5 @@
 dist/lits_theme_styles.js
 dist/lits_theme_styles.js.map
 node_modules
+
+/vendor/
