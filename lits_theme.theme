@@ -631,12 +631,11 @@ function lits_theme_sort_system_status_updates(&$variables, $returnAllUpdates) {
       $cutoff = strtotime('-7 days');
       $modified = $mostRecentUpdate['#comment']->getChangedTime();
       if($cutoff < $modified) {
-        $variables['content']['field_comments'][0]['comments'] = [
-          0 => $mostRecentUpdate,
-          'pager' => $variables['content']['field_comments'][0]['comments']['pager'],
-          '#pre_render' => $variables['content']['field_comments'][0]['comments']['#pre_render'],
-          '#sorted' => $variables['content']['field_comments'][0]['comments']['#sorted']
-        ];
+        foreach (array_keys($variables['content']['field_comments'][0]['comments']) as $key) {
+          if (is_numeric($key) && $key != 0) {
+            $variables['content']['field_comments'][0]['comments'][$key] = NULL;
+          }
+        }
       } else {
         $variables['content']['field_comments'][0]['comments'] = NULL;
       }
