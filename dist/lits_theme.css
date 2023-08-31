@@ -1169,38 +1169,6 @@ article.node--news-item .field-field-tags {
       margin-bottom: 1rem;
       width: 25%; } }
 
-.accordion-term {
-  border-top: 1px solid #e5e5e5;
-  color: #4c4c4c;
-  cursor: pointer;
-  display: block;
-  font-size: 1rem;
-  font-weight: 600;
-  padding: 1em 0; }
-  .accordion-term::before {
-    content: "+";
-    padding: 0.8em;
-    top: 0.35em; }
-  .accordion-term:hover {
-    color: #6e6259; }
-  .accordion-term.is-active {
-    color: #6e6259; }
-    .accordion-term.is-active::before {
-      content: "-";
-      top: 0.45em; }
-    .accordion-term.is-active + dd {
-      height: auto;
-      margin: 0 2em;
-      overflow: visible;
-      padding-bottom: 1em; }
-
-.accordion-def {
-  margin: 0 2em; }
-  .accordion-def.active {
-    height: 0;
-    margin: 0 2em;
-    overflow: hidden; }
-
 .card__grid {
   display: flex;
   flex-wrap: wrap;
@@ -1935,62 +1903,6 @@ body.news_item article.node time {
   display: inline-block;
   color: #6e6259;
   margin-bottom: 1rem; }
-
-.info-box__grid {
-  display: flex;
-  flex-wrap: wrap;
-  margin-bottom: 1em; }
-
-.info-box--grid-item {
-  flex-grow: 1;
-  margin-bottom: 1em;
-  width: 100%; }
-  @media (min-width: 48em) {
-    .info-box--grid-item {
-      margin: 0 3% 3% 0;
-      width: auto; } }
-  .info-box--grid-item:last-child {
-    margin-right: 0; }
-  @media (min-width: 48em) {
-    .info-box--grid-item {
-      width: 48.2%; }
-      .info-box--grid-item:nth-child(2n) {
-        margin-right: 0; } }
-
-.info-box {
-  background-color: #e5e5e5;
-  margin-bottom: 2%;
-  padding: 1em;
-  width: 100%; }
-
-.info-box__title {
-  color: inherit;
-  font-family: ars-maquette-web, sans-serif;
-  font-weight: 700;
-  font-style: normal;
-  font-size: 1rem;
-  line-height: 1.6;
-  margin: 10px 0 0.5em;
-  width: auto;
-  font-weight: 400;
-  text-align: center; }
-  .info-box__title__link {
-    color: #07c; }
-    .info-box__title__link:hover {
-      color: inherit; }
-
-.info-box__link {
-  color: #07c;
-  text-decoration: none; }
-  .info-box__link:link, .info-box__link:visited {
-    color: #07c; }
-  .info-box__link:active, .info-box__link:hover {
-    color: #004876;
-    text-decoration: underline solid; }
-  .info-box__link:focus {
-    outline-offset: 2px;
-    outline: 3px solid #004876;
-    text-decoration: underline solid; }
 
 table.lits-hours-month {
   width: 100%;
