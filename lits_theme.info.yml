@@ -21,3 +21,4 @@ components:
     particles: components/00-particles
     elements: components/01-elements
     compounds: components/02-compounds
+    page: components/03-page
