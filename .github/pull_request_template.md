@@ -1,6 +1,6 @@
 ## Description
 
-How does this branch change the project? New functionality? New/updated modules? Does it relate to any open [issues](https://github.com/mtholyoke/lits/issues)?
+How does this branch change the project? New functionality? New/updated modules? Does it relate to any open [issues](https://github.com/mtholyoke/lits_theme/issues)?
 
 ## Future Work
 
