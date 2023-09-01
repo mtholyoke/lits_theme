@@ -973,19 +973,19 @@ function lits_theme_preprocess_region__sidebar(&$variables) {
     'exposedformstudy_spacespage_1_2',
   ];
   foreach ($variables['elements'] as $key => $value) {
-    if (substr($key, 0, 7) === 'lits_theme_' || $key === 'ascsidebarlinks') {
-      if ($value['#markup'] !== '') {
-        $contents['menu'] += 1;
-      }
-    }
-    elseif ($key === 'views_block__service_desk_block_block_1') {
+    if ($key === 'lits_theme_views_block__service_desk_block_block_1') {
       if (array_key_exists('content', $value)) {
         $contents['desk'] += $value['content']['#view']->total_rows;
       }
     }
-    elseif ($key === 'views_block__department_block_block_1') {
+    elseif ($key === 'lits_theme_views_block__department_block_block_1') {
       if (array_key_exists('content', $value)) {
         $contents['dept'] += $value['content']['#view']->total_rows;
+      }
+    }
+    elseif (substr($key, 0, 11) === 'lits_theme_' || $key === 'ascsidebarlinks') {
+      if ($value['#markup'] !== '') {
+        $contents['menu'] += 1;
       }
     }
     elseif (in_array($key, $forms)) {
