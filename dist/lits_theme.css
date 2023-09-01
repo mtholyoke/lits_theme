@@ -2688,29 +2688,29 @@ div.search-result-details.btn a {
  * @see templates/content/node--study-space--full.html.twig
  * @see templates/views/views-view-fields--about-lits-service-desks--detail-page.html.twig
  */
-.service_desk #block-breadcrumbs,
-.study_space #block-breadcrumbs {
+.service_desk #block-lits-theme-breadcrumbs,
+.study_space #block-lits-theme-breadcrumbs {
   padding-right: 0.5rem;
   padding-left: 0.5rem; }
   @media (min-width: 900px) {
-    .service_desk #block-breadcrumbs,
-    .study_space #block-breadcrumbs {
+    .service_desk #block-lits-theme-breadcrumbs,
+    .study_space #block-lits-theme-breadcrumbs {
       padding-right: calc((0.5rem + ((100vw - 900px) / 6))); } }
   @media (min-width: 1920px) {
-    .service_desk #block-breadcrumbs,
-    .study_space #block-breadcrumbs {
+    .service_desk #block-lits-theme-breadcrumbs,
+    .study_space #block-lits-theme-breadcrumbs {
       padding-right: calc(0.5rem + ((1920px - 900px) / 6)); } }
   @media (min-width: 900px) {
-    .service_desk #block-breadcrumbs,
-    .study_space #block-breadcrumbs {
+    .service_desk #block-lits-theme-breadcrumbs,
+    .study_space #block-lits-theme-breadcrumbs {
       padding-left: calc((0.5rem + ((100vw - 900px) / 6))); } }
   @media (min-width: 1920px) {
-    .service_desk #block-breadcrumbs,
-    .study_space #block-breadcrumbs {
+    .service_desk #block-lits-theme-breadcrumbs,
+    .study_space #block-lits-theme-breadcrumbs {
       padding-left: calc(0.5rem + ((1920px - 900px) / 6)); } }
   @media (min-width: 600px) {
-    .service_desk #block-breadcrumbs,
-    .study_space #block-breadcrumbs {
+    .service_desk #block-lits-theme-breadcrumbs,
+    .study_space #block-lits-theme-breadcrumbs {
       padding: 0; } }
 
 .lits-location {
@@ -4163,9 +4163,9 @@ footer h2 {
       outline: 3px solid white;
       text-decoration: underline solid; }
 
-#block-sharewithlits .social-media-links--platforms {
+#block-lits-theme-sharewithlits .social-media-links--platforms {
   margin: auto; }
-  #block-sharewithlits .social-media-links--platforms li {
+  #block-lits-theme-sharewithlits .social-media-links--platforms li {
     padding: 0 0.35em; }
 
 #contact-us-tiles {
@@ -4433,33 +4433,33 @@ body.node-preview-enabled.alert-active header {
   padding-top: 156px; }
 
 /* 0. Site alerts */
-#block-litssitealertblock {
+#block-lits-theme-litssitealertblock {
   display: none;
   word-break: break-word; }
-  .alert-active #block-litssitealertblock {
+  .alert-active #block-lits-theme-litssitealertblock {
     display: block; }
-  #block-litssitealertblock.emergency {
+  #block-lits-theme-litssitealertblock.emergency {
     background-color: white;
     position: relative;
     z-index: 2; }
-    #block-litssitealertblock.emergency #site-alert-container {
+    #block-lits-theme-litssitealertblock.emergency #site-alert-container {
       background-color: white;
       border: 3px solid #a20067;
       margin: 10px;
       outline: 10px solid white;
       padding: 1.5em; }
-      #block-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency {
+      #block-lits-theme-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency {
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
         align-items: flex-start;
         max-width: 75rem;
         margin: auto; }
-        #block-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency .fa-circle-exclamation {
+        #block-lits-theme-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency .fa-circle-exclamation {
           color: #a20067;
           font-size: 3.25rem;
           margin: 0 1.25rem; }
-        #block-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency .text {
+        #block-lits-theme-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency .text {
           margin: -1em 1.25rem;
           font-size: 1rem; }
 
@@ -4874,7 +4874,7 @@ body:not(.alert-active) #main-content {
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4); }
 
 /* Elements */
-#block-breadcrumbs {
+#block-lits-theme-breadcrumbs {
   margin-top: 1rem;
   font-size: 1rem; }
 
