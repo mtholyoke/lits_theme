@@ -4,7 +4,8 @@
   "version": "1.0.0",
   "type": "transpile",
   "scripts": {
-    "start": "webpack --mode=none"
+    "start": "webpack --mode=none",
+    "watch": "webpack watch --mode=none"
   },
   "devDependencies": {
     "@babel/core": "^7.22.11",

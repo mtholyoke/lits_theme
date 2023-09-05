@@ -2,19 +2,36 @@
 
 lits_theme theme, generated from starterkit_theme. Additional information on generating themes can be found in the [Starterkit documentation](https://www.drupal.org/docs/core-modules-and-themes/core-themes/starterkit-theme).
 
-## Adding the theme to the LITS website
-### Set up
-- Clone the LITS website project (`lits`) to your machine in `$project_root` (your choice, usually `~/Projects/lits`).
-- From `$project_root`, create a `contrib` themes directory: 
-  - `mkdir web/themes/contrib`
-- Clone the `lits_theme` project into the `contrib` themes directory.
 
-### Enable the theme, if not enabled
-- Build/start the LITS website development environment.
-- At the command line, from `$project_root`: `lando drush then lits_theme`
-- Log into the web interface for the LITS website as Administrator, then visit https://lits.lndo.site/admin/appearance
-- Set `lits_theme` as default
-- Done!
+
+## Installing the theme
+
+```bash
+composer require mtholyoke/lits_theme
+```
+
+Enable the theme from the command line (`drush then lits_theme`) or through the admin UI, and use the admin UI to select it as the default theme for the site.
+
+
+## Set up for development
+
+In your working copy of the LITS website:
+
+```bash
+cd web/themes/contrib
+rm -r lits_theme
+git clone git@github.com:mtholyoke/lits_theme.git
+cd lits_theme
+lando npm install
+cd ../../../..
+```
+
+**NOTE:** You will need to repeat this any time that the `lits_theme` is updated in the LITS project (when we release and install a new version of `lits_theme` from Packagist).
+
+
 
 ## Transpile `lits_theme` JavaScript and SASS
-`lando transpile --prefix=/app/web/themes/contrib/lits_theme`
+
+You can do a one-time transpile with `lando transpile`, or watch for changes with `lando transpile-watch`.
+
+It’s usually best to `lando drush cr` afterwards.

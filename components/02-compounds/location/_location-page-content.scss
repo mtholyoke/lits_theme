@@ -6,8 +6,8 @@
  * @see templates/views/views-view-fields--about-lits-service-desks--detail-page.html.twig
  */
 
-.service_desk #block-breadcrumbs,
-.study_space #block-breadcrumbs {
+.service_desk #block-lits-theme-breadcrumbs,
+.study_space #block-lits-theme-breadcrumbs {
   @include squishy-padding('right');
   @include squishy-padding('left');
 
