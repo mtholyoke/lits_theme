@@ -11,9 +11,10 @@
  * @see template_preprocess_region()
  */
 #}
-{% set classes = elements.litssitealertblock['#attributes']['class'] %}
+
+{% set classes = elements.lits_theme_litssitealertblock['#attributes']['class'] %}
 <header id="page-header" {{ attributes.addClass(classes) }}>
-{{ elements.litssitealertblock }}
+{{ elements.lits_theme_litssitealertblock }}
 <div id="search-toggle-container" class="expandable">
   <div id="logobar" class="layout-stripe">
     <div id="logobar-container" class="layout-zone bluebg">
