@@ -11,7 +11,6 @@
 {% if not hours_title|striptags|trim %}
   {% set hours_title = 'Hours this week' %}
 {% endif %}
-{% set field_phone_number = {} %}
 {% if fields.field_phone_number %}
   {% set phone_number = {
     '#context': {
@@ -53,7 +52,7 @@
               </g>
             </svg>' %}
     {% endif %}
-    {% set generic_links = generic_links|merge([{ 
+    {% set generic_links = generic_links|merge([{
       '#url': uri,
       '#title': row._entity.get('field_generic_links')[index].getValue().title,
       '#link_icon_tag': link_icon_tag
