@@ -19,8 +19,8 @@
  * @see template_preprocess_item_list()
  */
 #}
-{%- set resultSummary      = "" -%}
-{%- set resultSummaryClass = "" -%}
+{%- set result_summary = "" -%}
+{%- set result_summary_class = "" -%}
 
 <div id="google-json-search-results" class="grid-item bento-1">
 	<div class="search-results">
@@ -34,19 +34,19 @@
         {%- if items -%}
           {%- for item in items -%}
             {%- if item.value['#theme'] == "google_json_api_result" -%}{# If not a real result #}
-              {%- set foo = item.attributes.addClass('search-result--no-columns') %}
+              {%- item.attributes.addClass('search-result--no-columns') %}
               <article{{ item.attributes }}>{{ item.value }}</article>
               {%- if loop.last -%}
-                <div class='result-summary {{ resultSummaryClass }}'>{{ resultSummary }}</div> {# top of page message #}
+                <div class='result-summary {{ result_summary_class }}'>{{ result_summary }}</div> {# top of page message #}
               {%- endif -%}
             {%- elseif item.value['#theme'] == "google_json_api_results_limitation_message" -%}
               <div class='results-limited {{ item.value['#theme'] }}'>{{ item.value }}</div>
             {%- elseif item.value['#theme'] == "google_json_api_results_message" -%}
-              {%- set resultSummary      = item.value -%} {# save this so it can be used again later #}
-              {%- set resultSummaryClass = item.value['#theme'] -%} {# save this so it can be used again later #}
-              <div class='result-summary {{ resultSummaryClass }}'>{{ resultSummary }}</div> {# top of page message #}    
+              {%- set result_summary = item.value -%} {# save this so it can be used again later #}
+              {%- set result_summary_class = item.value['#theme'] -%} {# save this so it can be used again later #}
+              <div class='result-summary {{ result_summary_class }}'>{{ result_summary }}</div> {# top of page message #}    
             {%- else -%}
-            <div{{item.attributes}}>{{ item.value }}</div>
+            <div{{ item.attributes }}>{{ item.value }}</div>
             {%- endif -%}
           {%- endfor -%}
         {%- else -%}

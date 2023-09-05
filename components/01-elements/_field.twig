@@ -41,13 +41,13 @@
   {% if multiple %}
     <div{{ attributes }}>
       {% for item in items %}
-      
+
         <div{{ item.attributes }}>{{ item.content }}</div>
       {% endfor %}
     </div>
   {% else %}
     {% for item in items %}
-      <div{{ attributes }}>{{ item.content }}{% if item.icon is defined %}{{ item.icon | raw }}{% endif %}</div>
+      <div{{ attributes }}>{{ item.content }}{% if item.icon is defined %}{{ item.icon|raw }}{% endif %}</div>
     {% endfor %}
   {% endif %}
 {% else %}
