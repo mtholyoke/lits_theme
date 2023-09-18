@@ -34,7 +34,7 @@
         {%- if items -%}
           {%- for item in items -%}
             {%- if item.value['#theme'] == "google_json_api_result" -%}{# If not a real result #}
-              {%- item.attributes.addClass('search-result--no-columns') %}
+              {%- set foo = item.attributes.addClass('search-result--no-columns') -%}
               <article{{ item.attributes }}>{{ item.value }}</article>
               {%- if loop.last -%}
                 <div class='result-summary {{ result_summary_class }}'>{{ result_summary }}</div> {# top of page message #}
