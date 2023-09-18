@@ -1,7 +1,7 @@
 import os
 import re
 
-# Define the directory path you want to search in (assuming "templates" is a subdirectory of the current directory)
+# Define the directory path you want to search in
 directory_path = os.path.abspath('templates')
 
 # Initialize an empty list to store filenames along with their directory paths
