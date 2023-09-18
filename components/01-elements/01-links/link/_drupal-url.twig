@@ -13,13 +13,13 @@
   {% endblock link_content %}
 {% endset %}
 {# This level of checking may be overkill, but we were ignoring any attributes added before the downloadable image paragraph type was added (whether intentionally or as an oversight). #}
-{% if drupal_url['#attributes'] is defined and
-  drupal_url['#attributes']['class'] is defined and
-  drupal_url['#attributes']['class'] == 'downloadable-basic-image'
+{% if drupal_url['#attributes'] is defined
+      and drupal_url['#attributes']['class'] is defined
+      and drupal_url['#attributes']['class'] == 'downloadable-basic-image'
 %}
-{% set link_attributes = drupal_url['#attributes'] %}
+  {% set link_attributes = drupal_url['#attributes'] %}
 {% else %}
-{% set link_attributes = {} %}
+  {% set link_attributes = {} %}
 {% endif %}
 {% if drupal_url['#title'] %}
   {% set link_attributes = link_attributes|merge({'title': drupal_url['#title']}) %}

@@ -25,7 +25,9 @@
         <div><a class="accounts" href="/my-library-accounts">My library accounts</a></span></div>
       </li>
       {% for item in items %}
-        {% include "@compounds/main-menu/main-menu-item-root.twig" %}
+        {% include "@compounds/main-menu/main-menu-item-root.twig" with {
+          item: item
+        } %}
       {% endfor %}
     {% endblock %}
   {% endembed %}

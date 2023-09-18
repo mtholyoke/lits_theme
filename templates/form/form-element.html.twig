@@ -44,8 +44,8 @@
  * @see template_preprocess_form_element()
  */
 #}
-{%
-  set classes = [
+{% include "@elements/05-forms/_form-element.twig" with {
+  classes: [
     'js-form-item',
     'form-item',
     'js-form-type-' ~ type|clean_class,
@@ -55,5 +55,4 @@
     disabled == 'disabled' ? 'form-disabled',
     errors ? 'form-item--error',
   ]
-%}
-{% include "@elements/05-forms/_form-element.twig" %}
+} %}

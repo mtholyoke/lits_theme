@@ -30,12 +30,10 @@
  * @see template_preprocess_views_view()
  */
 #}
-{%
-  set classes = [
-    dom_id ? 'js-view-dom-id-' ~ dom_id,
-    "expandable accordion",
-  ]
-%}
+{% set classes = [
+  dom_id ? 'js-view-dom-id-' ~ dom_id,
+  "expandable accordion",
+] %}
 <div{{ attributes.addClass(classes) }}>
   <div class="filters">
     <h2 class="filters-title">

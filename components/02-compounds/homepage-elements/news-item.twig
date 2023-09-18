@@ -28,7 +28,7 @@
     {% endif %}
     {{ title_suffix }}
     <div{{ content_attributes }}>
-      {{ content | without('field_tags') }}
+      {{ content|without('field_tags') }}
     </div>
     <div class="more-link" style="color: {{ color }}">More {{ more_decoration }}</div>
   {% endblock link_content %}
