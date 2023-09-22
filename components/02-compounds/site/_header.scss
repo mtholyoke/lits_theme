@@ -91,12 +91,17 @@ body.node-preview-enabled {
       padding: 1.5em;
 
       .mhc-alert-level-emergency {
+        font-size: 1rem;
+        line-height: 1.6em;
+        margin: 0 auto;
+        padding: 5px 20px 5px;
+        text-align: left;
+        z-index: 1;
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
         align-items: flex-start;
         max-width: 75rem;
-        margin: auto;
 
         .fa-circle-exclamation {
           color: $raspberry;
@@ -107,6 +112,22 @@ body.node-preview-enabled {
         .text {
           margin: -1em 1.25rem;
           font-size: 1rem;
+        }
+
+        .buttons {
+          display: flex;
+          flex-flow: row wrap;
+        }
+
+        .button {
+          background-color: $white;
+          color: $charcoal;
+          border: 3px solid $raspberry;
+          font-size: 1rem;
+          font-weight: 500;
+          padding: 1.25em;
+          text-transform: uppercase;
+          margin-right: 0.5em;
         }
       }
     }

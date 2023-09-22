@@ -4449,12 +4449,17 @@ body.node-preview-enabled.alert-active header {
       outline: 10px solid white;
       padding: 1.5em; }
       #block-lits-theme-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency {
+        font-size: 1rem;
+        line-height: 1.6em;
+        margin: 0 auto;
+        padding: 5px 20px 5px;
+        text-align: left;
+        z-index: 1;
         display: flex;
         flex-flow: row nowrap;
         justify-content: center;
         align-items: flex-start;
-        max-width: 75rem;
-        margin: auto; }
+        max-width: 75rem; }
         #block-lits-theme-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency .fa-circle-exclamation {
           color: #a20067;
           font-size: 3.25rem;
@@ -4462,6 +4467,18 @@ body.node-preview-enabled.alert-active header {
         #block-lits-theme-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency .text {
           margin: -1em 1.25rem;
           font-size: 1rem; }
+        #block-lits-theme-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency .buttons {
+          display: flex;
+          flex-flow: row wrap; }
+        #block-lits-theme-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency .button {
+          background-color: white;
+          color: #1a1a1a;
+          border: 3px solid #a20067;
+          font-size: 1rem;
+          font-weight: 500;
+          padding: 1.25em;
+          text-transform: uppercase;
+          margin-right: 0.5em; }
 
 #search-toggle-container {
   width: 100%; }
