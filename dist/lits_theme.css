@@ -4479,6 +4479,9 @@ body.node-preview-enabled.alert-active header {
           padding: 1.25em;
           text-transform: uppercase;
           margin-right: 0.5em; }
+          #block-lits-theme-litssitealertblock.emergency #site-alert-container .mhc-alert-level-emergency .button:hover {
+            background-color: #a20067;
+            color: white; }
 
 #search-toggle-container {
   width: 100%; }

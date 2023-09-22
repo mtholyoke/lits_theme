@@ -128,6 +128,11 @@ body.node-preview-enabled {
           padding: 1.25em;
           text-transform: uppercase;
           margin-right: 0.5em;
+
+          &:hover {
+            background-color: $raspberry;
+            color: $white;
+          }
         }
       }
     }
