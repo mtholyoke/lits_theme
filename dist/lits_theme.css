@@ -4386,52 +4386,6 @@ footer h2 {
       .copyright .grid-item {
         width: 33%; } }
 
-/**
- * @file
- * Styles for header elements.
- *
- * @see _masthead.scss
- * @see header.twig
- * @see header.js
- */
-body:not(.alert-active) #toolbar-administration.toolbar-oriented .toolbar-bar {
-  position: fixed; }
-
-body:not(.alert-active) header#page-header {
-  z-index: 2;
-  position: fixed;
-  top: 0;
-  width: 100%;
-  max-height: 100vh;
-  overflow-y: auto;
-  padding-bottom: 1px; }
-
-body:not(.alert-active).toolbar-vertical header#page-header,
-body:not(.alert-active).toolbar-horizontal header#page-header {
-  top: 39px; }
-
-body:not(.alert-active).toolbar-horizontal.toolbar-tray-open header#page-header {
-  top: 79px; }
-
-/* Fix node preview pages to keep the preview controls from overtaking the header. */
-body.node-preview-enabled .node-preview-container {
-  background-color: white; }
-  body.node-preview-enabled .node-preview-container label {
-    display: block; }
-
-body.node-preview-enabled #imagebar {
-  margin-top: calc(60px + $node-preview-height); }
-
-body.node-preview-enabled:not(.alert-active).toolbar-vertical header#page-header,
-body.node-preview-enabled:not(.alert-active).toolbar-horizontal header#page-header {
-  top: 195px; }
-
-body.node-preview-enabled:not(.alert-active).toolbar-horizontal.toolbar-tray-open header#page-header {
-  top: 235px; }
-
-body.node-preview-enabled.alert-active header {
-  padding-top: 156px; }
-
 /* 0. Site alerts */
 #block-lits-theme-litssitealertblock {
   display: none;
@@ -4601,17 +4555,38 @@ body.node-preview-enabled.alert-active header {
       border-right: none; }
 
 /* II. Searchbar */
-@media (min-width: 900px) {
-  #searchbar {
-    min-height: 208px; } }
+#searchbar {
+  position: absolute;
+  z-index: 2; }
+  @media (min-width: 900px) {
+    #searchbar {
+      min-height: 208px; } }
+  #searchbar #search-blocks-container {
+    display: none; }
+    #searchbar #search-blocks-container .layout-container, #searchbar #search-blocks-container #main-content.main-sidebar-side, #searchbar #search-blocks-container .study-space-finder, #searchbar #search-blocks-container #newsbar.newsbar-sidebar-side {
+      align-items: center; }
+      @media (min-width: 900px) {
+        #searchbar #search-blocks-container .layout-container, #searchbar #search-blocks-container #main-content.main-sidebar-side, #searchbar #search-blocks-container .study-space-finder, #searchbar #search-blocks-container #newsbar.newsbar-sidebar-side {
+          height: 208px; } }
 
-#searchbar #search-blocks-container {
-  display: none; }
-  #searchbar #search-blocks-container .layout-container, #searchbar #search-blocks-container #main-content.main-sidebar-side, #searchbar #search-blocks-container .study-space-finder, #searchbar #search-blocks-container #newsbar.newsbar-sidebar-side {
-    align-items: center; }
-    @media (min-width: 900px) {
-      #searchbar #search-blocks-container .layout-container, #searchbar #search-blocks-container #main-content.main-sidebar-side, #searchbar #search-blocks-container .study-space-finder, #searchbar #search-blocks-container #newsbar.newsbar-sidebar-side {
-        height: 208px; } }
+/* III. Imagebar */
+#imagebar {
+  display: none;
+  height: 0; }
+  @media (min-width: 900px) {
+    #imagebar {
+      display: block;
+      height: 256px;
+      background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;
+      background-size: 100%; } }
+  @media (min-width: 1200px) {
+    #imagebar {
+      background: white url(84fb47261b62fcf9d46b.jpg) no-repeat center center;
+      background-size: 100%; } }
+  @media (min-width: 1920px) {
+    #imagebar {
+      background: white url(9507b006cfdde5dc4d80.jpg) no-repeat center center;
+      background-size: 100%; } }
 
 /* IV. Menubar */
 #menubar {
@@ -4660,28 +4635,6 @@ body .dialog-off-canvas-main-canvas {
   min-height: 100vh; }
   body .dialog-off-canvas-main-canvas #main-content {
     flex: 1 1 auto; }
-
-/* III. Imagebar */
-#imagebar {
-  display: none;
-  height: 0;
-  margin-top: 60px; }
-  @media (min-width: 900px) {
-    #imagebar {
-      display: block;
-      height: 256px;
-      background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;
-      background-size: 100%; } }
-  @media (min-width: 1200px) {
-    #imagebar {
-      background: white url(84fb47261b62fcf9d46b.jpg) no-repeat center center;
-      background-size: 100%; } }
-  @media (min-width: 1920px) {
-    #imagebar {
-      background: white url(9507b006cfdde5dc4d80.jpg) no-repeat center center;
-      background-size: 100%; } }
-  body.alert-active #imagebar {
-    display: none; }
 
 #main-content {
   width: 100%;

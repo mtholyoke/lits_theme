@@ -1,73 +1,73 @@
-/**
- * @file
- * Styles for header elements.
- *
- * @see _masthead.scss
- * @see header.twig
- * @see header.js
- */
-// a stupid height, but whatever that's how tall it is
-$node-preview-height: 156px;
+// /**
+//  * @file
+//  * Styles for header elements.
+//  *
+//  * @see _masthead.scss
+//  * @see header.twig
+//  * @see header.js
+//  */
+// // a stupid height, but whatever that's how tall it is
+// $node-preview-height: 156px;
 
-body:not(.alert-active) {
-  // Make the Drupal toolbar for logged-in user consistent about not scrolling.
-  #toolbar-administration.toolbar-oriented .toolbar-bar {
-    position: fixed;
-  }
+// body:not(.alert-active) {
+//   // Make the Drupal toolbar for logged-in user consistent about not scrolling.
+//   #toolbar-administration.toolbar-oriented .toolbar-bar {
+//     position: fixed;
+//   }
 
-  header#page-header {
-    z-index: 2;
-    position: fixed;
-    top: 0;
-    width: 100%;
-    // start handling overflow of fixed element
-    max-height: 100vh;
-    overflow-y: auto;
-    // end handling overflow of fixed element
+//   header#page-header {
+//     z-index: 2;
+//     position: fixed;
+//     top: 0;
+//     width: 100%;
+//     // start handling overflow of fixed element
+//     max-height: 100vh;
+//     overflow-y: auto;
+//     // end handling overflow of fixed element
 
-    // TODO: Hack- This is needed to avoid unnecessary random vertical scroll in the header for...reasons
-    padding-bottom: 1px;
-  }
+//     // TODO: Hack- This is needed to avoid unnecessary random vertical scroll in the header for...reasons
+//     padding-bottom: 1px;
+//   }
 
-  &.toolbar-vertical header#page-header,
-  &.toolbar-horizontal header#page-header {
-    top: 39px;
-  }
+//   &.toolbar-vertical header#page-header,
+//   &.toolbar-horizontal header#page-header {
+//     top: 39px;
+//   }
 
-  &.toolbar-horizontal.toolbar-tray-open header#page-header {
-    top: 79px;
-  }
-}
+//   &.toolbar-horizontal.toolbar-tray-open header#page-header {
+//     top: 79px;
+//   }
+// }
 
-/* Fix node preview pages to keep the preview controls from overtaking the header. */
-body.node-preview-enabled {
-  .node-preview-container {
-    background-color: $white;
+// /* Fix node preview pages to keep the preview controls from overtaking the header. */
+// body.node-preview-enabled {
+//   .node-preview-container {
+//     background-color: $white;
 
-    label {
-      display: block;
-    }
-  }
+//     label {
+//       display: block;
+//     }
+//   }
 
-  #imagebar {
-    margin-top: calc(60px + $node-preview-height);
-  }
+//   #imagebar {
+//     margin-top: calc(60px + $node-preview-height);
+//   }
 
-  &:not(.alert-active) {
-    &.toolbar-vertical header#page-header,
-    &.toolbar-horizontal header#page-header {
-      top: 39px + $node-preview-height;
-    }
+//   &:not(.alert-active) {
+//     &.toolbar-vertical header#page-header,
+//     &.toolbar-horizontal header#page-header {
+//       top: 39px + $node-preview-height;
+//     }
 
-    &.toolbar-horizontal.toolbar-tray-open header#page-header {
-      top: 79px + $node-preview-height;
-    }
-  }
+//     &.toolbar-horizontal.toolbar-tray-open header#page-header {
+//       top: 79px + $node-preview-height;
+//     }
+//   }
 
-  &.alert-active header {
-    padding-top: $node-preview-height;
-  }
-}
+//   &.alert-active header {
+//     padding-top: $node-preview-height;
+//   }
+// }
 
 /* 0. Site alerts */
 #block-lits-theme-litssitealertblock {
@@ -306,6 +306,9 @@ body.node-preview-enabled {
 // @see 02-molecules/lits-search-form/_unified-search-form.scss
 // @see 04-templates/_lits-homepage.scss
 #searchbar {
+  position: absolute;
+  z-index: 2;
+
   // .layout-stripe sets width 100%, margin 0, padding 0.
   // Contains div.layout-container.layout-zone for flex and squishy edges.
   @include breakpoint($medium-width) {
@@ -324,6 +327,34 @@ body.node-preview-enabled {
 
       align-items: center;
     }
+  }
+}
+
+/* III. Imagebar */
+
+#imagebar {
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  display: none;
+  height: 0;
+  // margin-top: 60px; // TODO deal with admin toolbars later
+  // margin-bottom: -108px;
+  // TODO: allow node to override:
+
+  @include breakpoint($medium-width) {
+    display: block;
+    height: 256px;
+    background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
+    background-size: 100%;
+  }
+
+  @include breakpoint($large-width) {
+    background: $white url('../images/banners/williston-beauty-xl-banner.jpg') no-repeat center center;
+    background-size: 100%;
+  }
+
+  @include breakpoint($max-width) {
+    background: $white url('../images/banners/williston-beauty-full-banner.jpg') no-repeat center center;
+    background-size: 100%;
   }
 }
 

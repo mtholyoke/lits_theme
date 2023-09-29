@@ -35,37 +35,6 @@ body .dialog-off-canvas-main-canvas {
   @include full-viewport;
 }
 
-/* III. Imagebar */
-
-#imagebar {
-  // .layout-stripe sets width 100%, margin 0, padding 0.
-  display: none;
-  height: 0;
-  margin-top: 60px; // TODO deal with admin toolbars later
-  // margin-bottom: -108px;
-  // TODO: allow node to override:
-
-  @include breakpoint($medium-width) {
-    display: block;
-    height: 256px;
-    background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
-    background-size: 100%;
-  }
-
-  @include breakpoint($large-width) {
-    background: $white url('../images/banners/williston-beauty-xl-banner.jpg') no-repeat center center;
-    background-size: 100%;
-  }
-
-  @include breakpoint($max-width) {
-    background: $white url('../images/banners/williston-beauty-full-banner.jpg') no-repeat center center;
-    background-size: 100%;
-  }
-
-  body.alert-active & {
-    display: none;
-  }
-}
 
 #main-content {
   // @extend .layout-stripe;
