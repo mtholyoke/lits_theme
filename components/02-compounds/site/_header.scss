@@ -69,315 +69,330 @@
 //   }
 // }
 
-/* 0. Site alerts */
-#block-lits-theme-litssitealertblock {
-  display: none;
-  word-break: break-word;
+header#page-header {
+  $logobar-min-height: 3.75rem;
+  $imagebar-height: 0;
 
-  .alert-active & {
-    display: block;
+  @include breakpoint($medium-width) {
+    $imagebar-height: 15.5rem;
   }
+  $main-menubar-height: 3rem;
+  $header-height: $logobar-min-height + $imagebar-height + $main-menubar-height;
 
-  &.emergency {
-    background-color: $white;
-    position: relative;
-    z-index: 2;
+  /* 0. Site alerts */
+  #block-lits-theme-litssitealertblock {
+    display: none;
+    word-break: break-word;
 
-    #site-alert-container {
+    .alert-active & {
+      display: block;
+    }
+
+    &.emergency {
       background-color: $white;
-      border: 3px solid $raspberry;
-      margin: 10px;
-      outline: 10px solid $white;
-      padding: 1.5em;
+      position: relative;
+      z-index: 2;
 
-      .mhc-alert-level-emergency {
-        font-size: 1rem;
-        line-height: 1.6em;
-        margin: 0 auto;
-        padding: 5px 20px 5px;
-        text-align: left;
-        z-index: 1;
-        display: flex;
-        flex-flow: row nowrap;
-        justify-content: center;
-        align-items: flex-start;
-        max-width: 75rem;
+      #site-alert-container {
+        background-color: $white;
+        border: 3px solid $raspberry;
+        margin: 10px;
+        outline: 10px solid $white;
+        padding: 1.5em;
+        max-width: 100%;
 
-        .fa-circle-exclamation {
-          color: $raspberry;
-          font-size: 3.25rem;
-          margin: 0 1.25rem;
-        }
-
-        .text {
-          margin: -1em 1.25rem;
+        .mhc-alert-level-emergency {
           font-size: 1rem;
-        }
-
-        .buttons {
+          line-height: 1.6em;
+          margin: 0 auto;
+          padding: 5px 20px 5px;
+          text-align: left;
+          z-index: 1;
           display: flex;
-          flex-flow: row wrap;
-        }
+          flex-flow: row nowrap;
+          justify-content: center;
+          align-items: flex-start;
+          max-width: 75rem;
 
-        .button {
-          background-color: $white;
-          color: $charcoal;
-          border: 3px solid $raspberry;
-          font-size: 1rem;
-          font-weight: 500;
-          padding: 1.25em;
-          text-transform: uppercase;
-          margin-right: 0.5em;
+          .fa-circle-exclamation {
+            color: $raspberry;
+            font-size: 3.25rem;
+            margin: 0 1.25rem;
+          }
 
-          &:hover {
-            background-color: $raspberry;
-            color: $white;
+          .text {
+            margin: -1em 1.25rem;
+            font-size: 1rem;
+          }
+
+          .buttons {
+            display: flex;
+            flex-flow: row wrap;
+          }
+
+          .button {
+            background-color: $white;
+            color: $charcoal;
+            border: 3px solid $raspberry;
+            font-size: 1rem;
+            font-weight: 500;
+            padding: 1.25em;
+            text-transform: uppercase;
+            margin-right: 0.5em;
+
+            &:hover {
+              background-color: $raspberry;
+              color: $white;
+            }
           }
         }
       }
     }
   }
-}
 
-#search-toggle-container {
-  width: 100%;
+  #search-toggle-container {
+    width: 100%;
 
-  body.alert-active & {
-    background: #fff url(../images/banners/williston-beauty-full-banner.jpg) no-repeat center center;
-    background-size: 100%;
-  }
-}
-
-/* I. Logobar */
-
-#logobar {
-  // .layout-stripe sets width 100%, margin 0, padding 0.
-  @include dark-blue-stripe;
-
-  a,
-  button,
-  button svg {
-    @include focus($white);
-  }
-}
-
-#logobar-container {
-  // .layout-zone sets clearfix and squishy edges.
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  align-items: center;
-}
-
-/* I.A. Logobar > Logo section */
-
-#logobar .logo-container {
-  flex: 1 0 auto;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: center;
-  align-items: center;
-  min-height: 60px;
-
-  & > * {
-    flex: 0 0 auto;
+    // body.alert-active & {
+    //   background: #fff url(../images/banners/williston-beauty-full-banner.jpg) no-repeat center center;
+    //   background-size: 100%;
+    // }
   }
 
-  // Always use wordmark on homepage
-  .lits_homepage & {
-    & #logo {
-      display: inline-block;
-    }
+  /* I. Logobar */
 
-    & #logo-small {
-      display: none;
+  #logobar {
+    // .layout-stripe sets width 100%, margin 0, padding 0.
+    @include dark-blue-stripe;
+
+    a,
+    button,
+    button svg {
+      @include focus($white);
     }
   }
 
-  // On interior pages, there's always other stuff in the logobar
-  // Use wordmark logo only above small width
-  .lits_page & {
-    justify-content: flex-start;
+  #logobar-container {
+    // .layout-zone sets clearfix and squishy edges.
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
     align-items: center;
+  }
 
-    & #logo {
-      display: none;
+  /* I.A. Logobar > Logo section */
+
+  #logobar .logo-container {
+    flex: 1 0 auto;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: center;
+    min-height: $logobar-min-height;
+
+    & > * {
+      flex: 0 0 auto;
     }
 
-    & #logo-small {
-      display: flex; // pretty much just to vertically center the svg block element
-    }
-
-    @include breakpoint($small-width) {
+    // Always use wordmark on homepage
+    .lits_homepage & {
       & #logo {
-        display: flex; // pretty much just to vertically center the svg block element
+        display: inline-block;
       }
 
       & #logo-small {
         display: none;
       }
     }
-  }
 
-  @include breakpoint($medium-width) {
-    // at breakpoint on homepage, more stuff shows up in logobar so left align logo.
-    body.lits_homepage & {
+    // On interior pages, there's always other stuff in the logobar
+    // Use wordmark logo only above small width
+    .lits_page & {
       justify-content: flex-start;
-    }
-  }
+      align-items: center;
 
-  & #logo {
-    margin-top: $word-default-margin;
-    margin-bottom: $word-default-margin;
-    padding-left: $word-default-margin - 8px;
-    padding-right: $word-default-margin;
-
-    & img {
-      max-height: $word-logo-image-max-height;
-      display: block;// must be block; inline-block reserves veritcal height for hanging letters, which we do not want
-      margin: auto;
-    }
-  }
-
-  & #logo-small {
-    margin-top: $mono-default-margin;
-    margin-bottom: $mono-default-margin;
-    padding-left: $mono-default-margin - 8px;
-    padding-right: $mono-default-margin;
-
-    & img {
-      max-height: $mono-logo-image-max-height;
-      display: block;// must be block; inline-block reserves veritcal height for hanging letters, which we do not want
-      margin: auto;
-    }
-  }
-}
-
-/* I.B. Logobar > TopNav section */
-
-#logobar .topnav-container {
-  margin: auto 0;
-  // because of the underline on the logo, perfectly centering text is too low @see _logobar_branding.scss for accompanying rule for "LITS" in the lockup
-  & > * {
-    margin-bottom: 5px;
-  }
-
-  #search-toggle {
-    @include link-bluebg;
-
-    display: inline-block;
-    padding-left: 1rem;
-    padding-right: 0;
-    border: none;
-    background: transparent;
-    font-size: 1rem;
-    white-space: nowrap; // Don't let the carat float below the text at small widths.
-
-    .expandable.expandable--open & svg {
-      transform: rotate(180deg);
-    }
-
-    .lits_homepage & {
-      display: none;
-    }
-  }
-
-  a {
-    display: none;
-    padding: 0 1rem;
-    border-right: 1px solid $white;
-    font-size: 1rem;
-
-    @include focus($white);
-
-    @include breakpoint($medium-width) {
-      display: inline-block;
-    }
-
-    .lits_homepage &.accounts {
-      padding-right: 0;
-      border-right: none;
-    }
-  }
-}
-
-/* II. Searchbar */
-
-// @see 02-molecules/lits-search-form/_unified-search-form.scss
-// @see 04-templates/_lits-homepage.scss
-#searchbar {
-  position: absolute;
-  z-index: 2;
-
-  // .layout-stripe sets width 100%, margin 0, padding 0.
-  // Contains div.layout-container.layout-zone for flex and squishy edges.
-  @include breakpoint($medium-width) {
-    min-height: 208px;
-  }
-
-  //TODO add drupal menu offsets too?
-
-  #search-blocks-container {
-    display: none;
-
-    .layout-container {
-      @include breakpoint($medium-width) {
-        height: 208px;
+      & #logo {
+        display: none;
       }
 
-      align-items: center;
+      & #logo-small {
+        display: flex; // pretty much just to vertically center the svg block element
+      }
+
+      @include breakpoint($small-width) {
+        & #logo {
+          display: flex; // pretty much just to vertically center the svg block element
+        }
+
+        & #logo-small {
+          display: none;
+        }
+      }
+    }
+
+    @include breakpoint($medium-width) {
+      // at breakpoint on homepage, more stuff shows up in logobar so left align logo.
+      body.lits_homepage & {
+        justify-content: flex-start;
+      }
+    }
+
+    & #logo {
+      margin-top: $word-default-margin;
+      margin-bottom: $word-default-margin;
+      padding-left: $word-default-margin - 8px;
+      padding-right: $word-default-margin;
+
+      & img {
+        max-height: $word-logo-image-max-height;
+        display: block;// must be block; inline-block reserves veritcal height for hanging letters, which we do not want
+        margin: auto;
+      }
+    }
+
+    & #logo-small {
+      margin-top: $mono-default-margin;
+      margin-bottom: $mono-default-margin;
+      padding-left: $mono-default-margin - 8px;
+      padding-right: $mono-default-margin;
+
+      & img {
+        max-height: $mono-logo-image-max-height;
+        display: block;// must be block; inline-block reserves veritcal height for hanging letters, which we do not want
+        margin: auto;
+      }
     }
   }
-}
 
-/* III. Imagebar */
+  /* I.B. Logobar > TopNav section */
 
-#imagebar {
-  // .layout-stripe sets width 100%, margin 0, padding 0.
-  display: none;
-  height: 0;
-  // margin-top: 60px; // TODO deal with admin toolbars later
-  // margin-bottom: -108px;
-  // TODO: allow node to override:
+  #logobar .topnav-container {
+    margin: auto 0;
+    // because of the underline on the logo, perfectly centering text is too low @see _logobar_branding.scss for accompanying rule for "LITS" in the lockup
+    & > * {
+      margin-bottom: 5px;
+    }
 
-  @include breakpoint($medium-width) {
-    display: block;
-    height: 256px;
-    background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
-    background-size: 100%;
+    #search-toggle {
+      @include link-bluebg;
+
+      display: inline-block;
+      padding-left: 1rem;
+      padding-right: 0;
+      border: none;
+      background: transparent;
+      font-size: 1rem;
+      white-space: nowrap; // Don't let the carat float below the text at small widths.
+
+      .expandable.expandable--open & svg {
+        transform: rotate(180deg);
+      }
+
+      .lits_homepage & {
+        display: none;
+      }
+    }
+
+    a {
+      display: none;
+      padding: 0 1rem;
+      border-right: 1px solid $white;
+      font-size: 1rem;
+
+      @include focus($white);
+
+      @include breakpoint($medium-width) {
+        display: inline-block;
+      }
+
+      .lits_homepage &.accounts {
+        padding-right: 0;
+        border-right: none;
+      }
+    }
   }
 
-  @include breakpoint($large-width) {
-    background: $white url('../images/banners/williston-beauty-xl-banner.jpg') no-repeat center center;
-    background-size: 100%;
+  /* II. Searchbar */
+
+  // @see 02-molecules/lits-search-form/_unified-search-form.scss
+  // @see 04-templates/_lits-homepage.scss
+  #searchbar {
+    
+    @include breakpoint($medium-width) {
+      position: absolute;
+      z-index: 2;
+    }
+
+    // .layout-stripe sets width 100%, margin 0, padding 0.
+    // Contains div.layout-container.layout-zone for flex and squishy edges.
+    // @include breakpoint($medium-width) {
+    //   min-height: 208px;
+    // }
+
+    //TODO add drupal menu offsets too?
+
+    #search-blocks-container {
+      display: none;
+
+      .layout-container {
+        // @include breakpoint($medium-width) {
+        //   height: 208px;
+        // }
+
+        align-items: center;
+      }
+    }
   }
 
-  @include breakpoint($max-width) {
-    background: $white url('../images/banners/williston-beauty-full-banner.jpg') no-repeat center center;
-    background-size: 100%;
-  }
-}
+  /* III. Imagebar */
 
-/* IV. Menubar */
-
-#menubar {
-  // .layout-stripe sets width 100%, margin 0, padding 0.
-  // @include med-blue-stripe; // TODO add this back ONLY below 900px
-  #menu-background {
+  #imagebar {
+    // .layout-stripe sets width 100%, margin 0, padding 0.
     display: none;
+    height: 0;
+    // margin-top: 60px; // TODO deal with admin toolbars later
+    // margin-bottom: -108px;
+    // TODO: allow node to override:
+
+    @include breakpoint($medium-width) {
+      display: block;
+      height: $imagebar-height;
+      background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
+      background-size: 100%;
+    }
+
+    @include breakpoint($large-width) {
+      background: $white url('../images/banners/williston-beauty-xl-banner.jpg') no-repeat center center;
+      background-size: 100%;
+    }
+
+    @include breakpoint($max-width) {
+      background: $white url('../images/banners/williston-beauty-full-banner.jpg') no-repeat center center;
+      background-size: 100%;
+    }
   }
 
-  background-color: $med-blue;
+  /* IV. Menubar */
 
-  @include breakpoint($medium-width) {
-    // padding-top: 256px - 48px; // height of imagebar - height of menubar
-    background-color: $fully-transparent;
-
+  #menubar {
+    // .layout-stripe sets width 100%, margin 0, padding 0.
+    // @include med-blue-stripe; // TODO add this back ONLY below 900px
     #menu-background {
-      display: block;
-      height: 48px;
-      margin-bottom: -48px;
-      background-color: $med-blue;
+      display: none;
+    }
+
+    background-color: $med-blue;
+
+    @include breakpoint($medium-width) {
+      // padding-top: 256px - 48px; // height of imagebar - height of menubar
+      background-color: $fully-transparent;
+
+      #menu-background {
+        display: block;
+        height: $main-menubar-height;
+        margin-bottom: -$main-menubar-height;
+        background-color: $med-blue;
+      }
     }
   }
 }

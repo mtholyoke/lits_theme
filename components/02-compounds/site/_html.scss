@@ -24,11 +24,13 @@ html {
   top: 0;
   z-index: -1;
   background-color: $white;
+  color: $white;
   padding: 1rem;
 }
 
 #skip-to-main:focus {
   z-index: 3;
+  color: $dark-blue;
 }
 
 body .dialog-off-canvas-main-canvas {
@@ -42,19 +44,19 @@ body .dialog-off-canvas-main-canvas {
   width: 100%;
   margin-bottom: 1rem;
 
-  body.alert-active & {
-    background-color: $white;
-  }
+  // body.alert-active & {
+  //   background-color: $white;
+  // }
 }
 
-body:not(.alert-active) #main-content {
-  margin-top: 108px; // TODO deal with} admin toolbars later
-  // padding-top: 108px;
+// body:not(.alert-active) #main-content {
+//   margin-top: 108px; // TODO deal with} admin toolbars later
+//   // padding-top: 108px;
 
-  @include breakpoint($medium-width) {
-    margin-top: 0;
-  }
-}
+//   @include breakpoint($medium-width) {
+//     margin-top: 0;
+//   }
+// }
 
 /* V. Messages */
 

@@ -19,20 +19,19 @@ nav#block-lits-theme-mainnavigation {
 
     @include breakpoint($medium-width) {
       display: block;
-    }
 
-    & > ul.main-menu {
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: center;
+      & > ul.main-menu {
+        display: grid;
+        grid-template-areas: "materials research techsupport places teachingsupport";
+        grid-template-columns: repeat(5, 1fr);
+      }
     }
   }
+}
 
+.main-submenu--wrapper {
   @include breakpoint($medium-width) {
-    #main-nav > ul.main-menu {
-      flex-flow: row nowrap;
-      justify-content: space-between;
-      align-items: flex-start;
-    }
+    position: absolute;
+    z-index: 1;
   }
 }

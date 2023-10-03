@@ -1,7 +1,150 @@
 /******/ (() => { // webpackBootstrap
-var __webpack_exports__ = {};
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
-(() => {
+/******/ 	var __webpack_modules__ = ([
+/* 0 */
+/***/ (() => {
+
+/**
+ * @file
+ * Functions and behaviors for the system status page
+ */
+
+(($, Drupal) => {
+  Drupal.lits_theme = Drupal.lits_theme || {};
+
+  /**
+   * Toggles the visibility of the main menu on mobile.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Calls the resize function on window resize.
+   */
+  Drupal.behaviors.litsThemeMainMenuMobile = {
+    attach: context => {
+      const $toggleExpand = $("#main-menu-toggle-expand", context);
+      const $menuWrapper = $("#main-nav", context);
+      $toggleExpand.click(() => {
+        $toggleExpand.toggleClass("toggle-expand--open");
+        $menuWrapper.toggleClass("main-nav--open").slideToggle();
+      });
+      $(window).resize(() => {
+        console.log($(window).width());
+        if ($(window).width() >= 900) {
+          $toggleExpand.removeClass("toggle-expand--open");
+          $menuWrapper.removeClass("main-nav--open").attr("style", "");
+        } else {
+          numOpenMenus = document.querySelectorAll(".main-menu__item--root.expandable--open").length;
+          if (numOpenMenus > 0 && !$menuWrapper.hasClass("main-nav--open")) {
+            $toggleExpand.addClass("toggle-expand--open");
+            $menuWrapper.addClass("main-nav--open").show();
+          }
+        }
+      });
+    }
+  };
+
+  /**
+   * Makes sure that the Research and Places submenus stay on the screen.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Calls the resize function on DOM ready and window resize.
+   */
+  Drupal.behaviors.litsThemeMainMenuDropdownPositioning = {
+    attach: context => {
+      Drupal.lits_theme.mainMenuDropdownPositioning(context);
+      $(window).resize(() => {
+        Drupal.lits_theme.mainMenuDropdownPositioning(context);
+      });
+    }
+  };
+
+  /**
+   * Makes sure that the Research and Places submenus stay on the screen.
+   *
+   * @param {object} context
+   *   The scoping context provided by Drupal.
+   */
+  Drupal.lits_theme.mainMenuDropdownPositioning = (context, event) => {
+    // Position the submenus for the middle menu items in a centered location
+    // below their parent
+    const $body = $("body", context);
+    if ($(window).width() < 900) {
+      $("#main-nav .main-menu .main-menu__item--root.expandable", context).each((i, element) => {
+        const $subMenu = $(element).find(".main-submenu--wrapper");
+        $subMenu.css("margin-left", "");
+      });
+      return;
+    }
+    const mainMenuBarPoints = Drupal.lits_theme.mainMenuImportantPoints(context, document.querySelector("#block-lits-theme-mainnavigation"));
+    document.querySelectorAll(".main-menu__item--root.expandable").forEach(menuContainer => {
+      const button = menuContainer.querySelector(":scope button");
+      const menu = menuContainer.querySelector(":scope .main-submenu--wrapper");
+
+      // reset
+      menu.style.marginLeft = 0;
+
+      // positioning for display:none is terrible, so
+      if (!menuContainer.classList.contains("expandable--open")) {
+        // set to show but invisible because positioning is annoying
+        menu.style.visibility = "hidden";
+        menu.style.display = "block";
+      }
+
+      // Find the button and menu in space
+      const buttonPoints = Drupal.lits_theme.mainMenuImportantPoints(context, button);
+      var menuPoints = Drupal.lits_theme.mainMenuImportantPoints(context, menu);
+
+      // Center below the button
+      const buttonMidX = buttonPoints.left + buttonPoints.midpoint;
+      const menuMidX = menuPoints.left + menuPoints.midpoint;
+      var offset = buttonMidX - menuMidX;
+      menu.style.marginLeft = `${offset}px`;
+
+      // Assess whether offscreen and further adjust as needed
+      menuPoints = Drupal.lits_theme.mainMenuImportantPoints(context, menu);
+      if (menuPoints.left < mainMenuBarPoints.left) {
+        offset = offset - menuPoints.left + mainMenuBarPoints.left;
+        menu.style.marginLeft = `${offset}px`;
+      }
+      if (menuPoints.right > mainMenuBarPoints.right) {
+        offset = offset - (menuPoints.right - mainMenuBarPoints.right);
+        menu.style.marginLeft = `${offset}px`;
+      }
+
+      // positioning for display:none is terrible, so
+      if (!menuContainer.classList.contains("expandable--open")) {
+        // put it back
+        menu.style.display = "none";
+        menu.style.visibility = "visible";
+      }
+    });
+  };
+
+  /**
+   * Finds important points for main menu elements.
+   * 
+   * This is in jQuery because it gives us sugar that adds a temporary copy of 
+   * the element to the DOM so that it can find the real points for the element.
+   *
+   * @param {object} context
+   *   The scoping context provided by Drupal.
+   */
+  Drupal.lits_theme.mainMenuImportantPoints = (context, element) => {
+    return {
+      "width": element.getBoundingClientRect().width,
+      "left": element.getBoundingClientRect().x,
+      "right": element.getBoundingClientRect().x + element.getBoundingClientRect().width,
+      "midpoint": element.getBoundingClientRect().width / 2
+    };
+  };
+})(jQuery, Drupal);
+
+/***/ }),
+/* 1 */
+/***/ (() => {
+
 /**
  * @file
  * Functions and behaviors for the system status page
@@ -41,10 +184,11 @@ var __webpack_exports__ = {};
     }
   };
 })(jQuery, Drupal);
-})();
 
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
-(() => {
+/***/ }),
+/* 2 */
+/***/ (() => {
+
 /**
  * @file
  * A JavaScript file containing the functionality for header elements.
@@ -109,10 +253,11 @@ var __webpack_exports__ = {};
     }
   };
 })(jQuery, Drupal);
-})();
 
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
-(() => {
+/***/ }),
+/* 3 */
+/***/ (() => {
+
 /**
  * @file
  * Functions and behaviors for the header of every page.
@@ -121,227 +266,35 @@ var __webpack_exports__ = {};
 (($, Drupal) => {
   Drupal.lits_theme = Drupal.lits_theme || {};
 
-  // /**
-  //  * Hides hours and main menu closables on click elsewhere.
-  //  *
-  //  * @type {Drupal~behavior}
-  //  *
-  //  * @prop {Drupal~behaviorAttach} attach
-  //  *   Listen for clicks and close any non-accordions that are open.
-  //  */
-  // Drupal.behaviors.litsThemeClosableHandler = {
-  //   attach: context => {
-  //     const $document = $(document, context);
-  //     $document.click(event => {
-  //       const $closest = $(event.target).closest(".expandable");
-  //       const $expandables = $(".expandable--open")
-  //         .not(".accordion")
-  //         .not("#search-toggle-container")
-  //         .not($closest);
-  //       if ($expandables.length) {
-  //         $expandables.each((i, element) => {
-  //           Drupal.lits_theme.toggleExpandable($(element), "close");
-  //         });
-  //       }
-  //     });
-  //   }
-  // };
-
-  // /**
-  //  * Makes sure that the Research and Places submenus stay on the screen.
-  //  *
-  //  * @type {Drupal~behavior}
-  //  *
-  //  * @prop {Drupal~behaviorAttach} attach
-  //  *   Calls the resize function on DOM ready and window resize.
-  //  */
-  // Drupal.behaviors.litsThemeMainMenuDropdownPositioning = {
-  //   attach: context => {
-  //     // attach() is fired by drupal.js inside a $(document).ready()
-  //     Drupal.lits_theme.mainMenuDropdownPositioning(context);
-
-  //     $(window).resize(() => {
-  //       Drupal.lits_theme.mainMenuDropdownPositioning(context);
-  //     });
-  //   }
-  // };
-
-  // /**
-  //  * Toggles the visibility of the main menu on mobile.
-  //  *
-  //  * @type {Drupal~behavior}
-  //  *
-  //  * @prop {Drupal~behaviorAttach} attach
-  //  *   Calls the resize function on window resize.
-  //  */
-  // Drupal.behaviors.litsThemeMainMenuMobile = {
-  //   attach: context => {
-  //     const $toggleExpand = $("#main-menu-toggle-expand", context);
-  //     const $menuWrapper = $("#main-nav", context);
-  //     $toggleExpand.click(() => {
-  //       $toggleExpand.toggleClass("toggle-expand--open");
-  //       $menuWrapper.toggleClass("main-nav--open").slideToggle();
-  //     });
-  //     $(window).resize(() => {
-  //       if ($(window).width() >= 900) {
-  //         $toggleExpand.removeClass("toggle-expand--open");
-  //         $menuWrapper.removeClass("main-nav--open").attr("style", "");
-  //       }
-  //     });
-  //   }
-  // };
-
-  // /**
-  //  * Makes the menubar sticky on scroll.
-  //  *
-  //  * @type {Drupal~behavior}
-  //  *
-  //  * @prop {Drupal~behaviorAttach} attach
-  //  *   Tests the current amount of scroll and assigns a sticky class.
-  //  */
-  // Drupal.behaviors.litsThemeStickyHeader = {
-  //   attach: context => {
-  //     Drupal.lits_theme.positionMenu(context, false);
-
-  //     $(document).scroll(() => {
-  //       Drupal.lits_theme.positionMenu(context, false);
-  //     });
-
-  //     $(window).resize(() => {
-  //       Drupal.lits_theme.positionMenu(context, false);
-  //     });
-  //   }
-  // };
-
-  // /**
-  //  * Makes sure that the Research and Places submenus stay on the screen.
-  //  *
-  //  * @param {object} context
-  //  *   The scoping context provided by Drupal.
-  //  */
-  // Drupal.lits_theme.mainMenuDropdownPositioning = context => {
-  //   // Position the submenus for the middle menu items in a centered location
-  //   // below their parent
-  //   const $body = $("body", context);
-  //   if ($(window).width() < 900) {
-  //     $("#main-nav .main-menu .main-menu__item--root.expandable", context).each(
-  //       (i, element) => {
-  //         const $subMenu = $(element).find(".main-submenu--wrapper");
-  //         $subMenu.css("margin-left", "");
-  //         if ($body.hasClass("alert-active") && false) {
-  //           $subMenu.css("position", "static").css("z-index", "0");
-  //         }
-  //       }
-  //     );
-  //     return;
-  //   }
-
-  //   // Gather main (parent) menu statistics.
-  //   const menuWidth = $("#main-nav .main-menu", context).width();
-  //   const numMenuItems = $(
-  //     "#main-nav .main-menu .main-menu__item--root.expandable",
-  //     context
-  //   ).length;
-
-  //   // Iterate over the main (parent) menu containers.
-  //   $("#main-nav .main-menu .main-menu__item--root.expandable", context).each(
-  //     (i, element) => {
-  //       // each() is zero indexed, but for mathy purposes we need to be one indexed
-  //       const index = i + 1;
-
-  //       // Calculate the positions of the center and corner of the main (parent) menu item.
-  //       const menuItemRight = (index / numMenuItems) * menuWidth;
-
-  //       // Grab the sub menu and find its corners so we can make sure it stays on screen.
-  //       const buttonWidth = $(element).width();
-  //       const $subMenu = $(element).find(".main-submenu--wrapper");
-  //       const subMenuCenter = $subMenu.width() / 2;
-  //       const subMenuLeftMargin = -1 * subMenuCenter + buttonWidth / 2;
-  //       const subMenuLeft = menuItemRight - buttonWidth + subMenuLeftMargin;
-  //       const subMenuRight = subMenuLeft + $subMenu.width();
-
-  //       // Reset before recalculating position.
-  //       $subMenu.css("margin-left", "");
-  //       if ($body.hasClass("alert-active") && false) {
-  //         $subMenu.css("position", "absolute").css("z-index", "2"); // z-index to lift above the control on the select box on LITS search on the homepage
-  //       } else {
-  //         $subMenu.css("position", "").css("z-index", "");
-  //       }
-
-  //       // Decide if either side of the menu would be offscreen by default,
-  //       // and if so, place it on the appropriate edge.
-  //       if (subMenuLeft < 0) {
-  //         // TODO: instead try to figure out offset between 0 and the window left edge?
-  //         $subMenu.css("margin-left", 0);
-  //         return;
-  //       }
-  //       if (subMenuRight > menuWidth) {
-  //         const overflow = -1 * (subMenuRight - menuWidth);
-  //         $subMenu.css("margin-left", overflow + subMenuLeftMargin);
-  //         return;
-  //       }
-
-  //       // Otherwise, put the submenu in the default centered position.
-  //       $subMenu.css("margin-left", subMenuLeftMargin);
-  //     }
-  //   );
-  // };
-
-  // /**
-  //  * Positions the main menu according to the current position of main (or
-  //  * sticks it to the logobar).
-  //  *
-  //  * @param {object} context
-  //  *   The scoping context provided by Drupal.
-  //  * @param {boolean} collapsed
-  //  *   Whether the imagebar should just be collapsed or not (relevant for anchor scrolling)
-  //  */
-  // Drupal.lits_theme.positionMenu = (context, collapsed) => {
-  //   const $body = $("body", context);
-  //   if (!$body.hasClass("alert-active")) {
-  //     // searchbar should have a height equal to the distance to main, with a max of 208px
-  //     let top = 0;
-  //     if ($("#main-content", context).offset()) {
-  //       top = $("#main-content", context).offset().top; //not always defined (eg search result page?)
-  //     }
-  //     top =
-  //       top -
-  //       $(window).scrollTop() -
-  //       $("#logobar", context).height() -
-  //       $("#menu-background", context).height();
-
-  //     if ($(window).width() < 900 || collapsed) {
-  //       top = 0;
-  //     }
-  //     // Drupal toolbar if logged in:
-  //     let toolbarheight = 0;
-  //     if ($body.hasClass("toolbar-fixed")) {
-  //       toolbarheight = 39;
-  //       if (
-  //         $body.hasClass("toolbar-horizontal") &&
-  //         $body.hasClass("toolbar-tray-open")
-  //       ) {
-  //         toolbarheight = 79;
-  //       }
-
-  //       if ($body.hasClass("node-preview-enabled")) {
-  //         toolbarheight += $(".node-preview-container", context).height();
-  //       }
-  //     }
-  //     top -= toolbarheight;
-
-  //     if (top < $("#searchbar-background", context).height()) {
-  //       top = $("#searchbar-background", context).height();
-  //     }
-
-  //     $("#searchbar", context).css("min-height", top);
-  //   }
-  // };
+  /**
+   * Hides hours and main menu closables on click elsewhere.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Listen for clicks and close any non-accordions that are open.
+   */
+  Drupal.behaviors.litsThemeClosableHandler = {
+    attach: context => {
+      const $document = $(document, context);
+      $document.click(event => {
+        const $closest = $(event.target).closest(".expandable");
+        const $expandables = $(".expandable--open").not(".accordion").not("#search-toggle-container") // don't close the search bar unless it's explicitly closed
+        .not($closest);
+        if ($expandables.length) {
+          $expandables.each((i, element) => {
+            Drupal.lits_theme.toggleExpandable($(element), "close");
+          });
+        }
+      });
+    }
+  };
 })(jQuery, Drupal);
-})();
 
-// This entry need to be wrapped in an IIFE because it need to be isolated against other entry modules.
-(() => {
+/***/ }),
+/* 4 */
+/***/ (function() {
+
 /**
  * @file
  * Functions and behaviors for the header of every page.
@@ -349,163 +302,137 @@ var __webpack_exports__ = {};
 
 (($, Drupal) => {
   Drupal.lits_theme = Drupal.lits_theme || {};
+  const openAccordion = hash => {
+    let element;
+    if (hash.indexOf("button") >= 0) {
+      element = document.getElementById(hash.toString().slice(1));
+    } else {
+      element = document.getElementById(`${hash.toString().slice(1)}-button`);
+    }
+    if (element && element.getAttribute("aria-expanded") === "false") {
+      element.click();
+    }
+  };
 
-  // const openAccordion = hash => {
-  //   let element;
+  /**
+   * Empowers the buttons to toggle visibility of expandable elements.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Listen for clicks on expandable elements and call the toggle function.
+   */
+  Drupal.behaviors.litsThemeExpandableHandler = {
+    attach: context => {
+      const $buttons = $(".expandable button", context);
+      $buttons.click(event => {
+        const $container = $(event.target).parents(".expandable").first();
+        Drupal.lits_theme.toggleExpandable($container);
+      });
+    }
+  };
 
-  //   if (hash.indexOf("button") >= 0) {
-  //     element = document.getElementById(hash.toString().slice(1));
-  //   } else {
-  //     element = document.getElementById(`${hash.toString().slice(1)}-button`);
-  //   }
+  /**
+   * Adds rel="noopener", a11y hidden text, and a CSS class to non-LITS links.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Adds rel="noopener", a11y hidden text, and a CSS class to non-LITS links.
+   */
+  Drupal.behaviors.litsThemeLinkManager = {
+    attach: context => {
+      $("a", context).once("Drupal.behaviors.litsThemeLinkManager").each((index, a) => {
+        // Grab links with a hostname that doesn't match the window location
+        if (a.hostname && window.location.hostname.length && window.location.hostname !== a.hostname) {
+          // just in case we want to automagically target these later for
+          // some reason
+          $(a).addClass("link--external");
+        }
+        // for links that open in new tabs
+        if ($(a).attr("target") && $(a).attr("target") === "_blank") {
+          // add rel="noopener" to external links to close security hole
+          // @see https://developers.google.com/web/tools/lighthouse/audits/noopener
+          if (!$(a).attr("rel") || $(a).attr("rel").length === 0) {
+            $(a).attr("rel", "noopener");
+          }
+          // Add a11y text if missing
+          if ($(a).find("span.visually-hidden").length === 0) {
+            $('<span class="visually-hidden">opens in a new tab</span>').appendTo($(a));
+          }
+        }
+      });
+    }
+  };
 
-  //   if (element && element.getAttribute("aria-expanded") === "false") {
-  //     element.click();
-  //   }
-  // };
+  /**
+   * Fix focus for skip links and other within-page links.
+   *
+   * Adapted from https://github.com/selfthinker/dokuwiki_template_writr/blob/master/js/skip-link-focus-fix.js
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Focuses on element linked to/activated by id
+   */
+  Drupal.behaviors.litsThemeLinkFocusManager = {
+    attach: context => {
+      $(window).on("load", () => {
+        // Extend the definition of :focusable to include more elements than the default (I think?)
+        $.extend($.expr[":"], {
+          focusable(el) {
+            const $element = $(el, context);
+            return $element.is(":input:enabled, a[href], area[href], object, [tabindex]") && !$element.is(":hidden");
+          }
+        });
 
-  // /**
-  //  * Empowers the buttons to toggle visibility of expandable elements.
-  //  *
-  //  * @type {Drupal~behavior}
-  //  *
-  //  * @prop {Drupal~behaviorAttach} attach
-  //  *   Listen for clicks on expandable elements and call the toggle function.
-  //  */
-  // Drupal.behaviors.litsThemeExpandableHandler = {
-  //   attach: context => {
-  //     const $buttons = $(".expandable button", context);
-  //     $buttons.click(event => {
-  //       const $container = $(event.target)
-  //         .parents(".expandable")
-  //         .first();
-  //       Drupal.lits_theme.toggleExpandable($container);
-  //     });
-  //   }
-  // };
+        // if there is a '#' in the URL (someone linking directly to an anchor):
+        if (window.location.hash) {
+          openAccordion(window.location.hash);
+          const scrollMore = !!navigator.userAgent.match(/Trident.*rv:11\./) || window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge
+          Drupal.lits_theme.scrollToHash(context, $(window.location.hash), scrollMore);
+        }
+      });
 
-  // /**
-  //  * Adds rel="noopener", a11y hidden text, and a CSS class to non-LITS links.
-  //  *
-  //  * @type {Drupal~behavior}
-  //  *
-  //  * @prop {Drupal~behaviorAttach} attach
-  //  *   Adds rel="noopener", a11y hidden text, and a CSS class to non-LITS links.
-  //  */
-  // Drupal.behaviors.litsThemeLinkManager = {
-  //   attach: context => {
-  //     $("a", context)
-  //       .once("Drupal.behaviors.litsThemeLinkManager")
-  //       .each((index, a) => {
-  //         // Grab links with a hostname that doesn't match the window location
-  //         if (
-  //           a.hostname &&
-  //           window.location.hostname.length &&
-  //           window.location.hostname !== a.hostname
-  //         ) {
-  //           // just in case we want to automagically target these later for
-  //           // some reason
-  //           $(a).addClass("link--external");
-  //         }
-  //         // for links that open in new tabs
-  //         if ($(a).attr("target") && $(a).attr("target") === "_blank") {
-  //           // add rel="noopener" to external links to close security hole
-  //           // @see https://developers.google.com/web/tools/lighthouse/audits/noopener
-  //           if (!$(a).attr("rel") || $(a).attr("rel").length === 0) {
-  //             $(a).attr("rel", "noopener");
-  //           }
-  //           // Add a11y text if missing
-  //           if ($(a).find("span.visually-hidden").length === 0) {
-  //             $(
-  //               '<span class="visually-hidden">opens in a new tab</span>'
-  //             ).appendTo($(a));
-  //           }
-  //         }
-  //       });
-  //   }
-  // };
+      // on click, determine if an anchor and scroll to hash
+      $(window).click(event => {
+        // Determine if the clicked element is an anchor, and if so which.
+        event = event || window.event;
+        let clickTarget = event.target || event.srcElement;
+        let $anchorTarget = null;
+        while (clickTarget) {
+          if (clickTarget instanceof HTMLAnchorElement) {
+            let href = clickTarget.getAttribute("href");
+            if (href && href.charAt(0) === "#" && href.length > 1) {
+              $anchorTarget = $(href);
+            }
+            break;
+          }
+          clickTarget = clickTarget.parentNode;
+        }
+        if ($anchorTarget === null || $anchorTarget.length === 0) {
+          return;
+        }
 
-  // /**
-  //  * Fix focus for skip links and other within-page links.
-  //  *
-  //  * Adapted from https://github.com/selfthinker/dokuwiki_template_writr/blob/master/js/skip-link-focus-fix.js
-  //  *
-  //  * @type {Drupal~behavior}
-  //  *
-  //  * @prop {Drupal~behaviorAttach} attach
-  //  *   Focuses on element linked to/activated by id
-  //  */
-  // Drupal.behaviors.litsThemeLinkFocusManager = {
-  //   attach: context => {
-  //     $(window).on("load", () => {
-  //       // Extend the definition of :focusable to include more elements than the default (I think?)
-  //       $.extend($.expr[":"], {
-  //         focusable(el) {
-  //           const $element = $(el, context);
-  //           return (
-  //             $element.is(
-  //               ":input:enabled, a[href], area[href], object, [tabindex]"
-  //             ) && !$element.is(":hidden")
-  //           );
-  //         }
-  //       });
+        // Scroll to hash
+        openAccordion(window.location.hash);
+        Drupal.lits_theme.scrollToHash(context, $anchorTarget, false);
+      });
+      $(window).on("hashchange", () => {
+        if (window.location.hash) {
+          openAccordion(window.location.hash);
+          Drupal.lits_theme.scrollToHash(context, $(window.location.hash), false);
+        }
+      });
+    }
+  };
 
-  //       // if there is a '#' in the URL (someone linking directly to an anchor):
-  //       if (window.location.hash) {
-  //         openAccordion(window.location.hash);
-  //         const scrollMore =
-  //           !!navigator.userAgent.match(/Trident.*rv:11\./) ||
-  //           window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge
-  //         Drupal.lits_theme.scrollToHash(
-  //           context,
-  //           $(window.location.hash),
-  //           scrollMore
-  //         );
-  //       }
-  //     });
-
-  //     // on click, determine if an anchor and scroll to hash
-  //     $(window).click(event => {
-  //       // Determine if the clicked element is an anchor, and if so which.
-  //       event = event || window.event;
-  //       let clickTarget = event.target || event.srcElement;
-  //       let $anchorTarget = null;
-
-  //       while (clickTarget) {
-  //         if (clickTarget instanceof HTMLAnchorElement) {
-  //           let href = clickTarget.getAttribute("href");
-  //           if (href && href.charAt(0) === "#" && href.length > 1) {
-  //             $anchorTarget = $(href);
-  //           }
-  //           break;
-  //         }
-  //         clickTarget = clickTarget.parentNode;
-  //       }
-
-  //       if ($anchorTarget === null || $anchorTarget.length === 0) {
-  //         return;
-  //       }
-
-  //       // Scroll to hash
-  //       openAccordion(window.location.hash);
-  //       Drupal.lits_theme.scrollToHash(context, $anchorTarget, false);
-  //     });
-
-  //     $(window).on("hashchange", () => {
-  //       if (window.location.hash) {
-  //         openAccordion(window.location.hash);
-  //         Drupal.lits_theme.scrollToHash(context, $(window.location.hash), false);
-  //       }
-  //     });
-  //   }
-  // };
-
-  // /**
-  //  * Scrolls to hash
-  //  *
-  //  * @param {object} context
-  //  *   The scoping context provided by Drupal.
-  //  */
+  /**
+   * Scrolls to hash
+   *
+   * @param {object} context
+   *   The scoping context provided by Drupal.
+   */
   // Drupal.lits_theme.scrollToHash = (context, $anchorTarget, needsScrollDelay) => {
   //   const $body = $("body", context);
   //   if (!$body.hasClass("alert-active") && false) {
@@ -556,127 +483,137 @@ var __webpack_exports__ = {};
   //   }
   // };
 
-  // /**
-  //  * Toggles expandable elements of the DOM in response to button click.
-  //  *
-  //  * @param {object} $container
-  //  *   The jQuery object that contains a button and a content element.
-  //  * @param {string} action
-  //  *   One of 'open', 'close', or (default) 'toggle'.
-  //  */
-  // Drupal.lits_theme.toggleExpandable = ($container, action = "toggle") => {
-  //   const isOpen = $container.hasClass("expandable--open");
-  //   if (isOpen && action === "toggle") {
-  //     action = "close";
-  //   }
+  /**
+   * Toggles expandable elements of the DOM in response to button click.
+   *
+   * @param {object} $container
+   *   The jQuery object that contains a button and a content element.
+   * @param {string} action
+   *   One of 'open', 'close', or (default) 'toggle'.
+   */
+  Drupal.lits_theme.toggleExpandable = ($container, action = "toggle") => {
+    const isOpen = $container.hasClass("expandable--open");
+    if (isOpen && action === "toggle") {
+      action = "close";
+    }
+    const $button = $container.find("button");
+    const $content = $container.find(`#${$button.attr("aria-controls")}`);
+    let callback = null;
+    if ($container.attr("id") === "search-toggle-container") {
+      callback = Drupal.lits_theme.positionMenu;
+    }
+    if (action === "close") {
+      $button.attr("aria-expanded", "false").attr("aria-pressed", "false");
+      $("header").css("overflow", "hidden");
+      $content.attr("aria-hidden", "true").slideUp(400, () => {
+        $container.removeClass("expandable--open");
+        $("header").css("overflow", "auto");
+        if (callback != null) {
+          callback.call($(document), false);
+        }
+      });
+    } else {
+      $button.attr("aria-expanded", "true").attr("aria-pressed", "true");
+      $("header").css("overflow", "hidden");
+      $content.attr("aria-hidden", "false").slideDown(400, () => {
+        $("header").css("overflow", "auto");
+        if (callback != null) {
+          callback.call($(document), false);
+        }
+      });
+      // Don't wait for it to finish sliding before assigning open
+      // class/positioning to avoid the content visibly rearranging
+      $container.addClass("expandable--open");
+    }
+  };
 
-  //   const $button = $container.find("button");
-  //   const $content = $container.find(`#${$button.attr("aria-controls")}`);
+  /**
+   * Fix focus for skip links and other within-page links.
+   *
+   * Adapted from https://github.com/selfthinker/dokuwiki_template_writr/blob/master/js/skip-link-focus-fix.js
+   *
+   * Focuses on an element
+   *
+   * @param {object} $element
+   *   The jQuery object that should receive focus
+   * @param {string} action
+   *   One of 'open', 'close', or (default) 'toggle'.
+   */
+  Drupal.lits_theme.focusOnElement = $element => {
+    if (!$element.length) {
+      return;
+    }
+    if (!$element.is(":focusable")) {
+      // Add tabindex to make focusable and remove again.
+      $element.attr("tabindex", -1).on("blur focusout", () => {
+        $(this).removeAttr("tabindex");
+      });
+    }
+    $element.focus();
+  };
 
-  //   let callback = null;
-  //   if ($container.attr("id") === "search-toggle-container") {
-  //     callback = Drupal.lits_theme.positionMenu;
-  //   }
+  /**
+   * Add returnTo to the Shib login link in the footer
+   *   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Focuses on element linked to/activated by id
+   */
+  Drupal.behaviors.litsThemeShibLoginLink = {
+    attach: context => {
+      var shibLoginLinks = document.querySelectorAll("#block-lits-theme-shibloginlink a");
+      var currentPath = location.pathname.substr(1);
+      if (currentPath && currentPath != '') {
+        shibLoginLinks.forEach(a => {
+          a.href = a.href + '?returnTo=' + currentPath;
+        });
+      }
+    }
+  };
 
-  //   if (action === "close") {
-  //     $button.attr("aria-expanded", "false").attr("aria-pressed", "false");
-  //     $("header").css("overflow", "hidden");
-  //     $content.attr("aria-hidden", "true").slideUp(400, () => {
-  //       $container.removeClass("expandable--open");
-  //       $("header").css("overflow", "auto");
-  //       if (callback != null) {
-  //         callback.call($(document), false);
-  //       }
-  //     });
-  //   } else {
-  //     $button.attr("aria-expanded", "true").attr("aria-pressed", "true");
-  //     $("header").css("overflow", "hidden");
-  //     $content.attr("aria-hidden", "false").slideDown(400, () => {
-  //       $("header").css("overflow", "auto");
-  //       if (callback != null) {
-  //         callback.call($(document), false);
-  //       }
-  //     });
-  //     // Don't wait for it to finish sliding before assigning open
-  //     // class/positioning to avoid the content visibly rearranging
-  //     $container.addClass("expandable--open");
-  //   }
-  // };
-
-  // /**
-  //  * Fix focus for skip links and other within-page links.
-  //  *
-  //  * Adapted from https://github.com/selfthinker/dokuwiki_template_writr/blob/master/js/skip-link-focus-fix.js
-  //  *
-  //  * Focuses on an element
-  //  *
-  //  * @param {object} $element
-  //  *   The jQuery object that should receive focus
-  //  * @param {string} action
-  //  *   One of 'open', 'close', or (default) 'toggle'.
-  //  */
-  // Drupal.lits_theme.focusOnElement = $element => {
-  //   if (!$element.length) {
-  //     return;
-  //   }
-  //   if (!$element.is(":focusable")) {
-  //     // Add tabindex to make focusable and remove again.
-  //     $element.attr("tabindex", -1).on("blur focusout", () => {
-  //       $(this).removeAttr("tabindex");
-  //     });
-  //   }
-  //   $element.focus();
-  // };
-
-  // /**
-  //  * Add returnTo to the Shib login link in the footer
-  //  *   *
-  //  * @type {Drupal~behavior}
-  //  *
-  //  * @prop {Drupal~behaviorAttach} attach
-  //  *   Focuses on element linked to/activated by id
-  //  */
-  // Drupal.behaviors.litsThemeShibLoginLink = {
-  //   attach: context => {
-  //       var shibLoginLinks = document.querySelectorAll("#block-lits-theme-shibloginlink a");
-  //       var currentPath = location.pathname.substr(1);
-  //       if (currentPath && currentPath != '') {
-  //         shibLoginLinks.forEach((a) => {
-  //           a.href = a.href + '?returnTo=' + currentPath;
-  //         });
-  //       }
-  //   }
-  // };
-
-  // /**
-  //  * Expand study space filters if the window is desktop-sized
-  //  *
-  //  * @type {Drupal~behavior}
-  //  *
-  //  * @prop {Drupal~behaviorAttach} attach
-  //  *   Adjusts collapsiness of the filters
-  //  */
-  // Drupal.behaviors.litsThemeStudySpaceFilterSize = {
-  // attach: context => {
-  //   const $studySpaceFinderContainer = $(".study-space-finder", context);
-  //   const windowWidth = $(window).width();
-  //   if ($studySpaceFinderContainer.length > 0 && windowWidth >= 900) {
-  //     $(window).on("load", () => {
-  //       // Change toggle expandable
-  //       $studySpaceFinderContainer.toggleClass("expandable--open");
-  //       // Toggle aria-expanded and aria-pressed for button
-  //       $(".filters-title button", context).attr("aria-expanded", "true");
-  //       $(".filters-title button", context).attr("aria-pressed", "true");
-  //       // Show options and toggle aria
-  //       $(".filter-options", context).attr("style", "");
-  //       $(".filter-options", context).attr("aria-hidden", "false");
-  //     });
-  //   }
-  // }
-  // };
+  /**
+   * Expand study space filters if the window is desktop-sized
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Adjusts collapsiness of the filters
+   */
+  Drupal.behaviors.litsThemeStudySpaceFilterSize = {
+    attach: context => {
+      const $studySpaceFinderContainer = $(".study-space-finder", context);
+      const windowWidth = $(window).width();
+      if ($studySpaceFinderContainer.length > 0 && windowWidth >= 900) {
+        $(window).on("load", () => {
+          // Change toggle expandable
+          $studySpaceFinderContainer.toggleClass("expandable--open");
+          // Toggle aria-expanded and aria-pressed for button
+          $(".filters-title button", context).attr("aria-expanded", "true");
+          $(".filters-title button", context).attr("aria-pressed", "true");
+          // Show options and toggle aria
+          $(".filter-options", context).attr("style", "");
+          $(".filter-options", context).attr("aria-hidden", "false");
+        });
+      }
+    }
+  };
 })(jQuery, Drupal);
-})();
 
+/***/ })
+/******/ 	]);
+/************************************************************************/
+/******/ 	
+/******/ 	// startup
+/******/ 	// Load entry module and return exports
+/******/ 	__webpack_modules__[0]();
+/******/ 	__webpack_modules__[1]();
+/******/ 	__webpack_modules__[2]();
+/******/ 	__webpack_modules__[3]();
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
+/******/ 	var __webpack_exports__ = {};
+/******/ 	__webpack_modules__[4]();
+/******/ 	
 /******/ })()
 ;
 //# sourceMappingURL=lits_theme.js.map
