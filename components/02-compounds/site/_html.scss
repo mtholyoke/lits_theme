@@ -5,9 +5,6 @@
 
 html {
   box-sizing: border-box;
-
-  // TODO: remove this!
-  // overflow-x: hidden;
 }
 
 *,
@@ -39,36 +36,13 @@ body .dialog-off-canvas-main-canvas {
 
 
 #main-content {
-  // @extend .layout-stripe;
-  //
   width: 100%;
   margin-bottom: 1rem;
 
-  // body.alert-active & {
-  //   background-color: $white;
-  // }
 }
 
-// body:not(.alert-active) #main-content {
-//   margin-top: 108px; // TODO deal with} admin toolbars later
-//   // padding-top: 108px;
-
-//   @include breakpoint($medium-width) {
-//     margin-top: 0;
-//   }
-// }
 
 /* V. Messages */
-
-// #messagebar {
-//   padding-top: calc(60px + 48px); // search toggle + menubar
-//
-//   @include breakpoint($medium-width) {
-//     & {
-//       padding-top: 0;
-//     }
-//   }
-// }
 
 .layout-container {
   display: flex;
