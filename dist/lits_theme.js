@@ -433,55 +433,28 @@
    * @param {object} context
    *   The scoping context provided by Drupal.
    */
-  // Drupal.lits_theme.scrollToHash = (context, $anchorTarget, needsScrollDelay) => {
-  //   const $body = $("body", context);
-  //   if (!$body.hasClass("alert-active") && false) {
-  //     // focus the element
-  //     Drupal.lits_theme.focusOnElement($anchorTarget);
-
-  //     // position menu, collapsing the imagebar if needed to prepare to scroll to hash
-  //     Drupal.lits_theme.positionMenu(context, true);
-
-  //     // now set up the final scroll now that the menu is/should be at an appropriate level of collapsiness for the final anchor position
-  //     let menuHeight = $("#search-toggle-container", context).height();
-  //     // Menubar has different height markers at different page sizes
-  //     if ($(window).width() < 900) {
-  //       menuHeight += $("#menubar", context).height();
-  //     } else {
-  //       menuHeight += $("#menu-background", context).height();
-  //     }
-
-  //     let toolbarheight = 0;
-  //     if ($body.hasClass("toolbar-fixed")) {
-  //       toolbarheight = 39;
-  //       if (
-  //         $body.hasClass("toolbar-horizontal") &&
-  //         $body.hasClass("toolbar-tray-open")
-  //       ) {
-  //         toolbarheight = 79;
-  //       }
-  //     }
-  //     menuHeight += toolbarheight;
-
-  //     // offset().top doesn't seem to work reliably in IE11 on page load
-  //     const scrollTop =
-  //       document.getElementById($anchorTarget.attr("id")).offsetTop -
-  //       menuHeight;
-  //     let scrollDelay = 0;
-  //     if (needsScrollDelay) {
-  //       scrollDelay = 1500;
-  //     }
-  //     setTimeout(() => {
-  //       $("html, body").animate(
-  //         {
-  //           // Need both html and body here for cross-browseriness
-  //           scrollTop
-  //         },
-  //         100
-  //       );
-  //     }, scrollDelay);
-  //   }
-  // };
+  Drupal.lits_theme.scrollToHash = (context, $anchorTarget, needsScrollDelay) => {
+    const $body = $("body", context);
+    // focus the element
+    Drupal.lits_theme.focusOnElement($anchorTarget);
+    var scrollToElement = document.getElementById($anchorTarget.attr("id"));
+    if (document.getElementById($anchorTarget.attr("id") + "-button")) {
+      // Then this is an accordionish thing, and scrolling to the toggle is better
+      scrollToElement = document.getElementById($anchorTarget.attr("id") + "-button");
+    }
+    // offset().top doesn't seem to work reliably in IE11 on page load
+    const scrollTop = scrollToElement.offsetTop;
+    let scrollDelay = 0;
+    if (needsScrollDelay) {
+      scrollDelay = 1500;
+    }
+    setTimeout(() => {
+      $("html, body").animate({
+        // Need both html and body here for cross-browseriness
+        scrollTop
+      }, 100);
+    }, scrollDelay);
+  };
 
   /**
    * Toggles expandable elements of the DOM in response to button click.

@@ -32,6 +32,6 @@ nav#block-lits-theme-mainnavigation {
 .main-submenu--wrapper {
   @include breakpoint($medium-width) {
     position: absolute;
-    z-index: 1;
+    z-index: 2;
   }
 }
