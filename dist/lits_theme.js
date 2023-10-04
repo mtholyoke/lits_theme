@@ -34,7 +34,7 @@
           $menuWrapper.removeClass("main-nav--open").attr("style", "");
         } else {
           numOpenMenus = document.querySelectorAll(".main-menu__item--root.expandable--open").length;
-          if (numOpenMenus > 0 && !$menuWrapper.hasClass("main-nav--open")) {
+          if (numOpenMenus > 0) {
             $toggleExpand.addClass("toggle-expand--open");
             $menuWrapper.addClass("main-nav--open").show();
           }
