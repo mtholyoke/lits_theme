@@ -319,7 +319,10 @@ header#page-header {
 
   #menubar {
     // .layout-stripe sets width 100%, margin 0, padding 0.
-    // @include med-blue-stripe; // TODO add this back ONLY below 900px
+
+    // Last menu on mobile view needs a separator too <3
+    @include squishy-padding(bottom);
+
     #menu-background {
       display: none;
     }

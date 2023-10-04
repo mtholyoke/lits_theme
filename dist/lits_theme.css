@@ -4585,7 +4585,14 @@ header#page-header {
         background: white url(9507b006cfdde5dc4d80.jpg) no-repeat center center;
         background-size: 100%; } }
   header#page-header #menubar {
+    padding-bottom: 0.5rem;
     background-color: #07c; }
+    @media (min-width: 900px) {
+      header#page-header #menubar {
+        padding-bottom: calc((0.5rem + ((100vw - 900px) / 6))); } }
+    @media (min-width: 1920px) {
+      header#page-header #menubar {
+        padding-bottom: calc(0.5rem + ((1920px - 900px) / 6)); } }
     header#page-header #menubar #menu-background {
       display: none; }
     @media (min-width: 900px) {
