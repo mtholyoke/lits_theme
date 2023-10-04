@@ -323,6 +323,10 @@ header#page-header {
     // Last menu on mobile view needs a separator too <3
     @include squishy-padding(bottom);
 
+    @include breakpoint($medium-width) {
+      padding: 0;
+    }
+
     #menu-background {
       display: none;
     }

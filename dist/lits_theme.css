@@ -4593,6 +4593,9 @@ header#page-header {
     @media (min-width: 1920px) {
       header#page-header #menubar {
         padding-bottom: calc(0.5rem + ((1920px - 900px) / 6)); } }
+    @media (min-width: 900px) {
+      header#page-header #menubar {
+        padding: 0; } }
     header#page-header #menubar #menu-background {
       display: none; }
     @media (min-width: 900px) {
