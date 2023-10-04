@@ -4383,6 +4383,18 @@ footer h2 {
       .copyright .grid-item {
         width: 33%; } }
 
+/**
+ * @file
+ * Styles for header elements.
+ *
+ * @see _masthead.scss
+ * @see header.twig
+ * @see header.js
+ */
+/* Fix node preview pages to keep the preview controls from overtaking the header. */
+.node-preview-container {
+  position: relative; }
+
 header#page-header {
   /* 0. Site alerts */
   /* I. Logobar */

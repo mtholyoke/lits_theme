@@ -1,73 +1,16 @@
-// /**
-//  * @file
-//  * Styles for header elements.
-//  *
-//  * @see _masthead.scss
-//  * @see header.twig
-//  * @see header.js
-//  */
-// // a stupid height, but whatever that's how tall it is
-// $node-preview-height: 156px;
-
-// body:not(.alert-active) {
-//   // Make the Drupal toolbar for logged-in user consistent about not scrolling.
-//   #toolbar-administration.toolbar-oriented .toolbar-bar {
-//     position: fixed;
-//   }
-
-//   header#page-header {
-//     z-index: 2;
-//     position: fixed;
-//     top: 0;
-//     width: 100%;
-//     // start handling overflow of fixed element
-//     max-height: 100vh;
-//     overflow-y: auto;
-//     // end handling overflow of fixed element
-
-//     // TODO: Hack- This is needed to avoid unnecessary random vertical scroll in the header for...reasons
-//     padding-bottom: 1px;
-//   }
-
-//   &.toolbar-vertical header#page-header,
-//   &.toolbar-horizontal header#page-header {
-//     top: 39px;
-//   }
-
-//   &.toolbar-horizontal.toolbar-tray-open header#page-header {
-//     top: 79px;
-//   }
-// }
-
-// /* Fix node preview pages to keep the preview controls from overtaking the header. */
-// body.node-preview-enabled {
-//   .node-preview-container {
-//     background-color: $white;
-
-//     label {
-//       display: block;
-//     }
-//   }
-
-//   #imagebar {
-//     margin-top: calc(60px + $node-preview-height);
-//   }
-
-//   &:not(.alert-active) {
-//     &.toolbar-vertical header#page-header,
-//     &.toolbar-horizontal header#page-header {
-//       top: 39px + $node-preview-height;
-//     }
-
-//     &.toolbar-horizontal.toolbar-tray-open header#page-header {
-//       top: 79px + $node-preview-height;
-//     }
-//   }
-
-//   &.alert-active header {
-//     padding-top: $node-preview-height;
-//   }
-// }
+/**
+ * @file
+ * Styles for header elements.
+ *
+ * @see _masthead.scss
+ * @see header.twig
+ * @see header.js
+ */
+ 
+/* Fix node preview pages to keep the preview controls from overtaking the header. */
+.node-preview-container {
+  position: relative;
+}
 
 header#page-header {
   $logobar-min-height: 3.75rem;
