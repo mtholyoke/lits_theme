@@ -28,7 +28,6 @@
         $menuWrapper.toggleClass("main-nav--open").slideToggle();
       });
       $(window).resize(() => {
-        console.log($(window).width());
         if ($(window).width() >= 900) {
           $toggleExpand.removeClass("toggle-expand--open");
           $menuWrapper.removeClass("main-nav--open").attr("style", "");
