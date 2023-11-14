@@ -5,9 +5,6 @@
 
 html {
   box-sizing: border-box;
-
-  // TODO: remove this!
-  // overflow-x: hidden;
 }
 
 *,
@@ -24,80 +21,28 @@ html {
   top: 0;
   z-index: -1;
   background-color: $white;
+  color: $white;
   padding: 1rem;
 }
 
 #skip-to-main:focus {
   z-index: 3;
+  color: $dark-blue;
 }
 
 body .dialog-off-canvas-main-canvas {
   @include full-viewport;
 }
 
-/* III. Imagebar */
-
-#imagebar {
-  // .layout-stripe sets width 100%, margin 0, padding 0.
-  display: none;
-  height: 0;
-  margin-top: 60px; // TODO deal with admin toolbars later
-  // margin-bottom: -108px;
-  // TODO: allow node to override:
-
-  @include breakpoint($medium-width) {
-    display: block;
-    height: 256px;
-    background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
-    background-size: 100%;
-  }
-
-  @include breakpoint($large-width) {
-    background: $white url('../images/banners/williston-beauty-xl-banner.jpg') no-repeat center center;
-    background-size: 100%;
-  }
-
-  @include breakpoint($max-width) {
-    background: $white url('../images/banners/williston-beauty-full-banner.jpg') no-repeat center center;
-    background-size: 100%;
-  }
-
-  body.alert-active & {
-    display: none;
-  }
-}
 
 #main-content {
-  // @extend .layout-stripe;
-  //
   width: 100%;
   margin-bottom: 1rem;
 
-  body.alert-active & {
-    background-color: $white;
-  }
 }
 
-body:not(.alert-active) #main-content {
-  margin-top: 108px; // TODO deal with} admin toolbars later
-  // padding-top: 108px;
-
-  @include breakpoint($medium-width) {
-    margin-top: 0;
-  }
-}
 
 /* V. Messages */
-
-// #messagebar {
-//   padding-top: calc(60px + 48px); // search toggle + menubar
-//
-//   @include breakpoint($medium-width) {
-//     & {
-//       padding-top: 0;
-//     }
-//   }
-// }
 
 .layout-container {
   display: flex;
