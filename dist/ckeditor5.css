@@ -1,163 +1,202 @@
+/**
+ * @file
+ * Color variables.
+ */
+/* Primary colors */
+/* Background colors */
+/* Accent colors */
+/** new colors **/
+/**
+* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos
+*/
+/**
+ * @file
+ * Reusable styles for links.
+ */
+/**
+ * Standard links in running text on white background.
+ *
+ * Contrast ratios for $med-blue:
+ * - $white      => 4.65
+ * - $pale-gray  => 3.51 not sufficient for standard size text
+ * - $charcoal   => 3.49 acceptable as contrasting text
+ *
+ * Contrast ratios for $dark-blue:
+ * - $white      => 9.60
+ * - $pale-gray  => 7.23
+ * - $charcoal   => 1.81 not distinct at all
+ */
+/**
+ * Links on $black or $charcoal backgrounds should include or extend this.
+ *
+ * Contrast ratios for $light-blue:
+ * - $black    =>  7.75
+ * - $charcoal =>  6.42
+ * - $white    =>  2.71 not sufficiently distinct without underline
+ *
+ * Contrast ratios for $pale-gray:
+ * - $black    => 15.83
+ * - $charcoal => 13.12
+ * - $white    =>  1.33 not distinct at all
+ */
+/**
+ * Links on blue backgrounds should include or extend this.
+ *
+ * Most are obvious as navigation because of context; no underline necessary.
+ *
+ * Contrast ratios for $white:
+ * - $dark-blue => 9.60
+ * - $med-blue  => 4.66
+ *
+ * Contrast ratios for $light-blue:
+ * - $dark-blue => 3.54
+ * - $med-blue  => 1.72
+ */
+/**
+ * Link on Blue Background
+ *
+ * Used by:
+ * - @compounds/location-teaser
+ */
 a {
   color: #07c;
-  text-decoration: none
+  text-decoration: none;
 }
-
-a:link,
-a:visited {
-  color: #07c
+a:link, a:visited {
+  color: #07c;
 }
-
-a:active,
-a:hover {
+a:active, a:hover {
   color: #004876;
-  -webkit-text-decoration: underline solid;
-  text-decoration: underline solid
+  text-decoration: underline solid;
 }
-
 a:focus {
   outline-offset: 2px;
   outline: 3px solid #004876;
-  -webkit-text-decoration: underline solid;
-  text-decoration: underline solid
+  text-decoration: underline solid;
 }
 
 .bluebg a,
 a.bluebg {
-  color: #fff;
-  text-decoration: none
+  color: white;
+  text-decoration: none;
 }
-
-.bluebg a:link,
-.bluebg a:visited,
+.bluebg a:link, .bluebg a:visited,
 a.bluebg:link,
 a.bluebg:visited {
-  color: #fff
+  color: white;
 }
-
-.bluebg a:active,
-.bluebg a:hover,
+.bluebg a:active, .bluebg a:hover,
 a.bluebg:active,
 a.bluebg:hover {
   color: #ccdae3;
-  -webkit-text-decoration: underline solid;
-  text-decoration: underline solid
+  text-decoration: underline solid;
 }
-
 .bluebg a:focus,
 a.bluebg:focus {
   outline-offset: 2px;
-  outline: 3px solid #fff;
-  -webkit-text-decoration: underline solid;
-  text-decoration: underline solid
+  outline: 3px solid white;
+  text-decoration: underline solid;
 }
-
 .bluebg a svg:focus,
 a.bluebg svg:focus {
   outline-offset: 2px;
-  outline: 3px solid #fff;
-  -webkit-text-decoration: underline solid;
-  text-decoration: underline solid
+  outline: 3px solid white;
+  text-decoration: underline solid;
 }
 
-.ck-editor h1,
-.h1,
-.text-long h1,
-h1 {
+/**
+ * Links on green backgrounds should include or extend this.
+ *
+ * Contrast ratios for $green background
+ * $white     => 4.66
+ * $pale-gray => 3.51 not sufficient for standard size text
+ */
+/**
+ * Links on $pale-gray backgrounds should include or extend this.
+ *
+ * Contrast ratios for $pale-gray background
+ * $dark-blue     => 7.23
+ * $med-gray => 3.51 not sufficient for standard size text
+ */
+.h1, .ck-editor h1, .text-long h1, h1 {
   color: #1a1a1a;
   font-family: ars-maquette-web, sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 2rem;
   line-height: 1.4;
-  margin: 20px 0 .5em;
-  width: auto
+  margin: 20px 0 0.5em;
+  width: auto;
 }
-
 .h1__link {
-  color: #07c
+  color: #07c;
 }
-
 .h1__link:hover {
-  color: inherit
+  color: inherit;
 }
 
-.ck-editor .ck-button.ck-heading_heading2,
-.ck-editor h2,
-.h2,
-.text-long h2 {
+.h2, .ck-editor h2,
+.ck-editor .ck-button.ck-heading_heading2, .text-long h2 {
   color: #1a1a1a;
   font-family: ars-maquette-web, sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 1.8rem;
   line-height: 1.4;
-  margin: 10px 0 .5em;
-  width: auto
+  margin: 10px 0 0.5em;
+  width: auto;
 }
-
 .h2__link {
-  color: #07c
+  color: #07c;
 }
-
 .h2__link:hover {
-  color: inherit
+  color: inherit;
 }
 
-.ck-editor .ck-button.ck-heading_heading3,
-.ck-editor h3,
-.h3,
-.text-long h3 {
+.h3, .ck-editor h3,
+.ck-editor .ck-button.ck-heading_heading3, .text-long h3 {
   color: #5c7f1a;
   font-family: ars-maquette-web, sans-serif;
   font-weight: 700;
   font-style: normal;
   font-size: 1.4rem;
   line-height: 1.6;
-  margin: 10px 0 .5em;
+  margin: 10px 0 0.5em;
   width: auto;
-  font-weight: 700
+  font-weight: bold;
 }
-
 .h3__link {
-  color: #07c
+  color: #07c;
 }
-
 .h3__link:hover {
-  color: inherit
+  color: inherit;
 }
 
-.ck-editor .ck-button.ck-heading_heading4,
-.ck-editor h4,
-.h4,
-.text-long h4 {
+.h4, .ck-editor h4,
+.ck-editor .ck-button.ck-heading_heading4, .text-long h4 {
   color: #6e6259;
   font-family: ars-maquette-web, sans-serif;
   font-weight: 600;
   font-style: normal;
   font-size: 1.2rem;
   line-height: 1.6;
-  margin: 10px 0 .5em;
+  margin: 10px 0 0.5em;
   width: auto;
   text-transform: uppercase;
-  font-weight: 400
+  font-weight: normal;
 }
-
 .h4__link {
-  color: #07c
+  color: #07c;
 }
-
 .h4__link:hover {
-  color: inherit
+  color: inherit;
 }
 
-.ck-editor .ck-button.ck-heading_heading5,
-.ck-editor .ck-button.ck-heading_heading6,
-.ck-editor h5,
-.ck-editor h6,
-.h5,
+.h5, .ck-editor h5,
+.ck-editor .ck-button.ck-heading_heading5, .text-long h5,
 .h6,
-.text-long h5,
+.ck-editor h6,
+.ck-editor .ck-button.ck-heading_heading6,
 .text-long h6 {
   color: #6e6259;
   font-family: ars-maquette-web, sans-serif;
@@ -165,20 +204,19 @@ h1 {
   font-style: normal;
   font-size: 1.1rem;
   line-height: 2;
-  margin: 10px 0 .5em;
-  width: auto
+  margin: 10px 0 0.5em;
+  width: auto;
 }
-
 .h5__link,
 .h6__link {
-  color: #07c
+  color: #07c;
 }
-
 .h5__link:hover,
 .h6__link:hover {
-  color: inherit
+  color: inherit;
 }
 
+/** hours open title **/
 #logobar-hours-content h3 {
   color: #004876;
   font-family: ars-maquette-web, sans-serif;
@@ -186,39 +224,39 @@ h1 {
   font-style: normal;
   font-size: 1.4rem;
   line-height: 1.6;
-  margin: 10px 0 .5em;
+  margin: 10px 0 0.5em;
   width: auto;
   font-size: 1rem;
-  margin-bottom: 0
+  margin-bottom: 0;
 }
-
 #logobar-hours-content h3__link {
-  color: #07c
+  color: #07c;
 }
-
 #logobar-hours-content h3__link:hover {
-  color: inherit
+  color: inherit;
 }
 
+/** Search query styling **/
 h1 span.search-query {
   font-style: italic;
-  color: #a20067
+  color: #a20067;
 }
 
+/** Search Result Title **/
 .search-results h2 {
   font-size: 1.6rem;
-  font-weight: 400;
+  font-weight: normal;
   background-color: #004876;
-  color: #fff;
+  color: white;
   padding: 10px 15px;
   -webkit-margin-after: 5px;
-  margin: 0 0 5px
+  margin: 0 0 5px;
 }
 
-.search-website h2.search-result-title,
-.search-website h3.search-result-title {
-  -webkit-margin-before: .5em;
-  -webkit-margin-after: .5em
+/** style the element **/
+.search-website h3.search-result-title, .search-website h2.search-result-title {
+  -webkit-margin-before: 0.5em;
+  -webkit-margin-after: 0.5em;
 }
 
 .library-accounts-wrap h2 {
@@ -226,28 +264,29 @@ h1 span.search-query {
   margin: auto 0;
   text-align: left;
   padding: 0;
-  font-weight: 400
+  font-weight: normal;
 }
 
-.bentos h2.search-result-title,
-.bentos h3.search-result-title {
+.bentos {
+  /** Search page heading styling **/
+}
+.bentos h2.search-result-title, .bentos h3.search-result-title {
   margin: 15px 0;
   font-weight: 300;
   font-size: 1.4rem;
-  line-height: 1.85rem
+  line-height: 1.85rem;
 }
-
 .bentos h4.search-result-authors {
   margin-top: 0;
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
   font-weight: 300;
   font-size: 1rem;
-  line-height: 1.7rem
+  line-height: 1.7rem;
 }
 
 .staff-card h2 {
-  margin-bottom: 0
+  margin-bottom: 0;
 }
 
 body,
@@ -257,174 +296,152 @@ optgroup,
 select,
 textarea {
   color: #1a1a1a;
-  font-family: ars-maquette-web, sans-serif;
+  font-family: "ars-maquette-web", sans-serif;
   font-size: 1.2rem;
-  line-height: 2rem
+  line-height: 2rem;
 }
 
-.ck-editor p,
-.paragraph,
-.text-long p {
-  margin: 0 0 1em
+.paragraph, .ck-editor p, .text-long p {
+  margin: 0 0 1em;
 }
 
-.blockquote,
-.ck-editor blockquote,
-.text-long blockquote {
+.blockquote, .ck-editor blockquote, .text-long blockquote {
   font-style: italic;
   border-left: solid 3px #999;
   margin-left: 1em;
-  padding-left: 1em
+  padding-left: 1em;
 }
 
-.hr,
-.text-long hr {
+.hr, .text-long hr {
   border-style: solid;
   border-width: 1px 0 0;
-  color: currentColor
+  color: currentColor;
 }
 
 address {
-  font-style: normal
+  font-style: normal;
 }
 
 hr.divider {
   margin-top: 1rem;
   margin-bottom: 1rem;
-  color: #5c7f1a
+  color: #5c7f1a;
 }
 
+/** Closing soon, open now, closed styling **/
 .open-now-container svg.border {
-  color: #fff
+  color: white;
 }
-
 .open-now-container .closing_soon svg.indicator {
-  color: #ff9e1b
+  color: #ff9e1b;
 }
-
 .open-now-container .open_now svg.indicator {
-  color: #5c7f1a
+  color: #5c7f1a;
 }
-
 .open-now-container .closed_now svg.indicator {
-  color: #ef3340
+  color: #ef3340;
 }
 
 .ampm {
-  font-variant: small-caps
+  font-variant: small-caps;
 }
 
+/** Accessibility text **/
 .nav .visually-hidden {
-  color: #fff
+  color: white;
 }
 
+/** Shown Temporarily **/
 img.lits_filter.inline {
   display: inline;
-  margin: 0
+  margin: 0;
 }
-
 img.lits_filter.inline.mhcgetit {
-  vertical-align: middle
+  vertical-align: middle;
 }
 
-#main-content.main-sidebar-side article.node ol,
 #main-content.main-sidebar-side article.node ul,
-#sidebar-container ol,
-#sidebar-container ul {
+#main-content.main-sidebar-side article.node ol,
+#sidebar-container ul,
+#sidebar-container ol {
   padding-left: 0;
-  margin-left: 2em
+  margin-left: 2em;
 }
 
 ul {
   list-style-type: circle;
-  list-style-position: outside
+  list-style-position: outside;
 }
 
 ol {
-  list-style-type: decimal
+  list-style-type: decimal;
 }
 
-.ck-editor ol li,
-.ck-editor ul li,
-.list-item {
-  margin-bottom: .2em;
-  padding-left: 1em
+.list-item, .ck-editor ol li,
+.ck-editor ul li {
+  margin-bottom: 0.2em;
+  padding-left: 1em;
 }
 
-.ck-editor table,
-.table,
-.text-long table {
+/**
+.text-long {
+  ol,
+  ul {
+    li {
+      @extend .list-item;
+    }
+  }
+}
+**/
+.table, .ck-editor table, .text-long table {
   border: 1px solid #e2dfdd;
   border-radius: 4px;
   border-spacing: 0;
   background-color: #f8f8f8;
   width: 100%;
-  margin-bottom: 50px
+  margin-bottom: 50px;
 }
 
-.ck-editor th,
-.table__heading-cell,
-.text-long th {
+.table__heading-cell, .ck-editor th, .text-long th {
   border: none;
   border-left: 1px solid #e2dfdd;
-  color: #000;
+  color: black;
   font-weight: 700;
   padding: 1.2em;
-  text-align: left
+  text-align: left;
+}
+.table__heading-cell:first-child, .ck-editor th:first-child, .text-long th:first-child {
+  border: none;
 }
 
-.ck-editor th:first-child,
-.table__heading-cell:first-child,
-.text-long th:first-child {
-  border: none
+.table__row:nth-child(odd), .ck-editor tbody tr:nth-child(odd), .text-long tbody tr:nth-child(odd) {
+  background-color: white;
+}
+.table__row:last-child td:first-child, .ck-editor tbody tr:last-child td:first-child, .text-long tbody tr:last-child td:first-child {
+  border-radius: 0 0 0 5px;
+}
+.table__row:last-child td:last-child, .ck-editor tbody tr:last-child td:last-child, .text-long tbody tr:last-child td:last-child {
+  border-radius: 0 0 5px;
 }
 
-.ck-editor tbody tr:nth-child(odd),
-.table__row:nth-child(odd),
-.text-long tbody tr:nth-child(odd) {
-  background-color: #fff
-}
-
-.ck-editor tbody tr:last-child td:first-child,
-.table__row:last-child td:first-child,
-.text-long tbody tr:last-child td:first-child {
-  border-radius: 0 0 0 5px
-}
-
-.ck-editor tbody tr:last-child td:last-child,
-.table__row:last-child td:last-child,
-.text-long tbody tr:last-child td:last-child {
-  border-radius: 0 0 5px
-}
-
-.ck-editor td,
-.table__cell,
-.text-long td {
+.table__cell, .ck-editor td, .text-long td {
   border: 1px solid #e2dfdd;
   border-left: none;
   border-bottom: none;
-  padding: 1em
+  padding: 1em;
+}
+.table__cell:last-child, .ck-editor td:last-child, .text-long td:last-child {
+  border-right: none;
 }
 
-.ck-editor td:last-child,
-.table__cell:last-child,
-.text-long td:last-child {
-  border-right: none
-}
-
-.ck-editor tfoot th,
-.ck-editor tfoot th:first-child,
-.table__footer-cell,
-.table__footer-cell:first-child,
-.text-long tfoot th,
-.text-long tfoot th:first-child {
+.table__footer-cell, .ck-editor tfoot th, .text-long tfoot th,
+.table__footer-cell:first-child {
   border-left: none;
-  border-top: 1px solid #e2dfdd
+  border-top: 1px solid #e2dfdd;
 }
 
-.ck.ck-toolbar.ck-toolbar_grouping>.ck-toolbar__items {
-  -ms-flex-wrap: wrap !important;
-  flex-wrap: wrap !important
+.ck.ck-toolbar.ck-toolbar_grouping > .ck-toolbar__items {
+  flex-wrap: wrap !important;
 }
 
-/*# sourceMappingURL=ckeditor5.css.map */
+/*# sourceMappingURL=ckeditor5.css.map*/
