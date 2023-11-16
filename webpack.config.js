@@ -17,22 +17,23 @@ const modules = [
   '/components/'
 ]
 
-
-var js_files = []
-var sass_files = ["/components/style.scss"] // all of the sass files to include are managed inside of style.scss
-
+// -- Gather lits_theme JavaScript and SASS --
+var lits_theme_files = [ "/components/style.scss" ]
 for (var i of modules) { // collect all of the files
   dir = __dirname + i
   // add all the js files
-  js_files = js_files.concat(glob.sync(dir + src_js))
+  lits_theme_files = lits_theme_files.concat(glob.sync(dir + src_js))
 }
 
+// -- Gather CKEditor  JavaScript and SASS --
+// Right now there are no JS files being transpiled for ckeditor5; if that changes you'll need to alter .gitignore
+var cke_files = ["/components/02-compounds/ckeditor5/ckeditor5.scss"]
 
 module.exports =  {
     devtool: 'source-map',
     entry: {
-      lits_theme: js_files,
-      lits_theme_styles: sass_files,
+      lits_theme: lits_theme_files,
+      ckeditor5: cke_files,
     },
 
     output: {
@@ -44,7 +45,7 @@ module.exports =  {
     // include the necessary plugins
     plugins: [
       new MiniCssExtractPlugin({
-        filename: 'lits_theme.css',
+        filename: '[name].css',
         chunkFilename: '[name].css',
       }),
     ],
