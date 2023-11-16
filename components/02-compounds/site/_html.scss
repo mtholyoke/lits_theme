@@ -13,7 +13,9 @@ html {
   box-sizing: inherit;
 }
 
-@include focus;
+* {
+  @include focus;
+}
 
 // Skip to main link should be fixed behind the header by default and pop above the header on focus
 #skip-to-main {
