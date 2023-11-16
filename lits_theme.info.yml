@@ -11,6 +11,9 @@ core_version_requirement: ^9 || ^10
 dependencies:
   - drupal:emulsify_twig
 generator: 'starterkit_theme:9.5.10'
+# CKEditor stylesheet loads in wysiwyg to give content editors a better experience
+ckeditor5-stylesheets:
+  - dist/ckeditor5.css
 regions:
   header: 'Header'
   content: 'Main content'  # the content region is required
