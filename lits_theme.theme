@@ -10,6 +10,7 @@ use Drupal\Core\Url;
 use Drupal\file\Entity\File;
 use Drupal\media\Entity\Media;
 use Drupal\taxonomy\Entity\Term;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 /**
  * @file
@@ -490,23 +491,43 @@ function lits_theme_preprocess_node__article__search_result(&$variables) {
 * Implements hook_preprocess_node().
 *
 * If field_meal empty, then show the contents of field_bite instead
+* If field_url is not empty, the URL is external, and the current user does not
+*    have permission to edit it – redirect to field_url instead of showing the 
+*    node.
 */
 function lits_theme_preprocess_node__news_item__full(&$variables) {
-
   $node = $variables['node'];
   $meal = $node->get('field_meal')->getValue();
 
+  // Find URL for the node
+  $fieldUrlArray = $node->get('field_url')->getValue();
+  if (is_array($fieldUrlArray) && !empty($fieldUrlArray) && is_array($fieldUrlArray[0]) && array_key_exists('uri', $fieldUrlArray[0]) && !empty($fieldUrlArray[0]['uri'])) {
+    $fieldUrlUri = $fieldUrlArray[0]['uri'];
+  }
+
+  // If field_meal empty, then show the contents of field_bite instead
   if (is_array($meal) && empty($meal)) {
     $bite = $node->get('field_bite')->getValue();
     $uri = 'entity:node/' . $node->id();
-    $val = $node->get('field_url')->getValue();
-    if (is_array($val) && !empty($val) && is_array($val[0]) && array_key_exists('uri', $val[0]) && !empty($val[0]['uri'])) {
-      $uri = $val[0]['uri'];
+    
+    if (!empty($fieldUrlUri)) {
+      $uri = $fieldUrlUri;
     }
 
     $variables['content']['no-meal'] = [
       '#markup' =>  $bite[0]['value'] . $uri ,
     ];
+  }
+
+  // If field_url is not empty, the URL is external, and the current user does not
+  //    have permission to edit it – redirect to field_url instead of showing the 
+  //    node.
+  if (!empty($fieldUrlUri)) {
+    $fieldUrlUrl = Url::fromUri($fieldUrlUri);
+    if ($fieldUrlUrl->isExternal() && ! \Drupal::currentUser()->hasPermission('edit news item')) {
+      $redirect = new RedirectResponse($fieldUrlUrl->toString());
+      $redirect->send();
+    }
   }
 }
 
