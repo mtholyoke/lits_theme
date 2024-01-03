@@ -491,9 +491,8 @@ function lits_theme_preprocess_node__article__search_result(&$variables) {
 * Implements hook_preprocess_node().
 *
 * If field_meal empty, then show the contents of field_bite instead
-* If field_url is not empty, the URL is external, and the current user does not
-*    have permission to edit it – redirect to field_url instead of showing the 
-*    node.
+* If field_url is not empty and the current user does not have permission to
+*    edit it, redirect to field_url instead of showing the node.
 */
 function lits_theme_preprocess_node__news_item__full(&$variables) {
   $node = $variables['node'];
@@ -519,12 +518,11 @@ function lits_theme_preprocess_node__news_item__full(&$variables) {
     ];
   }
 
-  // If field_url is not empty, the URL is external, and the current user does not
-  //    have permission to edit it – redirect to field_url instead of showing the 
-  //    node.
+  // If field_url is not empty and the current user does not have permission to
+  //    edit it, redirect to field_url instead of showing the node.
   if (!empty($fieldUrlUri)) {
     $fieldUrlUrl = Url::fromUri($fieldUrlUri);
-    if ($fieldUrlUrl->isExternal() && ! \Drupal::currentUser()->hasPermission('edit news item')) {
+    if (! \Drupal::currentUser()->hasPermission('edit news item')) {
       $redirect = new RedirectResponse($fieldUrlUrl->toString());
       $redirect->send();
     }
