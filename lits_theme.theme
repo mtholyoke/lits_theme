@@ -627,10 +627,11 @@ function lits_theme_sort_system_status_updates(&$variables, $returnAllUpdates) {
   if (!$returnAllUpdates) {
     if (count($variables['content']['field_comments'][0]['comments']) > 0) {
       $mostRecentUpdate = $variables['content']['field_comments'][0]['comments'][0];
-      // Only add comments with modification dates that are reasonably current
+      // Only add comments with modification dates that are reasonably current,
+      //  or if the status is unavailable, degraded, or planned maintenance  (status_id less than 40).
       $cutoff = strtotime('-7 days');
       $modified = $mostRecentUpdate['#comment']->getChangedTime();
-      if($cutoff < $modified) {
+      if($cutoff < $modified || $variables['content']['#status_id'] < "40") {
         foreach (array_keys($variables['content']['field_comments'][0]['comments']) as $key) {
           if (is_numeric($key) && $key != 0) {
             $variables['content']['field_comments'][0]['comments'][$key] = NULL;
