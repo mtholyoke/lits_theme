@@ -1,3 +1,5 @@
+@use "sass:math";
+
 /**
  * @file
  * Variables, functions, and mixins to support responsiveness.
@@ -53,7 +55,7 @@ $content-max-width: $max-width;
  * TODO: Is 1rem => 16px explicitly specified anywhere?
  */
 @function rem-to-px($rem) {
-  @return ($rem / 1rem) * 16px;
+  @return math.div($rem, 1rem) * 16px;
 }
 
 /**
@@ -92,7 +94,7 @@ $content-max-width: $max-width;
     $max-allowed: '((#{$max-width} - #{$medium-width}) / #{squish-factor()})'; // from squishy-padding
     $padding: '(#{$min-padding} + #{$max-allowed})'; // from squishy-padding -- this is the padding for the inner/non-stretch edge
     $padding-stretch: '(#{$padding} + ((100% - #{$max-width}) / 2))';// from squishy-padding -- this is the padding for the outer/stretchy edge
-    $unitless-basis: strip-unit($large-basis / 100);// convert percentage value (eg '62%'') to a mathy ratio value (eg '0.62')
+    $unitless-basis: strip-unit(math.div($large-basis, 100));// convert percentage value (eg '62%'') to a mathy ratio value (eg '0.62')
     $content-area-width: '((#{$content-max-width} * #{$unitless-basis}) - #{$padding})'; // width of the content, given the large basis and the maximum possible content area
 
     @if ($type == stretch) {
@@ -107,7 +109,7 @@ $content-max-width: $max-width;
 /// https://css-tricks.com/snippets/sass/strip-unit-function/
 @function strip-unit($number) {
   @if type-of($number) == 'number' and not unitless($number) {
-    @return $number / ($number * 0 + 1);
+    @return math.div($number, ($number * 0 + 1));
   }
 
   @return $number;
@@ -209,7 +211,7 @@ $content-max-width: $max-width;
  */
 @mixin squishy-padding($side, $type: bare) {
   $min-padding: 0.5rem;
-  $max-allowed: '((#{$max-width} - #{$medium-width}) / #{squish-factor()})';
+  $max-allowed: 'math.div((#{$max-width} - #{$medium-width}), #{squish-factor()})';
 
   padding-#{$side}: $min-padding;
 
