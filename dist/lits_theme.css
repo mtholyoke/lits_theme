@@ -6678,6 +6678,11 @@ h2.bentos {
 .study-space-finder {
   align-items: flex-start;
 }
+.study-space-finder .find-reservable-msg {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1em;
+}
 .study-space-finder .filters-title {
   margin: 0;
 }
