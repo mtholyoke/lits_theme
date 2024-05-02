@@ -609,41 +609,39 @@ function lits_theme_preprocess_node__study_space__search_result_long(&$variables
  */
 function lits_theme_preprocess_node__system_status__full(&$variables) {
   lits_theme_add_system_status_icon($variables);
-  lits_theme_sort_system_status_updates($variables, true);
+  // lits_theme_sort_system_status_updates($variables, true);
 }
 function lits_theme_preprocess_node__system_status__teaser(&$variables) {
   lits_theme_add_system_status_icon($variables);
-  lits_theme_sort_system_status_updates($variables, false);
-}
 
-function lits_theme_sort_system_status_updates(&$variables, $returnAllUpdates) {
-  // Comments are ordered by ascending ID order by default, so reverse them
-  // IMPORTANT NOTES:
-  //   - It seems that comments are sorted base on their ID, not post time.
-  //   - Adding a reply to a comment does not change the parent comment's
-  //     position in the list.
-  $variables['content']['field_comments'][0]['comments'] = array_reverse($variables['content']['field_comments'][0]['comments']);
+  // Get ID of most recent comment for this system
+  $mostRecentUpdateId = 0;
+  foreach (array_keys($variables['content']['field_comments'][0]['comments']) as $key) {
+    if (is_numeric($key) && $key != 0 && gettype($key) != 'boolean') {
+      $mostRecentUpdateId = $key;
+      break;
+    }
+  }
 
-  // If not returning all updates, just return the most recent one
-  if (!$returnAllUpdates) {
-    if (count($variables['content']['field_comments'][0]['comments']) > 0) {
-      $mostRecentUpdate = $variables['content']['field_comments'][0]['comments'][0];
-      // Only add comments with modification dates that are reasonably current,
-      //  or if the status is unavailable, degraded, or planned maintenance  (status_id less than 40).
-      $cutoff = strtotime('-7 days');
-      $modified = $mostRecentUpdate['#comment']->getChangedTime();
-      if($cutoff < $modified || $variables['content']['#status_id'] < "40") {
-        foreach (array_keys($variables['content']['field_comments'][0]['comments']) as $key) {
-          if (is_numeric($key) && $key != 0) {
-            $variables['content']['field_comments'][0]['comments'][$key] = NULL;
-          }
+  // If there's a comment, grab it, check that it's recent enough/the status is appropriate, then blank the rest of the comments for this page
+  if ($mostRecentUpdateId > 0) {
+    $mostRecentUpdate = $variables['content']['field_comments'][0]['comments'][$mostRecentUpdateId];
+    // Only add comments with modification dates that are reasonably current,
+    //  or if the status is unavailable, degraded, or planned maintenance  (status_id less than 40).
+    $cutoff = strtotime('-7 days');
+    $modified = $mostRecentUpdate['#comment']->getChangedTime();
+    if($cutoff < $modified || $variables['content']['#status_id'] < "40") {
+      foreach (array_keys($variables['content']['field_comments'][0]['comments']) as $key) {
+        if (is_numeric($key) && $key != 0 && $key != $mostRecentUpdateId) {
+          $variables['content']['field_comments'][0]['comments'][$key] = NULL;
         }
-      } else {
-        $variables['content']['field_comments'][0]['comments'] = NULL;
       }
+    } else {
+      $variables['content']['field_comments'][0]['comments'] = NULL;
     }
   }
 }
+
 function lits_theme_add_system_status_icon(&$variables) {
   $node = $variables['node'];
   $current_uri = \Drupal::request()->getRequestUri();
