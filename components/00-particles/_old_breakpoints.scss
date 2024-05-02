@@ -35,7 +35,7 @@ $desktop: $large-width $max-width;
 
 // remove rewrite of breakpoints into EM @include breakpoint-set('to ems', true);
 @include add-grid(12);
-@include add-gutter(1/4);
+@include add-gutter(0.25);
 
 // Original Breakpoints variables
 $xs: 25em;

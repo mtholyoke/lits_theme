@@ -34,7 +34,11 @@
   dom_id ? 'js-view-dom-id-' ~ dom_id,
   "expandable accordion",
 ] %}
-<div{{ attributes.addClass(classes) }}>
+
+<div{{attributes.addClass(classes)}}>
+
+	{{ find_reservable | raw }}
+
   <div class="filters">
     <h2 class="filters-title">
       <button aria-controls="{{ exposed['#id'] }}-container" aria-expanded="false" aria-pressed="false" type="button">

@@ -3295,7 +3295,7 @@ div.search-result-details.btn a:hover {
 @media (min-width: 1920px) {
   .service_desk #block-lits-theme-breadcrumbs,
   .study_space #block-lits-theme-breadcrumbs {
-    padding-right: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-right: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 @media (min-width: 900px) {
@@ -3307,7 +3307,7 @@ div.search-result-details.btn a:hover {
 @media (min-width: 1920px) {
   .service_desk #block-lits-theme-breadcrumbs,
   .study_space #block-lits-theme-breadcrumbs {
-    padding-left: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-left: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 @media (min-width: 600px) {
@@ -3481,7 +3481,7 @@ div.search-result-details.btn a:hover {
 }
 @media (min-width: 1920px) {
   .lits-location .location-content {
-    padding-right: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-right: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 @media (min-width: 900px) {
@@ -3491,7 +3491,7 @@ div.search-result-details.btn a:hover {
 }
 @media (min-width: 1920px) {
   .lits-location .location-content {
-    padding-left: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-left: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 @media (min-width: 600px) {
@@ -5781,7 +5781,7 @@ header#page-header #menubar {
 }
 @media (min-width: 1920px) {
   header#page-header #menubar {
-    padding-bottom: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-bottom: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 @media (min-width: 900px) {
@@ -5883,7 +5883,7 @@ body .dialog-off-canvas-main-canvas #main-content {
 }
 @media (min-width: 1920px) {
   .layout-zone {
-    padding-right: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-right: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 @media (min-width: 900px) {
@@ -5893,7 +5893,7 @@ body .dialog-off-canvas-main-canvas #main-content {
 }
 @media (min-width: 1920px) {
   .layout-zone {
-    padding-left: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-left: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 .service_desk .layout-zone, .study_space .layout-zone {
@@ -5914,7 +5914,7 @@ body .dialog-off-canvas-main-canvas #main-content {
 }
 @media (min-width: 600px) and (min-width: 1920px) {
   .service_desk .layout-zone, .study_space .layout-zone {
-    padding-right: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-right: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 @media (min-width: 600px) and (min-width: 900px) {
@@ -5924,7 +5924,7 @@ body .dialog-off-canvas-main-canvas #main-content {
 }
 @media (min-width: 600px) and (min-width: 1920px) {
   .service_desk .layout-zone, .study_space .layout-zone {
-    padding-left: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-left: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 
@@ -5954,7 +5954,7 @@ body .dialog-off-canvas-main-canvas #main-content {
 }
 @media (min-width: 1920px) {
   .layout-zone-left {
-    padding-left: calc(0.5rem + ((1920px - 900px) / 6) + (100% - 1920px) / 2);
+    padding-left: calc(0.5rem + math.div((1920px - 900px), 6) + (100% - 1920px) / 2);
   }
 }
 
@@ -5974,7 +5974,7 @@ body .dialog-off-canvas-main-canvas #main-content {
 }
 @media (min-width: 1920px) {
   .layout-zone-right {
-    padding-right: calc(0.5rem + ((1920px - 900px) / 6) + (100% - 1920px) / 2);
+    padding-right: calc(0.5rem + math.div((1920px - 900px), 6) + (100% - 1920px) / 2);
   }
 }
 @media (min-width: 900px) {
@@ -6039,7 +6039,7 @@ body .dialog-off-canvas-main-canvas #main-content {
 }
 @media (min-width: 1920px) {
   #main-content.main-sidebar-side #main-wrapper {
-    padding-bottom: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-bottom: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 @media (min-width: 900px) {
@@ -6056,7 +6056,7 @@ body .dialog-off-canvas-main-canvas #main-content {
 }
 @media (min-width: 900px) and (min-width: 1920px) {
   #main-content.main-sidebar-side #main-wrapper {
-    padding-left: calc(0.5rem + ((1920px - 900px) / 6) + (100% - 1920px) / 2);
+    padding-left: calc(0.5rem + math.div((1920px - 900px), 6) + (100% - 1920px) / 2);
   }
 }
 @media (min-width: 900px) and (min-width: 900px) {
@@ -6108,7 +6108,7 @@ body .dialog-off-canvas-main-canvas #main-content {
 }
 @media (min-width: 900px) and (min-width: 1920px) {
   #main-content.main-sidebar-side #sidebar-wrapper, #main-content.main-sidebar-side #newsbar.newsbar-sidebar-side #featured-resources-wrapper, #newsbar.newsbar-sidebar-side #main-content.main-sidebar-side #featured-resources-wrapper {
-    padding-right: calc(0.5rem + ((1920px - 900px) / 6) + (100% - 1920px) / 2);
+    padding-right: calc(0.5rem + math.div((1920px - 900px), 6) + (100% - 1920px) / 2);
   }
 }
 @media (min-width: 900px) and (min-width: 900px) {
@@ -6678,6 +6678,11 @@ h2.bentos {
 .study-space-finder {
   align-items: flex-start;
 }
+.study-space-finder .find-reservable-msg {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 1em;
+}
 .study-space-finder .filters-title {
   margin: 0;
 }
@@ -7096,7 +7101,7 @@ h1 .subtitle {
 }
 @media (min-width: 1920px) {
   #newsbar.newsbar-sidebar-side #news-events {
-    padding-bottom: calc(0.5rem + ((1920px - 900px) / 6));
+    padding-bottom: calc(0.5rem + math.div((1920px - 900px), 6));
   }
 }
 @media (min-width: 900px) {
@@ -7113,7 +7118,7 @@ h1 .subtitle {
 }
 @media (min-width: 900px) and (min-width: 1920px) {
   #newsbar.newsbar-sidebar-side #news-events {
-    padding-left: calc(0.5rem + ((1920px - 900px) / 6) + (100% - 1920px) / 2);
+    padding-left: calc(0.5rem + math.div((1920px - 900px), 6) + (100% - 1920px) / 2);
   }
 }
 @media (min-width: 900px) and (min-width: 900px) {
@@ -7166,7 +7171,7 @@ h1 .subtitle {
 }
 @media (min-width: 900px) and (min-width: 1920px) {
   #newsbar.newsbar-sidebar-side #featured-resources-wrapper {
-    padding-right: calc(0.5rem + ((1920px - 900px) / 6) + (100% - 1920px) / 2);
+    padding-right: calc(0.5rem + math.div((1920px - 900px), 6) + (100% - 1920px) / 2);
   }
 }
 @media (min-width: 900px) and (min-width: 900px) {
