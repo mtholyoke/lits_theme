@@ -59,12 +59,15 @@ body .dialog-off-canvas-main-canvas {
 }
 
 .layout-zone {
-  @include clearfix;
+  @include clearfix();
   @include squishy-padding(right);
   @include squishy-padding(left);
 
-  max-width: $max-width;
-  margin: 0 auto;
+  & {
+    max-width: $max-width;
+    margin: 0 auto;
+  }
+
 
   .service_desk &,
   .study_space & {
@@ -75,7 +78,9 @@ body .dialog-off-canvas-main-canvas {
       @include squishy-padding(right);
       @include squishy-padding(left);
 
-      margin: 0 auto;
+      & {
+        margin: 0 auto;
+      }
     }
   }
 }

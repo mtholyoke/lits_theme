@@ -59,14 +59,14 @@
   }
 
   button {
+    margin: 15px auto;
+    
     @include focus($dark-blue, link);
 
-    margin: 15px auto;
-
     .lits_homepage & {
-      @include focus($light-orange, link);
-
       border: 3px solid $light-blue;
+
+      @include focus($light-orange, link);
     }
 
     @include breakpoint($medium-width) {

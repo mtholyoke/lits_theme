@@ -5,12 +5,12 @@
  * @see lits_search_form_views_exposed_form_alter().
  */
 .study-space-filters {
+  line-height: 1rem;
+  background-color: $white;
+
   @include breakpoint($small-width) {
     width: 100%;
   }
-
-  line-height: 1rem;
-  background-color: $white;
 
   #views-exposed-form-study-spaces-page-1 {
     @include breakpoint($small-width) {

@@ -57,9 +57,9 @@
       border-bottom: 1px solid $gray;
 
       th {
-        @include heading-medium($color: $charcoal);
-
         white-space: nowrap;
+
+        @include heading-medium($color: $charcoal);
       }
     }
 
@@ -176,10 +176,10 @@
     }
 
     .col-header {
-      @include heading-medium($color: $charcoal);
-
       margin: 0;
       display: none;
+
+      @include heading-medium($color: $charcoal);
     }
   }
 

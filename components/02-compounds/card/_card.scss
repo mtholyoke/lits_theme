@@ -8,10 +8,8 @@
 }
 
 .card__subtitle {
-  @include heading-medium($font-size: 1rem);
+  @include heading-medium($font-size: 1rem, $color: $gray);
   @include no-bottom;
-
-  color: $gray;
 }
 
 .card__body {

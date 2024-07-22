@@ -11,18 +11,20 @@
   }
 
   h2 {
+    background-color: $green;
+    color: $white;
+
     @include squishy-gutter(right, $max-padding:1rem);
     @include squishy-gutter(left, $max-padding:1rem);
     @include squishy-gutter(top, $max-padding:1rem);
     @include squishy-gutter(bottom, $max-padding:1rem);
 
-    background-color: $green;
-    color: $white;
-
     a {
       @include link-on-green;
 
-      text-decoration: underline solid;
+      & {
+        text-decoration: underline solid;
+      }
     }
   }
 
@@ -35,13 +37,13 @@
   }
 
   ul {
+    font-size: 1.2rem;
+
     @include list-reset;
     @include squishy-gutter(right, $max-padding:2rem);
     @include squishy-gutter(left, $max-padding:2rem);
     @include squishy-gutter(top, $max-padding:1rem);
     @include squishy-gutter(bottom, $max-padding:1rem);
-
-    font-size: 1.2rem;
 
     a:active,
     a:hover {

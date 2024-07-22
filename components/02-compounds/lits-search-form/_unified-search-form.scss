@@ -69,7 +69,11 @@
   }
 
   & #edit-lits-search-go {
-    @include button;
+    /* Don't let the search button grow */
+    flex: 0 1 auto;
+    width: auto;
+
+    @include button($margin: auto);
 
     .lits_homepage & {
       border: 3px solid $light-blue;
@@ -78,11 +82,6 @@
     .lits_page & {
       padding: 12px;
     }
-
-    /* Don't let the search button grow */
-    flex: 0 1 auto;
-    width: auto;
-    margin: auto;
   }
 
   /** 900px+ */

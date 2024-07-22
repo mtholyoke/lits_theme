@@ -30,21 +30,21 @@ footer h2 {
 /* I.A. Contactbar > Hours wrapper */
 
 #hours-wrapper {
-  // .layout-zone-left sets squishy padding on left and gutter on right.
-  @include responsive-basis(38%, 33%, 28%);
-  @include squishy-gutter(top);
-  @include squishy-gutter(bottom);
-
   flex: 0 1 auto; // hours should not grow to take up extra space, contact should
   display: flex;
   flex-flow: column wrap;
   min-width: 14rem; // Just to keep the header from wrapping, really
 
-  .more-hours {
-    @include button-on-dark-red;
+  // .layout-zone-left sets squishy padding on left and gutter on right.
+  @include responsive-basis(38%, 33%, 28%);
+  @include squishy-gutter(top);
+  @include squishy-gutter(bottom);
 
+  .more-hours {
     max-width: 100%;
     margin: 3.5rem 1rem 1rem;
+
+    @include button-on-dark-red;
 
     &::before {
       display: none;
@@ -69,9 +69,9 @@ footer h2 {
 
 #footer-hours-container {
   @include breakpoint($medium-width) {
-    @include squishy-gutter(left);
-
     border-left: 1px solid $yellow;
+
+    @include squishy-gutter(left);
   }
 }
 
@@ -102,13 +102,13 @@ footer h2 {
 /* I.A. Contactbar > Contact Us wrapper */
 
 #contact-us-wrapper {
+  flex: 1 1 auto; // stretch to fill space
+  background-color: $dark-blue;
+
   // .layout-zone-right sets squishy gutter on left and padding on right.
   @include responsive-basis(62%, 67%, 72%);
   @include squishy-gutter(top);
   @include squishy-gutter(bottom);
-
-  flex: 1 1 auto; // stretch to fill space
-  background-color: $dark-blue;
 
   @include breakpoint($max-width) {
     padding-right: 0.5rem; // Let the max width take the lead here instead of calculating right padding because this makes Chrome Grumpy
@@ -170,14 +170,14 @@ footer h2 {
   }
 
   > a {
-    @include link;
-
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
     height: 100%;
     text-decoration: none;
     padding: 1.2rem;
+
+    @include link;
 
     &:active,
     &:hover {
@@ -207,12 +207,13 @@ footer h2 {
 /* II. LITS bar */
 
 #litsbar {
+  background-color: $black;
+  color: $white;
+
   @include squishy-gutter(top);
   @include squishy-gutter(bottom);
 
   // .layout-stripe sets width 100%, margin 0, padding 0.
-  background-color: $black;
-  color: $white;
   // Contains div.layout-container for flex.
 
   .layout-container {
@@ -225,13 +226,13 @@ footer h2 {
 }
 
 #about-lits-container {
+  flex: 1 1 auto; // stretch to fill space
+  text-align: center;
+
   // .layout-zone-right sets squishy gutter on left and padding on right.
   @include responsive-basis(62%, 67%, 72%);
   @include squishy-gutter(top);
   @include squishy-gutter(bottom);
-
-  flex: 1 1 auto; // stretch to fill space
-  text-align: center;
 
   @include breakpoint($small-width) {
     text-align: left;
@@ -282,12 +283,14 @@ footer h2 {
 /* III. Copyright bar */
 
 #copyrightbar {
+  background-color: $charcoal;
+  color: $white;
+
   @include squishy-gutter(top);
   @include squishy-gutter(bottom);
 
+
   // .layout-stripe sets width 100%, margin 0, padding 0.
-  background-color: $charcoal;
-  color: $white;
   // Contains div.layout-container.layout-zone for flex and squishy edges.
 
   a {

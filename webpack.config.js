@@ -65,12 +65,16 @@ module.exports =  {
         {
           test: /\.s(a|c)ss$/,
           exclude: /node_modules/,
-          use: [MiniCssExtractPlugin.loader, 'css-loader', {
-            loader: "sass-loader",
-            options: {
-              sassOptions: {
-                importer: globImporter()
-              }
+          use: [
+            MiniCssExtractPlugin.loader, 
+            'css-loader', 
+            {
+              loader: "sass-loader",
+              options: {
+                sassOptions: {
+                  importer: globImporter(),
+                  verbose: true
+                }
             }
           }]
         }
