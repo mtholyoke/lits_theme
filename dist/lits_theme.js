@@ -10,297 +10,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 /* 1 */
-/***/ (() => {
-
-/**
- * @file
- * Functions and behaviors for the system status page
- */
-
-(($, Drupal) => {
-  Drupal.lits_theme = Drupal.lits_theme || {};
-
-  /**
-   * Toggles the visibility of the main menu on mobile.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~behaviorAttach} attach
-   *   Calls the resize function on window resize.
-   */
-  Drupal.behaviors.litsThemeMainMenuMobile = {
-    attach: context => {
-      const $toggleExpand = $("#main-menu-toggle-expand", context);
-      const $menuWrapper = $("#main-nav", context);
-      $toggleExpand.click(() => {
-        $toggleExpand.toggleClass("toggle-expand--open");
-        $menuWrapper.toggleClass("main-nav--open").slideToggle();
-      });
-      $(window).resize(() => {
-        if ($(window).width() >= 900) {
-          $toggleExpand.removeClass("toggle-expand--open");
-          $menuWrapper.removeClass("main-nav--open").attr("style", "");
-        } else {
-          numOpenMenus = document.querySelectorAll(".main-menu__item--root.expandable--open").length;
-          if (numOpenMenus > 0) {
-            $toggleExpand.addClass("toggle-expand--open");
-            $menuWrapper.addClass("main-nav--open").show();
-          }
-        }
-      });
-    }
-  };
-
-  /**
-   * Makes sure that the Research and Places submenus stay on the screen.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~behaviorAttach} attach
-   *   Calls the resize function on DOM ready and window resize.
-   */
-  Drupal.behaviors.litsThemeMainMenuDropdownPositioning = {
-    attach: context => {
-      Drupal.lits_theme.mainMenuDropdownPositioning(context);
-      $(window).resize(() => {
-        Drupal.lits_theme.mainMenuDropdownPositioning(context);
-      });
-    }
-  };
-
-  /**
-   * Makes sure that the Research and Places submenus stay on the screen.
-   *
-   * @param {object} context
-   *   The scoping context provided by Drupal.
-   */
-  Drupal.lits_theme.mainMenuDropdownPositioning = (context, event) => {
-    // Position the submenus for the middle menu items in a centered location
-    // below their parent
-    const $body = $("body", context);
-    if ($(window).width() < 900) {
-      $("#main-nav .main-menu .main-menu__item--root.expandable", context).each((i, element) => {
-        const $subMenu = $(element).find(".main-submenu--wrapper");
-        $subMenu.css("margin-left", "");
-      });
-      return;
-    }
-    const mainMenuBarPoints = Drupal.lits_theme.mainMenuImportantPoints(context, document.querySelector("#block-lits-theme-mainnavigation"));
-    document.querySelectorAll(".main-menu__item--root.expandable").forEach(menuContainer => {
-      const button = menuContainer.querySelector(":scope button");
-      const menu = menuContainer.querySelector(":scope .main-submenu--wrapper");
-
-      // reset
-      menu.style.marginLeft = 0;
-
-      // positioning for display:none is terrible, so
-      if (!menuContainer.classList.contains("expandable--open")) {
-        // set to show but invisible because positioning is annoying
-        menu.style.visibility = "hidden";
-        menu.style.display = "block";
-      }
-
-      // Find the button and menu in space
-      const buttonPoints = Drupal.lits_theme.mainMenuImportantPoints(context, button);
-      var menuPoints = Drupal.lits_theme.mainMenuImportantPoints(context, menu);
-
-      // Center below the button
-      const buttonMidX = buttonPoints.left + buttonPoints.midpoint;
-      const menuMidX = menuPoints.left + menuPoints.midpoint;
-      var offset = buttonMidX - menuMidX;
-      menu.style.marginLeft = `${offset}px`;
-
-      // Assess whether offscreen and further adjust as needed
-      menuPoints = Drupal.lits_theme.mainMenuImportantPoints(context, menu);
-      if (menuPoints.left < mainMenuBarPoints.left) {
-        offset = offset - menuPoints.left + mainMenuBarPoints.left;
-        menu.style.marginLeft = `${offset}px`;
-      }
-      if (menuPoints.right > mainMenuBarPoints.right) {
-        offset = offset - (menuPoints.right - mainMenuBarPoints.right);
-        menu.style.marginLeft = `${offset}px`;
-      }
-
-      // positioning for display:none is terrible, so
-      if (!menuContainer.classList.contains("expandable--open")) {
-        // put it back
-        menu.style.display = "none";
-        menu.style.visibility = "visible";
-      }
-    });
-  };
-
-  /**
-   * Finds important points for main menu elements.
-   * 
-   * This is in jQuery because it gives us sugar that adds a temporary copy of 
-   * the element to the DOM so that it can find the real points for the element.
-   *
-   * @param {object} context
-   *   The scoping context provided by Drupal.
-   */
-  Drupal.lits_theme.mainMenuImportantPoints = (context, element) => {
-    return {
-      "width": element.getBoundingClientRect().width,
-      "left": element.getBoundingClientRect().x,
-      "right": element.getBoundingClientRect().x + element.getBoundingClientRect().width,
-      "midpoint": element.getBoundingClientRect().width / 2
-    };
-  };
-})(jQuery, Drupal);
-
-/***/ }),
-/* 2 */
-/***/ (() => {
-
-/**
- * @file
- * Functions and behaviors for the system status page
- */
-
-(($, Drupal) => {
-  Drupal.lits_theme = Drupal.lits_theme || {};
-
-  /**
-   * Prints out the page load time.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~behaviorAttach} attach
-   *   Print out the page load time.
-   */
-  Drupal.behaviors.litsThemeSystemStatusLoaded = {
-    attach: context => {
-      const $lastLoadedElement = $("#last-loaded", context);
-      const dayOptions = {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-      };
-      const timeOptions = {
-        hour: "numeric",
-        minute: "2-digit",
-        timeZoneName: "short"
-      };
-      if ($lastLoadedElement.length > 0) {
-        const lastLoaded = new Date();
-        const llDate = lastLoaded.toLocaleDateString("en-US", dayOptions);
-        const llTime = lastLoaded.toLocaleTimeString("en-US", timeOptions);
-        $lastLoadedElement.append(`<span>${llDate} at ${llTime}</span>`);
-      }
-    }
-  };
-})(jQuery, Drupal);
-
-/***/ }),
-/* 3 */
-/***/ (() => {
-
-/**
- * @file
- * A JavaScript file containing the functionality for header elements.
- *
- * Adapted from http://simplyaccessible.com/article/danger-aria-tabs/
- */
-
-(($, Drupal) => {
-  /**
-   * Controls tabs for the Tab Group paragraph type.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~behaviorAttach} attach
-   *   Listen for clicks and close any non-accordions that are open.
-   */
-  Drupal.behaviors.litsThemeTabGroupHandler = {
-    attach: context => {
-      const $tabLists = $(".tab-group ul.tabs__nav", context);
-      const $tabLinks = $tabLists.find("a");
-      $tabLinks.click(event => {
-        const $target = $(event.target);
-        const $tabGroup = $target.parents("div.tab-group").first();
-        const $tabsList = $tabGroup.find("ul.tabs__nav");
-
-        // Turn off the previous tab.
-        $tabsList.find("li.tabs__item--open").removeClass("tabs__item--open").find("a").attr("aria-selected", "false").removeClass("is-active");
-        $tabGroup.find(".tabs__content--open").removeClass("tabs__content--open").attr("aria-hidden", "true").children("h2").attr("tabindex", -1);
-
-        // Turn on the new tab.
-        $target.attr("aria-selected", "true").addClass("is-active");
-        $target.parents(".tabs__item").first().addClass("tabs__item--open");
-        $tabGroup.find(`${$target.attr("href")}__content`).attr("aria-hidden", "false").addClass("tabs__content--open").children("h2").attr("tabindex", 0).focus();
-
-        // Don’t move the browser window.
-        return false;
-      });
-
-      // Handle keyboard navigation through tabs.
-      $tabLists.delegate("a", "keydown", event => {
-        const $tab = $(event.target);
-        const $tabs = $tab.parents(".tabs__nav").first();
-        switch (event.key) {
-          case "ArrowLeft":
-            if ($tab.parent().prev().length !== 0) {
-              $tab.parent().prev().find("> a").click();
-            } else {
-              $tabs.find("li:last > a").click();
-            }
-            break;
-          case "ArrowRight":
-            if ($tab.parent().next().length !== 0) {
-              $tab.parent().next().find("> a").click();
-            } else {
-              $tabs.find("li:first > a").click();
-            }
-            break;
-          default:
-            break;
-        }
-      });
-    }
-  };
-})(jQuery, Drupal);
-
-/***/ }),
-/* 4 */
-/***/ (() => {
-
-/**
- * @file
- * Functions and behaviors for the header of every page.
- */
-
-(($, Drupal) => {
-  Drupal.lits_theme = Drupal.lits_theme || {};
-
-  /**
-   * Hides hours and main menu closables on click elsewhere.
-   *
-   * @type {Drupal~behavior}
-   *
-   * @prop {Drupal~behaviorAttach} attach
-   *   Listen for clicks and close any non-accordions that are open.
-   */
-  Drupal.behaviors.litsThemeClosableHandler = {
-    attach: context => {
-      const $document = $(document, context);
-      $document.click(event => {
-        const $closest = $(event.target).closest(".expandable");
-        const $expandables = $(".expandable--open").not(".accordion").not("#search-toggle-container") // don't close the search bar unless it's explicitly closed
-        .not($closest);
-        if ($expandables.length) {
-          $expandables.each((i, element) => {
-            Drupal.lits_theme.toggleExpandable($(element), "close");
-          });
-        }
-      });
-    }
-  };
-})(jQuery, Drupal);
-
-/***/ }),
-/* 5 */
 /***/ (function() {
 
 /**
@@ -581,6 +290,297 @@ __webpack_require__.r(__webpack_exports__);
   };
 })(jQuery, Drupal);
 
+/***/ }),
+/* 2 */
+/***/ (() => {
+
+/**
+ * @file
+ * Functions and behaviors for the header of every page.
+ */
+
+(($, Drupal) => {
+  Drupal.lits_theme = Drupal.lits_theme || {};
+
+  /**
+   * Hides hours and main menu closables on click elsewhere.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Listen for clicks and close any non-accordions that are open.
+   */
+  Drupal.behaviors.litsThemeClosableHandler = {
+    attach: context => {
+      const $document = $(document, context);
+      $document.click(event => {
+        const $closest = $(event.target).closest(".expandable");
+        const $expandables = $(".expandable--open").not(".accordion").not("#search-toggle-container") // don't close the search bar unless it's explicitly closed
+        .not($closest);
+        if ($expandables.length) {
+          $expandables.each((i, element) => {
+            Drupal.lits_theme.toggleExpandable($(element), "close");
+          });
+        }
+      });
+    }
+  };
+})(jQuery, Drupal);
+
+/***/ }),
+/* 3 */
+/***/ (() => {
+
+/**
+ * @file
+ * A JavaScript file containing the functionality for header elements.
+ *
+ * Adapted from http://simplyaccessible.com/article/danger-aria-tabs/
+ */
+
+(($, Drupal) => {
+  /**
+   * Controls tabs for the Tab Group paragraph type.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Listen for clicks and close any non-accordions that are open.
+   */
+  Drupal.behaviors.litsThemeTabGroupHandler = {
+    attach: context => {
+      const $tabLists = $(".tab-group ul.tabs__nav", context);
+      const $tabLinks = $tabLists.find("a");
+      $tabLinks.click(event => {
+        const $target = $(event.target);
+        const $tabGroup = $target.parents("div.tab-group").first();
+        const $tabsList = $tabGroup.find("ul.tabs__nav");
+
+        // Turn off the previous tab.
+        $tabsList.find("li.tabs__item--open").removeClass("tabs__item--open").find("a").attr("aria-selected", "false").removeClass("is-active");
+        $tabGroup.find(".tabs__content--open").removeClass("tabs__content--open").attr("aria-hidden", "true").children("h2").attr("tabindex", -1);
+
+        // Turn on the new tab.
+        $target.attr("aria-selected", "true").addClass("is-active");
+        $target.parents(".tabs__item").first().addClass("tabs__item--open");
+        $tabGroup.find(`${$target.attr("href")}__content`).attr("aria-hidden", "false").addClass("tabs__content--open").children("h2").attr("tabindex", 0).focus();
+
+        // Don’t move the browser window.
+        return false;
+      });
+
+      // Handle keyboard navigation through tabs.
+      $tabLists.delegate("a", "keydown", event => {
+        const $tab = $(event.target);
+        const $tabs = $tab.parents(".tabs__nav").first();
+        switch (event.key) {
+          case "ArrowLeft":
+            if ($tab.parent().prev().length !== 0) {
+              $tab.parent().prev().find("> a").click();
+            } else {
+              $tabs.find("li:last > a").click();
+            }
+            break;
+          case "ArrowRight":
+            if ($tab.parent().next().length !== 0) {
+              $tab.parent().next().find("> a").click();
+            } else {
+              $tabs.find("li:first > a").click();
+            }
+            break;
+          default:
+            break;
+        }
+      });
+    }
+  };
+})(jQuery, Drupal);
+
+/***/ }),
+/* 4 */
+/***/ (() => {
+
+/**
+ * @file
+ * Functions and behaviors for the system status page
+ */
+
+(($, Drupal) => {
+  Drupal.lits_theme = Drupal.lits_theme || {};
+
+  /**
+   * Prints out the page load time.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Print out the page load time.
+   */
+  Drupal.behaviors.litsThemeSystemStatusLoaded = {
+    attach: context => {
+      const $lastLoadedElement = $("#last-loaded", context);
+      const dayOptions = {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric"
+      };
+      const timeOptions = {
+        hour: "numeric",
+        minute: "2-digit",
+        timeZoneName: "short"
+      };
+      if ($lastLoadedElement.length > 0) {
+        const lastLoaded = new Date();
+        const llDate = lastLoaded.toLocaleDateString("en-US", dayOptions);
+        const llTime = lastLoaded.toLocaleTimeString("en-US", timeOptions);
+        $lastLoadedElement.append(`<span>${llDate} at ${llTime}</span>`);
+      }
+    }
+  };
+})(jQuery, Drupal);
+
+/***/ }),
+/* 5 */
+/***/ (() => {
+
+/**
+ * @file
+ * Functions and behaviors for the system status page
+ */
+
+(($, Drupal) => {
+  Drupal.lits_theme = Drupal.lits_theme || {};
+
+  /**
+   * Toggles the visibility of the main menu on mobile.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Calls the resize function on window resize.
+   */
+  Drupal.behaviors.litsThemeMainMenuMobile = {
+    attach: context => {
+      const $toggleExpand = $("#main-menu-toggle-expand", context);
+      const $menuWrapper = $("#main-nav", context);
+      $toggleExpand.click(() => {
+        $toggleExpand.toggleClass("toggle-expand--open");
+        $menuWrapper.toggleClass("main-nav--open").slideToggle();
+      });
+      $(window).resize(() => {
+        if ($(window).width() >= 900) {
+          $toggleExpand.removeClass("toggle-expand--open");
+          $menuWrapper.removeClass("main-nav--open").attr("style", "");
+        } else {
+          numOpenMenus = document.querySelectorAll(".main-menu__item--root.expandable--open").length;
+          if (numOpenMenus > 0) {
+            $toggleExpand.addClass("toggle-expand--open");
+            $menuWrapper.addClass("main-nav--open").show();
+          }
+        }
+      });
+    }
+  };
+
+  /**
+   * Makes sure that the Research and Places submenus stay on the screen.
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Calls the resize function on DOM ready and window resize.
+   */
+  Drupal.behaviors.litsThemeMainMenuDropdownPositioning = {
+    attach: context => {
+      Drupal.lits_theme.mainMenuDropdownPositioning(context);
+      $(window).resize(() => {
+        Drupal.lits_theme.mainMenuDropdownPositioning(context);
+      });
+    }
+  };
+
+  /**
+   * Makes sure that the Research and Places submenus stay on the screen.
+   *
+   * @param {object} context
+   *   The scoping context provided by Drupal.
+   */
+  Drupal.lits_theme.mainMenuDropdownPositioning = (context, event) => {
+    // Position the submenus for the middle menu items in a centered location
+    // below their parent
+    const $body = $("body", context);
+    if ($(window).width() < 900) {
+      $("#main-nav .main-menu .main-menu__item--root.expandable", context).each((i, element) => {
+        const $subMenu = $(element).find(".main-submenu--wrapper");
+        $subMenu.css("margin-left", "");
+      });
+      return;
+    }
+    const mainMenuBarPoints = Drupal.lits_theme.mainMenuImportantPoints(context, document.querySelector("#block-lits-theme-mainnavigation"));
+    document.querySelectorAll(".main-menu__item--root.expandable").forEach(menuContainer => {
+      const button = menuContainer.querySelector(":scope button");
+      const menu = menuContainer.querySelector(":scope .main-submenu--wrapper");
+
+      // reset
+      menu.style.marginLeft = 0;
+
+      // positioning for display:none is terrible, so
+      if (!menuContainer.classList.contains("expandable--open")) {
+        // set to show but invisible because positioning is annoying
+        menu.style.visibility = "hidden";
+        menu.style.display = "block";
+      }
+
+      // Find the button and menu in space
+      const buttonPoints = Drupal.lits_theme.mainMenuImportantPoints(context, button);
+      var menuPoints = Drupal.lits_theme.mainMenuImportantPoints(context, menu);
+
+      // Center below the button
+      const buttonMidX = buttonPoints.left + buttonPoints.midpoint;
+      const menuMidX = menuPoints.left + menuPoints.midpoint;
+      var offset = buttonMidX - menuMidX;
+      menu.style.marginLeft = `${offset}px`;
+
+      // Assess whether offscreen and further adjust as needed
+      menuPoints = Drupal.lits_theme.mainMenuImportantPoints(context, menu);
+      if (menuPoints.left < mainMenuBarPoints.left) {
+        offset = offset - menuPoints.left + mainMenuBarPoints.left;
+        menu.style.marginLeft = `${offset}px`;
+      }
+      if (menuPoints.right > mainMenuBarPoints.right) {
+        offset = offset - (menuPoints.right - mainMenuBarPoints.right);
+        menu.style.marginLeft = `${offset}px`;
+      }
+
+      // positioning for display:none is terrible, so
+      if (!menuContainer.classList.contains("expandable--open")) {
+        // put it back
+        menu.style.display = "none";
+        menu.style.visibility = "visible";
+      }
+    });
+  };
+
+  /**
+   * Finds important points for main menu elements.
+   * 
+   * This is in jQuery because it gives us sugar that adds a temporary copy of 
+   * the element to the DOM so that it can find the real points for the element.
+   *
+   * @param {object} context
+   *   The scoping context provided by Drupal.
+   */
+  Drupal.lits_theme.mainMenuImportantPoints = (context, element) => {
+    return {
+      "width": element.getBoundingClientRect().width,
+      "left": element.getBoundingClientRect().x,
+      "right": element.getBoundingClientRect().x + element.getBoundingClientRect().width,
+      "midpoint": element.getBoundingClientRect().width / 2
+    };
+  };
+})(jQuery, Drupal);
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -604,11 +604,11 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	__webpack_modules__[0](0, {}, __webpack_require__);
+/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	__webpack_modules__[1](0, {}, __webpack_require__);
 /******/ 	__webpack_modules__[2](0, {}, __webpack_require__);
 /******/ 	__webpack_modules__[3](0, {}, __webpack_require__);
 /******/ 	__webpack_modules__[4](0, {}, __webpack_require__);
-/******/ 	// This entry module is referenced by other modules so it can't be inlined
 /******/ 	var __webpack_exports__ = {};
 /******/ 	__webpack_modules__[5](0, __webpack_exports__, __webpack_require__);
 /******/ 	
