@@ -350,7 +350,7 @@ __webpack_require__.r(__webpack_exports__);
    */
   Drupal.behaviors.litsThemeLinkManager = {
     attach: context => {
-      $("a", context).once("Drupal.behaviors.litsThemeLinkManager").each((index, a) => {
+      $("a", context).each((index, a) => {
         // Grab links with a hostname that doesn't match the window location
         if (a.hostname && window.location.hostname.length && window.location.hostname !== a.hostname) {
           // just in case we want to automagically target these later for

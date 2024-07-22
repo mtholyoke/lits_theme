@@ -39,7 +39,7 @@
       });
     }
   };
-
+  
   /**
    * Adds rel="noopener", a11y hidden text, and a CSS class to non-LITS links.
    *
@@ -51,7 +51,6 @@
   Drupal.behaviors.litsThemeLinkManager = {
     attach: context => {
       $("a", context)
-        .once("Drupal.behaviors.litsThemeLinkManager")
         .each((index, a) => {
           // Grab links with a hostname that doesn't match the window location
           if (
