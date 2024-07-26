@@ -1,0 +1,39 @@
+@mixin banner-style($typeColor) {
+  & {
+    border: 3px solid $typeColor;
+    background-color: mix($white, $typeColor, 95%);
+
+    .fontawesome-icon {
+      color: mix($black, $typeColor, 50%);
+    }
+
+    div {
+      display: inline-block;
+    }
+  }
+}
+
+.banner {
+  padding: 1em;
+  margin: 1em 0;
+
+  &.info {
+    @include banner-style($light-blue);
+  }
+
+  &.warning {
+    @include banner-style($yellow);
+  }
+
+  &.error {
+    @include banner-style($raspberry);
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: underline;
+  }
+}

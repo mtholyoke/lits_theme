@@ -4382,6 +4382,47 @@ a.topbar-menu__link:visited:hover {
   display: block;
 }
 
+.banner {
+  padding: 1em;
+  margin: 1em 0;
+}
+.banner.info {
+  border: 3px solid #00a9e0;
+  background-color: #f2fbfd;
+}
+.banner.info .fontawesome-icon {
+  color: #005570;
+}
+.banner.info div {
+  display: inline-block;
+}
+.banner.warning {
+  border: 3px solid #f1c400;
+  background-color: #fefcf2;
+}
+.banner.warning .fontawesome-icon {
+  color: #796200;
+}
+.banner.warning div {
+  display: inline-block;
+}
+.banner.error {
+  border: 3px solid #a20067;
+  background-color: #faf2f7;
+}
+.banner.error .fontawesome-icon {
+  color: #510034;
+}
+.banner.error div {
+  display: inline-block;
+}
+.banner p {
+  margin: 0;
+}
+.banner a {
+  text-decoration: underline;
+}
+
 .downloadable-image-gallery .grid > div {
   display: flex;
   flex-flow: row wrap;
