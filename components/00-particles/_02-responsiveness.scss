@@ -71,34 +71,36 @@ $content-max-width: $max-width;
  * Any valid size units for flex-basis are allowed.
  */
 @mixin responsive-basis($small-basis, $medium-basis, $large-basis, $type:false) {
-  width: 100%;
-  flex-basis: auto;
-  margin: 0;
+  & {
+    width: 100%;
+    flex-basis: auto;
+    margin: 0;
 
-  @include breakpoint($small-width) {
-    width: $small-basis;
-  }
+    @include breakpoint($small-width) {
+      width: $small-basis;
+    }
 
-  @include breakpoint($medium-width) {
-    width: $medium-basis;
-  }
+    @include breakpoint($medium-width) {
+      width: $medium-basis;
+    }
 
-  @include breakpoint($large-width) {
-    width: $large-basis;
-  }
+    @include breakpoint($large-width) {
+      width: $large-basis;
+    }
 
-  @include breakpoint($max-width) {
-    width: auto;
-    // width needs to be whatever the stretchy outer squishy-padding is PLUS $large-basis of $max-width minus the inner side padding
-    $min-padding: 0.5rem; // from squishy-padding
-    $max-allowed: '((#{$max-width} - #{$medium-width}) / #{squish-factor()})'; // from squishy-padding
-    $padding: '(#{$min-padding} + #{$max-allowed})'; // from squishy-padding -- this is the padding for the inner/non-stretch edge
-    $padding-stretch: '(#{$padding} + ((100% - #{$max-width}) / 2))';// from squishy-padding -- this is the padding for the outer/stretchy edge
-    $unitless-basis: strip-unit(math.div($large-basis, 100));// convert percentage value (eg '62%'') to a mathy ratio value (eg '0.62')
-    $content-area-width: '((#{$content-max-width} * #{$unitless-basis}) - #{$padding})'; // width of the content, given the large basis and the maximum possible content area
+    @include breakpoint($max-width) {
+      width: auto;
+      // width needs to be whatever the stretchy outer squishy-padding is PLUS $large-basis of $max-width minus the inner side padding
+      $min-padding: 0.5rem; // from squishy-padding
+      $max-allowed: '((#{$max-width} - #{$medium-width}) / #{squish-factor()})'; // from squishy-padding
+      $padding: '(#{$min-padding} + #{$max-allowed})'; // from squishy-padding -- this is the padding for the inner/non-stretch edge
+      $padding-stretch: '(#{$padding} + ((100% - #{$max-width}) / 2))';// from squishy-padding -- this is the padding for the outer/stretchy edge
+      $unitless-basis: strip-unit(math.div($large-basis, 100));// convert percentage value (eg '62%'') to a mathy ratio value (eg '0.62')
+      $content-area-width: '((#{$content-max-width} * #{$unitless-basis}) - #{$padding})'; // width of the content, given the large basis and the maximum possible content area
 
-    @if ($type == stretch) {
-      width: calc(#{$padding-stretch} + #{$content-area-width});
+      @if ($type == stretch) {
+        width: calc(#{$padding-stretch} + #{$content-area-width});
+      }
     }
   }
 }
@@ -141,25 +143,27 @@ $content-max-width: $max-width;
  *   Do not set a padding higher than $scale times this value.
  */
 @mixin squishy-gutter($side, $scale: 1, $max-padding: 2rem) {
-  $min-padding: 0.5rem;
+  & {
+    $min-padding: 0.5rem;
 
-  padding-#{$side}: calc(#{$scale} * #{$min-padding});
+    padding-#{$side}: calc(#{$scale} * #{$min-padding});
 
-  @if unit($max-padding) != "rem" {
-    @error "Max padding must be specified in rem units.";
-  }
-
-  @if $max-padding > $min-padding {
-    // 900px => 8px padding, then scale up..
-    @include breakpoint($medium-width) {
-      padding-#{$side}: calc(#{$scale} * #{augmented-squish($min-padding, $medium-width)});
+    @if unit($max-padding) != "rem" {
+      @error "Max padding must be specified in rem units.";
     }
 
-    // Stop increasing when we reach $scale times $max-padding.
-    $delta: rem-to-px($max-padding - $min-padding);
+    @if $max-padding > $min-padding {
+      // 900px => 8px padding, then scale up..
+      @include breakpoint($medium-width) {
+        padding-#{$side}: calc(#{$scale} * #{augmented-squish($min-padding, $medium-width)});
+      }
 
-    @include breakpoint($medium-width + (squish-factor() * $delta)) {
-      padding-#{$side}: calc(#{$scale} * #{$max-padding});
+      // Stop increasing when we reach $scale times $max-padding.
+      $delta: rem-to-px($max-padding - $min-padding);
+
+      @include breakpoint($medium-width + (squish-factor() * $delta)) {
+        padding-#{$side}: calc(#{$scale} * #{$max-padding});
+      }
     }
   }
 }
@@ -176,25 +180,27 @@ $content-max-width: $max-width;
  *   Do not set a margin higher than $scale times this value.
  */
 @mixin squishy-margin($side, $scale: 1, $max-margin: 2rem) {
-  $min-margin: 0.5rem;
+  & {
+    $min-margin: 0.5rem;
 
-  margin-#{$side}: calc(#{$scale} * #{$min-margin});
+    margin-#{$side}: calc(#{$scale} * #{$min-margin});
 
-  @if unit($max-margin) != "rem" {
-    @error "Max margin must be specified in rem units.";
-  }
-
-  @if $max-margin > $min-margin {
-    // 900px => 8px margin, then scale up..
-    @include breakpoint($medium-width) {
-      margin-#{$side}: calc(#{$scale} * #{augmented-squish($min-margin, $medium-width)});
+    @if unit($max-margin) != "rem" {
+      @error "Max margin must be specified in rem units.";
     }
 
-    // Stop increasing when we reach $scale times $max-margin.
-    $delta: rem-to-px($max-margin - $min-margin);
+    @if $max-margin > $min-margin {
+      // 900px => 8px margin, then scale up..
+      @include breakpoint($medium-width) {
+        margin-#{$side}: calc(#{$scale} * #{augmented-squish($min-margin, $medium-width)});
+      }
 
-    @include breakpoint($medium-width + (squish-factor() * $delta)) {
-      margin-#{$side}: calc(#{$scale} * #{$max-margin});
+      // Stop increasing when we reach $scale times $max-margin.
+      $delta: rem-to-px($max-margin - $min-margin);
+
+      @include breakpoint($medium-width + (squish-factor() * $delta)) {
+        margin-#{$side}: calc(#{$scale} * #{$max-margin});
+      }
     }
   }
 }
@@ -210,28 +216,30 @@ $content-max-width: $max-width;
  *   - 'stretch': extreme viewport size is handled on this element.
  */
 @mixin squishy-padding($side, $type: bare) {
-  $min-padding: 0.5rem;
-  $max-allowed: 'math.div((#{$max-width} - #{$medium-width}), #{squish-factor()})';
+  & {
+    $min-padding: 0.5rem;
+    $max-allowed: 'math.div((#{$max-width} - #{$medium-width}), #{squish-factor()})';
 
-  padding-#{$side}: $min-padding;
+    padding-#{$side}: $min-padding;
 
-  // 900px => 8px padding; 1200px => 66px padding; 1920px => 178px padding.
-  @include breakpoint($medium-width) {
-    $augemented-squish: augmented-squish($min-padding, $medium-width);
+    // 900px => 8px padding; 1200px => 66px padding; 1920px => 178px padding.
+    @include breakpoint($medium-width) {
+      $augemented-squish: augmented-squish($min-padding, $medium-width);
 
-    padding-#{$side}: calc(#{$augemented-squish});
-  }
-
-  // Above 1920px => 178px unless we need to stretch.
-  @include breakpoint($max-width) {
-    $default-padding: '#{$min-padding} + #{$max-allowed}';
-
-    $padding: calc(#{$default-padding});
-
-    @if ($type == stretch) {
-      $padding: calc(#{$default-padding} + ((100% - #{$max-width}) / 2));
+      padding-#{$side}: calc(#{$augemented-squish});
     }
 
-    padding-#{$side}: $padding;
+    // Above 1920px => 178px unless we need to stretch.
+    @include breakpoint($max-width) {
+      $default-padding: '#{$min-padding} + #{$max-allowed}';
+
+      $padding: calc(#{$default-padding});
+
+      @if ($type == stretch) {
+        $padding: calc(#{$default-padding} + ((100% - #{$max-width}) / 2));
+      }
+
+      padding-#{$side}: $padding;
+    }
   }
 }

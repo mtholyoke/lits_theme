@@ -21,9 +21,9 @@ $content-max-width: $max-width;
 $sidebar-item-max-width: 520px;
 
 #sidebar-wrapper {
-  @include clearfix;
-
   width: 100%;
+
+  @include clearfix;
 
   @include breakpoint($small-width) {
     background-color: $pale-gray;

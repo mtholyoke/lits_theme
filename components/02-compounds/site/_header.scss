@@ -217,8 +217,6 @@ header#page-header {
     }
 
     #search-toggle {
-      @include link-bluebg;
-
       display: inline-block;
       padding-left: 1rem;
       padding-right: 0;
@@ -226,6 +224,8 @@ header#page-header {
       background: transparent;
       font-size: 1rem;
       white-space: nowrap; // Don't let the carat float below the text at small widths.
+
+      @include link-bluebg;
 
       .expandable.expandable--open & svg {
         transform: rotate(180deg);
@@ -318,6 +318,8 @@ header#page-header {
   /* IV. Menubar */
 
   #menubar {
+    background-color: $med-blue;
+
     // .layout-stripe sets width 100%, margin 0, padding 0.
 
     // Last menu on mobile view needs a separator too <3
@@ -330,8 +332,6 @@ header#page-header {
     #menu-background {
       display: none;
     }
-
-    background-color: $med-blue;
 
     @include breakpoint($medium-width) {
       // padding-top: 256px - 48px; // height of imagebar - height of menubar

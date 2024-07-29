@@ -157,13 +157,12 @@ a.bluebg svg:focus {
 .ck-editor .ck-button.ck-heading_heading3, .text-long h3 {
   color: #5c7f1a;
   font-family: ars-maquette-web, sans-serif;
-  font-weight: 700;
+  font-weight: bold;
   font-style: normal;
   font-size: 1.4rem;
   line-height: 1.6;
   margin: 10px 0 0.5em;
   width: auto;
-  font-weight: bold;
 }
 .h3__link {
   color: #07c;
@@ -174,16 +173,15 @@ a.bluebg svg:focus {
 
 .h4, .ck-editor h4,
 .ck-editor .ck-button.ck-heading_heading4, .text-long h4 {
+  text-transform: uppercase;
   color: #6e6259;
   font-family: ars-maquette-web, sans-serif;
-  font-weight: 600;
+  font-weight: normal;
   font-style: normal;
   font-size: 1.2rem;
   line-height: 1.6;
   margin: 10px 0 0.5em;
   width: auto;
-  text-transform: uppercase;
-  font-weight: normal;
 }
 .h4__link {
   color: #07c;
@@ -222,12 +220,10 @@ a.bluebg svg:focus {
   font-family: ars-maquette-web, sans-serif;
   font-weight: 700;
   font-style: normal;
-  font-size: 1.4rem;
-  line-height: 1.6;
-  margin: 10px 0 0.5em;
-  width: auto;
   font-size: 1rem;
-  margin-bottom: 0;
+  line-height: 1.6;
+  margin: 10px 0 0;
+  width: auto;
 }
 #logobar-hours-content h3__link {
   color: #07c;

@@ -1,18 +1,31 @@
-@mixin button($bg:$med-blue, $color:$white, $hoverBg: $gray, $hoverColor: $white, $focusColor: null) {
-  background-color: $bg;
-  border: none;
-  outline: none;
-  color: $color;
-  cursor: pointer;
-  font-size: 0.9em;
-  line-height: 1.4;
-  padding: 10px;
-  margin: 15px 0;
-  font-weight: normal;
-  font-style: normal;
-  display: block;
-  text-decoration: none;
-  text-align: center;
+@mixin button(
+  $bg:$med-blue, 
+  $color:$white, 
+  $hoverBg: $gray, 
+  $hoverColor: $white, 
+  $focusColor: null, 
+  $border: none, 
+  $margin:  15px 0, 
+  $padding: 10px,
+  $font-size: 0.9em,
+  $font-weight: normal
+) {
+  & {
+    background-color: $bg;
+    border: $border;
+    outline: none;
+    color: $color;
+    cursor: pointer;
+    font-size: $font-size;
+    line-height: 1.4;
+    padding: $padding;
+    margin: $margin;
+    font-weight: $font-weight;
+    font-style: normal;
+    display: block;
+    text-decoration: none;
+    text-align: center;
+  }
 
   &:visited {
     color: $color;
@@ -45,9 +58,7 @@
 }
 
 @mixin button-on-green {
-  @include button($bg:$med-blue, $color:$white, $focusColor:$white);
-
-  border: 3px solid $white;
+  @include button($bg:$med-blue, $color:$white, $focusColor:$white, $border: 3px solid $white);
 
   &:hover {
     text-decoration: underline;
@@ -55,18 +66,15 @@
 }
 
 @mixin button-alt /** smaller blue button**/ {
-  @include button($med-blue, $white, $gray);
-
-  font-weight: normal;
-  font-size: 0.8rem;
+  @include button($bg: $med-blue, $color: $white, $hoverBg: $gray, $font-size: 0.8rem);
 }
 
-@mixin button-alt-2 /** green raspberr **/ {
-  @include button($green, $white, $raspberry);
+@mixin button-alt-2 /** green raspberry **/ {
+  & {
+    text-transform: none;
 
-  font-size: 0.8rem;
-  font-weight: normal;
-  text-transform: none;
+    @include button($bg: $green, $color: $white, $hoverBg: $raspberry, $font-size: 0.8rem);
+  }
 }
 
 .button {

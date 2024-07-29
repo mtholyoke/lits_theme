@@ -4,12 +4,6 @@
  */
 // Toggle control
 .toggle-expand {
-  @include link-on-blue;
-
-  @media (min-width: $medium-width) {
-    display: none;
-  }
-
   display: inline-block;
   padding: $space 0;
   text-decoration: none;
@@ -17,6 +11,12 @@
   color: $white;
   text-align: center;
   // See main-menu.js
+
+  @include link-on-blue;
+
+  @media (min-width: $medium-width) {
+    display: none;
+  }
 }
 
 .toggle-expand__text {
