@@ -6217,7 +6217,6 @@ html {
 body .dialog-off-canvas-main-canvas {
   display: flex;
   flex-direction: column;
-  min-width: 300px;
   min-height: 100vh;
 }
 body .dialog-off-canvas-main-canvas #main-content {

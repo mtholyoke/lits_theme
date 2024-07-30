@@ -120,7 +120,6 @@
 @mixin full-viewport {
   display: flex;
   flex-direction: column;
-  min-width: $min-width;
   min-height: 100vh;
 
   & #main-content {
