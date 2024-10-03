@@ -1,5 +1,5 @@
-<div id="featured-resources-wrapper" class="layout-zone sidebar-side">
-  <div id="featured-resources" class="has-link-tiles">
+<div class="featured-resources-wrapper layout-zone sidebar-side">
+  <div class="featured-resources has-link-tiles">
     <h2>Featured resources</h2>
     <ul>
       <li class="tdx-tile">
@@ -8,14 +8,11 @@
           <span>AskLITS portal</span>
         </a>
       </li>
-    {% for item in items %}
-      <li>
-        <a href="{{ item.content.field_link[0] }}">
-          {{ item.content.field_icon }}
-          <span>{{ item.content.field_heading }}</span>
-        </a>
-      </li>
-    {% endfor %}
+      {% for item in items %}
+        {% include "@compounds/featured-resources/_featured-resource-tile.twig" with {
+            "item": item
+          } %}
+      {% endfor %}
     </ul>
   </div>
 </div>

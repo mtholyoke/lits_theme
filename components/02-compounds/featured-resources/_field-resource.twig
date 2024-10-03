@@ -1,0 +1,12 @@
+<div class="featured-resources-wrapper">
+	<div class="featured-resources has-link-tiles">
+    {% set classes = [ items|length ? 'items-' ~ items|length, ] %}
+    <ul{{attributes.addClass(classes)}}>
+    {% for item in items %}
+      {% include "@compounds/featured-resources/_featured-resource-tile.twig" with {
+        "item": item
+      } %}
+    {% endfor %}
+		</ul>
+	</div>
+</div>

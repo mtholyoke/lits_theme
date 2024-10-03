@@ -13,6 +13,7 @@
 <div{{ attributes.addClass(classes) }}>
   <h2 class="accordion-heading">
     <button class="h2" aria-controls="paragraph-{{ paragraph.id() }}" aria-expanded="false" aria-pressed="false" type="button" id="paragraph-{{ paragraph.id() }}-button">
+      {{ content.field_icon }}
       {{ content.field_heading }}
       <i class="fas fa-chevron-down"></i>
     </button>

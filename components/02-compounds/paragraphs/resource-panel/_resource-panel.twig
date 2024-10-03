@@ -1,0 +1,23 @@
+{#
+/**
+ * @file
+ * Theme override to display a resource panel paragraph.
+ *
+ * @see templates/paragraphs/paragraph.html.twig
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = ['resource-panel'] %}
+<div{{ attributes.addClass(classes) }}>
+  {% if content.field_heading[0] is not null and content.field_heading[0] is not empty %}
+  <h2 class="h2 resource-panel-heading">
+    {{ content.field_heading }}
+  </h2>
+  {% endif %}
+  <div class="resource-panel-content" aria-hidden="true" id="paragraph-{{ paragraph.id() }}">
+    {{ content.field_content }}
+    {{ content.field_resource }}
+  </div>
+</div>
