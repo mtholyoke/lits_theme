@@ -162,6 +162,10 @@
    *   The scoping context provided by Drupal.
    */
   Drupal.lits_theme.scrollToHash = (context, $anchorTarget, needsScrollDelay) => {
+    if ($anchorTarget.attr("id").startsWith("s-lib")) {
+      // This is LibGuides HTML and that means it's not worth trying to mess with it
+      return;
+    }
     const $body = $("body", context);
     // focus the element
     Drupal.lits_theme.focusOnElement($anchorTarget);
