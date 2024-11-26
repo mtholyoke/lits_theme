@@ -2298,7 +2298,7 @@ table.lits-hours-month th {
   flex-direction: column;
 }
 table.lits-hours-month td.break {
-  background-color: #ffeda8;
+  background-color: rgb(255, 237.0930232558, 167.5);
 }
 table.lits-hours-month td.override {
   color: black;

@@ -106,7 +106,7 @@ __webpack_require__.r(__webpack_exports__);
         // if there is a '#' in the URL (someone linking directly to an anchor):
         if (window.location.hash) {
           openAccordion(window.location.hash);
-          const scrollMore = !!navigator.userAgent.match(/Trident.*rv:11\./) || window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge\
+          const scrollMore = !!navigator.userAgent.match(/Trident.*rv:11\./) || window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge
           Drupal.lits_theme.scrollToHash(context, $(window.location.hash), scrollMore);
         }
       });
@@ -155,16 +155,14 @@ __webpack_require__.r(__webpack_exports__);
       // This is LibGuides HTML and that means it's not worth trying to mess with it
       return;
     }
-    // const $body = $("body", context);
-    // // focus the element
-    console.log($anchorTarget);
+    const $body = $("body", context);
+    // focus the element
     Drupal.lits_theme.focusOnElement($anchorTarget);
     var scrollToElement = document.getElementById($anchorTarget.attr("id"));
     if (document.getElementById($anchorTarget.attr("id") + "-button")) {
       // Then this is an accordionish thing, and scrolling to the toggle is better
       scrollToElement = document.getElementById($anchorTarget.attr("id") + "-button");
     }
-    console.log(scrollToElement);
     // offset().top doesn't seem to work reliably in IE11 on page load
     const scrollTop = scrollToElement.offsetTop;
     let scrollDelay = 0;
