@@ -380,6 +380,104 @@ function lits_theme_preprocess_html(&$variables) {
   else if ($route_match->getRouteName() == 'search.view_google_json_api_search') {
      $variables['attributes']['class'][] = "google-json-api-search";
   }
+
+  // Gather additional content metadata for crawl from various types of things
+  $lastEditedBy = false;
+  $lastEditedDate = false;
+  $contentType = false;
+
+  // Add metadata tag for crawl
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node) {
+    $lastEditedBy = $node->getRevisionUser()->getDisplayName();
+
+    $dateObj = DateTimeImmutable::createFromFormat("U", $node->getChangedTime());
+    $lastEditedDate = date_format($dateObj, DateTimeInterface::ATOM); // TODO this would be better if it used the same mechanism that Drupal is using for "html_datetime"...whatever that is
+
+    $contentType = "node:" . $node->getType();
+  }
+  else { // not a node
+    $route = \Drupal::service('current_route_match');
+    switch ($route->getRouteName()) {
+      case 'entity.taxonomy_term.canonical':
+        $term = $route->getParameters()->get('taxonomy_term');
+
+        $lastEditedBy = false; // Taxonomy terms do not have associated users in Drupal
+
+        $dateObj = DateTimeImmutable::createFromFormat("U", $term->getChangedTime());
+        $lastEditedDate = date_format($dateObj, DateTimeInterface::ATOM); // TODO this would be better if it used the same mechanism that Drupal is using for "html_datetime"...whatever that is
+
+        $contentType = "taxonomy:" . $term->bundle();
+        break;
+      
+      // case 'lits_search.lits':
+      //   break;
+      // case 'search.view_google_json_api_search':
+      //   break;
+
+      // Study space finder page.
+      case 'view.study_spaces.page_1':
+        // Views are obnoxious about identifiers (and most of the metadata) I guess
+        $url = Url::fromRoute('view.study_spaces.page_1', [
+          'view_id' => $route->getParameters()->get('view_id'),
+          'display_id' => $route->getParameters()->get('display_id')
+        ], [
+          'absolute' => true
+        ]);
+        $variables['page']['#attached']['html_head'][] = [
+          [
+            '#tag' => 'meta',
+            '#attributes' => [
+              'name' => 'dcterms.identifier',
+              'content' => $url->toString(),
+            ],
+          ],
+          'dcterms.identifier',
+        ];
+        $lastEditedBy = false;
+        $lastEditedDate = false;
+        $contentType = "view:" . $route->getParameters()->get('view_id') . ":" . $route->getParameters()->get('display_id');
+        break;
+    }
+  }
+
+  // Add the metadata
+  if ($lastEditedBy) {
+    $variables['page']['#attached']['html_head'][] = [
+        [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'mhc.last_edited_by',
+            'content' => $lastEditedBy,
+          ],
+        ],
+        'mhc.last_edited_by',
+      ];
+    }
+    if ($lastEditedDate) {
+      $variables['page']['#attached']['html_head'][] = [
+        [
+          '#tag' => 'meta',
+          '#attributes' => [
+            'name' => 'mhc.last_edited_date',
+            'content' => $lastEditedDate,
+          ],
+        ],
+        'mhc.last_edited_date',
+      ];
+    }
+    if ($contentType) {
+      $variables['page']['#attached']['html_head'][] = [
+      [
+        '#tag' => 'meta',
+        '#attributes' => [
+          'name' => 'mhc.node_type',
+          'content' => $contentType,
+        ],
+      ],
+      'mhc.node_type',
+      ];
+    }
 }
 
 /**
@@ -1492,5 +1590,4 @@ function _lits_theme_traverse_sidebar_menu(array &$items) {
     }
   }
 }
-
 ?>
