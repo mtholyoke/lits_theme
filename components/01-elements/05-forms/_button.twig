@@ -20,4 +20,4 @@
 {% if element["#content"] == NULL or element["#content"] == "" %}
   {% set content = element["#value"] %}
 {% endif %}
-<button{{ attributes.addClass(classes) }} />{{ content|raw }}</button>
+<button{{ attributes.addClass(classes) }}>{{ content|raw }}</button>
