@@ -1,0 +1,232 @@
+@mixin tile-color-decorations($tileColor) {
+  a {
+    border-top: 4px solid $tileColor;
+  }
+
+  svg {
+    color: $tileColor;
+  }
+}
+
+/* Shared styles for homepage and articles */
+.has-link-tiles {
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  padding-bottom: 2rem;
+  // Contains div.layout-zone for squishy edges.
+
+  h2 {
+    margin-top: 0;
+    padding-top: 2rem;
+  }
+
+  ul {
+    @include list-reset;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    
+    li {
+      flex: 1 1 auto;
+      width: 100%;
+      margin: 0.5rem;
+
+      @include breakpoint($small-width) {
+        width: 46%;
+      }
+
+      @include breakpoint($medium-width) {
+        width: 31%;
+      }
+
+      @include breakpoint($large-width) {
+        width: 14%;
+        min-height: 10rem;
+      }
+
+      .fontawesome-icons {
+        text-align: center;
+      }
+
+      a {
+        @include rounded-corners;
+        background-color: $white;
+        height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: center;
+        word-break: break-word;
+        padding: 1rem;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+
+        & {
+          @include link-on-gray;
+        }
+
+        svg {
+          font-size: 3rem;
+          margin: 0 auto;
+        }
+
+        span {
+          padding-top: 1rem;
+          text-align: center;
+          font-weight: bold;
+        }
+      }
+
+      &:nth-child(6n+1) {
+        @include tile-color-decorations($raspberry);
+      }
+
+      &:nth-child(6n+2) {
+        @include tile-color-decorations($gray);
+      }
+
+      &:nth-child(6n+3) {
+        @include tile-color-decorations($light-blue);
+      }
+
+      &:nth-child(6n+4) {
+        @include tile-color-decorations($light-green);
+      }
+
+      &:nth-child(6n+5) {
+        @include tile-color-decorations($light-orange);
+      }
+
+      &:nth-child(6n+6) {
+        @include tile-color-decorations($red);
+      }
+    }
+  }
+}
+
+/* Article pages */
+.resource-panel {
+  #main-content.main-sidebar-side article.node & ul,
+  #main-content.main-sidebar-side article.node & ol,
+  #sidebar-container & ul,
+  #sidebar-container & ol {
+    margin-left: 0;
+  }
+  
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-auto-rows: 1fr;
+    gap: 1rem;
+
+
+    @include breakpoint($small-width) {
+      grid-template-columns: repeat(3, 1fr);
+
+      &.items-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &.items-1 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @include breakpoint($max-width) {
+      grid-template-columns: repeat(4, 1fr);
+
+      &.items-3 {
+        grid-template-columns: repeat(3, 1fr);
+      }
+
+      &.items-2 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      &.items-1 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    li { 
+      width: auto;
+      margin: 0;
+
+      a {
+        // border: 3px solid $gray;
+        justify-content: space-between;
+        padding: 2rem 1rem 1rem 1rem;
+        text-decoration: underline;
+
+        & > span {
+          flex-grow: 1;
+          display: flex;
+          flex-flow: column nowrap;
+          justify-content: center;
+          font-weight: normal;
+        }
+      }
+
+      &:nth-child(6n+1),
+      &:nth-child(6n+2),
+      &:nth-child(6n+3),
+      &:nth-child(6n+4),
+      &:nth-child(6n+5),
+      &:nth-child(6n+6) {
+        a {
+          border-top: 4px solid $dark-blue;
+        }
+
+        svg {
+          color: $dark-blue;
+        }
+      }
+    }
+  }
+}
+
+/* LITS homepage styles */
+.lits_homepage .has-link-tiles {
+  ul {
+    margin-top: -0.5rem;
+  }
+
+  li {
+    width: 100%;
+
+    @include breakpoint($small-width) {
+      width: 41%;
+    }
+
+    @include breakpoint($large-width) {
+      width: 26%;
+    }
+
+    a {
+      border-radius: 0;
+
+      @include breakpoint($large-width) {
+        padding: 1rem calc(0.25 * 1rem);
+      }
+    }
+    
+    &.tdx-tile {
+      width: 100%;
+
+      svg {
+        overflow: visible;
+        box-sizing: content-box;
+        display: var(--fa-display, inline-block);
+        height: 2em;
+        vertical-align: -0.125em;
+      }
+
+      img {
+        height: 5em;
+        margin: auto;
+      }
+
+      a {
+        border-top: 4px solid $dark-blue !important;
+      }
+    }
+  }
+}

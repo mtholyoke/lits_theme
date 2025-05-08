@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Theme override to display a banner paragraph.
+ *
+ * @see templates/paragraphs/paragraph.html.twig
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{% set classes = [
+  'banner', 
+  content.field_banner_type[0]['#markup'] | striptags | trim | lower
+] %}
+
+<div{{ attributes.addClass(classes) }}>
+  <div class="banner-content" aria-hidden="true" id="paragraph-{{ paragraph.id() }}">
+    <div class="banner-icon">{{ content.field_icon }}</div>
+    {{ content.field_content }}
+  </div>
+</div>
