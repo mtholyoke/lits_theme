@@ -2089,15 +2089,15 @@ ol {
   }
 }
 
-#block-lits-theme-litshomepageintro {
+#block-lits-theme-homepageintro {
   padding: 4em;
   background-size: 110% auto;
   background-position-y: 24%;
 }
-#block-lits-theme-litshomepageintro p {
+#block-lits-theme-homepageintro p {
   margin: 0;
 }
-#block-lits-theme-litshomepageintro h1 span {
+#block-lits-theme-homepageintro h1 span {
   background: white;
   font-size: 0.85rem;
   display: block;
@@ -2105,7 +2105,7 @@ ol {
   padding: 1rem;
   font-weight: normal;
 }
-#block-lits-theme-litshomepageintro .word-group {
+#block-lits-theme-homepageintro .word-group {
   text-align: center;
   font-weight: bold;
   background: #f1c400;
@@ -2116,7 +2116,7 @@ ol {
   align-items: center;
   padding: 3em 1em;
 }
-#block-lits-theme-litshomepageintro .litshomepageintro-body a {
+#block-lits-theme-homepageintro .homepageintro-body a {
   background-color: #004876;
   border: none;
   outline: none;
@@ -2132,14 +2132,14 @@ ol {
   text-decoration: none;
   text-align: center;
 }
-#block-lits-theme-litshomepageintro .litshomepageintro-body a:visited {
+#block-lits-theme-homepageintro .homepageintro-body a:visited {
   color: white;
 }
-#block-lits-theme-litshomepageintro .litshomepageintro-body a:hover {
+#block-lits-theme-homepageintro .homepageintro-body a:hover {
   background-color: #6e6259;
   color: white;
 }
-#block-lits-theme-litshomepageintro .litshomepageintro-body a:focus {
+#block-lits-theme-homepageintro .homepageintro-body a:focus {
   outline-offset: 2px;
   outline: 3px solid #004876;
 }

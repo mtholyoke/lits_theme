@@ -1,4 +1,4 @@
-#block-lits-theme-litshomepageintro {
+#block-lits-theme-homepageintro {
   padding: 4em;
   background-size: 110% auto;
   background-position-y: 24%;
@@ -28,7 +28,7 @@
     padding: 3em 1em;
   }
 
-  .litshomepageintro-body a {
+  .homepageintro-body a {
     @include button(
       $bg: $dark-blue,
     );

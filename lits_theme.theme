@@ -105,14 +105,14 @@ function _lits_theme_attach_study_space_icons(array &$variables, array $exclusio
  */
 function lits_theme_preprocess_block(&$variables) {
   // Add targeting info to the homepage image
-  if ($variables['attributes']['id'] == 'block-lits-theme-litshomepageintro') {
+  if ($variables['attributes']['id'] == 'block-lits-theme-homepageintro') {
     if (array_key_exists('field_body', $variables['content']) && !array_key_exists("attributes", $variables['content']['field_body'])) {
       $variables['content']['field_body']['#attributes'] = [];
       if (!array_key_exists("class", $variables['content']['field_body']['#attributes'])) {
         $variables['content']['field_body']['#attributes']['class'] = [];
       }
     }
-    $variables['content']['field_body']['#attributes']['class'][] = 'litshomepageintro-body';
+    $variables['content']['field_body']['#attributes']['class'][] = 'homepageintro-body';
   }
 
   // TODO: remove this when ASC gets its own menu.
