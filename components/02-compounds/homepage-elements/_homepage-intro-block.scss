@@ -1,0 +1,36 @@
+#block-lits-theme-litshomepageintro {
+  padding: 4em;
+  background-size: 110% auto;
+  background-position-y: 24%;
+
+  p {
+    margin: 0;
+  }
+
+  h1 span {
+    background: white;
+    font-size: 0.85rem;
+    display: block;
+    margin: 0.75em 0 1.25em 0;
+    padding: 1rem;
+    font-weight: normal;
+  }
+
+  .word-group {
+    text-align: center;
+    font-weight: bold;
+    background: $yellow;
+    width: 33%;
+    display: flex;
+    flex-flow: column wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 3em 1em;
+  }
+
+  .litshomepageintro-body a {
+    @include button(
+      $bg: $dark-blue,
+    );
+  }
+}

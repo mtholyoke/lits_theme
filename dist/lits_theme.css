@@ -2089,6 +2089,61 @@ ol {
   }
 }
 
+#block-lits-theme-litshomepageintro {
+  padding: 4em;
+  background-size: 110% auto;
+  background-position-y: 24%;
+}
+#block-lits-theme-litshomepageintro p {
+  margin: 0;
+}
+#block-lits-theme-litshomepageintro h1 span {
+  background: white;
+  font-size: 0.85rem;
+  display: block;
+  margin: 0.75em 0 1.25em 0;
+  padding: 1rem;
+  font-weight: normal;
+}
+#block-lits-theme-litshomepageintro .word-group {
+  text-align: center;
+  font-weight: bold;
+  background: #f1c400;
+  width: 33%;
+  display: flex;
+  flex-flow: column wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 3em 1em;
+}
+#block-lits-theme-litshomepageintro .litshomepageintro-body a {
+  background-color: #004876;
+  border: none;
+  outline: none;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9em;
+  line-height: 1.4;
+  padding: 10px;
+  margin: 15px 0;
+  font-weight: normal;
+  font-style: normal;
+  display: block;
+  text-decoration: none;
+  text-align: center;
+}
+#block-lits-theme-litshomepageintro .litshomepageintro-body a:visited {
+  color: white;
+}
+#block-lits-theme-litshomepageintro .litshomepageintro-body a:hover {
+  background-color: #6e6259;
+  color: white;
+}
+#block-lits-theme-litshomepageintro .litshomepageintro-body a:focus {
+  outline-offset: 2px;
+  outline: 3px solid #004876;
+}
+
 /**
  * @file
  * Style rules for the news item teasers on homepage and news archive page.
@@ -2441,7 +2496,7 @@ table.lits-hours-month td.other-month {
     background-color: white;
     border: none;
     outline: none;
-    color: #07c;
+    color: #1a1a1a;
     cursor: pointer;
     font-size: 0.9em;
     line-height: 1.4;
@@ -2457,7 +2512,7 @@ table.lits-hours-month td.other-month {
     border-top: 2px solid white;
   }
   #block-lits-theme-litsunifiedsearchblock details[open] summary:visited {
-    color: #07c;
+    color: #1a1a1a;
   }
   #block-lits-theme-litsunifiedsearchblock details[open] summary:hover {
     background-color: #6e6259;
