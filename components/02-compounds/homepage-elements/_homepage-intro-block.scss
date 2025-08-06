@@ -1,7 +1,10 @@
 #block-lits-theme-homepageintro {
-  padding: 4em;
+  $offset: 4em;
+
+  padding: $offset $offset $offset 0;
   background-size: 110% auto;
   background-position-y: 24%;
+  margin: 1em 0 0 $offset;
 
   p {
     margin: 0;
@@ -26,6 +29,7 @@
     justify-content: center;
     align-items: center;
     padding: 3em 1em;
+    margin-left: calc($offset * -1);
   }
 
   .homepageintro-body a {

@@ -2090,9 +2090,10 @@ ol {
 }
 
 #block-lits-theme-homepageintro {
-  padding: 4em;
+  padding: 4em 4em 4em 0;
   background-size: 110% auto;
   background-position-y: 24%;
+  margin: 1em 0 0 4em;
 }
 #block-lits-theme-homepageintro p {
   margin: 0;
@@ -2115,6 +2116,7 @@ ol {
   justify-content: center;
   align-items: center;
   padding: 3em 1em;
+  margin-left: -4em;
 }
 #block-lits-theme-homepageintro .homepageintro-body a {
   background-color: #004876;
