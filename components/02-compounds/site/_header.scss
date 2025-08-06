@@ -207,22 +207,6 @@ header#page-header {
       margin-bottom: 5px;
     }
 
-    #search-toggle {
-      display: inline-block;
-      padding-left: 1rem;
-      padding-right: 0;
-      border: none;
-      background: transparent;
-      font-size: 1rem;
-      white-space: nowrap; // Don't let the carat float below the text at small widths.
-
-      @include link-bluebg;
-
-      .lits_homepage & {
-        display: none;
-      }
-    }
-
     a {
       display: none;
       padding: 0 1rem;
@@ -235,8 +219,7 @@ header#page-header {
         display: inline-block;
       }
 
-      .lits_homepage &.accounts {
-        padding-right: 0;
+      &:last-of-type {
         border-right: none;
       }
     }

@@ -5429,37 +5429,6 @@ header#page-header #logobar .topnav-container {
 header#page-header #logobar .topnav-container > * {
   margin-bottom: 5px;
 }
-header#page-header #logobar .topnav-container #search-toggle {
-  display: inline-block;
-  padding-left: 1rem;
-  padding-right: 0;
-  border: none;
-  background: transparent;
-  font-size: 1rem;
-  white-space: nowrap;
-  color: white;
-  text-decoration: none;
-}
-header#page-header #logobar .topnav-container #search-toggle:link, header#page-header #logobar .topnav-container #search-toggle:visited {
-  color: white;
-}
-header#page-header #logobar .topnav-container #search-toggle:active, header#page-header #logobar .topnav-container #search-toggle:hover {
-  color: #ccdae3;
-  text-decoration: underline solid;
-}
-header#page-header #logobar .topnav-container #search-toggle:focus {
-  outline-offset: 2px;
-  outline: 3px solid white;
-  text-decoration: underline solid;
-}
-header#page-header #logobar .topnav-container #search-toggle svg:focus {
-  outline-offset: 2px;
-  outline: 3px solid white;
-  text-decoration: underline solid;
-}
-.lits_homepage header#page-header #logobar .topnav-container #search-toggle {
-  display: none;
-}
 header#page-header #logobar .topnav-container a {
   display: none;
   padding: 0 1rem;
@@ -5475,8 +5444,7 @@ header#page-header #logobar .topnav-container a:focus {
     display: inline-block;
   }
 }
-.lits_homepage header#page-header #logobar .topnav-container a.accounts {
-  padding-right: 0;
+header#page-header #logobar .topnav-container a:last-of-type {
   border-right: none;
 }
 @media (min-width: 900px) {
