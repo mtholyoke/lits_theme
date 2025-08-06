@@ -7,6 +7,7 @@
  * @see template_preprocess_block()
  */
 #}
+{{ attach_library('lits_search/unified_search') }}
 
 <div {{ attributes }}>
   {{ title_prefix }}
@@ -14,8 +15,22 @@
     <h2 class="block-title" {{ title_attributes.addClass('h2') }}>{{ label }}</h2>
   {% endif %}
   {{ title_suffix }}
-  <p id="litsunifiedsearchblock-label">I want to...</p>
+
   {% block content %}
-    {{ content }}
-  {% endblock %}
+  <div class="tabs">
+    <div role="tablist" aria-labelledby="tablist-1" class="tablist">
+    {% for form in content %}
+    <details id="tab-{{loop.index0}}"  {% if loop.index0 == 0 %} open {% endif %}>
+      <summary  id="tabcontrol-{{loop.index0}}" class="panel-control">{{ form['title'] }}</summary>
+
+      <div id="tabpanel-{{loop.index0}}" role="tabpanel" aria-labelledby="tabcontrol-{{loop.index0}}" class="panel-content">
+        {{ form['form'] }}
+      </div>
+    </details>
+    {% endfor %}
+
+  </div>
+
+  {% endblock %}</div>
+
 </div>

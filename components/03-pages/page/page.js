@@ -175,6 +175,10 @@
       // Then this is an accordionish thing, and scrolling to the toggle is better
       scrollToElement = document.getElementById($anchorTarget.attr("id") + "-button");
     }
+    if (!$anchorTarget.attr("id").startsWith("paragraph")) {
+      // Don't try to mess with offset for non-accordions it's like, always wrong
+      return;
+    }
     // offset().top doesn't seem to work reliably in IE11 on page load
     const scrollTop = scrollToElement.offsetTop;
     let scrollDelay = 0;
@@ -211,9 +215,6 @@
     const $content = $container.find(`#${$button.attr("aria-controls")}`);
 
     let callback = null;
-    if ($container.attr("id") === "search-toggle-container") {
-      callback = Drupal.lits_theme.positionMenu;
-    }
 
     if (action === "close") {
       $button.attr("aria-expanded", "false").attr("aria-pressed", "false");

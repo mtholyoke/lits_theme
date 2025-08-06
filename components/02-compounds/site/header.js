@@ -21,7 +21,6 @@
         const $closest = $(event.target).closest(".expandable");
         const $expandables = $(".expandable--open")
           .not(".accordion")
-          .not("#search-toggle-container") // don't close the search bar unless it's explicitly closed
           .not($closest);
         if ($expandables.length) {
           $expandables.each((i, element) => {
