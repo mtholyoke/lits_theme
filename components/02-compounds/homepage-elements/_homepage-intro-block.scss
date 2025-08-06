@@ -1,10 +1,17 @@
 #block-lits-theme-homepageintro {
   $offset: 4em;
 
-  padding: $offset $offset $offset 0;
-  background-size: 110% auto;
-  background-position-y: 24%;
-  margin: 1em 0 0 $offset;
+  & {
+    background-size: 0;
+
+    @include breakpoint($small-width) {
+      background-size: 110% auto;
+      background-repeat: no-repeat;
+      background-position: -70% 24%;
+      margin: 1em 0 0 $offset;
+      padding: $offset $offset $offset 0;
+    }
+  }
 
   p {
     margin: 0;
@@ -23,13 +30,22 @@
     text-align: center;
     font-weight: bold;
     background: $yellow;
-    width: 33%;
     display: flex;
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
     padding: 3em 1em;
-    margin-left: calc($offset * -1);
+
+    @include breakpoint($small-width) {
+      width: 100%;
+      max-width: 15em;
+      margin-left: calc($offset * -1);
+    }
+
+    @include breakpoint($medium-width) {
+      max-width: 25em;
+      width: 50%;
+    }
   }
 
   .homepageintro-body a {

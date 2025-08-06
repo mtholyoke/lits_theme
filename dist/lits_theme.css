@@ -2090,10 +2090,16 @@ ol {
 }
 
 #block-lits-theme-homepageintro {
-  padding: 4em 4em 4em 0;
-  background-size: 110% auto;
-  background-position-y: 24%;
-  margin: 1em 0 0 4em;
+  background-size: 0;
+}
+@media (min-width: 600px) {
+  #block-lits-theme-homepageintro {
+    background-size: 110% auto;
+    background-repeat: no-repeat;
+    background-position: -70% 24%;
+    margin: 1em 0 0 4em;
+    padding: 4em 4em 4em 0;
+  }
 }
 #block-lits-theme-homepageintro p {
   margin: 0;
@@ -2110,13 +2116,24 @@ ol {
   text-align: center;
   font-weight: bold;
   background: #f1c400;
-  width: 33%;
   display: flex;
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
   padding: 3em 1em;
-  margin-left: -4em;
+}
+@media (min-width: 600px) {
+  #block-lits-theme-homepageintro .word-group {
+    width: 100%;
+    max-width: 15em;
+    margin-left: -4em;
+  }
+}
+@media (min-width: 900px) {
+  #block-lits-theme-homepageintro .word-group {
+    max-width: 25em;
+    width: 50%;
+  }
 }
 #block-lits-theme-homepageintro .homepageintro-body a {
   background-color: #004876;
