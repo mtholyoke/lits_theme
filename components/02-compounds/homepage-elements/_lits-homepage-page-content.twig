@@ -1,4 +1,6 @@
-<div id="newsbar" class="layout-stripe newsbar-sidebar-side">
+<div id="newsbar" class="layout-stripe">
+  {{ content.field_featured_resources }}
+
   <div id="news-events" class="layout-zone">
     <h2>News &amp; events</h2>
     {{ content.field_news_items }}
@@ -7,6 +9,4 @@
       <span>See all posts</span>
     </a>
   </div>
-
-  {{ content.field_featured_resources }}
 </div>
