@@ -20,8 +20,10 @@
  * @see template_preprocess_field()
  */
 #}
+{# {% include "@compounds/homepage-elements/_field-featured-resources.twig" with {
+  "title": "",
+   "show-asklits": false,
+}%} #}
+{% include "@compounds/homepage-elements/_resource-list-items.twig" %}
 
-{% include "@compounds/homepage-elements/_field-featured-resources.twig" with {
-  "title": element["#title"],
-   "show-asklits": true,
-}%}
+

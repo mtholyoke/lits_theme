@@ -2089,6 +2089,13 @@ ol {
   }
 }
 
+.has-link-tiles {
+  padding-bottom: 2rem;
+}
+.has-link-tiles h2 {
+  margin-top: 0;
+  padding-top: 2rem;
+}
 .has-link-tiles ul {
   list-style: none;
   margin: 0;

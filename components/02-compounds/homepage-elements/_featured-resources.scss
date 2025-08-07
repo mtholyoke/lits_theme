@@ -1,4 +1,13 @@
 .has-link-tiles {
+  // .layout-stripe sets width 100%, margin 0, padding 0.
+  padding-bottom: 2rem;
+  // Contains div.layout-zone for squishy edges.
+
+  h2 {
+    margin-top: 0;
+    padding-top: 2rem;
+  }
+  
   ul {
     @include list-reset;
 
