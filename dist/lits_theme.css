@@ -2288,6 +2288,21 @@ ol {
   box-shadow: none;
 }
 
+.field-news-blocks {
+  background-color: #004876;
+}
+.field-news-blocks h2 {
+  color: white;
+  text-align: center;
+}
+@media (min-width: 900px) {
+  .field-news-blocks {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1em;
+  }
+}
+
 #block-lits-theme-homepageintro {
   background-size: 0;
 }
@@ -2463,6 +2478,9 @@ ol {
   #news-items-container .news-item article.node--news-item {
     margin-left: calc(0.5 * 2rem);
   }
+}
+#news-items-container pre {
+  white-space: break-spaces;
 }
 
 article.node--news-item {
@@ -5852,7 +5870,6 @@ body .dialog-off-canvas-main-canvas #main-content {
 
 #main-content {
   width: 100%;
-  margin-bottom: 1rem;
 }
 
 /* V. Messages */
@@ -6996,50 +7013,11 @@ h1 .subtitle {
 }
 
 /* II. Newsbar */
-#newsbar {
-  margin-bottom: 2px;
-}
-#newsbar #news-events > h2, #newsbar > .featured-resources-wrapper h2 {
+#newsbar > .featured-resources-wrapper h2 {
   padding: 0;
   margin: 1em 0;
   font-size: 1.5em;
   line-height: 2rem;
-}
-#newsbar a.see-all-posts {
-  background-color: #07c;
-  border: none;
-  outline: none;
-  color: white;
-  cursor: pointer;
-  font-size: 0.9em;
-  line-height: 1.4;
-  padding: 10px;
-  margin: 15px 0;
-  font-weight: normal;
-  font-style: normal;
-  display: block;
-  text-decoration: none;
-  text-align: center;
-}
-#newsbar a.see-all-posts:visited {
-  color: white;
-}
-#newsbar a.see-all-posts:hover {
-  background-color: #6e6259;
-  color: white;
-}
-#newsbar a.see-all-posts:focus {
-  outline-offset: 2px;
-  outline: 3px solid #004876;
-}
-#newsbar a.see-all-posts:focus {
-  outline-offset: 2px;
-  outline: 3px solid #004876;
-  text-decoration: underline solid;
-}
-#newsbar a.see-all-posts {
-  width: 10rem;
-  margin-bottom: 2rem;
 }
 #newsbar #news-items-container {
   flex-flow: column nowrap;

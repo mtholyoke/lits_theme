@@ -1,0 +1,16 @@
+.field-news-blocks {
+  background-color: $dark-blue;
+
+  h2 {
+    color: $white;
+    text-align: center;
+  }
+
+  @include breakpoint($medium-width) {
+    & {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1em;
+    }
+  }
+}
