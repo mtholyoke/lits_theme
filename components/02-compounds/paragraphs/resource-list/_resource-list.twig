@@ -36,14 +36,13 @@
  * @ingroup themeable
  */
 #}
-
 {% set classes = [paragraph.bundle|clean_class] %}
 <div{{ attributes.addClass(classes) }}>
-  <div class="featured-resources-wrapper layout-zone">
-    <div class="featured-resources has-link-tiles">
+  <div class="featured-resources-wrapper">
+    <div id="paragraph-{{paragraph.id()}}" class="featured-resources has-link-tiles {{content.field_background_color[0]['#markup']}}">
       <h2>{{content.field_heading}}</h2>
       <ul>
-      {{content.field_resources}}
+        {{content.field_resources}}
       </ul>
     </div>
   </div>

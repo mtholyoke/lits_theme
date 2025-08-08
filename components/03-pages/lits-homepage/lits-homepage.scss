@@ -103,7 +103,8 @@ h1 .subtitle {
   margin-bottom: 2px;
   // Contains div.layout-zone for squishy edges.
 
-  h2 { // my bad, ew
+  #news-events > h2,
+  & > .featured-resources-wrapper h2 { // my bad, ew
     padding: 0;
     margin: 1em 0;
     font-size: 1.5em;
