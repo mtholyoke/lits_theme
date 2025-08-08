@@ -25,5 +25,8 @@
  * @see template_preprocess_block()
  */
 #}
-{% include "@compounds/homepage-elements/_homepage-intro-block.twig" %}
+{% include "@elements/04-images/00-image/scaling-image.twig" with {
+  "attributes": attributes.addClass("layout-zone"),
+} %}
+
 

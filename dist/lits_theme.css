@@ -5357,6 +5357,9 @@ footer h2 {
 #about-lits-container {
   flex: 1 1 auto;
   text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
 }
 #about-lits-container {
   width: 100%;
@@ -5422,6 +5425,16 @@ footer h2 {
 #about-lits-container > * {
   margin: 0.25rem;
 }
+@media (min-width: 900px) {
+  #about-lits-container .footer-image-container {
+    flex: 1 1 auto;
+    margin: 0 1em 0 0;
+    max-width: 12em;
+  }
+}
+#about-lits-container .sidebar-nav-wrapper {
+  flex: 1 1 auto;
+}
 
 #block-lits-theme-aboutlits-2 .menu {
   list-style: none;
@@ -5459,6 +5472,19 @@ footer h2 {
 #block-lits-theme-aboutlits-2 .menu__item {
   break-inside: avoid;
   font-size: 1rem;
+}
+
+#block-lits-theme-footerimage {
+  background-size: 0;
+}
+@media (min-width: 900px) {
+  #block-lits-theme-footerimage {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+    width: auto;
+    height: 100%;
+  }
 }
 
 /* III. Copyright bar */

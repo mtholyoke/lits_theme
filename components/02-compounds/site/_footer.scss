@@ -228,6 +228,10 @@ footer h2 {
 #about-lits-container {
   flex: 1 1 auto; // stretch to fill space
   text-align: center;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+
 
   // .layout-zone-right sets squishy gutter on left and padding on right.
   @include responsive-basis(62%, 67%, 72%);
@@ -244,6 +248,18 @@ footer h2 {
 
   & > * {
     margin: 0.25rem; // to match contact tiles
+  }
+
+  @include breakpoint($medium-width) {
+    .footer-image-container {
+      flex: 1 1 auto;
+      margin: 0 1em 0 0;
+      max-width: 12em;
+    }
+  }
+
+  .sidebar-nav-wrapper {
+    flex: 1 1 auto;
   }
 }
 
@@ -278,6 +294,22 @@ footer h2 {
 #block-lits-theme-aboutlits-2 .menu__item {
   break-inside: avoid;
   font-size: 1rem;
+}
+
+#block-lits-theme-footerimage {
+  $offset: 4em;
+
+  & {
+    background-size: 0;
+
+    @include breakpoint($medium-width) {
+      background-size: cover;
+      background-repeat: no-repeat;
+      background-position: bottom;
+      width: auto;
+      height: 100%;
+    }
+  }
 }
 
 /* III. Copyright bar */
