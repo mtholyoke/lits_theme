@@ -1065,6 +1065,7 @@ function lits_theme_preprocess_field(&$variables) {
       $jorgeImage = '/themes/contrib/lits_theme/images/logos/jorge-fools-day.png';
     }
     $variables['jorge_image_url'] = $jorgeImage;
+    $variables["attributes"]["class"][] = 'deprecated';
   }
 }
 

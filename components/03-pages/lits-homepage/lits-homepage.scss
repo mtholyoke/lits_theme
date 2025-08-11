@@ -109,6 +109,16 @@ h1 .subtitle {
     line-height: 2rem;
   }
 
+  a.see-all-posts {
+    @include button;
+    @include focus($dark-blue, link);
+
+    & {
+      width: 10rem;
+      margin-bottom: 2rem;
+    }
+  }
+
   #news-items-container {
     flex-flow: column nowrap;
 

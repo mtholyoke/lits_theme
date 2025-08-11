@@ -93,10 +93,43 @@
         font-weight: bold;
       }
     }
+  }
 
+  &.featured-resources {
+    padding: 1em;
+    background-color: $pale-gray;
+
+    &.raspberry a {
+      border-top: 4px solid $raspberry;
+    }
+
+    &.light_blue a {
+      border-top: 4px solid $light-blue;
+    }
+
+    &.light_green a {
+      border-top: 4px solid $light-green;
+    }
+
+    &.yellow a {
+      border-top: 4px solid $yellow;
+    }
+
+    &.light_orange a {
+      border-top: 4px solid $light-orange;
+    }
+  }
+}
+
+.featured-resources-wrapper.deprecated {
+  .featured-resources {
+    background-color: transparent;
+  }
+  
+  li {
     &:nth-child(6n+1) a {
       border-top: 4px solid $raspberry;
-      
+
       svg, i {
         color: $raspberry;
       }
@@ -104,7 +137,7 @@
 
     &:nth-child(6n+2) a {
       border-top: 4px solid $gray;
-      
+
       svg, i {
         color: $gray;
       }
@@ -112,7 +145,7 @@
 
     &:nth-child(6n+3) a {
       border-top: 4px solid $light-blue;
-      
+
       svg, i {
         color: $light-blue;
       }
@@ -120,7 +153,7 @@
 
     &:nth-child(6n+4) a {
       border-top: 4px solid $light-green;
-      
+
       svg, i {
         color: $light-green;
       }
@@ -128,7 +161,7 @@
 
     &:nth-child(6n+5) a {
       border-top: 4px solid $light-orange;
-      
+
       svg, i {
         color: $light-orange;
       }
@@ -136,7 +169,7 @@
 
     &:nth-child(6n+6) a {
       border-top: 4px solid $red;
-      
+
       svg, i {
         color: $red;
       }
@@ -161,60 +194,6 @@
       a {
         border-top: 4px solid $dark-blue !important;
       }
-    }
-  }
-
-  &.featured-resources {
-    padding: 1em;
-  }
-
-  &.raspberry {
-    background-color: $raspberry;
-    color: $white;
-
-    a {
-      border-top: none !important;
-      box-shadow: none;
-    }
-  }
-
-  &.light_blue {
-    background-color: $light-blue;
-    color: $charcoal;
-
-    a {
-      border-top: none !important;
-      box-shadow: none;
-    }
-  }
-
-  &.light_green {
-    background-color: $light-green;
-    color: $charcoal;
-
-    a {
-      border-top: none !important;
-      box-shadow: none;
-    }
-  }
-  
-  &.yellow {
-    background-color: $yellow;
-    color: $charcoal;
-
-    a {
-      border-top: none !important;
-      box-shadow: none;
-    }
-  }
-  
-  &.light_orange {
-    background-color: $light-orange;
-    color: $charcoal;
-
-    a {
-      border-top: none !important;
-      box-shadow: none;
     }
   }
 }
