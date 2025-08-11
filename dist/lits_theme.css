@@ -2666,6 +2666,7 @@ table.lits-hours-month td.other-month {
  */
 #block-lits-theme-litsunifiedsearchblock {
   margin: 1.5rem 0;
+  width: 100%;
 }
 #block-lits-theme-litsunifiedsearchblock .form-item {
   max-width: 100%;
@@ -2674,6 +2675,29 @@ table.lits-hours-month td.other-month {
   box-sizing: border-box;
   width: 100%;
 }
+#block-lits-theme-litsunifiedsearchblock details summary {
+  width: 100%;
+  color: white;
+  background-color: #07c;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+#block-lits-theme-litsunifiedsearchblock details[open] {
+  border: 1px solid #07c;
+  border-radius: 1px;
+  margin: 1.5rem 0;
+}
+#block-lits-theme-litsunifiedsearchblock details[open] summary {
+  background-color: white;
+  color: #1a1a1a;
+  font-weight: bold;
+}
+#block-lits-theme-litsunifiedsearchblock .panel-content {
+  padding: 0 1.5rem;
+}
+#block-lits-theme-litsunifiedsearchblock .tabs {
+  padding: 1.5rem;
+}
 @media (min-width: 600px) {
   #block-lits-theme-litsunifiedsearchblock .tablist {
     position: relative;
@@ -2681,8 +2705,16 @@ table.lits-hours-month td.other-month {
     display: flex;
     flex-wrap: wrap;
   }
+  #block-lits-theme-litsunifiedsearchblock .tabs {
+    border: none;
+    padding: 0;
+  }
   #block-lits-theme-litsunifiedsearchblock details {
     display: contents;
+  }
+  #block-lits-theme-litsunifiedsearchblock details summary {
+    border: none;
+    width: auto;
   }
   #block-lits-theme-litsunifiedsearchblock details summary {
     background-color: #07c;

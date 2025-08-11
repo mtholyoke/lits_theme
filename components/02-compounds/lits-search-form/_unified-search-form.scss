@@ -6,6 +6,7 @@
   $border-color: $white;
   $button-and-panel-padding: 1.5rem;
   margin: $button-and-panel-padding 0;
+  width: 100%;
 
   .form-item {
     max-width: 100%;
@@ -16,7 +17,38 @@
     width: 100%;
   }
 
-  // Treat as tabs above the given breakpoint
+  details {
+    summary {
+      width: 100%;
+      color: $white;
+      background-color: $med-blue;
+      padding: 1rem;
+      box-sizing: border-box;
+    }
+
+    &[open] {
+      border: 1px solid $med-blue;
+      border-radius: 1px;
+      margin: $button-and-panel-padding 0;
+
+      summary {
+        background-color: $white;
+        color: $charcoal;
+        font-weight: bold;
+      }
+    }
+  }
+
+  .panel-content {
+    padding: 0 $button-and-panel-padding;
+  }
+
+  .tabs {
+    // border: 1px solid $gray;
+    padding: $button-and-panel-padding;
+  }
+
+  // Treat as tabs above the given breakpoint –– see the module php file for form to find the exact breakpoint
   @include breakpoint($small-width) {
     .tablist {
       position: relative;
@@ -25,10 +57,18 @@
       flex-wrap: wrap; 
     }
 
+    .tabs {
+      border: none;
+      padding: 0;
+    }
+
     details {
       display: contents;
 
       summary {
+        border: none;
+        width: auto;
+
         @include button(
           $padding: 1rem $button-and-panel-padding,
           $margin: 0, 
