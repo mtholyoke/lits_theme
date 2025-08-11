@@ -2681,6 +2681,9 @@ table.lits-hours-month td.other-month {
  * @file
  * Styles for the unified search form, in the header of almsot every page.
  */
+#block-lits-theme-litsunifiedsearchblock {
+  margin: 1.5rem 0;
+}
 #block-lits-theme-litsunifiedsearchblock .form-item {
   max-width: 100%;
 }
@@ -5684,7 +5687,6 @@ header#page-header #logobar .logo-container {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  min-height: 3.75rem;
 }
 header#page-header #logobar .logo-container > * {
   flex: 0 0 auto;
@@ -5767,7 +5769,6 @@ header#page-header #logobar .topnav-container a:last-of-type {
 @media (min-width: 900px) {
   header#page-header #imagebar {
     display: block;
-    height: 15.5rem;
     background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;
     background-size: 100%;
   }
@@ -5787,7 +5788,6 @@ header#page-header #logobar .topnav-container a:last-of-type {
 header#page-header #imagebar .layout-container, header#page-header #imagebar .study-space-finder, header#page-header #imagebar #main-content.main-sidebar-side {
   justify-content: center;
   align-items: center;
-  height: 100%;
 }
 header#page-header #menubar {
   background-color: #07c;
@@ -5814,14 +5814,8 @@ header#page-header #menubar #menu-background {
   display: none;
 }
 @media (min-width: 900px) {
-  header#page-header #menubar {
-    background-color: rgba(0, 0, 0, 0);
-  }
   header#page-header #menubar #menu-background {
     display: block;
-    height: 3rem;
-    margin-bottom: -3rem;
-    background-color: #07c;
   }
 }
 

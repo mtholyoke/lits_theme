@@ -5,6 +5,7 @@
 #block-lits-theme-litsunifiedsearchblock {
   $border-color: $white;
   $button-and-panel-padding: 1.5rem;
+  margin: $button-and-panel-padding 0;
 
   .form-item {
     max-width: 100%;

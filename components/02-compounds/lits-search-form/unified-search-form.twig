@@ -18,7 +18,7 @@
 
   {% block content %}
   <div class="tabs">
-    <div role="tablist" aria-labelledby="tablist-1" class="tablist">
+    <div role="tablist" aria-label="Search" class="tablist">
     {% for form in content %}
     <details id="tab-{{loop.index0}}"  {% if loop.index0 == 0 %} open {% endif %}>
       <summary  id="tabcontrol-{{loop.index0}}" class="panel-control">{{ form['title'] }}</summary>
