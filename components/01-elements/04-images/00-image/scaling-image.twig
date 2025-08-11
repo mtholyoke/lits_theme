@@ -25,6 +25,7 @@
  * @see template_preprocess_block()
  */
 #}
+{% if content.field_image %}
 <div {{attributes | without("id")}}>
 <div {{ bem('block') }} style="background-image: url({{content.field_image[0]['#markup']}});" >
   {% block content %}
@@ -37,3 +38,4 @@
   {% endblock %}
 </div>
 </div>
+{% endif %}
