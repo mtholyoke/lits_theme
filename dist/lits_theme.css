@@ -2499,6 +2499,9 @@ article.node--news-item time {
   flex-grow: 0;
   color: #07c;
 }
+article.node--news-item p {
+  word-wrap: break-word;
+}
 article.node--news-item .more-link {
   flex-grow: 0;
   font-size: 0.9rem;
@@ -5746,7 +5749,7 @@ header#page-header #logobar .topnav-container a:focus {
 header#page-header #logobar .topnav-container a:last-of-type {
   border-right: none;
 }
-@media (min-width: 900px) {
+@media (min-width: 600px) {
   header#page-header #imagebar {
     display: block;
     background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;

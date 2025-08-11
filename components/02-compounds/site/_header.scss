@@ -221,7 +221,7 @@ header#page-header {
   #imagebar {
     // .layout-stripe sets width 100%, margin 0, padding 0.
 
-    @include breakpoint($medium-width) {
+    @include breakpoint($small-width) {
       display: block;
       background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
       background-size: 100%;
