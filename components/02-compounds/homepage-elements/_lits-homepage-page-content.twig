@@ -1,5 +1,21 @@
 <div id="newsbar" class="layout-stripe">
-	{{ content.field_resources }}
+  {{ content.field_resources }}
+
+  {{ content.field_featured_resources }} {# old field #}
 
   {{ content.field_news_blocks }}
+
+  {# old field #}
+  {% if content.field_news_items["#items"] %}
+  <div id="news-events" class="layout-zone">
+    <h2>News &amp; events</h2>
+    {{ content.field_news_items }}
+    <a class="see-all-posts" href="/news">
+      <i class="fas fa-calendar-days" aria-hidden="true"></i>
+      <span>See all posts</span>
+    </a>
+  </div>
+  {% endif %}
+
+
 </div>
