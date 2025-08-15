@@ -99,24 +99,52 @@
     padding: 1em;
     background-color: $pale-gray;
 
-    &.raspberry a {
+    // Grouping border
+    &.raspberry {
       border-top: 4px solid $raspberry;
     }
 
-    &.light_blue a {
+    &.light_blue {
       border-top: 4px solid $light-blue;
     }
 
-    &.light_green a {
+    &.light_green {
       border-top: 4px solid $light-green;
     }
 
-    &.yellow a {
+    &.yellow {
       border-top: 4px solid $yellow;
     }
 
-    &.light_orange a {
+    &.light_orange {
       border-top: 4px solid $light-orange;
+    }
+
+    // Tile borders
+    li {
+      &:nth-child(6n+1) a {
+        border-top: 4px solid $raspberry;
+      }
+
+      &:nth-child(6n+2) a {
+        border-top: 4px solid $gray;
+      }
+      
+      &:nth-child(6n+3) a {
+        border-top: 4px solid $light-blue;
+      }
+      
+      &:nth-child(6n+4) a {
+        border-top: 4px solid $light-green;
+      }
+      
+      &:nth-child(6n+5) a {
+        border-top: 4px solid $light-orange;
+      }
+
+      &:nth-child(6n+6) a {
+        border-top: 4px solid $red;
+      }
     }
   }
 }

@@ -109,13 +109,17 @@ h1 .subtitle {
     line-height: 2rem;
   }
 
+  #news-events > h2 {
+    text-align: center;
+  }
+
   a.see-all-posts {
     @include button;
     @include focus($dark-blue, link);
 
     & {
       width: 10rem;
-      margin-bottom: 2rem;
+      margin: 0 auto 2rem auto;
     }
   }
 
