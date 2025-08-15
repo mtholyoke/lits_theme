@@ -27,8 +27,9 @@
 #}
 {% if content.field_image %}
 <div {{attributes | without("id")}}>
-<div {{ bem('block') }} style="background-image: url({{content.field_image[0]['#markup']}});" >
+<div {{ bem('block') }}>
   {% block content %}
+  <div class="scaling-image" style="background-image: url({{content.field_image[0]['#markup']}});" ></div>
   {% if content.field_heading[0]['#text'] or content.field_heading_suffix[0]['#text'] %}
     <div class="word-group">
       <h1>{{ content.field_heading[0]['#text'] }}{{ content.field_heading_suffix[0]['#text'] | raw }}</h1>
