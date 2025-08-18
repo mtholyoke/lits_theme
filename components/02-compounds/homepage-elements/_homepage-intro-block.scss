@@ -6,6 +6,10 @@
     background-repeat: no-repeat;
     background-position: 80% 30%;
     height: 4 * $offset;
+
+    @include breakpoint($large-width) {
+      height: 5 * $offset;
+    }
   }
 
   p {
@@ -29,7 +33,7 @@
     flex-flow: column wrap;
     justify-content: center;
     align-items: center;
-    padding: 3em 1em;
+    padding: 1em;
 
     @include breakpoint($small-width) {
       width: 100%;
@@ -40,6 +44,7 @@
     @include breakpoint($large-width) {
       max-width: 25em;
       margin-left: (-1 * $offset);
+      margin-top: (-1 * 3 * $offset);
     }
   }
 

@@ -2307,6 +2307,11 @@ ol {
   background-position: 80% 30%;
   height: 16em;
 }
+@media (min-width: 1200px) {
+  #block-lits-theme-homepageintro .scaling-image {
+    height: 20em;
+  }
+}
 #block-lits-theme-homepageintro p {
   margin: 0;
 }
@@ -2326,7 +2331,7 @@ ol {
   flex-flow: column wrap;
   justify-content: center;
   align-items: center;
-  padding: 3em 1em;
+  padding: 1em;
 }
 @media (min-width: 600px) {
   #block-lits-theme-homepageintro .word-group {
@@ -2339,6 +2344,7 @@ ol {
   #block-lits-theme-homepageintro .word-group {
     max-width: 25em;
     margin-left: -4em;
+    margin-top: -12em;
   }
 }
 #block-lits-theme-homepageintro .homepageintro-body a {
