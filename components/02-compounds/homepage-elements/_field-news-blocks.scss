@@ -1,5 +1,4 @@
 .field-news-blocks {
-  background-color: $dark-blue;
 
   h2 {
     color: $white;
@@ -11,6 +10,7 @@
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 1em;
+      padding: 1em;
     }
   }
 }

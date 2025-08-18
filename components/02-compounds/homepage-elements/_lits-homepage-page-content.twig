@@ -1,9 +1,12 @@
-<div id="newsbar" class="layout-stripe">
+<div id="resources" class="layout-zone">
   {{ content.field_resources }}
 
   {{ content.field_featured_resources }} {# old field #}
-
-  {{ content.field_news_blocks }}
+</div>
+<div id="newsbar" class="layout-zone">
+  <div id="news-blocks" class="layout-zone">
+    {{ content.field_news_blocks }}
+  </div>
 
   {# old field #}
   {% if content.field_news_items["#items"] %}
@@ -16,6 +19,4 @@
     </a>
   </div>
   {% endif %}
-
-
 </div>

@@ -2,7 +2,8 @@
  * @file
  * Styles for the unified search form, in the header of almsot every page.
  */
-#block-lits-theme-litsunifiedsearchblock {
+#block-lits-theme-litsunifiedsearchblock,
+#block-lits-theme-litsunifiedsearchblock-2 {
   $border-color: $white;
   $button-and-panel-padding: 1.5rem;
   margin: $button-and-panel-padding 0;
@@ -18,6 +19,8 @@
   }
 
   details {
+    background: $white;
+
     summary {
       width: 100%;
       color: $white;
@@ -29,12 +32,12 @@
     &[open] {
       border: 1px solid $med-blue;
       border-radius: 1px;
-      margin: $button-and-panel-padding 0;
 
       summary {
         background-color: $white;
         color: $charcoal;
         font-weight: bold;
+        border-bottom: 1px solid $pale-gray;
       }
     }
   }

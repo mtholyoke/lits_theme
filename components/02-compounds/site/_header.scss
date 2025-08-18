@@ -218,8 +218,11 @@ header#page-header {
 
   /* III. Imagebar */
 
-  #imagebar {
+  #imagebar,
+  #imagebar-mobile {
     // .layout-stripe sets width 100%, margin 0, padding 0.
+    background: $charcoal;
+    color: $white;
 
     @include breakpoint($small-width) {
       display: block;
@@ -240,6 +243,20 @@ header#page-header {
     .layout-container {
       justify-content: center;
       align-items: center;
+    }
+  }
+
+  #imagebar {
+    display: none;
+  }
+  
+  @include breakpoint($medium-width) {
+    #imagebar {
+      display: block;
+    }
+
+    #imagebar-mobile {
+      display: none;
     }
   }
 

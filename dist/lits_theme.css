@@ -2095,7 +2095,7 @@ ol {
   gap: 1em;
 }
 .field-resources.layout-zone {
-  margin: 1em 0;
+  margin: auto;
 }
 @media (min-width: 600px) {
   .field-resources {
@@ -2231,6 +2231,8 @@ ol {
 
 .featured-resources-wrapper.deprecated .featured-resources {
   background-color: transparent;
+  padding: 0;
+  margin: -0.5rem;
 }
 .featured-resources-wrapper.deprecated li:nth-child(6n+1) a {
   border-top: 4px solid #a20067;
@@ -2286,9 +2288,6 @@ ol {
   border-top: 4px solid #004876 !important;
 }
 
-.field-news-blocks {
-  background-color: #004876;
-}
 .field-news-blocks h2 {
   color: white;
   text-align: center;
@@ -2298,6 +2297,7 @@ ol {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 1em;
+    padding: 1em;
   }
 }
 
@@ -2682,59 +2682,76 @@ table.lits-hours-month td.other-month {
  * @file
  * Styles for the unified search form, in the header of almsot every page.
  */
-#block-lits-theme-litsunifiedsearchblock {
+#block-lits-theme-litsunifiedsearchblock,
+#block-lits-theme-litsunifiedsearchblock-2 {
   margin: 1.5rem 0;
   width: 100%;
 }
-#block-lits-theme-litsunifiedsearchblock .form-item {
+#block-lits-theme-litsunifiedsearchblock .form-item,
+#block-lits-theme-litsunifiedsearchblock-2 .form-item {
   max-width: 100%;
 }
-#block-lits-theme-litsunifiedsearchblock input {
+#block-lits-theme-litsunifiedsearchblock input,
+#block-lits-theme-litsunifiedsearchblock-2 input {
   box-sizing: border-box;
   width: 100%;
 }
-#block-lits-theme-litsunifiedsearchblock details summary {
+#block-lits-theme-litsunifiedsearchblock details,
+#block-lits-theme-litsunifiedsearchblock-2 details {
+  background: white;
+}
+#block-lits-theme-litsunifiedsearchblock details summary,
+#block-lits-theme-litsunifiedsearchblock-2 details summary {
   width: 100%;
   color: white;
   background-color: #07c;
   padding: 1rem;
   box-sizing: border-box;
 }
-#block-lits-theme-litsunifiedsearchblock details[open] {
+#block-lits-theme-litsunifiedsearchblock details[open],
+#block-lits-theme-litsunifiedsearchblock-2 details[open] {
   border: 1px solid #07c;
   border-radius: 1px;
-  margin: 1.5rem 0;
 }
-#block-lits-theme-litsunifiedsearchblock details[open] summary {
+#block-lits-theme-litsunifiedsearchblock details[open] summary,
+#block-lits-theme-litsunifiedsearchblock-2 details[open] summary {
   background-color: white;
   color: #1a1a1a;
   font-weight: bold;
+  border-bottom: 1px solid #e2dfdd;
 }
-#block-lits-theme-litsunifiedsearchblock .panel-content {
+#block-lits-theme-litsunifiedsearchblock .panel-content,
+#block-lits-theme-litsunifiedsearchblock-2 .panel-content {
   padding: 0 1.5rem;
 }
-#block-lits-theme-litsunifiedsearchblock .tabs {
+#block-lits-theme-litsunifiedsearchblock .tabs,
+#block-lits-theme-litsunifiedsearchblock-2 .tabs {
   padding: 1.5rem;
 }
 @media (min-width: 600px) {
-  #block-lits-theme-litsunifiedsearchblock .tablist {
+  #block-lits-theme-litsunifiedsearchblock .tablist,
+  #block-lits-theme-litsunifiedsearchblock-2 .tablist {
     position: relative;
     justify-content: left;
     display: flex;
     flex-wrap: wrap;
   }
-  #block-lits-theme-litsunifiedsearchblock .tabs {
+  #block-lits-theme-litsunifiedsearchblock .tabs,
+  #block-lits-theme-litsunifiedsearchblock-2 .tabs {
     border: none;
     padding: 0;
   }
-  #block-lits-theme-litsunifiedsearchblock details {
+  #block-lits-theme-litsunifiedsearchblock details,
+  #block-lits-theme-litsunifiedsearchblock-2 details {
     display: contents;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary {
+  #block-lits-theme-litsunifiedsearchblock details summary,
+  #block-lits-theme-litsunifiedsearchblock-2 details summary {
     border: none;
     width: auto;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary {
+  #block-lits-theme-litsunifiedsearchblock details summary,
+  #block-lits-theme-litsunifiedsearchblock-2 details summary {
     background-color: #07c;
     border: none;
     outline: none;
@@ -2753,18 +2770,22 @@ table.lits-hours-month td.other-month {
     border-left: 2px solid white;
     border-top: 2px solid white;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary:visited {
+  #block-lits-theme-litsunifiedsearchblock details summary:visited,
+  #block-lits-theme-litsunifiedsearchblock-2 details summary:visited {
     color: white;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary:hover {
+  #block-lits-theme-litsunifiedsearchblock details summary:hover,
+  #block-lits-theme-litsunifiedsearchblock-2 details summary:hover {
     background-color: #6e6259;
     color: white;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary:focus {
+  #block-lits-theme-litsunifiedsearchblock details summary:focus,
+  #block-lits-theme-litsunifiedsearchblock-2 details summary:focus {
     outline-offset: 2px;
     outline: 3px solid #004876;
   }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary {
+  #block-lits-theme-litsunifiedsearchblock details[open] summary,
+  #block-lits-theme-litsunifiedsearchblock-2 details[open] summary {
     background-color: white;
     border: none;
     outline: none;
@@ -2783,29 +2804,36 @@ table.lits-hours-month td.other-month {
     border-left: 2px solid white;
     border-top: 2px solid white;
   }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary:visited {
+  #block-lits-theme-litsunifiedsearchblock details[open] summary:visited,
+  #block-lits-theme-litsunifiedsearchblock-2 details[open] summary:visited {
     color: #1a1a1a;
   }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary:hover {
+  #block-lits-theme-litsunifiedsearchblock details[open] summary:hover,
+  #block-lits-theme-litsunifiedsearchblock-2 details[open] summary:hover {
     background-color: #6e6259;
     color: white;
   }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary:focus {
+  #block-lits-theme-litsunifiedsearchblock details[open] summary:focus,
+  #block-lits-theme-litsunifiedsearchblock-2 details[open] summary:focus {
     outline-offset: 2px;
     outline: 3px solid #004876;
   }
-  #block-lits-theme-litsunifiedsearchblock details .panel-content {
+  #block-lits-theme-litsunifiedsearchblock details .panel-content,
+  #block-lits-theme-litsunifiedsearchblock-2 details .panel-content {
     background-color: white;
   }
-  #block-lits-theme-litsunifiedsearchblock button[type=submit] {
+  #block-lits-theme-litsunifiedsearchblock button[type=submit],
+  #block-lits-theme-litsunifiedsearchblock-2 button[type=submit] {
     margin: 0;
   }
   @supports selector(::details-content) {
-    #block-lits-theme-litsunifiedsearchblock details[open]::details-content {
+    #block-lits-theme-litsunifiedsearchblock details[open]::details-content,
+    #block-lits-theme-litsunifiedsearchblock-2 details[open]::details-content {
       display: contents;
     }
   }
-  #block-lits-theme-litsunifiedsearchblock .panel-content {
+  #block-lits-theme-litsunifiedsearchblock .panel-content,
+  #block-lits-theme-litsunifiedsearchblock-2 .panel-content {
     order: 1;
     padding: 1.5rem;
     width: 100%;
@@ -5799,28 +5827,50 @@ header#page-header #logobar .topnav-container a:focus {
 header#page-header #logobar .topnav-container a:last-of-type {
   border-right: none;
 }
+header#page-header #imagebar,
+header#page-header #imagebar-mobile {
+  background: #1a1a1a;
+  color: white;
+}
 @media (min-width: 600px) {
-  header#page-header #imagebar {
+  header#page-header #imagebar,
+  header#page-header #imagebar-mobile {
     display: block;
     background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;
     background-size: 100%;
   }
 }
 @media (min-width: 1200px) {
-  header#page-header #imagebar {
+  header#page-header #imagebar,
+  header#page-header #imagebar-mobile {
     background: white url(84fb47261b62fcf9d46b.jpg) no-repeat center center;
     background-size: 100%;
   }
 }
 @media (min-width: 1920px) {
-  header#page-header #imagebar {
+  header#page-header #imagebar,
+  header#page-header #imagebar-mobile {
     background: white url(9507b006cfdde5dc4d80.jpg) no-repeat center center;
     background-size: 100%;
   }
 }
-header#page-header #imagebar .layout-container, header#page-header #imagebar .study-space-finder, header#page-header #imagebar #main-content.main-sidebar-side {
+header#page-header #imagebar .layout-container, header#page-header #imagebar .study-space-finder, header#page-header #imagebar #main-content.main-sidebar-side,
+header#page-header #imagebar-mobile .layout-container,
+header#page-header #imagebar-mobile .study-space-finder,
+header#page-header #imagebar-mobile #main-content.main-sidebar-side {
   justify-content: center;
   align-items: center;
+}
+header#page-header #imagebar {
+  display: none;
+}
+@media (min-width: 900px) {
+  header#page-header #imagebar {
+    display: block;
+  }
+  header#page-header #imagebar-mobile {
+    display: none;
+  }
 }
 header#page-header #menubar {
   background-color: #07c;
@@ -6952,6 +7002,46 @@ body.system_status #system-status table.no-table textarea {
  * @file
  * Styles for elements specific to the LITS homepage
  */
+.lits_homepage {
+  /* 0. LITS intro */
+}
+.lits_homepage #block-lits-theme-homepageintro,
+.lits_homepage .field-resources,
+.lits_homepage .deprecated.featured-resources-wrapper,
+.lits_homepage #news-blocks,
+.lits_homepage #news-events {
+  margin: 1rem auto;
+}
+.lits_homepage .field-news-blocks {
+  padding-left: 0.5rem;
+}
+@media (min-width: 900px) {
+  .lits_homepage .field-news-blocks {
+    padding-left: calc((0.5rem + ((100vw - 900px) / 6)));
+  }
+}
+@media (min-width: 1920px) {
+  .lits_homepage .field-news-blocks {
+    padding-left: calc(0.5rem + math.div((1920px - 900px), 6));
+  }
+}
+.lits_homepage .field-news-blocks {
+  padding-right: 0.5rem;
+}
+@media (min-width: 900px) {
+  .lits_homepage .field-news-blocks {
+    padding-right: calc((0.5rem + ((100vw - 900px) / 6)));
+  }
+}
+@media (min-width: 1920px) {
+  .lits_homepage .field-news-blocks {
+    padding-right: calc(0.5rem + math.div((1920px - 900px), 6));
+  }
+}
+.lits_homepage .field-news-blocks {
+  background-color: #004876;
+}
+
 /* I. Titlebar */
 #titlebar .layout-container, #titlebar #main-content.main-sidebar-side, #titlebar .study-space-finder {
   flex-flow: column nowrap;

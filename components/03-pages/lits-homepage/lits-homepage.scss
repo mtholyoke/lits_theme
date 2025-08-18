@@ -9,7 +9,27 @@
 // }
 // TODO: remove that image file if we don’t need it.
 // TODO: move the actual college logo from db into theme!
+.lits_homepage {
+  $homepage-margin: 1rem;
 
+  /* 0. LITS intro */
+  #block-lits-theme-homepageintro,
+  .field-resources,
+  .deprecated.featured-resources-wrapper,
+  #news-blocks,
+  #news-events {
+    margin: $homepage-margin auto;
+  }
+
+  .field-news-blocks {
+    @include squishy-padding(left);
+    @include squishy-padding(right);
+
+    & {
+      background-color: $dark-blue;
+    }
+  }
+}
 /* I. Titlebar */
 
 #titlebar {
