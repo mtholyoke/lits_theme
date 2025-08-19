@@ -299,8 +299,9 @@ footer h2 {
 
 #block-lits-theme-footerimage {
   $offset: 4em;
+  height: 100%;
 
-  & {
+  & .scaling-image {
     background-size: 0;
 
     @include breakpoint($medium-width) {

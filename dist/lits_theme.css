@@ -5553,10 +5553,13 @@ footer h2 {
 }
 
 #block-lits-theme-footerimage {
+  height: 100%;
+}
+#block-lits-theme-footerimage .scaling-image {
   background-size: 0;
 }
 @media (min-width: 900px) {
-  #block-lits-theme-footerimage {
+  #block-lits-theme-footerimage .scaling-image {
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
