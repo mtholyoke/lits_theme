@@ -5662,6 +5662,7 @@ header#page-header {
   /* I. Logobar */
   /* I.A. Logobar > Logo section */
   /* I.B. Logobar > TopNav section */
+  /* III. Search and menu container */
   /* III. Imagebar */
   /* IV. Menubar */
 }
@@ -5809,50 +5810,42 @@ header#page-header #logobar .topnav-container a:focus {
 header#page-header #logobar .topnav-container a:last-of-type {
   border-right: none;
 }
-header#page-header #imagebar,
-header#page-header #imagebar-mobile {
+header#page-header #search-and-menu {
+  display: flex;
+  flex-flow: column nowrap;
+  flex-direction: column-reverse;
+}
+@media (min-width: 900px) {
+  header#page-header #search-and-menu {
+    flex-direction: column;
+  }
+}
+header#page-header #imagebar {
   background: #1a1a1a;
   color: white;
 }
 @media (min-width: 600px) {
-  header#page-header #imagebar,
-  header#page-header #imagebar-mobile {
+  header#page-header #imagebar {
     display: block;
     background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;
     background-size: 100%;
   }
 }
 @media (min-width: 1200px) {
-  header#page-header #imagebar,
-  header#page-header #imagebar-mobile {
+  header#page-header #imagebar {
     background: white url(84fb47261b62fcf9d46b.jpg) no-repeat center center;
     background-size: 100%;
   }
 }
 @media (min-width: 1920px) {
-  header#page-header #imagebar,
-  header#page-header #imagebar-mobile {
+  header#page-header #imagebar {
     background: white url(9507b006cfdde5dc4d80.jpg) no-repeat center center;
     background-size: 100%;
   }
 }
-header#page-header #imagebar .layout-container, header#page-header #imagebar .study-space-finder, header#page-header #imagebar #main-content.main-sidebar-side,
-header#page-header #imagebar-mobile .layout-container,
-header#page-header #imagebar-mobile .study-space-finder,
-header#page-header #imagebar-mobile #main-content.main-sidebar-side {
+header#page-header #imagebar .layout-container, header#page-header #imagebar .study-space-finder, header#page-header #imagebar #main-content.main-sidebar-side {
   justify-content: center;
   align-items: center;
-}
-header#page-header #imagebar {
-  display: none;
-}
-@media (min-width: 900px) {
-  header#page-header #imagebar {
-    display: block;
-  }
-  header#page-header #imagebar-mobile {
-    display: none;
-  }
 }
 header#page-header #menubar {
   background-color: #07c;
