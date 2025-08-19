@@ -119,17 +119,6 @@ header#page-header {
       flex: 0 0 auto;
     }
 
-    // Always use wordmark on homepage
-    .lits_homepage & {
-      & #logo {
-        display: inline-block;
-      }
-
-      & #logo-small {
-        display: none;
-      }
-    }
-
     // On interior pages, there's always other stuff in the logobar
     // Use wordmark logo only above small width
     .lits_page & {
@@ -137,21 +126,7 @@ header#page-header {
       align-items: center;
 
       & #logo {
-        display: none;
-      }
-
-      & #logo-small {
         display: flex; // pretty much just to vertically center the svg block element
-      }
-
-      @include breakpoint($small-width) {
-        & #logo {
-          display: flex; // pretty much just to vertically center the svg block element
-        }
-
-        & #logo-small {
-          display: none;
-        }
       }
     }
 

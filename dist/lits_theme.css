@@ -5751,29 +5751,12 @@ header#page-header #logobar .logo-container {
 header#page-header #logobar .logo-container > * {
   flex: 0 0 auto;
 }
-.lits_homepage header#page-header #logobar .logo-container #logo {
-  display: inline-block;
-}
-.lits_homepage header#page-header #logobar .logo-container #logo-small {
-  display: none;
-}
 .lits_page header#page-header #logobar .logo-container {
   justify-content: flex-start;
   align-items: center;
 }
 .lits_page header#page-header #logobar .logo-container #logo {
-  display: none;
-}
-.lits_page header#page-header #logobar .logo-container #logo-small {
   display: flex;
-}
-@media (min-width: 600px) {
-  .lits_page header#page-header #logobar .logo-container #logo {
-    display: flex;
-  }
-  .lits_page header#page-header #logobar .logo-container #logo-small {
-    display: none;
-  }
 }
 @media (min-width: 900px) {
   body.lits_homepage header#page-header #logobar .logo-container {
