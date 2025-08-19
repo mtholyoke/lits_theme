@@ -2123,30 +2123,12 @@ ol {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-around;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 1rem;
 }
 .has-link-tiles li {
-  flex: 1 1 auto;
-  width: 100%;
-  margin: 0.5rem;
-}
-@media (min-width: 600px) {
-  .has-link-tiles li {
-    width: 41%;
-  }
-}
-@media (min-width: 900px) {
-  .has-link-tiles li {
-    width: 31%;
-  }
-}
-@media (min-width: 1200px) {
-  .has-link-tiles li {
-    width: 26%;
-    min-height: 10rem;
-  }
+  min-height: 7rem;
 }
 .has-link-tiles li .fontawesome-icons {
   text-align: center;
@@ -2232,7 +2214,25 @@ ol {
 .featured-resources-wrapper.deprecated .featured-resources {
   background-color: transparent;
   padding: 0;
-  margin: -0.5rem;
+  margin: -0.5rem auto;
+}
+.featured-resources-wrapper.deprecated ul {
+  grid-template-columns: 1fr;
+}
+@media (min-width: 300px) {
+  .featured-resources-wrapper.deprecated ul {
+    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+  }
+}
+@media (min-width: 600px) {
+  .featured-resources-wrapper.deprecated ul {
+    grid-template-columns: repeat(auto-fit, minmax(26%, 1fr));
+  }
+}
+@media (min-width: 900px) {
+  .featured-resources-wrapper.deprecated ul {
+    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+  }
 }
 .featured-resources-wrapper.deprecated li:nth-child(6n+1) a {
   border-top: 4px solid #a20067;
@@ -2271,7 +2271,7 @@ ol {
   color: #ef3340;
 }
 .featured-resources-wrapper.deprecated li.tdx-tile {
-  width: 100%;
+  grid-column: 1/-1;
 }
 .featured-resources-wrapper.deprecated li.tdx-tile svg, .featured-resources-wrapper.deprecated li.tdx-tile i {
   overflow: visible;
@@ -2723,10 +2723,6 @@ table.lits-hours-month td.other-month {
 #block-lits-theme-litsunifiedsearchblock .panel-content,
 #block-lits-theme-litsunifiedsearchblock-2 .panel-content {
   padding: 0 1.5rem;
-}
-#block-lits-theme-litsunifiedsearchblock .tabs,
-#block-lits-theme-litsunifiedsearchblock-2 .tabs {
-  padding: 1.5rem;
 }
 @media (min-width: 600px) {
   #block-lits-theme-litsunifiedsearchblock .tablist,

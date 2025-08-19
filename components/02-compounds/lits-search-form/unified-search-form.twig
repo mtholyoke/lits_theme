@@ -7,9 +7,11 @@
  * @see template_preprocess_block()
  */
 #}
+
+{# TODO wtf with the ids #}
 {{ attach_library('lits_search/unified_search') }}
 
-<div {{ attributes }}>
+<div {{ attributes.addClass("layout-zone") }}>
   {{ title_prefix }}
   {% if label %}
     <h2 class="block-title" {{ title_attributes.addClass('h2') }}>{{ label }}</h2>

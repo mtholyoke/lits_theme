@@ -36,28 +36,13 @@
   ul {
     @include list-reset;
 
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+    gap: 1rem;
   }
 
   li {
-    flex: 1 1 auto;
-    width: 100%;
-    margin: 0.5rem;
-
-    @include breakpoint($small-width) {
-      width: 41%;
-    }
-
-    @include breakpoint($medium-width) {
-      width: 31%;
-    }
-
-    @include breakpoint($large-width) {
-      width: 26%;
-      min-height: 10rem;
-    }
+    min-height: 7rem;
 
     .fontawesome-icons {
       text-align: center;
@@ -153,7 +138,23 @@
   .featured-resources {
     background-color: transparent;
     padding: 0;
-    margin: -0.5rem;
+    margin: -0.5rem auto;
+  }
+
+  ul {
+    grid-template-columns: 1fr;
+
+    @include breakpoint($min-width) {
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
+    }
+
+    @include breakpoint($small-width) {
+      grid-template-columns: repeat(auto-fit, minmax(26%, 1fr));
+    }
+
+    @include breakpoint($medium-width) {
+      grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
+    }
   }
   
   li {
@@ -206,7 +207,8 @@
     }
 
     &.tdx-tile {
-      width: 100%;
+      // width: 100%;
+      grid-column: 1 / -1;
 
       svg, i {
         overflow: visible;
