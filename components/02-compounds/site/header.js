@@ -30,4 +30,21 @@
       });
     }
   };
+
+
+  Drupal.behaviors.litsThemeSearchToggleHandler = {
+    attach: context => {
+      const $searchToggle = $('#search-toggle', context);
+      $searchToggle.click(event => {
+        const $searchContainer = $(`#${$searchToggle.attr("aria-controls")}`);
+        $searchContainer.slideToggle()
+        $searchToggle.attr("aria-expanded", function (i, attr) {
+          return attr == 'true' ? 'false' : 'true'
+        });
+        $searchToggle.attr("aria-pressed", function (i, attr) {
+          return attr == 'true' ? 'false' : 'true'
+        });
+      });
+    }
+  };
 })(jQuery, Drupal);

@@ -2,12 +2,12 @@
  * @file
  * Styles for the unified search form, in the header of almsot every page.
  */
-#block-lits-theme-litsunifiedsearchblock,
-#block-lits-theme-litsunifiedsearchblock-2 {
+#block-lits-theme-litsunifiedsearchblock {
   $border-color: $white;
   $button-and-panel-padding: 1.5rem;
   margin: $button-and-panel-padding 0;
   width: 100%;
+  display: none; // interior pages
 
   .form-item {
     max-width: 100%;
@@ -112,5 +112,9 @@
       padding: $button-and-panel-padding;
       width: 100%; // make the content sit on it's own row
     }
+  }
+
+  .lits_homepage & {
+    display: block;
   }
 }

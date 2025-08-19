@@ -2682,72 +2682,60 @@ table.lits-hours-month td.other-month {
  * @file
  * Styles for the unified search form, in the header of almsot every page.
  */
-#block-lits-theme-litsunifiedsearchblock,
-#block-lits-theme-litsunifiedsearchblock-2 {
+#block-lits-theme-litsunifiedsearchblock {
   margin: 1.5rem 0;
   width: 100%;
+  display: none;
 }
-#block-lits-theme-litsunifiedsearchblock .form-item,
-#block-lits-theme-litsunifiedsearchblock-2 .form-item {
+#block-lits-theme-litsunifiedsearchblock .form-item {
   max-width: 100%;
 }
-#block-lits-theme-litsunifiedsearchblock input,
-#block-lits-theme-litsunifiedsearchblock-2 input {
+#block-lits-theme-litsunifiedsearchblock input {
   box-sizing: border-box;
   width: 100%;
 }
-#block-lits-theme-litsunifiedsearchblock details,
-#block-lits-theme-litsunifiedsearchblock-2 details {
+#block-lits-theme-litsunifiedsearchblock details {
   background: white;
 }
-#block-lits-theme-litsunifiedsearchblock details summary,
-#block-lits-theme-litsunifiedsearchblock-2 details summary {
+#block-lits-theme-litsunifiedsearchblock details summary {
   width: 100%;
   color: white;
   background-color: #07c;
   padding: 1rem;
   box-sizing: border-box;
 }
-#block-lits-theme-litsunifiedsearchblock details[open],
-#block-lits-theme-litsunifiedsearchblock-2 details[open] {
+#block-lits-theme-litsunifiedsearchblock details[open] {
   border: 1px solid #07c;
   border-radius: 1px;
 }
-#block-lits-theme-litsunifiedsearchblock details[open] summary,
-#block-lits-theme-litsunifiedsearchblock-2 details[open] summary {
+#block-lits-theme-litsunifiedsearchblock details[open] summary {
   background-color: white;
   color: #1a1a1a;
   font-weight: bold;
   border-bottom: 1px solid #e2dfdd;
 }
-#block-lits-theme-litsunifiedsearchblock .panel-content,
-#block-lits-theme-litsunifiedsearchblock-2 .panel-content {
+#block-lits-theme-litsunifiedsearchblock .panel-content {
   padding: 0 1.5rem;
 }
 @media (min-width: 600px) {
-  #block-lits-theme-litsunifiedsearchblock .tablist,
-  #block-lits-theme-litsunifiedsearchblock-2 .tablist {
+  #block-lits-theme-litsunifiedsearchblock .tablist {
     position: relative;
     justify-content: left;
     display: flex;
     flex-wrap: wrap;
   }
-  #block-lits-theme-litsunifiedsearchblock .tabs,
-  #block-lits-theme-litsunifiedsearchblock-2 .tabs {
+  #block-lits-theme-litsunifiedsearchblock .tabs {
     border: none;
     padding: 0;
   }
-  #block-lits-theme-litsunifiedsearchblock details,
-  #block-lits-theme-litsunifiedsearchblock-2 details {
+  #block-lits-theme-litsunifiedsearchblock details {
     display: contents;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary,
-  #block-lits-theme-litsunifiedsearchblock-2 details summary {
+  #block-lits-theme-litsunifiedsearchblock details summary {
     border: none;
     width: auto;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary,
-  #block-lits-theme-litsunifiedsearchblock-2 details summary {
+  #block-lits-theme-litsunifiedsearchblock details summary {
     background-color: #07c;
     border: none;
     outline: none;
@@ -2766,22 +2754,18 @@ table.lits-hours-month td.other-month {
     border-left: 2px solid white;
     border-top: 2px solid white;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary:visited,
-  #block-lits-theme-litsunifiedsearchblock-2 details summary:visited {
+  #block-lits-theme-litsunifiedsearchblock details summary:visited {
     color: white;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary:hover,
-  #block-lits-theme-litsunifiedsearchblock-2 details summary:hover {
+  #block-lits-theme-litsunifiedsearchblock details summary:hover {
     background-color: #6e6259;
     color: white;
   }
-  #block-lits-theme-litsunifiedsearchblock details summary:focus,
-  #block-lits-theme-litsunifiedsearchblock-2 details summary:focus {
+  #block-lits-theme-litsunifiedsearchblock details summary:focus {
     outline-offset: 2px;
     outline: 3px solid #004876;
   }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary,
-  #block-lits-theme-litsunifiedsearchblock-2 details[open] summary {
+  #block-lits-theme-litsunifiedsearchblock details[open] summary {
     background-color: white;
     border: none;
     outline: none;
@@ -2800,40 +2784,36 @@ table.lits-hours-month td.other-month {
     border-left: 2px solid white;
     border-top: 2px solid white;
   }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary:visited,
-  #block-lits-theme-litsunifiedsearchblock-2 details[open] summary:visited {
+  #block-lits-theme-litsunifiedsearchblock details[open] summary:visited {
     color: #1a1a1a;
   }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary:hover,
-  #block-lits-theme-litsunifiedsearchblock-2 details[open] summary:hover {
+  #block-lits-theme-litsunifiedsearchblock details[open] summary:hover {
     background-color: #6e6259;
     color: white;
   }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary:focus,
-  #block-lits-theme-litsunifiedsearchblock-2 details[open] summary:focus {
+  #block-lits-theme-litsunifiedsearchblock details[open] summary:focus {
     outline-offset: 2px;
     outline: 3px solid #004876;
   }
-  #block-lits-theme-litsunifiedsearchblock details .panel-content,
-  #block-lits-theme-litsunifiedsearchblock-2 details .panel-content {
+  #block-lits-theme-litsunifiedsearchblock details .panel-content {
     background-color: white;
   }
-  #block-lits-theme-litsunifiedsearchblock button[type=submit],
-  #block-lits-theme-litsunifiedsearchblock-2 button[type=submit] {
+  #block-lits-theme-litsunifiedsearchblock button[type=submit] {
     margin: 0;
   }
   @supports selector(::details-content) {
-    #block-lits-theme-litsunifiedsearchblock details[open]::details-content,
-    #block-lits-theme-litsunifiedsearchblock-2 details[open]::details-content {
+    #block-lits-theme-litsunifiedsearchblock details[open]::details-content {
       display: contents;
     }
   }
-  #block-lits-theme-litsunifiedsearchblock .panel-content,
-  #block-lits-theme-litsunifiedsearchblock-2 .panel-content {
+  #block-lits-theme-litsunifiedsearchblock .panel-content {
     order: 1;
     padding: 1.5rem;
     width: 100%;
   }
+}
+.lits_homepage #block-lits-theme-litsunifiedsearchblock {
+  display: block;
 }
 
 .search-results {
@@ -5792,23 +5772,64 @@ header#page-header #logobar .topnav-container {
 header#page-header #logobar .topnav-container > * {
   margin-bottom: 5px;
 }
-header#page-header #logobar .topnav-container a {
+header#page-header #logobar .topnav-container .nav-link {
   display: none;
   padding: 0 1rem;
   border-right: 1px solid white;
   font-size: 1rem;
 }
-header#page-header #logobar .topnav-container a:focus {
+header#page-header #logobar .topnav-container .nav-link:focus {
   outline-offset: 2px;
   outline: 3px solid white;
 }
 @media (min-width: 900px) {
-  header#page-header #logobar .topnav-container a {
+  header#page-header #logobar .topnav-container .nav-link {
     display: inline-block;
   }
 }
-header#page-header #logobar .topnav-container a:last-of-type {
+.lits_homepage header#page-header #logobar .topnav-container .nav-link:nth-last-child(2) {
   border-right: none;
+}
+header#page-header #logobar .topnav-container #search-toggle {
+  color: white;
+  text-decoration: none;
+}
+header#page-header #logobar .topnav-container #search-toggle:link, header#page-header #logobar .topnav-container #search-toggle:visited {
+  color: white;
+}
+header#page-header #logobar .topnav-container #search-toggle:active, header#page-header #logobar .topnav-container #search-toggle:hover {
+  color: #ccdae3;
+  text-decoration: underline solid;
+}
+header#page-header #logobar .topnav-container #search-toggle:focus {
+  outline-offset: 2px;
+  outline: 3px solid white;
+  text-decoration: underline solid;
+}
+header#page-header #logobar .topnav-container #search-toggle svg:focus {
+  outline-offset: 2px;
+  outline: 3px solid white;
+  text-decoration: underline solid;
+}
+header#page-header #logobar .topnav-container #search-toggle {
+  background: none;
+  border: inherit;
+}
+header#page-header #logobar .topnav-container #search-toggle .fa-xmark {
+  display: none;
+}
+header#page-header #logobar .topnav-container #search-toggle .fa-magnifying-glass {
+  display: inline;
+}
+header#page-header #logobar .topnav-container #search-toggle[aria-expanded=true] .fa-xmark {
+  display: inline;
+}
+header#page-header #logobar .topnav-container #search-toggle[aria-expanded=true] .fa-magnifying-glass {
+  display: none;
+}
+.lits_homepage header#page-header #logobar .topnav-container #search-toggle {
+  display: none;
+  border: none;
 }
 header#page-header #search-and-menu {
   display: flex;
@@ -5829,6 +5850,11 @@ header#page-header #imagebar {
     display: block;
     background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;
     background-size: 100%;
+  }
+}
+@media (min-width: 900px) {
+  header#page-header #imagebar {
+    min-height: 10em;
   }
 }
 @media (min-width: 1200px) {

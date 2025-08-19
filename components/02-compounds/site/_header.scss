@@ -173,7 +173,7 @@ header#page-header {
       margin-bottom: 5px;
     }
 
-    a {
+    .nav-link {
       display: none;
       padding: 0 1rem;
       border-right: 1px solid $white;
@@ -185,8 +185,41 @@ header#page-header {
         display: inline-block;
       }
 
-      &:last-of-type {
+
+      .lits_homepage &:nth-last-child(2) {
         border-right: none;
+      }
+    }
+
+    #search-toggle {
+      @include link-bluebg;
+
+      & {
+        background: none;
+        border: inherit;
+
+        .fa-xmark {
+          display: none;
+        }
+
+        .fa-magnifying-glass {
+          display: inline;
+        }
+      }
+
+      &[aria-expanded="true"] {
+        .fa-xmark {
+          display: inline;
+        }
+
+        .fa-magnifying-glass {
+          display: none;
+        }
+      }
+
+      .lits_homepage & {
+        display: none;
+        border: none;
       }
     }
   }
@@ -212,6 +245,10 @@ header#page-header {
       display: block;
       background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
       background-size: 100%;
+    }
+    
+    @include breakpoint($medium-width) {
+      min-height: 10em;
     }
 
     @include breakpoint($large-width) {
