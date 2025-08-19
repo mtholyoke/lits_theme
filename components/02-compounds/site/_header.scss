@@ -197,6 +197,7 @@ header#page-header {
       & {
         background: none;
         border: inherit;
+        display: inline-block;
 
         .fa-xmark {
           display: none;
@@ -241,13 +242,10 @@ header#page-header {
     background: $charcoal;
     color: $white;
 
-    @include breakpoint($small-width) {
+    @include breakpoint($medium-width) {
       display: block;
       background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
       background-size: 100%;
-    }
-    
-    @include breakpoint($medium-width) {
       min-height: 10em;
     }
 

@@ -5814,6 +5814,7 @@ header#page-header #logobar .topnav-container #search-toggle svg:focus {
 header#page-header #logobar .topnav-container #search-toggle {
   background: none;
   border: inherit;
+  display: inline-block;
 }
 header#page-header #logobar .topnav-container #search-toggle .fa-xmark {
   display: none;
@@ -5845,15 +5846,11 @@ header#page-header #imagebar {
   background: #1a1a1a;
   color: white;
 }
-@media (min-width: 600px) {
+@media (min-width: 900px) {
   header#page-header #imagebar {
     display: block;
     background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;
     background-size: 100%;
-  }
-}
-@media (min-width: 900px) {
-  header#page-header #imagebar {
     min-height: 10em;
   }
 }
