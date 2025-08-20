@@ -2090,17 +2090,16 @@ ol {
 }
 
 .field-resources {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1em;
+  display: flex;
+  flex-flow: row wrap;
+}
+.field-resources > * {
+  flex: 1 0 48%;
+  max-width: calc(100% - 1em);
+  margin: 0.5em;
 }
 .field-resources.layout-zone {
-  margin: auto;
-}
-@media (min-width: 600px) {
-  .field-resources {
-    grid-template-columns: repeat(2, 1fr);
-  }
+  margin: -0.5em;
 }
 .field-resources .resource-list,
 .field-resources .featured-resources-wrapper,
@@ -2123,12 +2122,15 @@ ol {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-  gap: 1rem;
+  display: flex;
+  flex-flow: row wrap;
+  margin: -0.5em;
 }
 .has-link-tiles li {
-  min-height: 7rem;
+  width: 10em;
+  min-height: 10em;
+  margin: 0.5em;
+  flex: 1 0 auto;
 }
 .has-link-tiles li .fontawesome-icons {
   text-align: center;
@@ -2216,24 +2218,6 @@ ol {
   padding: 0;
   margin: -0.5rem auto;
 }
-.featured-resources-wrapper.deprecated ul {
-  grid-template-columns: 1fr;
-}
-@media (min-width: 300px) {
-  .featured-resources-wrapper.deprecated ul {
-    grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-  }
-}
-@media (min-width: 600px) {
-  .featured-resources-wrapper.deprecated ul {
-    grid-template-columns: repeat(auto-fit, minmax(26%, 1fr));
-  }
-}
-@media (min-width: 900px) {
-  .featured-resources-wrapper.deprecated ul {
-    grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
-  }
-}
 .featured-resources-wrapper.deprecated li:nth-child(6n+1) a {
   border-top: 4px solid #a20067;
 }
@@ -2271,7 +2255,7 @@ ol {
   color: #ef3340;
 }
 .featured-resources-wrapper.deprecated li.tdx-tile {
-  grid-column: 1/-1;
+  width: calc(100% - 1em);
 }
 .featured-resources-wrapper.deprecated li.tdx-tile svg, .featured-resources-wrapper.deprecated li.tdx-tile i {
   overflow: visible;
@@ -7004,7 +6988,6 @@ body.system_status #system-status table.no-table textarea {
   /* 0. LITS intro */
 }
 .lits_homepage #block-lits-theme-homepageintro,
-.lits_homepage .field-resources,
 .lits_homepage .deprecated.featured-resources-wrapper,
 .lits_homepage #news-blocks,
 .lits_homepage #news-events {

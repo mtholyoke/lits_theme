@@ -1,14 +1,16 @@
 .field-resources {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1em;
+  $gap: 0.5em;
+  display: flex;
+  flex-flow: row wrap;
+
+  &>* {
+    flex: 1 0 48%;
+    max-width: calc(100% - (2 * $gap));
+    margin: $gap;
+  }  
 
   &.layout-zone {
-    margin: auto;
-  }
-
-  @include breakpoint($small-width) {
-    grid-template-columns: repeat(2, 1fr);
+    margin: -1 * $gap;
   }
 
   .resource-list,
@@ -24,6 +26,7 @@
 }
 
 .has-link-tiles {
+  $gap: 0.5em;
   // .layout-stripe sets width 100%, margin 0, padding 0.
   padding-bottom: 2rem;
   // Contains div.layout-zone for squishy edges.
@@ -36,13 +39,16 @@
   ul {
     @include list-reset;
 
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
-    gap: 1rem;
+    display: flex;
+    flex-flow: row wrap;
+    margin: -1 * $gap;
   }
 
   li {
-    min-height: 7rem;
+    width: 10em;
+    min-height: 10em;
+    margin: $gap;
+    flex: 1 0 auto;
 
     .fontawesome-icons {
       text-align: center;
@@ -135,26 +141,12 @@
 }
 
 .featured-resources-wrapper.deprecated {
+  $gap: 0.5em;
+
   .featured-resources {
     background-color: transparent;
     padding: 0;
     margin: -0.5rem auto;
-  }
-
-  ul {
-    grid-template-columns: 1fr;
-
-    @include breakpoint($min-width) {
-      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr));
-    }
-
-    @include breakpoint($small-width) {
-      grid-template-columns: repeat(auto-fit, minmax(26%, 1fr));
-    }
-
-    @include breakpoint($medium-width) {
-      grid-template-columns: repeat(auto-fit, minmax(20%, 1fr));
-    }
   }
   
   li {
@@ -207,8 +199,7 @@
     }
 
     &.tdx-tile {
-      // width: 100%;
-      grid-column: 1 / -1;
+      width: calc(100% - (2 * $gap));
 
       svg, i {
         overflow: visible;
