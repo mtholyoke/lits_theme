@@ -2128,12 +2128,12 @@ ol {
 }
 .has-link-tiles li {
   width: 10em;
-  min-height: 10em;
   margin: 0.5em;
   flex: 1 0 auto;
 }
 .has-link-tiles li .fontawesome-icons {
   text-align: center;
+  min-height: 3rem;
 }
 .has-link-tiles li a {
   border-radius: 0;

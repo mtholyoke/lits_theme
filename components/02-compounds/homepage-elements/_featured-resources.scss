@@ -46,12 +46,12 @@
 
   li {
     width: 10em;
-    min-height: 10em;
     margin: $gap;
     flex: 1 0 auto;
 
     .fontawesome-icons {
       text-align: center;
+      min-height: 3rem;
     }
 
     a {
