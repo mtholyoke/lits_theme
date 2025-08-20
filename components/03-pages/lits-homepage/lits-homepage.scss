@@ -21,12 +21,7 @@
   }
 
   .field-news-blocks {
-    @include squishy-padding(left);
-    @include squishy-padding(right);
-
-    & {
-      background-color: $dark-blue;
-    }
+    background-color: $dark-blue;
   }
 }
 /* I. Titlebar */

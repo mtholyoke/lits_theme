@@ -6994,32 +6994,6 @@ body.system_status #system-status table.no-table textarea {
   margin: 1rem auto;
 }
 .lits_homepage .field-news-blocks {
-  padding-left: 0.5rem;
-}
-@media (min-width: 900px) {
-  .lits_homepage .field-news-blocks {
-    padding-left: calc((0.5rem + ((100vw - 900px) / 6)));
-  }
-}
-@media (min-width: 1920px) {
-  .lits_homepage .field-news-blocks {
-    padding-left: calc(0.5rem + math.div((1920px - 900px), 6));
-  }
-}
-.lits_homepage .field-news-blocks {
-  padding-right: 0.5rem;
-}
-@media (min-width: 900px) {
-  .lits_homepage .field-news-blocks {
-    padding-right: calc((0.5rem + ((100vw - 900px) / 6)));
-  }
-}
-@media (min-width: 1920px) {
-  .lits_homepage .field-news-blocks {
-    padding-right: calc(0.5rem + math.div((1920px - 900px), 6));
-  }
-}
-.lits_homepage .field-news-blocks {
   background-color: #004876;
 }
 
