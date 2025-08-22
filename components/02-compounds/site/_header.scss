@@ -167,36 +167,55 @@ header#page-header {
   /* I.B. Logobar > TopNav section */
 
   #logobar .topnav-container {
+    $font-size-nav-links: 1rem;
     margin: auto 0;
-    // because of the underline on the logo, perfectly centering text is too low @see _logobar_branding.scss for accompanying rule for "LITS" in the lockup
-    & > * {
-      margin-bottom: 5px;
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-flow: column wrap;
+
+    @include breakpoint($small-width) {
+      flex-flow: row wrap;
     }
 
-    .nav-link {
-      display: none;
-      padding: 0 1rem;
-      border-right: 1px solid $white;
-      font-size: 1rem;
+    & li {
+      margin: auto;
+      padding: 0 0.5rem;
+      // padding: 0 1rem;
 
-      @include focus($white);
+      // &:not(:last-child) {
+      //   border-right: 1px solid $white;
+      // }
 
-      @include breakpoint($medium-width) {
-        display: inline-block;
-      }
-
-
+      &:last-child,
       .lits_homepage &:nth-last-child(2) {
-        border-right: none;
+        // border-right: none;
+        padding-right: 0;
+      }
+
+      a,
+      button {
+        font-size: $font-size-nav-links;
+      }
+
+      // Don't flash/repaint when FontAwesome replaces the i with svg
+      i,
+      svg {
+        display: inline-block;
+        width: $font-size-nav-links; 
+      }
+
+      .lits_homepage &.search-toggle-container {
+        display: none;
       }
     }
 
-    #search-toggle {
+    .toggle {
       @include link-bluebg;
 
       & {
         background: none;
-        border: inherit;
+        border: none;
         display: inline-block;
 
         .fa-xmark {
@@ -217,11 +236,10 @@ header#page-header {
           display: none;
         }
       }
+    }
 
-      .lits_homepage & {
-        display: none;
-        border: none;
-      }
+    #block-lits-theme-scamalert a {
+      @include button($bg: $raspberry, $border: 3px solid $white)
     }
   }
   /* III. Search and menu container */
@@ -232,6 +250,14 @@ header#page-header {
 
     @include breakpoint($medium-width) {
       flex-direction: column;
+    }
+
+    #my-lits-container {
+      $button-and-panel-padding: 1.5rem; // match _unified-search-form.scss
+      display: none;
+      background-color: $white;
+      color: $dark-blue;
+      margin: $button-and-panel-padding 0;
     }
   }
 
@@ -246,7 +272,7 @@ header#page-header {
       display: block;
       background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
       background-size: 100%;
-      min-height: 10em;
+      min-height: 17em;
     }
 
     @include breakpoint($large-width) {

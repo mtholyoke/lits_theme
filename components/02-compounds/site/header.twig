@@ -23,21 +23,33 @@
       </a>
       {{ elements.lits_theme_branding }}
     </div>
-    <div class="topnav-container">
-      <a class="hours nav-link" href="/about-lits/service-desks">LITS hours</a>
-      <a class="accounts nav-link" href="/my-library-accounts">My library accounts</a>
-      <button id="search-toggle" class=" nav-link" aria-controls="block-lits-theme-litsunifiedsearchblock" aria-expanded="false" aria-pressed="false">
-        <i class="fa fa-search"></i>
-        <i class="fa fa-xmark"></i>
-      </button>
-
-    </div>
+    <ul class="topnav-container">
+      <li><a class="hours nav-link" href="/about-lits/service-desks">Hours</a></li>
+      <li><a class="staff nav-link" href="/about-lits/staff">Staff</a></li>
+      {# <a class="accounts nav-link" href="/my-library-accounts">My library accounts</a></li> #}
+      {# <li>
+        <button id="my-lits-toggle" class="toggle nav-link" aria-controls="my-lits-container" aria-expanded="false" aria-pressed="false">
+          My LITS
+        </button>
+      </li> #}
+      <li class="search-toggle-container">
+        <button id="search-toggle" class="toggle nav-link" aria-controls="block-lits-theme-litsunifiedsearchblock" aria-expanded="false" aria-pressed="false">
+          <i class="fa fa-search"></i>
+          <i class="fa fa-xmark"></i>
+        </button>
+      </li>
+      {{ elements.lits_theme_scamalert }}
+    </ul>
   </div>
 </div>
 
 <div id="search-and-menu">
   <div id="imagebar" class="layout-stripe">
     <div class="layout-zone layout-container">
+      {# <div id="my-lits-container" class="layout-zone">
+        ILL account
+      </div> #}
+
       {{ elements.lits_theme_litsunifiedsearchblock }}
     </div>
   </div>

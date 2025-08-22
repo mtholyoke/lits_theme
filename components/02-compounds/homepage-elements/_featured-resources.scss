@@ -4,7 +4,7 @@
   flex-flow: row wrap;
 
   &>* {
-    flex: 1 0 48%;
+    flex: 1 1 48%;
     max-width: calc(100% - (2 * $gap));
     margin: $gap;
   }  
@@ -45,9 +45,10 @@
   }
 
   li {
-    width: 10em;
     margin: $gap;
-    flex: 1 0 auto;
+    flex: 1 1 26%;
+    min-width: 8rem;
+    min-height: 11rem;
 
     .fontawesome-icons {
       text-align: center;
