@@ -3745,12 +3745,12 @@ nav#block-lits-theme-mainnavigation #main-nav {
   width: 49%;
   padding: 1rem;
 }
-.main-menu__item#main-menu_hours-accounts div#main-menu_hours-accounts-divider {
+.main-menu__item#main-menu_hours-accounts div.main-menu_hours-accounts-divider {
   padding-left: 0;
   padding-right: 0;
   width: 1px;
 }
-.main-menu__item#main-menu_hours-accounts div#main-menu_hours-accounts-divider span {
+.main-menu__item#main-menu_hours-accounts div.main-menu_hours-accounts-divider span {
   border-right: 1px solid #e5e5e5;
   display: block;
   height: 100%;
@@ -5787,8 +5787,14 @@ header#page-header #logobar .topnav-container {
   }
 }
 header#page-header #logobar .topnav-container li {
+  display: none;
   margin: auto;
   padding: 0 0.5rem;
+}
+@media (min-width: 56.25rem) {
+  header#page-header #logobar .topnav-container li {
+    display: inline-block;
+  }
 }
 header#page-header #logobar .topnav-container li:last-child, .lits_homepage header#page-header #logobar .topnav-container li:nth-last-child(2) {
   padding-right: 0;
