@@ -9,6 +9,10 @@
   width: 100%;
   display: none; // interior pages
 
+  &.open {
+    display: inline-block;
+  }
+
   .form-item {
     max-width: 100%;
   }

@@ -337,12 +337,14 @@ __webpack_require__.r(__webpack_exports__);
         $(toggle).click(event => {
           containerId = `#${$(toggle).attr("aria-controls")}`;
           $container = $(containerId);
-          $container.slideToggle();
-          $(toggle).attr("aria-expanded", function (i, attr) {
-            return attr == 'true' ? 'false' : 'true';
-          });
-          $(toggle).attr("aria-pressed", function (i, attr) {
-            return attr == 'true' ? 'false' : 'true';
+          $container.slideToggle(400, function () {
+            $container.toggleClass("open");
+            $(toggle).attr("aria-expanded", function (i, attr) {
+              return attr == 'true' ? 'false' : 'true';
+            });
+            $(toggle).attr("aria-pressed", function (i, attr) {
+              return attr == 'true' ? 'false' : 'true';
+            });
           });
         });
       });

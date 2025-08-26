@@ -115,6 +115,11 @@ function lits_theme_preprocess_block(&$variables) {
     $variables['content']['field_body']['#attributes']['class'][] = 'homepageintro-body';
   }
 
+  // Set search block as open if homepage
+  if ($variables['attributes']['id'] == 'block-lits-theme-litsunifiedsearchblock' && \Drupal::service('path.matcher')->isFrontPage()) {
+    $variables['attributes']['class'][] = "open";
+  }
+
   // TODO: remove this when ASC gets its own menu.
   if ($variables['attributes']['id'] != 'block-ascsidebarlinks') {
     // dpm($variables['attributes']['id']);

@@ -2700,6 +2700,9 @@ table.lits-hours-month td.other-month {
   width: 100%;
   display: none;
 }
+#block-lits-theme-litsunifiedsearchblock.open {
+  display: inline-block;
+}
 #block-lits-theme-litsunifiedsearchblock .form-item {
   max-width: 100%;
 }
@@ -3742,7 +3745,7 @@ nav#block-lits-theme-mainnavigation #main-nav {
 }
 .main-menu__item#main-menu_hours-accounts div {
   flex: 1 1 auto;
-  width: 49%;
+  width: 33%;
   padding: 1rem;
 }
 .main-menu__item#main-menu_hours-accounts div.main-menu_hours-accounts-divider {
@@ -5895,6 +5898,19 @@ header#page-header #search-and-menu #my-lits-container {
 header#page-header #imagebar {
   background: #1a1a1a;
   color: white;
+  position: relative;
+}
+header#page-header #imagebar:has(.open)::after {
+  -webkit-backdrop-filter: blur(4px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+  backdrop-filter: blur(4px); /* Supported in all major browsers */
+}
+header#page-header #imagebar::after {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
 }
 @media (min-width: 56.25rem) {
   header#page-header #imagebar {
@@ -5919,6 +5935,8 @@ header#page-header #imagebar {
 header#page-header #imagebar .layout-container, header#page-header #imagebar .study-space-finder, header#page-header #imagebar #main-content.main-sidebar-side {
   justify-content: center;
   align-items: center;
+  position: relative;
+  z-index: 1;
 }
 header#page-header #menubar {
   background-color: #07c;
@@ -5986,7 +6004,6 @@ html {
 body .dialog-off-canvas-main-canvas {
   display: flex;
   flex-direction: column;
-  min-width: 18.75rem;
   min-height: 100vh;
 }
 body .dialog-off-canvas-main-canvas #main-content {

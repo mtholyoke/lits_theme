@@ -267,12 +267,26 @@ header#page-header {
   }
 
   /* III. Imagebar */
-
   #imagebar {
     // .layout-stripe sets width 100%, margin 0, padding 0.
     background: $charcoal;
     color: $white;
+    position: relative;
 
+    &:has(.open)::after {
+      -webkit-backdrop-filter: blur(4px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+      backdrop-filter: blur(4px); /* Supported in all major browsers */
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      width: 100%; 
+      height: 100%;
+      top: 0;
+    }
+    
     @include breakpoint($medium-width) {
       display: block;
       background: $white url('../images/banners/williston-beauty-large-banner.jpg') no-repeat center center;
@@ -293,6 +307,8 @@ header#page-header {
     .layout-container {
       justify-content: center;
       align-items: center;
+      position: relative;
+      z-index: 1;
     }
   }
 
