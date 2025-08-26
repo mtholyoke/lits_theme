@@ -14,10 +14,6 @@
     text-align: left; // align to logo
     font-size: $mono-logo-font-size; // to match 'c' in logo
     padding-left: $mono-logo-font-size;
-
-    @include breakpoint($small-width) {
-      font-size: $word-logo-font-size; // to match 'o' in logo
-      padding-left: $word-logo-font-size;
-    }
+    font-family: 'Chronicle', helvetica, serif;
   }
 }

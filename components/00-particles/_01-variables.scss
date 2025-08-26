@@ -51,5 +51,4 @@ $word-logo-font-size: 19px;
 $c-ratio: math.div(64.9, 108); // height of 'c' in wordmark svg vs height of svg as measured in Illustrator
 $mono-logo-image-max-height: $logo-container-max-height * (1 - $c-ratio);
 $mono-default-margin: math.div($mono-logo-image-max-height, 2);
-// $mono-logo-font-size: $mono-default-margin; // The size of the 'c' should be the font-size also TODO: this sort of looks small...
-$mono-logo-font-size: 19px;
+$mono-logo-font-size: $mono-logo-image-max-height; // The size of the 'c' should be the font-size also

@@ -3629,14 +3629,9 @@ div.search-result-details.btn a:hover {
   margin-bottom: 5px;
   border-left: 1px solid white;
   text-align: left;
-  font-size: 19px;
-  padding-left: 19px;
-}
-@media (min-width: 37.5rem) {
-  .logobar-branding-wrap a {
-    font-size: 19px;
-    padding-left: 19px;
-  }
+  font-size: 23.9444444444px;
+  padding-left: 23.9444444444px;
+  font-family: "Chronicle", helvetica, serif;
 }
 
 /**
