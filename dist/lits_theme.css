@@ -3,6 +3,9 @@
 * Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos and other header parts
 */
 /**
+ search variables 
+*/
+/**
  * @file
  * Variables, functions, and mixins to support responsiveness.
  */
@@ -1528,6 +1531,9 @@ article.node--news-item .field-field-tags {
 * Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos and other header parts
 */
 /**
+ search variables 
+*/
+/**
  * @file
  * Reusable styles for links.
  */
@@ -2696,22 +2702,37 @@ table.lits-hours-month td.other-month {
  * Styles for the unified search form, in the header of almsot every page.
  */
 #block-lits-theme-litsunifiedsearchblock {
-  margin: 1.5rem 0;
+  margin: 3rem;
   width: 100%;
   display: none;
+  font-size: 1.5rem;
+}
+#block-lits-theme-litsunifiedsearchblock ::placeholder {
+  font-size: 1.5rem;
 }
 #block-lits-theme-litsunifiedsearchblock.open {
   display: inline-block;
 }
+#block-lits-theme-litsunifiedsearchblock form {
+  display: flex;
+  flex-flow: row wrap;
+}
+@media (min-width: 37.5rem) {
+  #block-lits-theme-litsunifiedsearchblock form {
+    flex-flow: row nowrap;
+  }
+}
 #block-lits-theme-litsunifiedsearchblock .form-item {
   max-width: 100%;
+  margin-bottom: 0;
+  flex: 1 1 auto;
 }
 #block-lits-theme-litsunifiedsearchblock input {
   box-sizing: border-box;
   width: 100%;
 }
 #block-lits-theme-litsunifiedsearchblock details {
-  background: white;
+  background: transparent;
 }
 #block-lits-theme-litsunifiedsearchblock details summary {
   width: 100%;
@@ -2719,19 +2740,25 @@ table.lits-hours-month td.other-month {
   background-color: #07c;
   padding: 1rem;
   box-sizing: border-box;
-}
-#block-lits-theme-litsunifiedsearchblock details[open] {
-  border: 1px solid #07c;
-  border-radius: 1px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 #block-lits-theme-litsunifiedsearchblock details[open] summary {
   background-color: white;
   color: #1a1a1a;
   font-weight: bold;
-  border-bottom: 1px solid #e2dfdd;
 }
 #block-lits-theme-litsunifiedsearchblock .panel-content {
   padding: 0 1.5rem;
+  background-color: white;
+}
+#block-lits-theme-litsunifiedsearchblock label {
+  position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
+  height: 1px;
+  width: 1px;
+  word-wrap: normal;
 }
 @media (min-width: 37.5rem) {
   #block-lits-theme-litsunifiedsearchblock .tablist {
@@ -2766,9 +2793,6 @@ table.lits-hours-month td.other-month {
     display: block;
     text-decoration: none;
     text-align: center;
-    border-right: 2px solid white;
-    border-left: 2px solid white;
-    border-top: 2px solid white;
   }
   #block-lits-theme-litsunifiedsearchblock details summary:visited {
     color: white;
@@ -2796,9 +2820,6 @@ table.lits-hours-month td.other-month {
     display: block;
     text-decoration: none;
     text-align: center;
-    border-right: 2px solid white;
-    border-left: 2px solid white;
-    border-top: 2px solid white;
   }
   #block-lits-theme-litsunifiedsearchblock details[open] summary:visited {
     color: #1a1a1a;
@@ -2816,6 +2837,13 @@ table.lits-hours-month td.other-month {
   }
   #block-lits-theme-litsunifiedsearchblock button[type=submit] {
     margin: 0;
+    padding: 8px;
+  }
+  #block-lits-theme-litsunifiedsearchblock button[type=submit] .fa-magnifying-glass {
+    display: inline-block;
+    font-size: 1.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
   }
   @supports selector(::details-content) {
     #block-lits-theme-litsunifiedsearchblock details[open]::details-content {
@@ -5904,8 +5932,8 @@ header#page-header #imagebar::after {
   width: 100%;
   height: 100%;
   top: 0;
-  -webkit-backdrop-filter: blur(4px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
-  backdrop-filter: blur(4px); /* Supported in all major browsers */
+  -webkit-backdrop-filter: brightness(50%) blur(2px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+  backdrop-filter: brightness(50%) blur(2px); /* Supported in all major browsers */
 }
 @media (min-width: 56.25rem) {
   header#page-header #imagebar {

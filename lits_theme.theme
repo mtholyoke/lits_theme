@@ -116,8 +116,14 @@ function lits_theme_preprocess_block(&$variables) {
   }
 
   // Set search block as open if homepage
-  if ($variables['attributes']['id'] == 'block-lits-theme-litsunifiedsearchblock' && \Drupal::service('path.matcher')->isFrontPage()) {
-    $variables['attributes']['class'][] = "open";
+  if ($variables['attributes']['id'] == 'block-lits-theme-litsunifiedsearchblock') {
+    if (\Drupal::service('path.matcher')->isFrontPage()) {
+      $variables['attributes']['class'][] = "open";
+      $variables['open_tab'] = 0;
+    } 
+    else {
+      $variables['open_tab'] = 1;
+    }
   }
 
   // TODO: remove this when ASC gets its own menu.

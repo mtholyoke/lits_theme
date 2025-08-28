@@ -40,4 +40,12 @@ $space-one-eighth: math.div($space, 8);
 $logo-container-height: 4.5rem;
 $logo-height: 4rem;
 $logo-font-size: 3rem;
-$header-gap: 1.5rem
+$header-gap: 1.5rem;
+
+/**
+ search variables 
+*/
+$search-gap: 3rem;
+$search-font-size: 1.5rem;
+$search-rounding: 5px;
+$search-inner-padding: 1.5rem;

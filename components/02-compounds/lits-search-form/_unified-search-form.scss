@@ -4,17 +4,32 @@
  */
 #block-lits-theme-litsunifiedsearchblock {
   $border-color: $white;
-  $button-and-panel-padding: 1.5rem;
-  margin: $button-and-panel-padding 0;
+  margin: $search-gap;
   width: 100%;
   display: none; // interior pages
+  font-size: $search-font-size;
+
+  & ::placeholder {
+    font-size: $search-font-size;
+  }
 
   &.open {
     display: inline-block;
   }
 
+  form {
+    display: flex;
+    flex-flow: row wrap;
+
+    @include breakpoint($small-width) {
+      flex-flow: row nowrap;
+    }
+  }
+
   .form-item {
     max-width: 100%;
+    margin-bottom: 0;
+    flex: 1 1 auto;
   }
 
   input {
@@ -23,7 +38,7 @@
   }
 
   details {
-    background: $white;
+    background: transparent;
 
     summary {
       width: 100%;
@@ -31,23 +46,24 @@
       background-color: $med-blue;
       padding: 1rem;
       box-sizing: border-box;
+      border-top-left-radius: $search-rounding;
+      border-top-right-radius: $search-rounding;
     }
 
-    &[open] {
-      border: 1px solid $med-blue;
-      border-radius: 1px;
-
-      summary {
-        background-color: $white;
-        color: $charcoal;
-        font-weight: bold;
-        border-bottom: 1px solid $pale-gray;
-      }
+    &[open] summary {
+      background-color: $white;
+      color: $charcoal;
+      font-weight: bold;
     }
   }
 
   .panel-content {
-    padding: 0 $button-and-panel-padding;
+    padding: 0 $search-inner-padding;
+    background-color: $white;
+  }
+
+  label {
+    @include visually-hidden();
   }
 
   // Treat as tabs above the given breakpoint –– see the module php file for form to find the exact breakpoint
@@ -72,23 +88,23 @@
         width: auto;
 
         @include button(
-          $padding: 1rem $button-and-panel-padding,
+          $padding: 1rem $search-inner-padding,
           $margin: 0, 
-          $borderright: 2px solid $border-color, 
-          $borderleft: 2px solid $border-color,
-          $bordertop: 2px solid $border-color
+          // $borderright: 2px solid $border-color, 
+          // $borderleft: 2px solid $border-color,
+          // $bordertop: 2px solid $border-color
         );
       }
 
       &[open] summary {
         @include button( 
-            $padding: 1rem $button-and-panel-padding,
+            $padding: 1rem $search-inner-padding,
             $margin: 0, 
             $color: $charcoal, 
             $bg: $white, 
-            $borderright: 2px solid $border-color, 
-            $borderleft: 2px solid $border-color,
-            $bordertop: 2px solid $border-color,
+            // $borderright: 2px solid $border-color, 
+            // $borderleft: 2px solid $border-color,
+            // $bordertop: 2px solid $border-color,
             $font-weight: bold,
           );
       }
@@ -100,6 +116,14 @@
 
     button[type="submit"] {
       margin: 0;
+      padding: 8px;
+
+      .fa-magnifying-glass {
+        display: inline-block;
+        font-size: 1.5rem;
+        height: 1.5rem;
+        width: 1.5rem;
+      }
     }
 
 
@@ -113,7 +137,7 @@
 
     .panel-content {
       order: 1; // content comes after tabs
-      padding: $button-and-panel-padding;
+      padding: $search-inner-padding;
       width: 100%; // make the content sit on it's own row
     }
   }
