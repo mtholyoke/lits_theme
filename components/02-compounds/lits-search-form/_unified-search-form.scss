@@ -58,12 +58,24 @@
   }
 
   .panel-content {
-    padding: 0 $search-inner-padding;
+    padding: 0 $search-inner-padding $search-inner-padding $search-inner-padding;
     background-color: $white;
   }
 
   label {
     @include visually-hidden();
+  }
+
+  button[type="submit"] {
+    margin: 0;
+    padding: 8px;
+
+    .fa-magnifying-glass {
+      display: inline-block;
+      font-size: 1.5rem;
+      height: 1.5rem;
+      width: 1.5rem;
+    }
   }
 
   // Treat as tabs above the given breakpoint –– see the module php file for form to find the exact breakpoint
@@ -86,6 +98,7 @@
       summary {
         border: none;
         width: auto;
+        max-width: 50%;
 
         @include button(
           $padding: 1rem $search-inner-padding,
@@ -111,18 +124,6 @@
 
       .panel-content {
         background-color: $white;
-      }
-    }
-
-    button[type="submit"] {
-      margin: 0;
-      padding: 8px;
-
-      .fa-magnifying-glass {
-        display: inline-block;
-        font-size: 1.5rem;
-        height: 1.5rem;
-        width: 1.5rem;
       }
     }
 

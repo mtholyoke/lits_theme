@@ -2749,7 +2749,7 @@ table.lits-hours-month td.other-month {
   font-weight: bold;
 }
 #block-lits-theme-litsunifiedsearchblock .panel-content {
-  padding: 0 1.5rem;
+  padding: 0 1.5rem 1.5rem 1.5rem;
   background-color: white;
 }
 #block-lits-theme-litsunifiedsearchblock label {
@@ -2759,6 +2759,16 @@ table.lits-hours-month td.other-month {
   height: 1px;
   width: 1px;
   word-wrap: normal;
+}
+#block-lits-theme-litsunifiedsearchblock button[type=submit] {
+  margin: 0;
+  padding: 8px;
+}
+#block-lits-theme-litsunifiedsearchblock button[type=submit] .fa-magnifying-glass {
+  display: inline-block;
+  font-size: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
 }
 @media (min-width: 37.5rem) {
   #block-lits-theme-litsunifiedsearchblock .tablist {
@@ -2777,6 +2787,7 @@ table.lits-hours-month td.other-month {
   #block-lits-theme-litsunifiedsearchblock details summary {
     border: none;
     width: auto;
+    max-width: 50%;
   }
   #block-lits-theme-litsunifiedsearchblock details summary {
     background-color: #07c;
@@ -2834,16 +2845,6 @@ table.lits-hours-month td.other-month {
   }
   #block-lits-theme-litsunifiedsearchblock details .panel-content {
     background-color: white;
-  }
-  #block-lits-theme-litsunifiedsearchblock button[type=submit] {
-    margin: 0;
-    padding: 8px;
-  }
-  #block-lits-theme-litsunifiedsearchblock button[type=submit] .fa-magnifying-glass {
-    display: inline-block;
-    font-size: 1.5rem;
-    height: 1.5rem;
-    width: 1.5rem;
   }
   @supports selector(::details-content) {
     #block-lits-theme-litsunifiedsearchblock details[open]::details-content {
