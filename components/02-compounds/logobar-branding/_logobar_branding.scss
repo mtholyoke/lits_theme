@@ -9,11 +9,11 @@
 
   a {
     display: block;
-    margin-bottom: 5px; // because of the underline on the logo, perfectly centering "LITS" is too low @see _header.scss for accompanying rule for the topnav items
+    margin-bottom: 0.5rem; // because of the underline on the logo, perfectly centering "LITS" is too low @see _header.scss for accompanying rule for the topnav items
     border-left: 1px solid $white;
     text-align: left; // align to logo
-    font-size: $mono-logo-font-size; // to match 'c' in logo
-    padding-left: $mono-logo-font-size;
+    font-size: $logo-font-size; // to match 'c' in logo
+    padding-left: $header-gap;
     font-family: 'Chronicle', helvetica, serif;
   }
 }

@@ -104,16 +104,22 @@ header#page-header {
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
+    min-height: $logo-container-height;
   }
 
   /* I.A. Logobar > Logo section */
 
   #logobar .logo-container {
-    flex: 1 0 auto;
+    flex: 1 1 auto;
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row wrap;
     justify-content: center;
     align-items: center;
+    gap: $header-gap;
+
+    @include breakpoint($small-width) {
+      flex-flow: row nowrap;
+    }
 
     & > * {
       flex: 0 0 auto;
@@ -121,7 +127,7 @@ header#page-header {
 
     // On interior pages, there's always other stuff in the logobar
     // Use wordmark logo only above small width
-    .lits_page & {
+    @include breakpoint($medium-width) {
       justify-content: flex-start;
       align-items: center;
 
@@ -138,27 +144,12 @@ header#page-header {
     }
 
     & #logo {
-      margin-top: $word-default-margin;
-      margin-bottom: $word-default-margin;
-      padding-left: $word-default-margin - 8px;
-      padding-right: $word-default-margin;
+      margin-top: $header-gap;
+      margin-bottom: $header-gap;
 
       & img {
-        max-height: $word-logo-image-max-height;
-        display: block;// must be block; inline-block reserves veritcal height for hanging letters, which we do not want
-        margin: auto;
-      }
-    }
-
-    & #logo-small {
-      margin-top: $mono-default-margin;
-      margin-bottom: $mono-default-margin;
-      padding-left: $mono-default-margin - 8px;
-      padding-right: $mono-default-margin;
-
-      & img {
-        max-height: $mono-logo-image-max-height;
-        display: block;// must be block; inline-block reserves veritcal height for hanging letters, which we do not want
+        height: $logo-height;
+        display: block;// must be block; inline-block reserves vertical height for hanging letters, which we do not want
         margin: auto;
       }
     }
@@ -173,6 +164,7 @@ header#page-header {
     padding: 0;
     display: flex;
     flex-flow: column wrap;
+    gap: $header-gap;
 
     @include breakpoint($small-width) {
       flex-flow: row wrap;
@@ -181,21 +173,9 @@ header#page-header {
     & li {
       display: none;
       margin: auto;
-      padding: 0 0.5rem;
-      // padding: 0 1rem;
-
-      // &:not(:last-child) {
-      //   border-right: 1px solid $white;
-      // }
 
       @include breakpoint($medium-width) {
         display: inline-block;
-      }
-
-      &:last-child,
-      .lits_homepage &:nth-last-child(2) {
-        // border-right: none;
-        padding-right: 0;
       }
 
       a,
@@ -229,6 +209,10 @@ header#page-header {
 
         .fa-magnifying-glass {
           display: inline;
+          font-size: 1.5rem;
+          height: 1.5rem;
+          width: 1.5rem;
+          vertical-align: middle;
         }
       }
 

@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /**
-* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos
+* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos and other header parts
 */
 /**
  * @file
@@ -1525,7 +1525,7 @@ article.node--news-item .field-field-tags {
 /* Accent colors */
 /** new colors **/
 /**
-* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos
+* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos and other header parts
 */
 /**
  * @file
@@ -3629,11 +3629,11 @@ div.search-result-details.btn a:hover {
 }
 .logobar-branding-wrap a {
   display: block;
-  margin-bottom: 5px;
+  margin-bottom: 0.5rem;
   border-left: 1px solid white;
   text-align: left;
-  font-size: 23.9444444444px;
-  padding-left: 23.9444444444px;
+  font-size: 3rem;
+  padding-left: 1.5rem;
   font-family: "Chronicle", helvetica, serif;
 }
 
@@ -5732,23 +5732,32 @@ header#page-header #logobar-container {
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
+  min-height: 4.5rem;
 }
 header#page-header #logobar .logo-container {
-  flex: 1 0 auto;
+  flex: 1 1 auto;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row wrap;
   justify-content: center;
   align-items: center;
+  gap: 1.5rem;
+}
+@media (min-width: 37.5rem) {
+  header#page-header #logobar .logo-container {
+    flex-flow: row nowrap;
+  }
 }
 header#page-header #logobar .logo-container > * {
   flex: 0 0 auto;
 }
-.lits_page header#page-header #logobar .logo-container {
-  justify-content: flex-start;
-  align-items: center;
-}
-.lits_page header#page-header #logobar .logo-container #logo {
-  display: flex;
+@media (min-width: 56.25rem) {
+  header#page-header #logobar .logo-container {
+    justify-content: flex-start;
+    align-items: center;
+  }
+  header#page-header #logobar .logo-container #logo {
+    display: flex;
+  }
 }
 @media (min-width: 56.25rem) {
   body.lits_homepage header#page-header #logobar .logo-container {
@@ -5756,24 +5765,11 @@ header#page-header #logobar .logo-container > * {
   }
 }
 header#page-header #logobar .logo-container #logo {
-  margin-top: 14.6096599672px;
-  margin-bottom: 14.6096599672px;
-  padding-left: 6.6096599672px;
-  padding-right: 14.6096599672px;
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
 }
 header#page-header #logobar .logo-container #logo img {
-  max-height: 29.2193199344px;
-  display: block;
-  margin: auto;
-}
-header#page-header #logobar .logo-container #logo-small {
-  margin-top: 11.9722222222px;
-  margin-bottom: 11.9722222222px;
-  padding-left: 3.9722222222px;
-  padding-right: 11.9722222222px;
-}
-header#page-header #logobar .logo-container #logo-small img {
-  max-height: 23.9444444444px;
+  height: 4rem;
   display: block;
   margin: auto;
 }
@@ -5783,6 +5779,7 @@ header#page-header #logobar .topnav-container {
   padding: 0;
   display: flex;
   flex-flow: column wrap;
+  gap: 1.5rem;
 }
 @media (min-width: 37.5rem) {
   header#page-header #logobar .topnav-container {
@@ -5792,15 +5789,11 @@ header#page-header #logobar .topnav-container {
 header#page-header #logobar .topnav-container li {
   display: none;
   margin: auto;
-  padding: 0 0.5rem;
 }
 @media (min-width: 56.25rem) {
   header#page-header #logobar .topnav-container li {
     display: inline-block;
   }
-}
-header#page-header #logobar .topnav-container li:last-child, .lits_homepage header#page-header #logobar .topnav-container li:nth-last-child(2) {
-  padding-right: 0;
 }
 header#page-header #logobar .topnav-container li a,
 header#page-header #logobar .topnav-container li button {
@@ -5845,6 +5838,10 @@ header#page-header #logobar .topnav-container .toggle .fa-xmark {
 }
 header#page-header #logobar .topnav-container .toggle .fa-magnifying-glass {
   display: inline;
+  font-size: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  vertical-align: middle;
 }
 header#page-header #logobar .topnav-container .toggle[aria-expanded=true] .fa-xmark {
   display: inline;
