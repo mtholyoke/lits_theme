@@ -5895,6 +5895,10 @@ header#page-header #logobar .topnav-container .toggle .fa-magnifying-glass {
 }
 header#page-header #logobar .topnav-container .toggle[aria-expanded=true] .fa-xmark {
   display: inline;
+  font-size: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  vertical-align: middle;
 }
 header#page-header #logobar .topnav-container .toggle[aria-expanded=true] .fa-magnifying-glass {
   display: none;

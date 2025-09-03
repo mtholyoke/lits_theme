@@ -223,6 +223,10 @@ header#page-header {
       &[aria-expanded="true"] {
         .fa-xmark {
           display: inline;
+          font-size: 1.5rem;
+          height: 1.5rem;
+          width: 1.5rem;
+          vertical-align: middle;
         }
 
         .fa-magnifying-glass {
