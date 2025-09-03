@@ -239,10 +239,13 @@ header#page-header {
   #search-and-menu {
     display: flex;
     flex-flow: column nowrap;
-    flex-direction: column-reverse;
 
-    @include breakpoint($medium-width) {
-      flex-direction: column;
+    .lits_homepage & {
+      flex-direction: column-reverse;
+    
+      @include breakpoint($medium-width) {
+        flex-direction: column;
+      }
     }
 
     #my-lits-container {
