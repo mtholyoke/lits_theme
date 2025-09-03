@@ -23,7 +23,9 @@
     <div role="tablist" aria-label="Search" class="tablist">
     {% for form in content %}
     <details id="tab-{{loop.index0}}"  {% if loop.index0 == open_tab %} open {% endif %}>
-      <summary  id="tabcontrol-{{loop.index0}}" class="panel-control">{{ form['title'] }}</summary>
+<summary id="tabcontrol-{{loop.index0}}" class="panel-control">{{ form['title'] }} <i class="fas fa-chevron-down"></i>
+</summary>
+
 
       <div id="tabpanel-{{loop.index0}}" role="tabpanel" aria-labelledby="tabcontrol-{{loop.index0}}" class="panel-content">
         {{ form['form'] }}

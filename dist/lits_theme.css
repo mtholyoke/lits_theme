@@ -1,5 +1,8 @@
 @charset "UTF-8";
 /**
+* Default margin
+*/
+/**
 * Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos and other header parts
 */
 /**
@@ -1528,6 +1531,9 @@ article.node--news-item .field-field-tags {
 /* Accent colors */
 /** new colors **/
 /**
+* Default margin
+*/
+/**
 * Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos and other header parts
 */
 /**
@@ -2733,24 +2739,32 @@ table.lits-hours-month td.other-month {
 }
 #block-lits-theme-litsunifiedsearchblock details {
   background: transparent;
+  margin: 0.75rem 0;
 }
 #block-lits-theme-litsunifiedsearchblock details summary {
   width: 100%;
-  color: white;
-  background-color: #07c;
+  text-align: left;
+  height: -webkit-fit-content;
+  background-color: #ebebeb;
+  border: 1px solid #6e6259;
+  border-radius: 1px;
   padding: 1rem;
-  box-sizing: border-box;
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
 }
-#block-lits-theme-litsunifiedsearchblock details[open] summary {
-  background-color: white;
+#block-lits-theme-litsunifiedsearchblock details summary div {
+  display: inline;
+}
+#block-lits-theme-litsunifiedsearchblock details summary {
   color: #1a1a1a;
+  background-color: buttonface;
   font-weight: bold;
+  list-style: none;
+  box-sizing: border-box;
 }
 #block-lits-theme-litsunifiedsearchblock .panel-content {
-  padding: 0 1.5rem 1.5rem 1.5rem;
+  padding: 1.5rem;
   background-color: white;
+  border-left: 1px solid #1a1a1a;
+  border-right: 1px solid #1a1a1a;
 }
 #block-lits-theme-litsunifiedsearchblock label {
   position: absolute !important;
@@ -2774,6 +2788,7 @@ table.lits-hours-month td.other-month {
   #block-lits-theme-litsunifiedsearchblock .tablist {
     position: relative;
     justify-content: left;
+    align-items: end;
     display: flex;
     flex-wrap: wrap;
   }
@@ -2815,6 +2830,9 @@ table.lits-hours-month td.other-month {
   #block-lits-theme-litsunifiedsearchblock details summary:focus {
     outline-offset: 2px;
     outline: 3px solid #004876;
+  }
+  #block-lits-theme-litsunifiedsearchblock details summary i, #block-lits-theme-litsunifiedsearchblock details summary svg {
+    display: none;
   }
   #block-lits-theme-litsunifiedsearchblock details[open] summary {
     background-color: white;
@@ -4404,7 +4422,7 @@ a.topbar-menu__link:visited:hover {
   width: 100%;
   text-align: left;
   height: -webkit-fit-content;
-  background-color: rgba(0, 0, 0, 0.06);
+  background-color: #ebebeb;
   border: 1px solid #6e6259;
   border-radius: 1px;
   padding: 1rem;
@@ -5819,6 +5837,9 @@ header#page-header #logobar .topnav-container li {
   display: none;
   margin: auto;
 }
+header#page-header #logobar .topnav-container li.search-toggle-container {
+  display: inline-block;
+}
 @media (min-width: 56.25rem) {
   header#page-header #logobar .topnav-container li {
     display: inline-block;
@@ -5936,7 +5957,7 @@ header#page-header #imagebar::after {
   -webkit-backdrop-filter: brightness(50%) blur(2px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
   backdrop-filter: brightness(50%) blur(2px); /* Supported in all major browsers */
 }
-@media (min-width: 56.25rem) {
+@media (min-width: 37.5rem) {
   header#page-header #imagebar {
     display: block;
     background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;

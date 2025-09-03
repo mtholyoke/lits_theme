@@ -252,3 +252,18 @@
     }
   }
 }
+
+@mixin accordion-button {
+  width: 100%;
+  text-align: left;
+  // Because iOS Safari has issues with long (wrapping) button text, we end up having to explicitly style heeeeverything
+  height: -webkit-fit-content;
+  background-color: #ebebeb; // Some browsers weren't assigning a bg color. This is roughly the default color for Chrome, and I liked it.
+  border: 1px solid $gray;
+  border-radius: 1px;
+  padding: 1rem;
+
+  div {
+    display: inline;
+  }
+}

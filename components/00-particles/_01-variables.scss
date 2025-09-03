@@ -35,17 +35,22 @@ $space-one-seventh: math.div($space, 7);
 $space-one-eighth: math.div($space, 8);
 
 /**
+* Default margin
+*/
+$default-margin: 0.75rem;
+
+/**
 * Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos and other header parts
 */
 $logo-container-height: 4.5rem;
 $logo-height: 4rem;
-$logo-font-size: 3rem;
-$header-gap: 1.5rem;
+$logo-font-size: $default-margin * 4; // 3rem
+$header-gap: $default-margin * 2; // 1.5rem
 
 /**
  search variables 
 */
-$search-gap: 3rem;
-$search-font-size: 1.5rem;
+$search-gap: $default-margin * 4; // 3rem
+$search-font-size: $default-margin * 2; // 1.5rem
 $search-rounding: 5px;
-$search-inner-padding: 1.5rem;
+$search-inner-padding: $default-margin * 2; // 1.5rem
