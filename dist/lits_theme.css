@@ -2779,10 +2779,11 @@ table.lits-hours-month td.other-month {
   padding: 8px;
 }
 #block-lits-theme-litsunifiedsearchblock button[type=submit] .fa-magnifying-glass {
-  display: inline-block;
   font-size: 1.5rem;
   height: 1.5rem;
   width: 1.5rem;
+  vertical-align: middle;
+  display: inline-block;
 }
 @media (min-width: 37.5rem) {
   #block-lits-theme-litsunifiedsearchblock .tablist {
@@ -2863,6 +2864,7 @@ table.lits-hours-month td.other-month {
   }
   #block-lits-theme-litsunifiedsearchblock details .panel-content {
     background-color: white;
+    border: 1px solid white;
   }
   @supports selector(::details-content) {
     #block-lits-theme-litsunifiedsearchblock details[open]::details-content {
@@ -5887,18 +5889,18 @@ header#page-header #logobar .topnav-container .toggle .fa-xmark {
   display: none;
 }
 header#page-header #logobar .topnav-container .toggle .fa-magnifying-glass {
-  display: inline;
   font-size: 1.5rem;
   height: 1.5rem;
   width: 1.5rem;
   vertical-align: middle;
+  display: inline;
 }
 header#page-header #logobar .topnav-container .toggle[aria-expanded=true] .fa-xmark {
-  display: inline;
   font-size: 1.5rem;
   height: 1.5rem;
   width: 1.5rem;
   vertical-align: middle;
+  display: inline;
 }
 header#page-header #logobar .topnav-container .toggle[aria-expanded=true] .fa-magnifying-glass {
   display: none;

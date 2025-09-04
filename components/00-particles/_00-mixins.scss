@@ -267,3 +267,10 @@
     display: inline;
   }
 }
+
+@mixin fontawesome-icon {
+  font-size: 2 * $default-margin;
+  height: 2 * $default-margin;
+  width: 2 * $default-margin;
+  vertical-align: middle;
+}

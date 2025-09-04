@@ -70,10 +70,9 @@
     padding: 8px;
 
     .fa-magnifying-glass {
+      @include fontawesome-icon;
+
       display: inline-block;
-      font-size: 1.5rem;
-      height: 1.5rem;
-      width: 1.5rem;
     }
   }
 
@@ -128,6 +127,7 @@
 
       .panel-content {
         background-color: $white;
+        border: 1px solid $white;
       }
     }
 
