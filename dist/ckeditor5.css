@@ -15,6 +15,25 @@
 /**
  search variables 
 */
+/* Per Andrew's design for homepage intro feature */
+:root {
+  --side-spacing: 0rem;
+}
+
+@media (min-width: 20rem) {
+  :root {
+    --side-spacing: 1.5rem;
+  }
+}
+@media (min-width: 34rem) {
+  :root {
+    --side-spacing: 3rem;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
 /**
  * @file
  * Reusable styles for links.

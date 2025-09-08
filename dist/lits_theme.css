@@ -8,6 +8,25 @@
 /**
  search variables 
 */
+/* Per Andrew's design for homepage intro feature */
+:root {
+  --side-spacing: 0rem;
+}
+
+@media (min-width: 20rem) {
+  :root {
+    --side-spacing: 1.5rem;
+  }
+}
+@media (min-width: 34rem) {
+  :root {
+    --side-spacing: 3rem;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
 /**
  * @file
  * Variables, functions, and mixins to support responsiveness.
@@ -728,6 +747,106 @@ figure {
 
 svg.svg-inline--other {
   vertical-align: -6px;
+}
+
+/* container queries so don't have to factor in spacing around container for ideal transition points
+which opens opportunity for that to spacing be calculated based on viewport constantly, etc. */
+.scaling-image {
+  /* still need to switch all this to mobile first instead of desktop first */
+}
+.scaling-image.contain {
+  padding: 0 var(--side-spacing);
+  container-type: inline-size;
+}
+.scaling-image .feature {
+  max-width: 76rem;
+  padding: 0 4.5rem 3rem;
+  position: relative;
+  text-align: center;
+  margin: var(--side-spacing) auto;
+}
+.scaling-image .feature-image {
+  /* some of this sizing is image specific, based on background size, etc. */
+  height: 35rem;
+  width: 100%;
+  background-size: 110%;
+  background-position-x: 61%;
+  background-position-y: 32%;
+  margin: 0;
+  position: relative;
+}
+.scaling-image .feature-text {
+  text-align: center;
+  padding: 1.875rem 1.5rem;
+  /* a little extra on top and bottom, with auto height */
+  display: inline-block;
+  width: 29rem;
+  background: #ffd100;
+  max-width: 100%;
+  align-items: center;
+  left: 0rem;
+  bottom: 0rem;
+  position: absolute;
+}
+.scaling-image .feature-text h1 {
+  align-content: space-around;
+  font-size: 2rem;
+  line-height: 3rem;
+  margin: 0 0 1.5rem 0;
+}
+.scaling-image .feature-text sub {
+  font-size: 1.125rem;
+  background: #eee;
+  display: inline-block;
+  line-height: 1.5em;
+  padding: 0.375rem 0.75rem;
+  margin: -0.75rem auto 1.5rem auto;
+  /* reducing margin because of height from padding */
+}
+.scaling-image .feature .why,
+.scaling-image .feature .text-long span {
+  font-weight: bold;
+  font-size: 1.375rem;
+  margin: 0 auto 1.5rem auto;
+}
+.scaling-image .feature .cta,
+.scaling-image .feature .text-long a {
+  width: 8em;
+  border-radius: 2px;
+}
+@container (max-width: 57rem) {
+  .scaling-image {
+    /* point at which we want to switch, at which point will be basis for height of image 57*2: 38 but because of 6rem padding 32 but because of bg scaling 32*1.1 = 35 which doesn't have to be constant is just the max */
+  }
+  .scaling-image .feature {
+    padding: 0;
+  }
+  .scaling-image .feature-image {
+    height: calc(0.6666666667 * (100vw - var(--side-spacing) - var(--side-spacing)));
+    /* for full size height, not sure what was doing before but was wrong  */
+  }
+  .scaling-image .feature-text {
+    width: calc(100% - 6rem);
+    min-width: 28rem;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    position: relative;
+    margin: -3rem auto 0rem;
+    max-width: 34rem;
+  }
+}
+@container (max-width: 34rem) {
+  .scaling-image .feature-text {
+    left: 0;
+    right: 0;
+    min-width: auto;
+    width: 100%;
+    top: 0;
+    bottom: 0;
+    height: auto;
+    margin: 0 auto;
+  }
 }
 
 .form-item--checkboxes,
@@ -1539,6 +1658,25 @@ article.node--news-item .field-field-tags {
 /**
  search variables 
 */
+/* Per Andrew's design for homepage intro feature */
+:root {
+  --side-spacing: 0rem;
+}
+
+@media (min-width: 20rem) {
+  :root {
+    --side-spacing: 1.5rem;
+  }
+}
+@media (min-width: 34rem) {
+  :root {
+    --side-spacing: 3rem;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
 /**
  * @file
  * Reusable styles for links.
@@ -2191,7 +2329,7 @@ ol {
   border-top: 4px solid #84bd00;
 }
 .has-link-tiles.featured-resources.yellow {
-  border-top: 4px solid #f1c400;
+  border-top: 4px solid #ffd100;
 }
 .has-link-tiles.featured-resources.light_orange {
   border-top: 4px solid #ff9e1b;
@@ -2287,63 +2425,7 @@ ol {
   }
 }
 
-#block-lits-theme-homepageintro {
-  margin: auto;
-  max-width: 81rem;
-  padding: 3rem 7.5rem 6rem;
-  padding: 2rem 7.5rem;
-  position: relative;
-  text-align: center;
-}
-#block-lits-theme-homepageintro .scaling-image {
-  height: 35rem;
-  width: 100%;
-  background-size: 110%;
-  background-position-x: 61%;
-  background-position-y: 32%;
-  background-repeat: no-repeat;
-  margin: 0;
-  position: relative;
-}
-#block-lits-theme-homepageintro .word-group {
-  text-align: center;
-  padding: 2rem 1.5rem;
-  display: inline-block;
-  width: 29rem;
-  background: #f1c400;
-  max-width: 100%;
-  align-items: center;
-  height: 19rem;
-  left: 3rem;
-  bottom: 3rem;
-  position: absolute;
-}
-#block-lits-theme-homepageintro .word-group h1 {
-  margin: 0.375rem;
-  align-content: space-around;
-  font-size: 2rem;
-  color: #1a1a1a;
-  font-weight: 700;
-  line-height: 1.4;
-  margin-bottom: 0.5rem;
-}
-#block-lits-theme-homepageintro .word-group sub {
-  font-size: 1.125rem;
-  background: #e5e5e5;
-  display: inline-block;
-  line-height: 1.5em;
-  margin-left: 0rem;
-  padding: 0.25rem 0.75rem;
-}
-#block-lits-theme-homepageintro .homepageintro-body span {
-  font-weight: bold;
-  font-size: 1.375rem;
-  margin-top: 2rem;
-}
-#block-lits-theme-homepageintro .homepageintro-body a {
-  width: fit-content;
-}
-#block-lits-theme-homepageintro .homepageintro-body a {
+.feature .text-long a {
   background-color: #07c;
   border: none;
   outline: none;
@@ -2351,53 +2433,24 @@ ol {
   cursor: pointer;
   font-size: 1em;
   line-height: 1.4;
-  padding: 0.75rem 1rem;
-  margin: 1.125rem auto 1rem auto;
-  font-weight: normal;
+  padding: 0.375rem 0.75rem;
+  margin: 0 auto;
+  font-weight: 500;
   font-style: normal;
   display: block;
   text-decoration: none;
   text-align: center;
 }
-#block-lits-theme-homepageintro .homepageintro-body a:visited {
+.feature .text-long a:visited {
   color: white;
 }
-#block-lits-theme-homepageintro .homepageintro-body a:hover {
+.feature .text-long a:hover {
   background-color: #6e6259;
   color: white;
 }
-#block-lits-theme-homepageintro .homepageintro-body a:focus {
+.feature .text-long a:focus {
   outline-offset: 2px;
   outline: 3px solid #004876;
-}
-@media (max-width: 56.25rem) {
-  #block-lits-theme-homepageintro {
-    padding: 0;
-  }
-  #block-lits-theme-homepageintro .scaling-image {
-    height: 66.66vw;
-    height: 50vw;
-  }
-  #block-lits-theme-homepageintro .word-group {
-    width: calc(100% - 6rem);
-    min-width: 28rem;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    position: relative;
-    margin: -3rem auto 3rem;
-  }
-}
-@media (max-width: 37.5rem) {
-  #block-lits-theme-homepageintro .word-group {
-    left: 0;
-    right: 0;
-    min-width: auto;
-    width: 100%;
-    top: 0;
-    bottom: 0;
-    height: auto;
-  }
 }
 
 /**
@@ -5199,7 +5252,7 @@ footer h2 {
 
 @media (min-width: 56.25rem) {
   #footer-hours-container {
-    border-left: 1px solid #f1c400;
+    border-left: 1px solid #ffd100;
   }
   #footer-hours-container {
     padding-left: calc(1 * 0.5rem);
