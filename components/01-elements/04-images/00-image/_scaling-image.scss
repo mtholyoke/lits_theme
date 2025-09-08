@@ -1,6 +1,6 @@
 /* container queries so don't have to factor in spacing around container for ideal transition points
 which opens opportunity for that to spacing be calculated based on viewport constantly, etc. */
-.scaling-image {
+#block-lits-theme-homepageintro .scaling-image {
   &.contain {
     @include contain;
   }

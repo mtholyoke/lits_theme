@@ -751,21 +751,21 @@ svg.svg-inline--other {
 
 /* container queries so don't have to factor in spacing around container for ideal transition points
 which opens opportunity for that to spacing be calculated based on viewport constantly, etc. */
-.scaling-image {
+#block-lits-theme-homepageintro .scaling-image {
   /* still need to switch all this to mobile first instead of desktop first */
 }
-.scaling-image.contain {
+#block-lits-theme-homepageintro .scaling-image.contain {
   padding: 0 var(--side-spacing);
   container-type: inline-size;
 }
-.scaling-image .feature {
+#block-lits-theme-homepageintro .scaling-image .feature {
   max-width: 76rem;
   padding: 0 4.5rem 3rem;
   position: relative;
   text-align: center;
   margin: var(--side-spacing) auto;
 }
-.scaling-image .feature-image {
+#block-lits-theme-homepageintro .scaling-image .feature-image {
   /* some of this sizing is image specific, based on background size, etc. */
   height: 35rem;
   width: 100%;
@@ -776,7 +776,7 @@ which opens opportunity for that to spacing be calculated based on viewport cons
   margin: 0;
   position: relative;
 }
-.scaling-image .feature-text {
+#block-lits-theme-homepageintro .scaling-image .feature-text {
   text-align: center;
   padding: 1.875rem 1.5rem;
   /* a little extra on top and bottom, with auto height */
@@ -789,13 +789,13 @@ which opens opportunity for that to spacing be calculated based on viewport cons
   bottom: 0rem;
   position: absolute;
 }
-.scaling-image .feature-text h1 {
+#block-lits-theme-homepageintro .scaling-image .feature-text h1 {
   align-content: space-around;
   font-size: 2rem;
   line-height: 3rem;
   margin: 0 0 1.5rem 0;
 }
-.scaling-image .feature-text sub {
+#block-lits-theme-homepageintro .scaling-image .feature-text sub {
   font-size: 1.125rem;
   background: #eee;
   display: inline-block;
@@ -804,29 +804,29 @@ which opens opportunity for that to spacing be calculated based on viewport cons
   margin: -0.75rem auto 1.5rem auto;
   /* reducing margin because of height from padding */
 }
-.scaling-image .feature .why,
-.scaling-image .feature .text-long span {
+#block-lits-theme-homepageintro .scaling-image .feature .why,
+#block-lits-theme-homepageintro .scaling-image .feature .text-long span {
   font-weight: bold;
   font-size: 1.375rem;
   margin: 0 auto 1.5rem auto;
 }
-.scaling-image .feature .cta,
-.scaling-image .feature .text-long a {
+#block-lits-theme-homepageintro .scaling-image .feature .cta,
+#block-lits-theme-homepageintro .scaling-image .feature .text-long a {
   width: 8em;
   border-radius: 2px;
 }
 @container (max-width: 57rem) {
-  .scaling-image {
+  #block-lits-theme-homepageintro .scaling-image {
     /* point at which we want to switch, at which point will be basis for height of image 57*2: 38 but because of 6rem padding 32 but because of bg scaling 32*1.1 = 35 which doesn't have to be constant is just the max */
   }
-  .scaling-image .feature {
+  #block-lits-theme-homepageintro .scaling-image .feature {
     padding: 0;
   }
-  .scaling-image .feature-image {
+  #block-lits-theme-homepageintro .scaling-image .feature-image {
     height: calc(0.6666666667 * (100vw - var(--side-spacing) - var(--side-spacing)));
     /* for full size height, not sure what was doing before but was wrong  */
   }
-  .scaling-image .feature-text {
+  #block-lits-theme-homepageintro .scaling-image .feature-text {
     width: calc(100% - 6rem);
     min-width: 28rem;
     left: 0;
@@ -838,7 +838,7 @@ which opens opportunity for that to spacing be calculated based on viewport cons
   }
 }
 @container (max-width: 34rem) {
-  .scaling-image .feature-text {
+  #block-lits-theme-homepageintro .scaling-image .feature-text {
     left: 0;
     right: 0;
     min-width: auto;
@@ -5692,21 +5692,25 @@ footer h2 {
 }
 
 #block-lits-theme-footerimage {
-  height: 100%;
+  margin: 0;
 }
-#block-lits-theme-footerimage .scaling-image {
-  background-size: 0;
+#block-lits-theme-footerimage .feature-image {
+  display: none;
 }
+
 @media (min-width: 56.25rem) {
-  #block-lits-theme-footerimage .scaling-image {
+  #block-lits-theme-footerimage {
+    margin: 0.75rem 0.75rem 0.75rem 0;
+  }
+  #block-lits-theme-footerimage .feature-image {
+    display: block;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: bottom;
-    width: auto;
-    height: 100%;
+    width: 9rem;
+    height: 12rem;
   }
 }
-
 /* III. Copyright bar */
 #copyrightbar {
   background-color: #1a1a1a;

@@ -298,18 +298,24 @@ footer h2 {
 }
 
 #block-lits-theme-footerimage {
-  $offset: 4em;
-  height: 100%;
+  margin: 0;
 
-  & .scaling-image {
-    background-size: 0;
+  .feature-image {
+    display: none;
+  }
+}
 
-    @include breakpoint($medium-width) {
+@include breakpoint($medium-width) {
+  #block-lits-theme-footerimage {
+    margin: 0.75rem 0.75rem 0.75rem 0;
+
+    .feature-image {
+      display: block;
       background-size: cover;
       background-repeat: no-repeat;
       background-position: bottom;
-      width: auto;
-      height: 100%;
+      width: 9rem;
+      height: 12rem;
     }
   }
 }
