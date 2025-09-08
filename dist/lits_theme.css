@@ -2761,179 +2761,224 @@ table.lits-hours-month td.other-month {
  * Styles for the unified search form, in the header of almsot every page.
  */
 #block-lits-theme-litsunifiedsearchblock {
-  margin: 3rem;
-  width: 100%;
   display: none;
-  font-size: 1.5rem;
-}
-#block-lits-theme-litsunifiedsearchblock ::placeholder {
-  font-size: 1.5rem;
-}
-#block-lits-theme-litsunifiedsearchblock.open {
-  display: inline-block;
-}
-#block-lits-theme-litsunifiedsearchblock form {
-  display: flex;
-  flex-flow: row wrap;
-}
-@media (min-width: 37.5rem) {
-  #block-lits-theme-litsunifiedsearchblock form {
-    flex-flow: row nowrap;
-  }
-}
-#block-lits-theme-litsunifiedsearchblock .form-item {
-  max-width: 100%;
-  margin-bottom: 0;
-  flex: 1 1 auto;
-}
-#block-lits-theme-litsunifiedsearchblock input {
-  box-sizing: border-box;
-  width: 100%;
-}
-#block-lits-theme-litsunifiedsearchblock details {
-  background: transparent;
-  margin: 0.75rem 0;
-}
-#block-lits-theme-litsunifiedsearchblock details summary {
-  width: 100%;
-  text-align: left;
-  height: -webkit-fit-content;
-  background-color: #ebebeb;
-  border: 1px solid #6e6259;
-  border-radius: 1px;
-  padding: 1rem;
-}
-#block-lits-theme-litsunifiedsearchblock details summary div {
-  display: inline;
-}
-#block-lits-theme-litsunifiedsearchblock details summary {
-  color: #1a1a1a;
-  background-color: buttonface;
-  font-weight: bold;
-  list-style: none;
-  box-sizing: border-box;
-}
-#block-lits-theme-litsunifiedsearchblock .panel-content {
-  padding: 1.5rem;
-  background-color: white;
-  border-left: 1px solid #1a1a1a;
-  border-right: 1px solid #1a1a1a;
-}
-#block-lits-theme-litsunifiedsearchblock label {
-  position: absolute !important;
-  clip: rect(1px, 1px, 1px, 1px);
-  overflow: hidden;
-  height: 1px;
-  width: 1px;
-  word-wrap: normal;
-}
-#block-lits-theme-litsunifiedsearchblock button[type=submit] {
-  margin: 0;
-  padding: 8px;
-}
-#block-lits-theme-litsunifiedsearchblock button[type=submit] .fa-magnifying-glass {
-  font-size: 1.5rem;
-  height: 1.5rem;
-  width: 1.5rem;
-  vertical-align: middle;
-  display: inline-block;
-}
-@media (min-width: 37.5rem) {
-  #block-lits-theme-litsunifiedsearchblock .tablist {
-    position: relative;
-    justify-content: left;
-    align-items: end;
-    display: flex;
-    flex-wrap: wrap;
-  }
-  #block-lits-theme-litsunifiedsearchblock .tabs {
-    border: none;
-    padding: 0;
-  }
-  #block-lits-theme-litsunifiedsearchblock details {
-    display: contents;
-  }
-  #block-lits-theme-litsunifiedsearchblock details summary {
-    border: none;
-    width: auto;
-    max-width: 50%;
-  }
-  #block-lits-theme-litsunifiedsearchblock details summary {
-    background-color: #07c;
-    border: none;
-    outline: none;
-    color: white;
-    cursor: pointer;
-    font-size: 0.9em;
-    line-height: 1.4;
-    padding: 1rem 1.5rem;
-    margin: 0;
-    font-weight: normal;
-    font-style: normal;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-  }
-  #block-lits-theme-litsunifiedsearchblock details summary:visited {
-    color: white;
-  }
-  #block-lits-theme-litsunifiedsearchblock details summary:hover {
-    background-color: #6e6259;
-    color: white;
-  }
-  #block-lits-theme-litsunifiedsearchblock details summary:focus {
-    outline-offset: 2px;
-    outline: 3px solid #004876;
-  }
-  #block-lits-theme-litsunifiedsearchblock details summary i, #block-lits-theme-litsunifiedsearchblock details summary svg {
-    display: none;
-  }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary {
-    background-color: white;
-    border: none;
-    outline: none;
-    color: #1a1a1a;
-    cursor: pointer;
-    font-size: 0.9em;
-    line-height: 1.4;
-    padding: 1rem 1.5rem;
-    margin: 0;
-    font-weight: bold;
-    font-style: normal;
-    display: block;
-    text-decoration: none;
-    text-align: center;
-  }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary:visited {
-    color: #1a1a1a;
-  }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary:hover {
-    background-color: #6e6259;
-    color: white;
-  }
-  #block-lits-theme-litsunifiedsearchblock details[open] summary:focus {
-    outline-offset: 2px;
-    outline: 3px solid #004876;
-  }
-  #block-lits-theme-litsunifiedsearchblock details .panel-content {
-    background-color: white;
-    border: 1px solid white;
-  }
-  @supports selector(::details-content) {
-    #block-lits-theme-litsunifiedsearchblock details[open]::details-content {
-      display: contents;
-    }
-  }
-  #block-lits-theme-litsunifiedsearchblock .panel-content {
-    order: 1;
-    padding: 1.5rem;
-    width: 100%;
-  }
 }
 .lits_homepage #block-lits-theme-litsunifiedsearchblock {
   display: block;
 }
 
+div.search {
+  position: relative;
+  background: transparent;
+  text-align: center;
+}
+
+.search-heading {
+  position: relative;
+  z-index: 1;
+  color: white;
+  margin: 1.5rem 1.5rem 0;
+}
+
+.pe .form-item {
+  max-width: unset;
+}
+
+.pe button {
+  background: unset;
+  border: unset;
+  color: unset;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+}
+
+.pe .pe-control {
+  margin: 0;
+}
+
+.pe input::placeholder,
+.pe textarea::placeholder {
+  color: transparent;
+}
+
+.pe {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem;
+  z-index: 1;
+  position: relative;
+}
+
+.pe .pe-content {
+  padding: 3rem;
+}
+
+.pe > *:nth-child(1) {
+  border-top: 1px solid #6e6259;
+}
+
+.pe > * {
+  border-bottom: 1px solid #6e6259;
+}
+
+.pe .pe-control.active {
+  border-bottom: none;
+}
+
+.pe > * {
+  order: 1;
+  width: 100%;
+  background: white;
+}
+
+.pe button,
+.pe input {
+  font-size: 1.5rem;
+}
+
+.pe div,
+.pe button {
+  padding: 0.75rem 1.5rem;
+}
+
+.pe div {
+  width: 100%;
+  padding: 0;
+}
+
+.pe .optional-medium,
+.pe .optional-long {
+  display: none;
+}
+
+.pe input {
+  width: 100%;
+  height: 3rem;
+  padding: 0.75rem;
+  padding-right: 3rem;
+}
+
+.pe form {
+  position: relative;
+  margin: 0;
+}
+
+.pe form button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 3rem;
+  text-align: center;
+  padding: 0;
+  height: 3rem;
+}
+
+.pe label,
+.no {
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  /* added line */
+}
+
+.pe .pe-content {
+  padding: 1.5rem;
+}
+
+.pe div {
+  width: 100%;
+}
+
+@media (width > 24rem) {
+  .pe .optional-medium {
+    display: inline-block;
+  }
+}
+@media (width > 30rem) {
+  .search-heading {
+    display: none;
+  }
+  .pe {
+    padding: 0rem 1.5rem;
+    margin: 3rem auto;
+  }
+}
+@media (width > 30rem) {
+  h1.pe-control {
+    background: #07c;
+  }
+  h1.pe-control.active {
+    background: white;
+  }
+  .pe button,
+  .pe input {
+    color: white;
+  }
+  .pe .active button {
+    font-weight: bold;
+    color: #1a1a1a;
+  }
+  .pe .pe-content {
+    padding: 3rem;
+  }
+  .pe > *:nth-child(odd) {
+    order: 0;
+  }
+  .pe h1 {
+    width: auto;
+  }
+  .pe .pe-content,
+  .pe .pe-control {
+    border: none;
+  }
+  .pe .optional-medium,
+  .pe .optional-long {
+    display: none;
+  }
+}
+@media (width > 34rem) {
+  .pe {
+    padding: 0 3rem;
+    margin: 6rem auto;
+  }
+}
+@media (width > 48rem) {
+  .pe input::placeholder,
+  .pe textarea::placeholder {
+    color: grey;
+  }
+}
+@media (width > 39rem) {
+  .pe #pe-control-lits .optional-medium,
+  .pe #pe-control-1 .optional-medium {
+    display: inline-block;
+  }
+}
+@media (width > 51rem) {
+  .pe #pe-control-materials .optional-medium,
+  .pe #pe-control-0 .optional-medium {
+    display: inline-block;
+  }
+}
+@media (width > 51rem) {
+  .pe .optional-medium,
+  .pe #pe-control-1 .optional-long {
+    display: inline-block;
+  }
+}
+@media (width > 56rem) {
+  .pe .optional-long {
+    display: inline-block;
+  }
+}
 .search-results {
   border-right: 1px solid #07c;
   border-bottom: 1px solid #07c;
@@ -6007,6 +6052,9 @@ header#page-header #imagebar {
   background: #1a1a1a;
   color: white;
   position: relative;
+}
+header#page-header #imagebar .layout-zone {
+  padding: 0;
 }
 header#page-header #imagebar::after {
   content: "";

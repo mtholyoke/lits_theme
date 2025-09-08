@@ -8,32 +8,20 @@
  */
 #}
 
-{# TODO wtf with the ids #}
 {{ attach_library('lits_search/unified_search') }}
+{% block content %}
+<div {{ attributes.addClass("search") }}>
+	<h2 class="search-heading">Search and Discover</h2>
+	<div class="pe">
 
-<div {{ attributes.addClass("layout-zone") }}>
-  {{ title_prefix }}
-  {% if label %}
-    <h2 class="block-title" {{ title_attributes.addClass('h2') }}>{{ label }}</h2>
-  {% endif %}
-  {{ title_suffix }}
-
-  {% block content %}
-  <div class="tabs">
-    <div role="tablist" aria-label="Search" class="tablist">
     {% for form in content %}
-    <details id="tab-{{loop.index0}}"  {% if loop.index0 == open_tab %} open {% endif %}>
-<summary id="tabcontrol-{{loop.index0}}" class="panel-control">{{ form['title'] }} <i class="fas fa-chevron-down"></i>
-</summary>
-
-
-      <div id="tabpanel-{{loop.index0}}" role="tabpanel" aria-labelledby="tabcontrol-{{loop.index0}}" class="panel-content">
+      <h1 class="pe-control{% if loop.index0 == open_tab %} active{% endif %}" id="pe-control-{{loop.index0}}" data-controls="content-{{loop.index0}}">
+        <button>{{ form['title'] | raw }}</button>
+      </h1>
+      <div id="content-{{loop.index0}}" class="pe-content{% if loop.index0 == open_tab %} active{% endif %}" style="{% if loop.index0 != open_tab %}display:none;{% endif %}">
         {{ form['form'] }}
       </div>
-    </details>
     {% endfor %}
-    </div>
-  </div>
-  {% endblock %}
-
+	</div>
 </div>
+{% endblock %}

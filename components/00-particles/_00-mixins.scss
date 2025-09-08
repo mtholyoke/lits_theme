@@ -274,3 +274,8 @@
   width: 2 * $default-margin;
   vertical-align: middle;
 }
+
+@mixin contain {
+  padding: 0 var(--side-spacing);
+  container-type: inline-size;
+}

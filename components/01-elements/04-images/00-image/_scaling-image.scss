@@ -2,8 +2,7 @@
 which opens opportunity for that to spacing be calculated based on viewport constantly, etc. */
 .scaling-image {
   &.contain {
-    padding: 0 var(--side-spacing);
-    container-type: inline-size;
+    @include contain;
   }
 
   /* still need to switch all this to mobile first instead of desktop first */

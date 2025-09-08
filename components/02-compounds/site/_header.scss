@@ -264,6 +264,10 @@ header#page-header {
     color: $white;
     position: relative;
 
+    .layout-zone {
+      padding: 0;
+    }
+
     &::after {
       content: "";
       display: block;

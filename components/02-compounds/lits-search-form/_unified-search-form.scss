@@ -3,151 +3,251 @@
  * Styles for the unified search form, in the header of almsot every page.
  */
 #block-lits-theme-litsunifiedsearchblock {
-  $border-color: $white;
-  margin: $search-gap;
-  width: 100%;
-  display: none; // interior pages
-  font-size: $search-font-size;
-
-  & ::placeholder {
-    font-size: $search-font-size;
-  }
-
-  &.open {
-    display: inline-block;
-  }
-
-  form {
-    display: flex;
-    flex-flow: row wrap;
-
-    @include breakpoint($small-width) {
-      flex-flow: row nowrap;
-    }
-  }
-
-  .form-item {
-    max-width: 100%;
-    margin-bottom: 0;
-    flex: 1 1 auto;
-  }
-
-  input {
-    box-sizing: border-box;
-    width: 100%;
-  }
-
-  details {
-    background: transparent;
-    margin: $default-margin 0;
-
-    summary {
-      @include accordion-button();
-
-      & {
-        color: $charcoal;
-        background-color: buttonface;
-        font-weight: bold;
-        list-style: none;
-        box-sizing: border-box;
-      }
-    }
-  }
-
-  .panel-content {
-    padding: $search-inner-padding;
-    background-color: $white;
-    border-left: 1px solid $charcoal;
-    border-right: 1px solid $charcoal;
-  }
-
-  label {
-    @include visually-hidden();
-  }
-
-  button[type="submit"] {
-    margin: 0;
-    padding: 8px;
-
-    .fa-magnifying-glass {
-      @include fontawesome-icon;
-
-      display: inline-block;
-    }
-  }
-
-  // Treat as tabs above the given breakpoint –– see the module php file for form to find the exact breakpoint
-  @include breakpoint($small-width) {
-    .tablist {
-      position: relative;
-      justify-content: left;
-      align-items: end;
-      display: flex;
-      flex-wrap: wrap; 
-    }
-
-    .tabs {
-      border: none;
-      padding: 0;
-    }
-
-    details {
-      display: contents;
-
-      summary {
-        border: none;
-        width: auto;
-        max-width: 50%;
-
-        @include button(
-          $padding: 1rem $search-inner-padding,
-          $margin: 0, 
-          // $borderright: 2px solid $border-color, 
-          // $borderleft: 2px solid $border-color,
-          // $bordertop: 2px solid $border-color
-        );
-
-        i, svg {
-          display: none;
-        }
-      }
-
-      &[open] summary {
-        @include button( 
-            $padding: 1rem $search-inner-padding,
-            $margin: 0, 
-            $color: $charcoal, 
-            $bg: $white, 
-            // $borderright: 2px solid $border-color, 
-            // $borderleft: 2px solid $border-color,
-            // $bordertop: 2px solid $border-color,
-            $font-weight: bold,
-          );
-      }
-
-      .panel-content {
-        background-color: $white;
-        border: 1px solid $white;
-      }
-    }
-
-
-    // new syntax for chrome etc
-    // check support, if so apply style
-    @supports selector(::details-content) {
-      details[open]::details-content {
-        display: contents;
-      }
-    }
-
-    .panel-content {
-      order: 1; // content comes after tabs
-      padding: $search-inner-padding;
-      width: 100%; // make the content sit on it's own row
-    }
-  }
-
+  display: none;
+  
   .lits_homepage & {
     display: block;
+  }
+}
+
+div.search {
+  position: relative;
+  background: transparent;
+  text-align: center;
+}
+
+.search-heading {
+  position: relative;
+  z-index: 1;
+  color: $white;
+  margin: 1.5rem 1.5rem 0;
+}
+
+.pe .form-item {
+  max-width: unset;
+}
+
+.pe button {
+  background: unset;
+  border: unset;
+  color: unset;
+  width: 100%;
+  text-align: left;
+  margin: 0;
+}
+
+.pe .pe-control {
+  margin: 0;
+}
+
+.pe input::placeholder,
+.pe textarea::placeholder {
+  color: transparent;
+}
+
+
+.pe {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 60rem;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem;
+  z-index: 1;
+  position: relative;
+}
+
+.pe .pe-content {
+  padding: 3rem;
+}
+
+.pe>*:nth-child(1) {
+  border-top: 1px solid $gray;
+}
+
+.pe>* {
+  border-bottom: 1px solid $gray;
+}
+
+.pe .pe-control.active {
+  border-bottom: none;
+}
+
+
+.pe>* {
+  order: 1;
+  width: 100%;
+  background: $white;
+}
+
+.pe button,
+.pe input {
+  font-size: 1.5rem;
+}
+
+
+.pe div,
+.pe button {
+  padding: .75rem 1.5rem;
+}
+
+.pe div {
+  width: 100%;
+  padding: 0;
+}
+
+.pe .optional-medium,
+.pe .optional-long {
+  display: none;
+}
+
+.pe input {
+  width: 100%;
+  height: 3rem;
+  padding: .75rem;
+  padding-right: 3rem;
+}
+
+.pe form {
+  position: relative;
+  margin: 0;
+}
+
+.pe form button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 3rem;
+  text-align: center;
+  padding: 0;
+  height: 3rem;
+}
+
+.pe label,
+.no {
+
+  position: absolute !important;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px 1px 1px 1px);
+  /* IE6, IE7 */
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
+  /* added line */
+}
+
+
+.pe .pe-content {
+  padding: 1.5rem;
+}
+
+.pe div {
+  width: 100%;
+}
+
+@media (width > 24rem) {
+  .pe .optional-medium {
+    display: inline-block;
+  }
+}
+
+@media (width > 30rem) {
+  .search-heading {
+    display: none;
+  }
+
+  .pe {
+
+    padding: 0rem 1.5rem;
+    margin: 3rem auto;
+  }
+}
+
+
+@media (width > 30rem) {
+
+  h1.pe-control {
+    background: $med-blue;
+  }
+
+  h1.pe-control.active {
+    background: $white;
+  }
+
+  .pe button,
+  .pe input {
+    color: $white;
+  }
+
+  .pe .active button {
+    font-weight: bold;
+    color: $charcoal;
+  }
+
+  .pe .pe-content {
+    padding: 3rem;
+  }
+
+  .pe>*:nth-child(odd) {
+    order: 0;
+  }
+
+  .pe h1 {
+    width: auto;
+  }
+
+  .pe .pe-content,
+  .pe .pe-control {
+    border: none;
+  }
+
+  .pe .optional-medium,
+  .pe .optional-long {
+    display: none;
+  }
+}
+
+@media (width > 34rem) {
+
+  .pe {
+    padding: 0 3rem;
+    margin: 6rem auto;
+  }
+}
+
+
+@media (width > 48rem) {
+
+  .pe input::placeholder,
+  .pe textarea::placeholder {
+    color: grey;
+  }
+}
+
+@media (width > 39rem) { //624
+  .pe #pe-control-lits .optional-medium,
+  .pe #pe-control-1 .optional-medium {
+    display: inline-block;
+  }
+}
+
+
+@media (width > 51rem) { //805
+  .pe #pe-control-materials .optional-medium,
+  .pe #pe-control-0 .optional-medium {
+    display: inline-block;
+  }
+}
+
+@media (width > 51rem) { //805
+  .pe .optional-medium,
+  .pe #pe-control-1 .optional-long {
+    display: inline-block;
+  }
+}
+
+@media (width > 56rem) { //896
+  .pe .optional-long {
+    display: inline-block;
   }
 }
