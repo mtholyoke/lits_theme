@@ -6074,26 +6074,28 @@ header#page-header #imagebar::after {
   width: 100%;
   height: 100%;
   top: 0;
-  -webkit-backdrop-filter: brightness(50%) blur(2px); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
-  backdrop-filter: brightness(50%) blur(2px); /* Supported in all major browsers */
+  -webkit-backdrop-filter: brightness(50%); /* Use for Safari 9+, Edge 17+ (not a mistake) and iOS Safari 9.2+ */
+  backdrop-filter: brightness(50%); /* Supported in all major browsers */
 }
 @media (min-width: 37.5rem) {
   header#page-header #imagebar {
     display: block;
-    background: white url(494a6498ae31dd091d78.jpg) no-repeat center center;
-    background-size: 100%;
+    background-color: white;
+    background-image: url(494a6498ae31dd091d78.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 60%;
+    background-size: cover;
   }
 }
 @media (min-width: 75rem) {
   header#page-header #imagebar {
-    background: white url(84fb47261b62fcf9d46b.jpg) no-repeat center center;
-    background-size: 100%;
+    background-image: url(84fb47261b62fcf9d46b.jpg);
   }
 }
 @media (min-width: 120rem) {
   header#page-header #imagebar {
-    background: white url(9507b006cfdde5dc4d80.jpg) no-repeat center center;
-    background-size: 100%;
+    background-image: url(9507b006cfdde5dc4d80.jpg);
   }
 }
 header#page-header #imagebar .layout-container, header#page-header #imagebar .study-space-finder, header#page-header #imagebar #main-content.main-sidebar-side {
