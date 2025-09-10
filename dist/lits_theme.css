@@ -2792,12 +2792,21 @@ div.search {
 }
 
 .pe button {
-  background: unset;
   border: unset;
   color: unset;
   width: 100%;
   text-align: left;
   margin: 0;
+}
+.pe button.pe-control-button {
+  background: unset;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.pe button.pe-control-button .button-text {
+  max-width: calc(100% - 1.5rem);
 }
 
 .pe .pe-control {
@@ -2821,6 +2830,10 @@ div.search {
 
 .pe .pe-content {
   padding: 3rem;
+  display: none;
+}
+.pe .pe-content.active {
+  display: block;
 }
 
 .pe > *:nth-child(1) {
@@ -2833,6 +2846,9 @@ div.search {
 
 .pe .pe-control.active {
   border-bottom: none;
+}
+.pe .pe-control.active button svg {
+  transform: rotate(180deg);
 }
 
 .pe > * {
@@ -2886,12 +2902,11 @@ div.search {
 .pe label,
 .no {
   position: absolute !important;
+  clip: rect(1px, 1px, 1px, 1px);
+  overflow: hidden;
   height: 1px;
   width: 1px;
-  overflow: hidden;
-  clip: rect(1px 1px 1px 1px);
-  /* IE6, IE7 */
-  clip: rect(1px, 1px, 1px, 1px);
+  word-wrap: normal;
   white-space: nowrap;
   /* added line */
 }
@@ -2929,7 +2944,17 @@ div.search {
   .pe input {
     color: white;
   }
-  .pe .active button {
+  .pe button.pe-control-button svg,
+  .pe input.pe-control-button svg {
+    display: none;
+  }
+  .pe button.pe-control-button {
+    display: block;
+  }
+  .pe button.pe-control-button .button-text {
+    max-width: 100%;
+  }
+  .pe .active button.pe-control-button {
     font-weight: bold;
     color: #1a1a1a;
   }
