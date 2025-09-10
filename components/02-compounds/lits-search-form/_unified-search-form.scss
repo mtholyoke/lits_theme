@@ -4,6 +4,10 @@
  */
 #block-lits-theme-litsunifiedsearchblock {
   display: none;
+
+  .svg-inline--fa {
+    @include fontawesome-icon;
+  }
   
   .lits_homepage & {
     display: block;

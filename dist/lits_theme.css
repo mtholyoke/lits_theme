@@ -2764,6 +2764,12 @@ table.lits-hours-month td.other-month {
 #block-lits-theme-litsunifiedsearchblock {
   display: none;
 }
+#block-lits-theme-litsunifiedsearchblock .svg-inline--fa {
+  font-size: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  vertical-align: middle;
+}
 .lits_homepage #block-lits-theme-litsunifiedsearchblock {
   display: block;
 }
