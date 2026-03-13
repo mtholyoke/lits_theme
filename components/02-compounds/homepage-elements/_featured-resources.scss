@@ -142,12 +142,11 @@
 }
 
 .featured-resources-wrapper.deprecated {
+  background-color: $pale-gray;
   $gap: 0.5em;
 
   .featured-resources {
     background-color: transparent;
-    padding: 0;
-    margin: -0.5rem auto;
   }
   
   li {

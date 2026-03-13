@@ -9,9 +9,9 @@
 // }
 // TODO: remove that image file if we don’t need it.
 // TODO: move the actual college logo from db into theme!
-.lits_homepage {
-  $homepage-margin: 1rem;
+$homepage-margin: 1rem;
 
+.lits_homepage {
   /* 0. LITS intro */
   .deprecated.featured-resources-wrapper,
   #news-blocks,
