@@ -22,6 +22,10 @@ $homepage-margin: 1rem;
   .field-news-blocks {
     background-color: $dark-blue;
   }
+
+  main h2:not(:has(a)) {
+    font-family: 'Chronicle-bold', helvetica, serif;
+  }
 }
 /* I. Titlebar */
 
