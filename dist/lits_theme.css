@@ -2760,7 +2760,7 @@ table.lits-hours-month td.other-month {
 
 /**
  * @file
- * Styles for the unified search form, in the header of almsot every page.
+ * Styles for the unified search form, in the header of almost every page.
  */
 #block-lits-theme-litsunifiedsearchblock {
   display: none;
@@ -2846,7 +2846,8 @@ table.lits-hours-month td.other-month {
   background: white;
 }
 #block-lits-theme-litsunifiedsearchblock .pe button,
-#block-lits-theme-litsunifiedsearchblock .pe input {
+#block-lits-theme-litsunifiedsearchblock .pe input,
+#block-lits-theme-litsunifiedsearchblock .pe select {
   font-size: 1.5rem;
 }
 #block-lits-theme-litsunifiedsearchblock .pe div,
@@ -2861,15 +2862,37 @@ table.lits-hours-month td.other-month {
 #block-lits-theme-litsunifiedsearchblock .pe .optional-long {
   display: none;
 }
-#block-lits-theme-litsunifiedsearchblock .pe input {
+#block-lits-theme-litsunifiedsearchblock .pe input[type=search] {
   width: 100%;
   height: 3rem;
   padding: 0.75rem;
   padding-right: 3rem;
 }
+#block-lits-theme-litsunifiedsearchblock .pe select {
+  width: 100%;
+  height: 3rem;
+  padding: 0 0 0 0.75rem;
+}
+#block-lits-theme-litsunifiedsearchblock .form-item-library-materials-search-5c-only {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+#block-lits-theme-litsunifiedsearchblock .form-item-library-materials-search-5c-only input {
+  height: 1em;
+  width: 1em;
+  margin-right: 0.75rem;
+}
+#block-lits-theme-litsunifiedsearchblock .form-item-library-materials-search-5c-only label {
+  color: #1a1a1a;
+  font-weight: normal;
+}
 #block-lits-theme-litsunifiedsearchblock .pe form {
   position: relative;
   margin: 0;
+  container: search-form/inline-size;
+  display: flex;
+  flex-flow: row wrap;
 }
 #block-lits-theme-litsunifiedsearchblock .pe form button {
   position: absolute;
@@ -2880,7 +2903,23 @@ table.lits-hours-month td.other-month {
   padding: 0;
   height: 3rem;
 }
-#block-lits-theme-litsunifiedsearchblock .pe label,
+#block-lits-theme-litsunifiedsearchblock #edit-library-materials-search-go {
+  top: 4.2rem;
+}
+@container search-form (width > 25em) {
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-prefix {
+    width: 11em;
+  }
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-query {
+    width: calc(100% - 11em);
+  }
+  #block-lits-theme-litsunifiedsearchblock #edit-library-materials-search-go {
+    top: 0;
+  }
+}
+#block-lits-theme-litsunifiedsearchblock .form-item-library-materials-search-prefix label,
+#block-lits-theme-litsunifiedsearchblock .form-item-library-materials-search-query label,
+#block-lits-theme-litsunifiedsearchblock .form-item-lits-site-search-query label,
 #block-lits-theme-litsunifiedsearchblock .no {
   position: absolute !important;
   clip: rect(1px, 1px, 1px, 1px);
@@ -2918,12 +2957,10 @@ table.lits-hours-month td.other-month {
   #block-lits-theme-litsunifiedsearchblock h1.pe-control.active {
     background: white;
   }
-  #block-lits-theme-litsunifiedsearchblock .pe button,
-  #block-lits-theme-litsunifiedsearchblock .pe input {
+  #block-lits-theme-litsunifiedsearchblock .pe button {
     color: white;
   }
-  #block-lits-theme-litsunifiedsearchblock .pe button.pe-control-button svg,
-  #block-lits-theme-litsunifiedsearchblock .pe input.pe-control-button svg {
+  #block-lits-theme-litsunifiedsearchblock .pe button.pe-control-button svg {
     display: none;
   }
   #block-lits-theme-litsunifiedsearchblock .pe button.pe-control-button {

@@ -1,6 +1,6 @@
 /**
  * @file
- * Styles for the unified search form, in the header of almsot every page.
+ * Styles for the unified search form, in the header of almost every page.
  */
 #block-lits-theme-litsunifiedsearchblock {
   display: none;
@@ -103,7 +103,8 @@
   }
 
   .pe button,
-  .pe input {
+  .pe input,
+  .pe select {
     font-size: 1.5rem;
   }
 
@@ -123,16 +124,42 @@
     display: none;
   }
 
-  .pe input {
+  .pe input[type="search"] {
     width: 100%;
     height: 3rem;
     padding: .75rem;
     padding-right: 3rem;
   }
 
+  .pe select { // Like input, except select has built in top and bottom padding in addition to the padding rules??
+    width: 100%;
+    height: 3rem;
+    padding: 0 0 0 0.75rem
+  }
+
+  .form-item-library-materials-search-5c-only {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    input {
+      height: 1em;
+      width: 1em;
+      margin-right: 0.75rem;
+    }
+
+    label {
+      color: $charcoal;
+      font-weight: normal;
+    }
+  }
+
   .pe form {
     position: relative;
     margin: 0;
+    container: search-form / inline-size;
+    display: flex;
+    flex-flow: row wrap;
   }
 
   .pe form button {
@@ -145,7 +172,27 @@
     height: 3rem;
   }
 
-  .pe label,
+  #edit-library-materials-search-go {
+    top: 4.2rem;
+  }
+
+  @container search-form (width > 25em) {
+    .pe .form-item-library-materials-search-prefix {
+      width: 11em;
+    }
+    .pe .form-item-library-materials-search-query {
+      width: calc(100% - 11em);
+    }
+
+    #edit-library-materials-search-go {
+      top: 0;
+    }
+  }
+
+  // .pe label,
+  .form-item-library-materials-search-prefix label,
+  .form-item-library-materials-search-query label,
+  .form-item-lits-site-search-query label,
   .no {
     @include visually-hidden; 
     
@@ -191,8 +238,7 @@
       background: $white;
     }
 
-    .pe button,
-    .pe input {
+    .pe button {
       color: $white;
       
       &.pe-control-button svg {
