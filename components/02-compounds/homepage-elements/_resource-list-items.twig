@@ -1,5 +1,5 @@
 {% for item in items %}
-	<li>
+<li{% if not deprecated %} class="featured-resource-card"{% endif %}>
 		<a href="{{ item.content.field_link[0] }}">
 			{{ item.content.field_icon }}
 			<span>{{ item.content.field_heading }}</span>

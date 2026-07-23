@@ -12,7 +12,9 @@
       </li>
     {% endif %}
 
-    {% include "@compounds/homepage-elements/_resource-list-items.twig" %}
+    {% include "@compounds/homepage-elements/_resource-list-items.twig" with {
+      "deprecated": true
+    } %}
     </ul>
   </div>
 </div>

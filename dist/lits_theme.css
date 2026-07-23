@@ -2326,36 +2326,38 @@ ol {
   }
 }
 
-.field-resources {
+.featured-resources-wrapper.deprecated {
+  background-color: #e2dfdd;
+}
+.featured-resources-wrapper.deprecated .field-resources {
   display: flex;
   flex-flow: row wrap;
 }
-.field-resources > * {
+.featured-resources-wrapper.deprecated .field-resources > * {
   flex: 1 1 48%;
   max-width: calc(100% - 1em);
   margin: 0.5em;
 }
-.field-resources.layout-zone {
+.featured-resources-wrapper.deprecated .field-resources.layout-zone {
   margin: -0.5em;
 }
-.field-resources .resource-list,
-.field-resources .featured-resources-wrapper,
-.field-resources .featured-resources {
+.featured-resources-wrapper.deprecated .field-resources .resource-list,
+.featured-resources-wrapper.deprecated .field-resources .featured-resources-wrapper,
+.featured-resources-wrapper.deprecated .field-resources .featured-resources {
   height: 100%;
 }
-.field-resources .featured-resources-wrapper {
+.featured-resources-wrapper.deprecated .field-resources .featured-resources-wrapper {
   margin: 0;
   padding: 0;
 }
-
-.has-link-tiles {
+.featured-resources-wrapper.deprecated .has-link-tiles {
   padding-bottom: 2rem;
 }
-.has-link-tiles h2 {
+.featured-resources-wrapper.deprecated .has-link-tiles h2 {
   margin-top: 0;
   text-align: center;
 }
-.has-link-tiles ul {
+.featured-resources-wrapper.deprecated .has-link-tiles ul {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -2363,17 +2365,17 @@ ol {
   flex-flow: row wrap;
   margin: -0.5em;
 }
-.has-link-tiles li {
+.featured-resources-wrapper.deprecated .has-link-tiles li {
   margin: 0.5em;
   flex: 1 1 26%;
   min-width: 8rem;
   min-height: 11rem;
 }
-.has-link-tiles li .fontawesome-icons {
+.featured-resources-wrapper.deprecated .has-link-tiles li .fontawesome-icons {
   text-align: center;
   min-height: 3rem;
 }
-.has-link-tiles li a {
+.featured-resources-wrapper.deprecated .has-link-tiles li a {
   border-radius: 0;
   background-color: white;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
@@ -2385,74 +2387,71 @@ ol {
   padding: 1rem;
 }
 @media (min-width: 75rem) {
-  .has-link-tiles li a {
+  .featured-resources-wrapper.deprecated .has-link-tiles li a {
     padding: 1rem 0.25rem;
   }
 }
-.has-link-tiles li a {
+.featured-resources-wrapper.deprecated .has-link-tiles li a {
   color: #004876;
 }
-.has-link-tiles li a:link, .has-link-tiles li a:visited {
+.featured-resources-wrapper.deprecated .has-link-tiles li a:link, .featured-resources-wrapper.deprecated .has-link-tiles li a:visited {
   color: #004876;
 }
-.has-link-tiles li a:active, .has-link-tiles li a:hover {
+.featured-resources-wrapper.deprecated .has-link-tiles li a:active, .featured-resources-wrapper.deprecated .has-link-tiles li a:hover {
   color: #07c;
   text-decoration: underline solid;
 }
-.has-link-tiles li a:focus {
+.featured-resources-wrapper.deprecated .has-link-tiles li a:focus {
   outline-offset: 2px;
   outline: 3px solid #004876;
   text-decoration: underline solid;
 }
-.has-link-tiles li a svg, .has-link-tiles li a i {
+.featured-resources-wrapper.deprecated .has-link-tiles li a svg,
+.featured-resources-wrapper.deprecated .has-link-tiles li a i {
   font-size: 3rem;
   margin: 0 auto;
 }
-.has-link-tiles li a span {
+.featured-resources-wrapper.deprecated .has-link-tiles li a span {
   padding-top: 1rem;
   text-align: center;
   font-weight: bold;
 }
-.has-link-tiles.featured-resources {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources {
   padding: 1em;
   background-color: #e2dfdd;
 }
-.has-link-tiles.featured-resources.raspberry {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources.raspberry {
   border-top: 4px solid #a20067;
 }
-.has-link-tiles.featured-resources.light_blue {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources.light_blue {
   border-top: 4px solid #00a9e0;
 }
-.has-link-tiles.featured-resources.light_green {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources.light_green {
   border-top: 4px solid #84bd00;
 }
-.has-link-tiles.featured-resources.yellow {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources.yellow {
   border-top: 4px solid #ffd100;
 }
-.has-link-tiles.featured-resources.light_orange {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources.light_orange {
   border-top: 4px solid #ff9e1b;
 }
-.has-link-tiles.featured-resources li:nth-child(6n+1) a {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources li:nth-child(6n+1) a {
   border-top: 4px solid #a20067;
 }
-.has-link-tiles.featured-resources li:nth-child(6n+2) a {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources li:nth-child(6n+2) a {
   border-top: 4px solid #6e6259;
 }
-.has-link-tiles.featured-resources li:nth-child(6n+3) a {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources li:nth-child(6n+3) a {
   border-top: 4px solid #00a9e0;
 }
-.has-link-tiles.featured-resources li:nth-child(6n+4) a {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources li:nth-child(6n+4) a {
   border-top: 4px solid #84bd00;
 }
-.has-link-tiles.featured-resources li:nth-child(6n+5) a {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources li:nth-child(6n+5) a {
   border-top: 4px solid #ff9e1b;
 }
-.has-link-tiles.featured-resources li:nth-child(6n+6) a {
+.featured-resources-wrapper.deprecated .has-link-tiles.featured-resources li:nth-child(6n+6) a {
   border-top: 4px solid #ef3340;
-}
-
-.featured-resources-wrapper.deprecated {
-  background-color: #e2dfdd;
 }
 .featured-resources-wrapper.deprecated .featured-resources {
   background-color: transparent;
@@ -2460,43 +2459,50 @@ ol {
 .featured-resources-wrapper.deprecated li:nth-child(6n+1) a {
   border-top: 4px solid #a20067;
 }
-.featured-resources-wrapper.deprecated li:nth-child(6n+1) a svg, .featured-resources-wrapper.deprecated li:nth-child(6n+1) a i {
+.featured-resources-wrapper.deprecated li:nth-child(6n+1) a svg,
+.featured-resources-wrapper.deprecated li:nth-child(6n+1) a i {
   color: #a20067;
 }
 .featured-resources-wrapper.deprecated li:nth-child(6n+2) a {
   border-top: 4px solid #6e6259;
 }
-.featured-resources-wrapper.deprecated li:nth-child(6n+2) a svg, .featured-resources-wrapper.deprecated li:nth-child(6n+2) a i {
+.featured-resources-wrapper.deprecated li:nth-child(6n+2) a svg,
+.featured-resources-wrapper.deprecated li:nth-child(6n+2) a i {
   color: #6e6259;
 }
 .featured-resources-wrapper.deprecated li:nth-child(6n+3) a {
   border-top: 4px solid #00a9e0;
 }
-.featured-resources-wrapper.deprecated li:nth-child(6n+3) a svg, .featured-resources-wrapper.deprecated li:nth-child(6n+3) a i {
+.featured-resources-wrapper.deprecated li:nth-child(6n+3) a svg,
+.featured-resources-wrapper.deprecated li:nth-child(6n+3) a i {
   color: #00a9e0;
 }
 .featured-resources-wrapper.deprecated li:nth-child(6n+4) a {
   border-top: 4px solid #84bd00;
 }
-.featured-resources-wrapper.deprecated li:nth-child(6n+4) a svg, .featured-resources-wrapper.deprecated li:nth-child(6n+4) a i {
+.featured-resources-wrapper.deprecated li:nth-child(6n+4) a svg,
+.featured-resources-wrapper.deprecated li:nth-child(6n+4) a i {
   color: #84bd00;
 }
 .featured-resources-wrapper.deprecated li:nth-child(6n+5) a {
   border-top: 4px solid #ff9e1b;
 }
-.featured-resources-wrapper.deprecated li:nth-child(6n+5) a svg, .featured-resources-wrapper.deprecated li:nth-child(6n+5) a i {
+.featured-resources-wrapper.deprecated li:nth-child(6n+5) a svg,
+.featured-resources-wrapper.deprecated li:nth-child(6n+5) a i {
   color: #ff9e1b;
 }
 .featured-resources-wrapper.deprecated li:nth-child(6n+6) a {
   border-top: 4px solid #ef3340;
 }
-.featured-resources-wrapper.deprecated li:nth-child(6n+6) a svg, .featured-resources-wrapper.deprecated li:nth-child(6n+6) a i {
+.featured-resources-wrapper.deprecated li:nth-child(6n+6) a svg,
+.featured-resources-wrapper.deprecated li:nth-child(6n+6) a i {
   color: #ef3340;
 }
 .featured-resources-wrapper.deprecated li.tdx-tile {
   width: calc(100% - 1em);
 }
-.featured-resources-wrapper.deprecated li.tdx-tile svg, .featured-resources-wrapper.deprecated li.tdx-tile i {
+.featured-resources-wrapper.deprecated li.tdx-tile svg,
+.featured-resources-wrapper.deprecated li.tdx-tile i {
   overflow: visible;
   box-sizing: content-box;
   display: var(--fa-display, inline-block);
@@ -2707,6 +2713,81 @@ body.news_item article.node time {
   display: inline-block;
   color: #6e6259;
   margin-bottom: 1rem;
+}
+
+/* 
+This is for the new featured resources – giving its own file so it's more obviously matched with the twig file.
+
+Original styles live in _featured-resources.scss
+*/
+.featured-resource-card {
+  background: white;
+  width: 100%;
+  flex: 1 1 auto;
+  flex-basis: 26%;
+  /* starting point width, enough to ensure that 4 items don't get put on one line */
+  min-width: max(8rem, 34cqw);
+  /* width adequate for longest word in tile to not wrap */
+  min-height: 11rem;
+  /* 11 adequate for text in all rows wrapping? */
+  order: 0;
+  font-family: "ars-maquette-web", sans-serif;
+  display: block;
+}
+.featured-resource-card a {
+  text-decoration: none;
+  color: #004876;
+  height: 100%;
+  display: flex;
+  flex-flow: column nowrap;
+  word-break: break-word;
+  padding: 1rem 1rem;
+  justify-content: center;
+  border-radius: 3px;
+  border-top: 5px solid #004876;
+  /* to do, if class x, n-th... */
+  text-align: center;
+}
+.featured-resource-card a span {
+  padding-top: 1rem;
+  text-align: center;
+  font-weight: 500;
+  font-size: 1.5rem;
+  font-size: clamp(1.25rem, 4vw, 1.5rem);
+}
+.featured-resource-card a svg {
+  font-size: 3rem;
+  margin: 0 auto;
+}
+.featured-resource-card a svg:not(:host).svg-inline--fa, .featured-resource-card a svg:not(:root).svg-inline--fa {
+  overflow: visible;
+  box-sizing: content-box;
+}
+.featured-resource-card a .svg-inline--fa {
+  display: var(--fa-display, inline-block);
+  height: 1em;
+  overflow: visible;
+  vertical-align: -0.125em;
+}
+.featured-resource-card a .fontawesome-icon {
+  max-width: none;
+}
+.featured-resource-card:nth-child(1) a {
+  border-top: 5px solid #ef3340;
+}
+.featured-resource-card:nth-child(2) a {
+  border-top: 5px solid #ff9e1b;
+}
+.featured-resource-card:nth-child(3) a {
+  flex-basis: 100%;
+  order: 1;
+  border-top: 5px solid #84bd00;
+}
+.featured-resource-card:nth-child(4) a {
+  border-top: 5px solid #00a9e0;
+}
+.featured-resource-card:nth-child(5) a {
+  border-top: 5px solid #6f263d;
 }
 
 table.lits-hours-month {
@@ -4770,6 +4851,105 @@ ol.paragraph--numbered-list li p {
 @media (min-width: 75rem) {
   ol.paragraph--numbered-list li p {
     margin-left: calc(5rem + 30px);
+  }
+}
+
+.featured-resource-wrapper {
+  background: none;
+  box-shadow: none;
+  margin: 0 auto;
+  gap: 3rem;
+  /* why doesn't sublime recognize? browser support adequate to not need to use margin for row gaps? */
+  container-type: inline-size;
+  container-name: tiles;
+  display: block;
+  /* this css is a mess, a lot of the earlier rules get overridden later and should be removed, but something from the first bit is needed */
+}
+.featured-resource-wrapper .accordion-content {
+  max-height: 0;
+  /* overflow: visible;*/
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  display: block;
+}
+.featured-resource-wrapper .active .accordion-content {
+  max-height: none;
+  transition: max-height 0.3s ease-out;
+  display: block;
+}
+.featured-resource-wrapper .accordion-control {
+  cursor: pointer;
+  transition: 0.4s;
+  display: flex;
+  gap: 0.75rem;
+}
+.featured-resource-wrapper .accordion-control:after {
+  content: "⌃";
+  transform: rotate(180deg);
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  width: 3rem;
+  font-size: 3rem;
+  font-size: clamp(1.5rem, 8vw, 3rem);
+  text-align: center;
+}
+.active .featured-resource-wrapper .accordion-control:after {
+  content: "⌃";
+  transform: none;
+  margin-top: 0.75rem;
+}
+.featured-resource-wrapper .has-link-tiles {
+  text-align: center;
+  /*    padding: 1.5rem 0.75rem; */
+  background: #e5e5e5;
+  border-top: 1px solid #aaa;
+  flex-grow: 1;
+  flex-basis: 28rem;
+  /* starting point width, determines when blocks of tiles will stack */
+  padding: 0rem 3rem;
+  padding: 0 var(--side-spacing);
+  container-type: inline-size;
+  container-name: tile-group;
+}
+.featured-resource-wrapper .has-link-tiles h2 {
+  margin: 0;
+  font-family: "Chronicle Text G2 A", "Chronicle Text G2 B", serif;
+  font-size: 3rem;
+  font-size: clamp(1.5rem, 8vw, 3rem);
+  line-height: 1.333333;
+  padding: 1rem 0;
+  flex-grow: 1;
+}
+.featured-resource-wrapper .has-link-tiles ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  gap: 1rem;
+  /* why doesn't sublime recognize? browser support adequate to not need to use margin for row gaps? */
+  margin-top: 1rem;
+  margin-bottom: 3rem;
+}
+.featured-resource-wrapper .featured-resource {
+  max-width: 76rem;
+  margin: auto;
+  position: relative;
+}
+@container tiles (min-width: 60rem) {
+  .featured-resource-wrapper .has-link-tiles li {
+    flex-basis: 16%;
+    min-width: 0;
+  }
+  .featured-resource-wrapper .has-link-tiles li:nth-child(3) {
+    flex-basis: 26%;
+    flex-basis: 18%;
+    /* better */
+    transform: scale(1.13);
+    margin: 0 1rem;
+    order: 0;
   }
 }
 

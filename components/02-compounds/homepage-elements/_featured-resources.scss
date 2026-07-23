@@ -1,159 +1,163 @@
-.field-resources {
+.featured-resources-wrapper.deprecated {
+    
+  background-color: $pale-gray;
   $gap: 0.5em;
-  display: flex;
-  flex-flow: row wrap;
-
-  &>* {
-    flex: 1 1 48%;
-    max-width: calc(100% - (2 * $gap));
-    margin: $gap;
-  }  
-
-  &.layout-zone {
-    margin: -1 * $gap;
-  }
-
-  .resource-list,
-  .featured-resources-wrapper,
-  .featured-resources {
-    height: 100%;
-  }
   
-  .featured-resources-wrapper {
-    margin: 0;
-    padding: 0;
-  }
-}
-
-.has-link-tiles {
-  $gap: 0.5em;
-  // .layout-stripe sets width 100%, margin 0, padding 0.
-  padding-bottom: 2rem;
-  // Contains div.layout-zone for squishy edges.
-
-  h2 {
-    margin-top: 0;
-    text-align: center;
-  }
-  
-  ul {
-    @include list-reset;
-
+  .field-resources {
+    $gap: 0.5em;
     display: flex;
     flex-flow: row wrap;
-    margin: -1 * $gap;
-  }
 
-  li {
-    margin: $gap;
-    flex: 1 1 26%;
-    min-width: 8rem;
-    min-height: 11rem;
-
-    .fontawesome-icons {
-      text-align: center;
-      min-height: 3rem;
+    &>* {
+      flex: 1 1 48%;
+      max-width: calc(100% - (2 * $gap));
+      margin: $gap;
     }
 
-    a {
-      border-radius: 0;
-      background-color: $white;
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+    &.layout-zone {
+      margin: -1 * $gap;
+    }
+
+    .resource-list,
+    .featured-resources-wrapper,
+    .featured-resources {
       height: 100%;
-      display: flex;
-      flex-flow: column nowrap;
-      justify-content: flex-start;
-      word-break: break-word;
-      padding: 1rem;
+    }
 
-      @include breakpoint($large-width) {
-        padding: 1rem calc(0.25 * 1rem);
-      }
-
-      & {
-        @include link-on-gray;
-      }
-
-      svg, i {
-        font-size: 3rem;
-        margin: 0 auto;
-      }
-
-      span {
-        padding-top: 1rem;
-        text-align: center;
-        font-weight: bold;
-      }
+    .featured-resources-wrapper {
+      margin: 0;
+      padding: 0;
     }
   }
 
-  &.featured-resources {
-    padding: 1em;
-    background-color: $pale-gray;
+  .has-link-tiles {
+    $gap: 0.5em;
+    // .layout-stripe sets width 100%, margin 0, padding 0.
+    padding-bottom: 2rem;
+    // Contains div.layout-zone for squishy edges.
 
-    // Grouping border
-    &.raspberry {
-      border-top: 4px solid $raspberry;
+    h2 {
+      margin-top: 0;
+      text-align: center;
     }
 
-    &.light_blue {
-      border-top: 4px solid $light-blue;
+    ul {
+      @include list-reset;
+
+      display: flex;
+      flex-flow: row wrap;
+      margin: -1 * $gap;
     }
 
-    &.light_green {
-      border-top: 4px solid $light-green;
-    }
-
-    &.yellow {
-      border-top: 4px solid $yellow;
-    }
-
-    &.light_orange {
-      border-top: 4px solid $light-orange;
-    }
-
-    // Tile borders
     li {
-      &:nth-child(6n+1) a {
+      margin: $gap;
+      flex: 1 1 26%;
+      min-width: 8rem;
+      min-height: 11rem;
+
+      .fontawesome-icons {
+        text-align: center;
+        min-height: 3rem;
+      }
+
+      a {
+        border-radius: 0;
+        background-color: $white;
+        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
+        height: 100%;
+        display: flex;
+        flex-flow: column nowrap;
+        justify-content: flex-start;
+        word-break: break-word;
+        padding: 1rem;
+
+        @include breakpoint($large-width) {
+          padding: 1rem calc(0.25 * 1rem);
+        }
+
+        & {
+          @include link-on-gray;
+        }
+
+        svg,
+        i {
+          font-size: 3rem;
+          margin: 0 auto;
+        }
+
+        span {
+          padding-top: 1rem;
+          text-align: center;
+          font-weight: bold;
+        }
+      }
+    }
+
+    &.featured-resources {
+      padding: 1em;
+      background-color: $pale-gray;
+
+      // Grouping border
+      &.raspberry {
         border-top: 4px solid $raspberry;
       }
 
-      &:nth-child(6n+2) a {
-        border-top: 4px solid $gray;
-      }
-      
-      &:nth-child(6n+3) a {
+      &.light_blue {
         border-top: 4px solid $light-blue;
       }
-      
-      &:nth-child(6n+4) a {
+
+      &.light_green {
         border-top: 4px solid $light-green;
       }
-      
-      &:nth-child(6n+5) a {
+
+      &.yellow {
+        border-top: 4px solid $yellow;
+      }
+
+      &.light_orange {
         border-top: 4px solid $light-orange;
       }
 
-      &:nth-child(6n+6) a {
-        border-top: 4px solid $red;
+      // Tile borders
+      li {
+        &:nth-child(6n+1) a {
+          border-top: 4px solid $raspberry;
+        }
+
+        &:nth-child(6n+2) a {
+          border-top: 4px solid $gray;
+        }
+
+        &:nth-child(6n+3) a {
+          border-top: 4px solid $light-blue;
+        }
+
+        &:nth-child(6n+4) a {
+          border-top: 4px solid $light-green;
+        }
+
+        &:nth-child(6n+5) a {
+          border-top: 4px solid $light-orange;
+        }
+
+        &:nth-child(6n+6) a {
+          border-top: 4px solid $red;
+        }
       }
     }
   }
-}
 
-.featured-resources-wrapper.deprecated {
-  background-color: $pale-gray;
-  $gap: 0.5em;
 
   .featured-resources {
     background-color: transparent;
   }
-  
+
   li {
     &:nth-child(6n+1) a {
       border-top: 4px solid $raspberry;
 
-      svg, i {
+      svg,
+      i {
         color: $raspberry;
       }
     }
@@ -161,7 +165,8 @@
     &:nth-child(6n+2) a {
       border-top: 4px solid $gray;
 
-      svg, i {
+      svg,
+      i {
         color: $gray;
       }
     }
@@ -169,7 +174,8 @@
     &:nth-child(6n+3) a {
       border-top: 4px solid $light-blue;
 
-      svg, i {
+      svg,
+      i {
         color: $light-blue;
       }
     }
@@ -177,7 +183,8 @@
     &:nth-child(6n+4) a {
       border-top: 4px solid $light-green;
 
-      svg, i {
+      svg,
+      i {
         color: $light-green;
       }
     }
@@ -185,7 +192,8 @@
     &:nth-child(6n+5) a {
       border-top: 4px solid $light-orange;
 
-      svg, i {
+      svg,
+      i {
         color: $light-orange;
       }
     }
@@ -193,7 +201,8 @@
     &:nth-child(6n+6) a {
       border-top: 4px solid $red;
 
-      svg, i {
+      svg,
+      i {
         color: $red;
       }
     }
@@ -201,7 +210,8 @@
     &.tdx-tile {
       width: calc(100% - (2 * $gap));
 
-      svg, i {
+      svg,
+      i {
         overflow: visible;
         box-sizing: content-box;
         display: var(--fa-display, inline-block);
