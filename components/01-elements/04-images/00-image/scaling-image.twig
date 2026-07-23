@@ -28,17 +28,41 @@
 {% if content.field_image %}
 <div id="{{ attributes['id'] }}">
   <div class="scaling-image contain" {#{{attributes | without("id")}}#}>
+  {% block content %}
+  <div class="feature-container">
     <div class="feature">
-      {% block content %}
-      <div class="feature-image" style="background-image: url({{content.field_image[0]['#markup']}});" ></div>
+      <div class="feature-image" style="background-image: url({{content.field_image[0]['#markup']}});"></div>
       {% if content.field_heading[0]['#text'] or content.field_heading_suffix[0]['#text'] %}
-        <div class="feature-text">
-          <h1>{{ content.field_heading[0]['#text'] }}{{ content.field_heading_suffix[0]['#text'] | raw }}</h1>
-          {{ content.field_body }}
-        </div>
+      <div class="feature-text">
+        {# Ridiculous because I don't _want_ Drupal adding containers and p tags #}
+        <h1>{{ content.field_heading[0]['#text'] }}{{ content.field_heading_suffix[0]['#text'] | raw }}</h1>
+        <sub>{{ content.field_subtext }}</sub>
+        {{ content.field_body }}
+
+        {# Using link.twig here adds an id to the anchor tag that shouldn't be there and I couldn't get it to Go Away #}
+        {% set ctaLink = content.field_link[0]['#url'] %}
+        {% set ctaText = content.field_link[0]['#title'] %}
+        {% set ctaClasses = create_attribute() %}
+        {% set ctaClasses = ctaClasses.addClass("cta") %}
+        {% set ctaAttributes = content.field_link[0]['#url'].getOption("attributes") %}
+        {% if ctaAttributes.class is defined %}
+          {% set ctaClasses = ctaClasses.addClass(ctaAttributes.class) %}
+        {% endif %}
+        <a{{ ctaClasses }}
+          {% for attribute, value in ctaAttributes %}
+            {% if attribute != "class" %}
+              {{ attribute }}="{{- value -}}"
+            {% endif %}
+          {% endfor %}
+          href="{{ ctaLink }}">{{ ctaText }}</a>
+
+
+
+      </div>
       {% endif %}
-      {% endblock %}
     </div>
+  </div>
+  {% endblock %}
   </div>
 </div>
 {% endif %}
