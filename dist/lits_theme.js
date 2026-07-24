@@ -493,7 +493,7 @@ window.addEventListener('load', () => {
       item.classList.remove('active');
     }
     // add listener for header
-    const header = item.querySelector('.accordion-header');
+    const header = item.querySelector('.accordion-control button');
     header.addEventListener('click', () => {
       // on click, toggle class
       item.classList.toggle('active');

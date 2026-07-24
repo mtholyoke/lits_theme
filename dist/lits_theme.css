@@ -4870,7 +4870,7 @@ ol.paragraph--numbered-list li p {
   /* overflow: visible;*/
   overflow: hidden;
   transition: max-height 0.3s ease-out;
-  display: block;
+  display: none;
 }
 .featured-resource-wrapper .active .accordion-content {
   max-height: none;
@@ -4883,18 +4883,23 @@ ol.paragraph--numbered-list li p {
   display: flex;
   gap: 0.75rem;
 }
-.featured-resource-wrapper .accordion-control:after {
-  content: "⌃";
-  transform: rotate(180deg);
+.featured-resource-wrapper .accordion-control button {
+  width: 100%;
+  border: none;
+  background: transparent;
   align-items: center;
   display: flex;
   justify-content: center;
+}
+.featured-resource-wrapper .accordion-control button:after {
+  content: "⌃";
+  transform: rotate(180deg);
   width: 3rem;
   font-size: 3rem;
   font-size: clamp(1.5rem, 8vw, 3rem);
   text-align: center;
 }
-.active .featured-resource-wrapper .accordion-control:after {
+.featured-resource-wrapper .active .accordion-control button:after {
   content: "⌃";
   transform: none;
   margin-top: 0.75rem;

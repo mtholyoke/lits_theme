@@ -37,20 +37,26 @@
  */
 #}
 {% set accordionState = "" %}
+{% set aria_pressed = "false" %}
+{% set aria_hidden = "true" %}
 {% if content.field_accordion_active[0]["#markup"] == "Open" %}
 {%    set accordionState = "active" %}
+{%    set aria_pressed = "true" %}
+{%    set aria_hidden = "false" %}
 {% endif %}
-{% set classes = [paragraph.bundle|clean_class, 'accordion', 'expandable', 'featured-resource-wrapper'] %}
+{% set classes = [paragraph.bundle|clean_class, 'featured-resource-wrapper'] %}
 
 <div{{attributes.addClass(classes)}}>
 	<div class="has-link-tiles">
 		<div class="featured-resource accordion-item {{ accordionState }}">
 			<div class="accordion-control">
-				<h2 class="accordion-header">
-					{{ content.field_heading }}
-				</h2>
+				<button class="h2" aria-controls="paragraph-{{ paragraph.id() }}" aria-expanded="{{ aria_pressed }}" aria-pressed="{{ aria_pressed }}" type="button" id="paragraph-{{ paragraph.id() }}-button">
+					<h2 class="accordion-header">
+						{{ content.field_heading }}
+					</h2>
+				</button>
 			</div>
-			<div class="accordion-content">
+			<div class="accordion-content" aria-hidden="{{ aria_hidden }}" id="paragraph-{{ paragraph.id() }}">
 				<ul>
 					{{ content.field_resources }}
 				</ul>
