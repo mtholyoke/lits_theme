@@ -14,56 +14,66 @@
 
 {% set classes = elements.lits_theme_litssitealertblock['#attributes']['class'] %}
 <header id="page-header" {{ attributes.addClass(classes) }}>
-{{ elements.lits_theme_litssitealertblock }}
-<div id="logobar" class="layout-stripe">
-  <div id="logobar-container" class="layout-zone bluebg">
-    <div class="logo-container">
-      <a href="https://www.mtholyoke.edu" id="logo" class="mhc-logo scaling-logo" aria-label="Mount Holyoke College logo">
-        <img src="/themes/contrib/lits_theme/images/logos/mhc-logo.svg" alt="Mount Holyoke College logo" />
-      </a>
-    </div>
-    {{ elements.lits_theme_branding }}
-    <ul class="topnav-container">
-      <li><a class="hours nav-link" href="/about-lits/service-desks">Hours</a></li>
-      <li><a class="staff nav-link" href="/about-lits/staff">Staff</a></li>
-      <li><a class="accounts nav-link" href="/my-library-accounts">My LITS</a></li>
-      {# <li>
-        <button id="my-lits-toggle" class="toggle nav-link" aria-controls="my-lits-container" aria-expanded="false" aria-pressed="false">
-          My LITS
-        </button>
-      </li> #}
-      <li class="search-toggle-container">
-        <button id="search-toggle" class="toggle nav-link" aria-controls="block-lits-theme-litsunifiedsearchblock" aria-expanded="false" aria-pressed="false">
-          <!-- ugh don't wait for FontAwesome -->
-          <svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" data-fa-i2svg="">
-            <path fill="currentColor" d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"></path>
-          </svg>
-          <!-- <i class="fas fa-magnifying-glass"></i> Font Awesome fontawesome.com -->
-          <i class="fa fa-xmark"></i>
-        </button>
-      </li>
-      {{ elements.lits_theme_scamalert }}
-    </ul>
-  </div>
-</div>
+	{{ elements.lits_theme_litssitealertblock }}
 
-<div id="search-and-menu">
-  <div id="imagebar" class="layout-stripe">
-    <div class="layout-zone layout-container">
-      {# <div id="my-lits-container" class="layout-zone">
-        ILL account
-      </div> #}
+	<div id="logobar" class="layout-stripe">
+		<div id="logobar-container" class="layout-zone bluebg">
+			<div class="logo-container">
+				<a href="https://www.mtholyoke.edu" id="logo" class="mhc-logo scaling-logo link--external dropdown" aria-label="Mount Holyoke College logo">
+					<img src="/themes/contrib/lits_theme/images/logos/mhc-logo.svg" alt="Mount Holyoke College logo" class="drop-trigger">
+				</a>
+				{# <div class="logobar-branding-wrap">
+								<a href="/" title="Library, Information, and Technology Services">
+									LITS
+								</a>
+							</div> #}
+				{{ elements.lits_theme_branding }}
+				<ul class="topnav-container">
+					<li class="desktop dropdown">
+						<a class="hours nav-link drop-trigger" href="/about-lits/service-desks"></a>
+						<a href="/about-lits/service-desks">Hours</a>
+					</li>
+					<li class="desktop dropdown">
+						<a class="staff nav-link drop-trigger" href="https://asklits.mtholyoke.edu">Support</a>
+					</li>
+					<li class="desktop">
+						<a class="accounts nav-link" href="/my-library-accounts">Logins</a>
+					</li>
+					<li class="interior search-toggle-container">
+						<button
+							id="search-toggle" class="toggle nav-link" aria-controls="block-lits-theme-litsunifiedsearchblock" aria-expanded="false" aria-pressed="false">
+							<!-- ugh don't wait for FontAwesome -->
+							<svg class="svg-inline--fa fa-magnifying-glass" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="magnifying-glass" role="img" xmlns="http://www.w3.org/2000/svg" viewbox="0 0 512 512" data-fa-i2svg="">
+								<path fill="currentColor" d="M500.3 443.7l-119.7-119.7c27.22-40.41 40.65-90.9 33.46-144.7C401.8 87.79 326.8 13.32 235.2 1.723C99.01-15.51-15.51 99.01 1.724 235.2c11.6 91.64 86.08 166.7 177.6 178.9c53.8 7.189 104.3-6.236 144.7-33.46l119.7 119.7c15.62 15.62 40.95 15.62 56.57 0C515.9 484.7 515.9 459.3 500.3 443.7zM79.1 208c0-70.58 57.42-128 128-128s128 57.42 128 128c0 70.58-57.42 128-128 128S79.1 278.6 79.1 208z"></path>
+							</svg>
+							<!-- <i class="fas fa-magnifying-glass"></i> Font Awesome fontawesome.com -->
+							<i class="fa fa-xmark"></i>
+						</button>
+					</li>
+					{{ elements.lits_theme_scamalert }}
+				</ul>
+			</div>
+		</div>
+	</div>
 
-      {{ elements.lits_theme_litsunifiedsearchblock }}
-    </div>
-  </div>
+	<div id="search-and-menu">
+		<div id="imagebar" class="layout-stripe">
+			<div
+				class="layout-zone layout-container">
+				{# <div id="my-lits-container" class="layout-zone">
+				        ILL account
+				      </div> #}
 
-  <div id="menubar" class="layout-stripe">
-    <div id="menu-background"></div>
-    <div class="layout-zone layout-container">
-      {{ elements.lits_theme_mainnavigation }}
-    </div>
-  </div>
-</div>
+				{{ elements.lits_theme_litsunifiedsearchblock }}
+			</div>
+		</div>
+
+		<div id="menubar" class="layout-stripe">
+			<div id="menu-background"></div>
+			<div class="layout-zone layout-container">
+				{{ elements.lits_theme_mainnavigation }}
+			</div>
+		</div>
+	</div>
 
 </header>

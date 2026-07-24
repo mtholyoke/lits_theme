@@ -86,118 +86,126 @@ header#page-header {
   }
 
   /* I. Logobar */
-
   #logobar {
-    // .layout-stripe sets width 100%, margin 0, padding 0.
-    @include dark-blue-stripe;
+    background-color: $dark-blue;
+    color: white;
 
-    a,
-    button,
-    button svg {
-      @include focus($white);
-    }
-  }
-
-  #logobar-container {
-    // .layout-zone sets clearfix and squishy edges.
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
-    align-items: center;
-    min-height: $logo-container-height;
-  }
-
-  /* I.A. Logobar > Logo section */
-
-  #logobar .logo-container {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-    align-items: center;
-    gap: $header-gap;
-
-    @include breakpoint($small-width) {
+    #logobar-container {
+      display: flex;
       flex-flow: row nowrap;
-    }
-
-    & > * {
-      flex: 0 0 auto;
-    }
-
-    // On interior pages, there's always other stuff in the logobar
-    // Use wordmark logo only above small width
-    @include breakpoint($medium-width) {
-      justify-content: flex-start;
+      justify-content: space-between;
       align-items: center;
-
-      & #logo {
-        display: flex; // pretty much just to vertically center the svg block element
-      }
+      min-height: 7.5rem;
+      padding: 0 var(--side-spacing);
+      margin: auto;
+      max-width: 73rem;
     }
 
-    @include breakpoint($medium-width) {
-      // at breakpoint on homepage, more stuff shows up in logobar so left align logo.
-      body.lits_homepage & {
-        justify-content: flex-start;
-      }
-    }
-
-    & #logo {
-      margin-top: $header-gap;
-      margin-bottom: $header-gap;
-
-      & img {
-        height: $logo-height;
-        display: block;// must be block; inline-block reserves vertical height for hanging letters, which we do not want
-        margin: auto;
-      }
-    }
-  }
-
-  /* I.B. Logobar > TopNav section */
-
-  #logobar .topnav-container {
-    $font-size-nav-links: 1rem;
-    margin: auto 0;
-    list-style: none;
-    padding: 0;
-    display: flex;
-    flex-flow: column wrap;
-    gap: $header-gap;
-
-    @include breakpoint($small-width) {
+    .logo-container {
+      flex: 1 1 auto;
+      display: flex;
       flex-flow: row wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+
+      #logo {
+        justify-self: start;
+      }
+
+      img {
+        display: block;
+        margin: auto;
+        width: 100%;
+        height: clamp(1rem, 6vw, 2.25rem);
+      }
     }
 
-    & li {
+    .logobar-branding-wrap {
+      flex: 1;
+      text-align: center;
+
+      a {
+        display: block;
+        font-size: 5rem;
+        font-family: 'Chronicle Text G2 A', 'Chronicle Text G2 B', serif;
+        color: white;
+        text-decoration: none;
+        font-size: clamp(2rem, 16vw, 5.5rem)
+      }
+    }
+
+    @media (min-width: 56.25rem) {
+      .logo-container {
+        align-items: center;
+        grid-template-columns: 1fr 1fr 1.2fr;
+      }
+    }
+
+    @media (min-width: 37.5rem) {
+      .logo-container {
+        flex-flow: row nowrap;
+      }
+    }
+
+    @media (min-width: 37.5rem) {
+      .topnav-container {
+        flex-flow: row wrap;
+      }
+    }
+
+    .topnav-container {
+      margin: auto 0;
+      list-style: none;
+      padding: 0;
+      display: flex;
+      gap: 1.5rem;
+      justify-self: end;
+    }
+
+    .topnav-container li.desktop {
       display: none;
       margin: auto;
+    }
 
-      &.search-toggle-container {
+    @media (min-width: 56.25rem) {
+      .topnav-container li.desktop {
         display: inline-block;
-      }
-
-      @include breakpoint($medium-width) {
-        display: inline-block;
-      }
-
-      a,
-      button {
-        font-size: $font-size-nav-links;
-      }
-
-      // Don't flash/repaint when FontAwesome replaces the i with svg
-      i,
-      svg {
-        display: inline-block;
-        width: $font-size-nav-links; 
-      }
-
-      .lits_homepage &.search-toggle-container {
-        display: none;
       }
     }
 
+    .topnav-container li a,
+    header#page-header .topnav-container li button {
+      font-size: 1rem;
+      color: $white;
+    }
+
+    /*search button*/
+    .topnav-container .toggle {
+      background: none;
+      border: none;
+      display: inline-block;
+      color: $white;
+      text-decoration: none;
+    }
+
+    .topnav-container .toggle .fa-magnifying-glass {
+      font-size: 1.5rem;
+      height: 1.5rem;
+      width: 1.5rem;
+      vertical-align: middle;
+      display: inline;
+    }
+
+    .topnav-container .toggle .fa-xmark {
+      display: none;
+    }
+  }
+
+  /* Because the header mockup doesn't have this interaction styling yet */
+  #logobar {
     .toggle {
       @include link-bluebg;
 
@@ -220,7 +228,7 @@ header#page-header {
       &[aria-expanded="true"] {
         .fa-xmark {
           @include fontawesome-icon;
-          
+
           display: inline;
         }
 
@@ -230,10 +238,162 @@ header#page-header {
       }
     }
 
-    #block-lits-theme-scamalert a {
-      @include button($bg: $raspberry, $border: 3px solid $white)
+    .lits_homepage & .search-toggle-container {
+      display: none;
     }
   }
+
+  #block-lits-theme-scamalert a {
+    @include button($bg: $raspberry, $border: 3px solid $white)
+  }
+
+  // #logobar {
+  //   // .layout-stripe sets width 100%, margin 0, padding 0.
+  //   @include dark-blue-stripe;
+
+  //   a,
+  //   button,
+  //   button svg {
+  //     @include focus($white);
+  //   }
+  // }
+
+  // #logobar-container {
+  //   // .layout-zone sets clearfix and squishy edges.
+  //   display: flex;
+  //   flex-flow: row nowrap;
+  //   justify-content: space-between;
+  //   align-items: center;
+  //   min-height: $logo-container-height;
+  // }
+
+  // /* I.A. Logobar > Logo section */
+
+  // #logobar .logo-container {
+  //   display: flex;
+  //   flex-flow: row wrap;
+  //   justify-content: center;
+  //   align-items: center;
+  //   gap: $header-gap;
+
+  //   @include breakpoint($small-width) {
+  //     flex-flow: row nowrap;
+  //   }
+
+  //   & > * {
+  //     flex: 0 0 auto;
+  //   }
+
+  //   // On interior pages, there's always other stuff in the logobar
+  //   // Use wordmark logo only above small width
+  //   @include breakpoint($medium-width) {
+  //     justify-content: flex-start;
+  //     align-items: center;
+
+  //     & #logo {
+  //       display: flex; // pretty much just to vertically center the svg block element
+  //     }
+  //   }
+
+  //   @include breakpoint($medium-width) {
+  //     // at breakpoint on homepage, more stuff shows up in logobar so left align logo.
+  //     body.lits_homepage & {
+  //       justify-content: flex-start;
+  //     }
+  //   }
+
+  //   & #logo {
+  //     margin-top: $header-gap;
+  //     margin-bottom: $header-gap;
+
+  //     & img {
+  //       height: $logo-height;
+  //       display: block;// must be block; inline-block reserves vertical height for hanging letters, which we do not want
+  //       margin: auto;
+  //     }
+  //   }
+  // }
+
+  // /* I.B. Logobar > TopNav section */
+
+  // #logobar .topnav-container {
+  //   $font-size-nav-links: 1rem;
+  //   margin: auto 0;
+  //   list-style: none;
+  //   padding: 0;
+  //   display: flex;
+  //   flex-flow: column wrap;
+  //   gap: $header-gap;
+
+  //   @include breakpoint($small-width) {
+  //     flex-flow: row wrap;
+  //   }
+
+  //   & li {
+  //     display: none;
+  //     margin: auto;
+
+  //     &.search-toggle-container {
+  //       display: inline-block;
+  //     }
+
+  //     @include breakpoint($medium-width) {
+  //       display: inline-block;
+  //     }
+
+  //     a,
+  //     button {
+  //       font-size: $font-size-nav-links;
+  //     }
+
+  //     // Don't flash/repaint when FontAwesome replaces the i with svg
+  //     i,
+  //     svg {
+  //       display: inline-block;
+  //       width: $font-size-nav-links; 
+  //     }
+
+  //     .lits_homepage &.search-toggle-container {
+  //       display: none;
+  //     }
+  //   }
+
+  //   .toggle {
+  //     @include link-bluebg;
+
+  //     & {
+  //       background: none;
+  //       border: none;
+  //       display: inline-block;
+
+  //       .fa-xmark {
+  //         display: none;
+  //       }
+
+  //       .fa-magnifying-glass {
+  //         @include fontawesome-icon;
+
+  //         display: inline;
+  //       }
+  //     }
+
+  //     &[aria-expanded="true"] {
+  //       .fa-xmark {
+  //         @include fontawesome-icon;
+          
+  //         display: inline;
+  //       }
+
+  //       .fa-magnifying-glass {
+  //         display: none;
+  //       }
+  //     }
+  //   }
+
+  //   #block-lits-theme-scamalert a {
+  //     @include button($bg: $raspberry, $border: 3px solid $white)
+  //   }
+  // }
   /* III. Search and menu container */
   #search-and-menu {
     display: flex;

@@ -6130,8 +6130,7 @@ footer h2 {
 header#page-header {
   /* 0. Site alerts */
   /* I. Logobar */
-  /* I.A. Logobar > Logo section */
-  /* I.B. Logobar > TopNav section */
+  /* Because the header mockup doesn't have this interaction styling yet */
   /* III. Search and menu container */
   /* III. Imagebar */
   /* IV. Menubar */
@@ -6199,123 +6198,93 @@ header#page-header #block-lits-theme-litssitealertblock.emergency #site-alert-co
 header#page-header #logobar {
   background-color: #004876;
   color: white;
+  /*search button*/
 }
-header#page-header #logobar a:focus,
-header#page-header #logobar button:focus,
-header#page-header #logobar button svg:focus {
-  outline-offset: 2px;
-  outline: 3px solid white;
-}
-header#page-header #logobar-container {
+header#page-header #logobar #logobar-container {
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-between;
   align-items: center;
-  min-height: 4.5rem;
+  min-height: 7.5rem;
+  padding: 0 var(--side-spacing);
+  margin: auto;
+  max-width: 73rem;
 }
 header#page-header #logobar .logo-container {
+  flex: 1 1 auto;
   display: flex;
   flex-flow: row wrap;
   justify-content: center;
   align-items: center;
   gap: 1.5rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+header#page-header #logobar .logo-container #logo {
+  justify-self: start;
+}
+header#page-header #logobar .logo-container img {
+  display: block;
+  margin: auto;
+  width: 100%;
+  height: clamp(1rem, 6vw, 2.25rem);
+}
+header#page-header #logobar .logobar-branding-wrap {
+  flex: 1;
+  text-align: center;
+}
+header#page-header #logobar .logobar-branding-wrap a {
+  display: block;
+  font-size: 5rem;
+  font-family: "Chronicle Text G2 A", "Chronicle Text G2 B", serif;
+  color: white;
+  text-decoration: none;
+  font-size: clamp(2rem, 16vw, 5.5rem);
+}
+@media (min-width: 56.25rem) {
+  header#page-header #logobar .logo-container {
+    align-items: center;
+    grid-template-columns: 1fr 1fr 1.2fr;
+  }
 }
 @media (min-width: 37.5rem) {
   header#page-header #logobar .logo-container {
     flex-flow: row nowrap;
   }
 }
-header#page-header #logobar .logo-container > * {
-  flex: 0 0 auto;
-}
-@media (min-width: 56.25rem) {
-  header#page-header #logobar .logo-container {
-    justify-content: flex-start;
-    align-items: center;
+@media (min-width: 37.5rem) {
+  header#page-header #logobar .topnav-container {
+    flex-flow: row wrap;
   }
-  header#page-header #logobar .logo-container #logo {
-    display: flex;
-  }
-}
-@media (min-width: 56.25rem) {
-  body.lits_homepage header#page-header #logobar .logo-container {
-    justify-content: flex-start;
-  }
-}
-header#page-header #logobar .logo-container #logo {
-  margin-top: 1.5rem;
-  margin-bottom: 1.5rem;
-}
-header#page-header #logobar .logo-container #logo img {
-  height: 4rem;
-  display: block;
-  margin: auto;
 }
 header#page-header #logobar .topnav-container {
   margin: auto 0;
   list-style: none;
   padding: 0;
   display: flex;
-  flex-flow: column wrap;
   gap: 1.5rem;
+  justify-self: end;
 }
-@media (min-width: 37.5rem) {
-  header#page-header #logobar .topnav-container {
-    flex-flow: row wrap;
-  }
-}
-header#page-header #logobar .topnav-container li {
+header#page-header #logobar .topnav-container li.desktop {
   display: none;
   margin: auto;
 }
-header#page-header #logobar .topnav-container li.search-toggle-container {
-  display: inline-block;
-}
 @media (min-width: 56.25rem) {
-  header#page-header #logobar .topnav-container li {
+  header#page-header #logobar .topnav-container li.desktop {
     display: inline-block;
   }
 }
 header#page-header #logobar .topnav-container li a,
-header#page-header #logobar .topnav-container li button {
+header#page-header #logobar header#page-header .topnav-container li button {
   font-size: 1rem;
-}
-header#page-header #logobar .topnav-container li i,
-header#page-header #logobar .topnav-container li svg {
-  display: inline-block;
-  width: 1rem;
-}
-.lits_homepage header#page-header #logobar .topnav-container li.search-toggle-container {
-  display: none;
-}
-header#page-header #logobar .topnav-container .toggle {
   color: white;
-  text-decoration: none;
-}
-header#page-header #logobar .topnav-container .toggle:link, header#page-header #logobar .topnav-container .toggle:visited {
-  color: white;
-}
-header#page-header #logobar .topnav-container .toggle:active, header#page-header #logobar .topnav-container .toggle:hover {
-  color: #ccdae3;
-  text-decoration: underline solid;
-}
-header#page-header #logobar .topnav-container .toggle:focus {
-  outline-offset: 2px;
-  outline: 3px solid white;
-  text-decoration: underline solid;
-}
-header#page-header #logobar .topnav-container .toggle svg:focus {
-  outline-offset: 2px;
-  outline: 3px solid white;
-  text-decoration: underline solid;
 }
 header#page-header #logobar .topnav-container .toggle {
   background: none;
   border: none;
   display: inline-block;
-}
-header#page-header #logobar .topnav-container .toggle .fa-xmark {
-  display: none;
+  color: white;
+  text-decoration: none;
 }
 header#page-header #logobar .topnav-container .toggle .fa-magnifying-glass {
   font-size: 1.5rem;
@@ -6324,17 +6293,59 @@ header#page-header #logobar .topnav-container .toggle .fa-magnifying-glass {
   vertical-align: middle;
   display: inline;
 }
-header#page-header #logobar .topnav-container .toggle[aria-expanded=true] .fa-xmark {
+header#page-header #logobar .topnav-container .toggle .fa-xmark {
+  display: none;
+}
+header#page-header #logobar .toggle {
+  color: white;
+  text-decoration: none;
+}
+header#page-header #logobar .toggle:link, header#page-header #logobar .toggle:visited {
+  color: white;
+}
+header#page-header #logobar .toggle:active, header#page-header #logobar .toggle:hover {
+  color: #ccdae3;
+  text-decoration: underline solid;
+}
+header#page-header #logobar .toggle:focus {
+  outline-offset: 2px;
+  outline: 3px solid white;
+  text-decoration: underline solid;
+}
+header#page-header #logobar .toggle svg:focus {
+  outline-offset: 2px;
+  outline: 3px solid white;
+  text-decoration: underline solid;
+}
+header#page-header #logobar .toggle {
+  background: none;
+  border: none;
+  display: inline-block;
+}
+header#page-header #logobar .toggle .fa-xmark {
+  display: none;
+}
+header#page-header #logobar .toggle .fa-magnifying-glass {
   font-size: 1.5rem;
   height: 1.5rem;
   width: 1.5rem;
   vertical-align: middle;
   display: inline;
 }
-header#page-header #logobar .topnav-container .toggle[aria-expanded=true] .fa-magnifying-glass {
+header#page-header #logobar .toggle[aria-expanded=true] .fa-xmark {
+  font-size: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  vertical-align: middle;
+  display: inline;
+}
+header#page-header #logobar .toggle[aria-expanded=true] .fa-magnifying-glass {
   display: none;
 }
-header#page-header #logobar .topnav-container #block-lits-theme-scamalert a {
+.lits_homepage header#page-header #logobar .search-toggle-container {
+  display: none;
+}
+header#page-header #block-lits-theme-scamalert a {
   background-color: #a20067;
   border: 3px solid white;
   outline: none;
@@ -6350,14 +6361,14 @@ header#page-header #logobar .topnav-container #block-lits-theme-scamalert a {
   text-decoration: none;
   text-align: center;
 }
-header#page-header #logobar .topnav-container #block-lits-theme-scamalert a:visited {
+header#page-header #block-lits-theme-scamalert a:visited {
   color: white;
 }
-header#page-header #logobar .topnav-container #block-lits-theme-scamalert a:hover {
+header#page-header #block-lits-theme-scamalert a:hover {
   background-color: #6e6259;
   color: white;
 }
-header#page-header #logobar .topnav-container #block-lits-theme-scamalert a:focus {
+header#page-header #block-lits-theme-scamalert a:focus {
   outline-offset: 2px;
   outline: 3px solid #004876;
 }
