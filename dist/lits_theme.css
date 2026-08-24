@@ -3473,19 +3473,11 @@ div.search-result-details.btn a:hover {
 }
 .lits-location-teaser address {
   font-size: 1rem;
-  line-height: 1.5rem;
   margin-bottom: 1em;
-}
-.lits-location-teaser address svg {
-  margin-right: 0.5em;
 }
 .lits-location-teaser .location-visit {
   font-size: 1rem;
   line-height: 1.5rem;
-}
-.lits-location-teaser .location-visit .open-now-container {
-  font-size: 1.2rem;
-  margin-bottom: 0.5em;
 }
 .lits-location-teaser .teaser-icon img {
   margin: 0 auto;
@@ -7748,7 +7740,33 @@ h1 .subtitle {
 }
 
 html {
+  /* if going to scale vertiocal rhythm down for mobile, should maybe just leave this at 16px... */
   font-size: 1.125rem;
+  /* 18px */
+}
+
+:root {
+  /* padding scaling from 360 to 900 viewport */
+  --side-spacing: clamp(0.75rem, 6.667vw + -0.75rem, 3rem);
+  /* .75 to 3rem */
+  --max-width: 76rem;
+  /* font scaling from 360 to 1200 viewport */
+  --f-small: 1rem;
+  /* 18? to 18 */
+  --f-util: 1.16666666667rem;
+  /* 21? to 21 */
+  --f-base: clamp(1.167rem, 0.317vw + 1.095rem, 1.333rem);
+  /* 21 to 24px, 260 to 1200 */
+  --f2: 2rem;
+  /* to do...? to 38 */
+  --f3: 3rem;
+  /* to do...? to 54 */
+  --vr-base: clamp(0.889rem, 0.212vw + 0.841rem, 1rem);
+  /* 16? to 18 */
+  --vr-line-height: clamp(1.778rem, 0.423vw + 1.683rem, 2rem);
+  /* 32? to 36, i.e., ultimately 1.5 for anything with f-base, but right now 32 is not 31.5 */
+  --vr-base: 1rem;
+  --vr-line-height: 2rem;
 }
 
 body {
@@ -7763,21 +7781,157 @@ select,
 textarea {
   color: #1a1a1a;
   font-family: "ars-maquette-web", sans-serif;
-  font-size: clamp(1.1666666667rem, 0.242vw + 1.1182222222rem, 1.3333333333rem);
-  line-height: 1.5;
-  /*where are these? */
+  font-size: var(--f-base);
+  line-height: var(--vr-line-height);
+}
+
+button {
+  line-height: calc(3 * var(--vr-base));
 }
 
 a {
   color: #07c;
 }
 
-/* global padding and max width */
-:root {
-  --side-spacing: clamp(0.75rem, 2.903vw + 0.097rem, 3rem);
-  --max-width: 76rem;
+#logobar {
+  background-color: #004876;
+  color: white;
 }
 
+#logobar-container {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 6.75rem;
+  padding: 0 var(--side-spacing);
+  margin: auto;
+  max-width: var(--max-width);
+}
+
+#logobar .logo-container #logo {
+  justify-self: start;
+}
+
+#logobar .logo-container #logo img {
+  height: 4rem;
+  display: block;
+  margin: auto;
+  height: 2.5rem;
+  height: clamp(1rem, 8vw, 2.5rem);
+  height: clamp(1.5rem, 1.905vw + 1.071rem, 2.5rem);
+}
+
+.logobar-branding-wrap a {
+  display: block;
+  font-family: "Chronicle Text G2 A", "Chronicle Text G2 B", serif;
+  color: white;
+  text-decoration: none;
+  /*  font-size: 5.3333333rem;*/
+  font-size: clamp(3.5rem, 2.323vw + 2.977rem, 5.3rem);
+  font-size: clamp(3.5rem, 3.429vw + 2.729rem, 5.3rem);
+  line-height: 1;
+}
+
+.logobar-branding-wrap {
+  flex: 1;
+  text-align: center;
+}
+
+#logobar .logo-container {
+  flex: 1 1 auto;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(max-content, 1fr)) auto;
+  grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr);
+  grid-template-columns: max-content auto auto;
+  grid-template-columns: auto auto auto;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+@media (min-width: 56.25rem) {
+  #logobar .logo-container {
+    /*justify-content: flex-start;*/
+    align-items: center;
+  }
+  .logobar-branding-wrap a {
+    padding-right: 4.5rem;
+  }
+}
+@media (min-width: 37.5rem) {
+  #logobar .logo-container {
+    flex-flow: row nowrap;
+  }
+  #logobar .topnav-container {
+    flex-flow: row wrap;
+  }
+  .logobar-branding-wrap a {
+    font-size: 5.3333333rem;
+    font-size: clamp(3.5rem, 3.429vw + 2.729rem, 5.3rem);
+  }
+}
+#logobar .topnav-container {
+  margin: auto 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+  /*gap: 1.5rem;*/
+  gap: clamp(0.75rem, 0.968vw + 0.532rem, 1.5rem);
+  min-width: 5rem;
+  justify-self: end;
+  white-space: nowrap;
+  flex-flow: nowrap;
+}
+
+#logobar .topnav-container li {
+  display: none;
+  margin: auto;
+}
+
+#logobar .topnav-container li.search-toggle-container {
+  display: block;
+}
+
+@media (min-width: 56.25rem) {
+  #logobar .topnav-container li {
+    display: inline-block;
+  }
+  /*    #logobar .topnav-container li.search-toggle-container {
+      display: none
+    }*/
+}
+#logobar .topnav-container li a,
+header#page-header #logobar .topnav-container li button {
+  font-size: 1rem;
+  color: white;
+}
+
+/*search button*/
+#logobar .topnav-container .toggle {
+  background: none;
+  border: none;
+  display: inline-block;
+  color: white;
+  text-decoration: none;
+}
+
+#logobar .topnav-container .toggle .fa-magnifying-glass {
+  font-size: 1.5rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  vertical-align: middle;
+  display: inline;
+}
+
+#logobar .topnav-container .toggle .fa-xmark {
+  display: none;
+}
+
+/* <!-- unused style for drop down prototype --> */
 /* 1. The Container */
 .dropdown {
   position: relative;
@@ -7857,6 +8011,7 @@ x.drop-trigger {
   color: blue;
 }
 
+/* <!--imported style --> */
 /* Generic base rules that cascade in */
 .subtitle {
   color: #6e6259;
@@ -8307,6 +8462,11 @@ nav#block-lits-theme-mainnavigation #main-nav {
   padding: 0;
 }
 
+@media (min-width: 56.25rem) {
+  .layout-zone.layout-container, .layout-zone#main-content.main-sidebar-side, .layout-zone.study-space-finder {
+    padding: 0 var(--side-spacing);
+  }
+}
 /* ==========================================================================
    Base Rules & Canvas Rules
    ========================================================================== */
@@ -8877,7 +9037,7 @@ h1,
 #newsbar.newsbar-sidebar-side #featured-resources-wrapper #sidebar-container #block-lits-theme-views-block-service-desk-block-block-1,
 #sidebar-wrapper #sidebar-container .views-row,
 #newsbar.newsbar-sidebar-side #featured-resources-wrapper #sidebar-container .views-row {
-  width: 100% !important;
+  width: 100%;
 }
 
 @media (min-width: 600px) {
@@ -9263,6 +9423,8 @@ h1.h1, h1, .text-long h1, .ck-editor h1 {
 
 #sidebar-wrapper .sidebar-nav-wrapper {
   padding: 0;
+  max-width: none;
+  /* else this won't stretch when stack */
 }
 
 .lits-location-teaser {
@@ -9270,7 +9432,7 @@ h1.h1, h1, .text-long h1, .ck-editor h1 {
   background: #f5f5f5;
   min-height: unset;
   color: black;
-  margin: 1.5rem 0;
+  margin: 1.5rem 0 0 0;
 }
 
 .lits-location-teaser address {
@@ -10151,13 +10313,15 @@ footer h2 {
     order: 0;
   }
 }
-@media (min-width: 1044px) and (max-width: 1063px) {
+@media (min-width: 1044px) and (max-width: 1106px) {
   #main-content.main-sidebar-side #sidebar-wrapper {
     order: 1;
   }
 }
 #sidebar-container .sidebar-nav .fa-share-from-square {
   font-size: unset;
+  padding: 0;
+  margin: 0;
 }
 
 .lits-location-teaser.service-desk .teaser-icon.grid-item {
