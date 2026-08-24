@@ -26,7 +26,7 @@
       <h1 class="pe-control{% if pressed == "true" %} active{% endif %}" id="pe-control-{{loop.index0}}">
         <button class="pe-control-button" aria-expanded="{{ pressed }}" aria-pressed="{{ pressed }}" aria-controls="content-{{loop.index0}}">
           <div class="button-text">
-            {{ form['title'] | raw }}
+            {{ form['#title'] | raw }}
           </div>
           <!-- ugh don't wait for font awesome -->
           <svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
