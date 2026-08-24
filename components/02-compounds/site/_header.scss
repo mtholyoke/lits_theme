@@ -95,10 +95,10 @@ header#page-header {
       flex-flow: row nowrap;
       justify-content: space-between;
       align-items: center;
-      min-height: 7.5rem;
+      min-height: 6.75rem;
       padding: 0 var(--side-spacing);
       margin: auto;
-      max-width: 73rem;
+      max-width: var(--max-width);
     }
 
     .logo-container {
@@ -109,6 +109,10 @@ header#page-header {
       align-items: center;
       gap: 1.5rem;
       display: grid;
+      grid-template-columns: repeat(2, minmax(max-content, 1fr)) auto;
+      grid-template-columns: minmax(max-content, 1fr) auto minmax(max-content, 1fr);
+      grid-template-columns: max-content auto auto;
+      grid-template-columns: auto auto auto;
       grid-template-columns: 1fr 1fr 1fr;
 
       #logo {
@@ -116,10 +120,11 @@ header#page-header {
       }
 
       img {
+        height: 4rem;
         display: block;
         margin: auto;
-        width: 100%;
-        height: clamp(1rem, 6vw, 2.25rem);
+        height: 2.5rem;
+        height: clamp(1rem, 8vw, 2.5rem);
       }
     }
 
@@ -133,14 +138,19 @@ header#page-header {
         font-family: 'Chronicle Text G2 A', 'Chronicle Text G2 B', serif;
         color: white;
         text-decoration: none;
-        font-size: clamp(2rem, 16vw, 5.5rem)
+        font-size: clamp(3.5rem, 2.323vw + 2.977rem, 5.3rem);
+        line-height: 1;
       }
     }
 
     @media (min-width: 56.25rem) {
       .logo-container {
         align-items: center;
-        grid-template-columns: 1fr 1fr 1.2fr;
+        // grid-template-columns: 1fr 1fr 1.2fr;
+      }
+
+      .logobar-branding-wrap a {
+        padding-right: 4.5rem;
       }
     }
 
@@ -154,6 +164,10 @@ header#page-header {
       .topnav-container {
         flex-flow: row wrap;
       }
+
+      .logobar-branding-wrap a {
+        font-size: 5.3333333rem;
+      }
     }
 
     .topnav-container {
@@ -162,15 +176,25 @@ header#page-header {
       padding: 0;
       display: flex;
       gap: 1.5rem;
+      gap: clamp(0.75rem, 0.968vw + 0.532rem, 1.5rem);
+      min-width: 5rem;
       justify-self: end;
+      white-space: nowrap;
+      flex-flow: nowrap;
     }
 
+    .topnav-container li,
     .topnav-container li.desktop {
       display: none;
       margin: auto;
     }
 
+    #logobar .topnav-container li.search-toggle-container {
+      display: block;
+    }
+
     @media (min-width: 56.25rem) {
+      .topnav-container li,
       .topnav-container li.desktop {
         display: inline-block;
       }
