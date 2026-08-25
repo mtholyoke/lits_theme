@@ -1,4 +1,4 @@
-{#
+{# {#
 /**
  * @file
  * Theme override for the content of a service desk or study space page.
@@ -10,38 +10,55 @@
  * @see templates/views/views-view-fields--about-lits-service-desks--detail-page.html.twig
  */
 #}
+
+
 <article class="lits-location {{ original_type }}">
   <div class="layout-container">
-    <div class="location-left">
+      <hgroup class="service-desk-header">
+        <h1 class="service-desk-title">{{ fields.name.content }}</h1>
+        <p class="service-desk-tagline">{{ fields.field_slogan.content }}</p> <!-- styling this right w/o a wrapping element woudl be ridiculous -->
+      </hgroup>
+<div class="service-desk-banner">
+      <div class="location-images">
+        {% block location_images %}
+        {% endblock location_images %}
+      </div>
       <div class="location-teaser-bite">
         <div class="location-teaser">
           {% block location_teaser %}
           {% endblock location_teaser %}
         </div>
+      </div>
+</div>
+  
+  <div class="main-content-service-desk"><!--new wrapper, could just flex entire page but that would be annoying-->
+      <div class="location-sidebar">
+        {% block location_sidebar %}
+        {% endblock location_sidebar %}
+      </div>
         <div class="location-bite">
           {% block location_bite %}
           {% endblock location_bite %}
         </div>
+      <div class="location-content">
+        {% block location_content %}
+        {% endblock location_content %}
       </div>
       <div class="location-hours">
         {% block location_hours %}
         {% endblock location_hours %}
       </div>
-    </div>
-    <div class="location-right">
-      <div class="location-images">
-        {% block location_images %}
-        {% endblock location_images %}
-      </div>
-      <div class="location-sidebar">
-        {% block location_sidebar %}
-        {% endblock location_sidebar %}
-      </div>
-    </div>
-  </div>{# /.layout-container #}
-  <hr class="divider">
-  <div class="location-content">
-    {% block location_content %}
-    {% endblock location_content %}
+
+      <h2>Need assistance?</h2>
+      <ul>
+        <li>Email us at
+          <a href="mailto:{{ fields.field_email.content }}">{{ fields.field_email.content }}</a>
+        </li>
+        <li>Call us at {{ fields.field_phone_number.content|striptags|trim }}.</li>
+      {# <li>Write us at {{ fields.name.content }}, Mount Holyoke College, 50 College Street, 8 Dwight Hall, South Hadley, MA 01075.</li> #}
+      <li>Write us at	{{ fields.name.content }}, Mount Holyoke College, 50 College Street, South Hadley, MA 01075.</li>
+      </ul>
+</div>
+
   </div>
 </article>

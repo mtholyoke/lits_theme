@@ -12,7 +12,7 @@
 #}
 <div class="lits-location-teaser {{ original_type }}">
   {% if page or service_desk_page %}
-    <h1 class="service-desk-title">{{ name }}</h1>
+    {# <h1 class="service-desk-title">{{ name }}</h1> #}
   {% else %}
     <h2 class="service-desk-title">Need more help?</h2>
     <div class="service-desk-content">
@@ -21,10 +21,15 @@
 
   {% if original_type == 'service-desk' %}
     {% if page or service_desk_page %}
-      {{ content.field_slogan[0] }}
+      {# {{ content.field_slogan[0] }} #}
     {% else %}
       <p class="service-desk-slogan">{{ content.field_slogan[0] }}</p>
     {% endif %}
+  
+    {% if page or service_desk_page %}
+    <h2>Contact</h2>
+    {% endif %}
+
     <address>
       <br>
       {% if content.field_phone_number[0]["#context"]['value'] %}
@@ -84,11 +89,19 @@
     </address>
   {% endif %}
 
+  {% if page or service_desk_page %}
+    <h2>Hours</h2>
+  {% endif %}
   <div class="layout-container">
     <div class="location-visit">
       {% if content.open_now %}
       {{ content.open_now }}
       {% endif %}
+
+      {% if page or service_desk_page %}
+      <h2>Location</h2>
+      {% endif %}
+
       {{ content.field_location[0] }}
       <br>
       {{ content.field_building[0] }}
