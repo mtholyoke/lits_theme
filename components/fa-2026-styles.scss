@@ -1,131 +1,86 @@
 @use "sass:math";
+
 // ********************************* BASIC PAGE ********************************* //
-// ********************************* _head.twig ********************************* //
-* {
-  box-sizing: border-box;
-}
-
-html {
-  /* if going to scale vertiocal rhythm down for mobile, should maybe just leave this at 16px... */
-  font-size: 1.125rem;
-  /* 18px */
-
-}
-
-:root {
-  /* padding scaling from 360 to 900 viewport */
-  --side-spacing: clamp(0.75rem, 6.667vw + -0.75rem, 3rem);
-  /* .75 to 3rem */
-  --max-width: 76rem;
-
-  /* font scaling from 360 to 1200 viewport */
-  --f-small: 1rem;
-  /* 18? to 18 */
-  --f-util: 1.16666666667rem;
-  /* 21? to 21 */
-  --f-base: clamp(1.167rem, 0.317vw + 1.095rem, 1.333rem);
-  /* 21 to 24px, 260 to 1200 */
-  ;
-  --f2: 2rem;
-  /* to do...? to 38 */
-  --f3: 3rem;
-  /* to do...? to 54 */
-
-  --vr-base: clamp(0.889rem, 0.212vw + 0.841rem, 1rem);
-  /* 16? to 18 */
-  --vr-line-height: clamp(1.778rem, 0.423vw + 1.683rem, 2rem);
-  /* 32? to 36, i.e., ultimately 1.5 for anything with f-base, but right now 32 is not 31.5 */
-  --vr-base: 1rem;
-  --vr-line-height: 2rem;
-
-}
-
-body {
-  margin: 0;
-}
-
-body,
-button,
-input,
-optgroup,
-select,
-textarea {
-  color: #1a1a1a;
-  font-family: "ars-maquette-web", sans-serif;
-  font-size: var(--f-base);
-  line-height: var(--vr-line-height);
-
-}
-
-button {
-  line-height: calc(3 * var(--vr-base));
-}
-
-a {
-  color: #0277cc;
-}
-
-// ********************************* top-nav.twig ********************************* //
-// ********************************* menu-534.twig ********************************* //
-.layout-zone {
-  /* do I recal these being nested, because that'll be a mess to deal with. */
-  padding: 0;
-  /* sigh */
-  max-width: var(--max-width);
-  padding: 0 var(--side-spacing);
-  margin: 0 auto;
-}
-
-
-@media (min-width: 56.25rem) {
-  #menubar .main-nav>.main-menu {
-    display: flex;
-    column-gap: 1.5rem;
-    justify-content: space-between;
-  }
-
-  nav#block-lits-theme-mainnavigation #main-nav>ul.main-menu {
-    display: flex;
-    /* sigh */
-  }
-}
-
-#menubar .main-menu .main-menu__item button {
-  font-size: 21px;
-  line-height: 3rem;
-  padding: 0;
-}
-
-#menubar .main-menu li.main-menu__item.main-menu__item--root.expandable {
-  padding: 0;
-}
-
-#menubar {
-  /* padding-bottom: 0.5rem;*/
-  padding: 0;
-}
-
-#main-menu-toggle-expand {
-  /*padding: 0.5rem 0;*/
-  padding: 0;
-  line-height: 3rem;
-}
-
-.layout-zone.layout-container {
-  padding: 0;
-}
-
-@media (min-width: 56.25rem) {
-  .layout-zone.layout-container {
-    padding: 0 var(--side-spacing);
-  }
-}
-
 // ********************************* main-content.twig ********************************* //
+#block-lits-theme-breadcrumbs {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.breadcrumb {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4rem;
+}
+
+.breadcrumb__item {
+  display: inline-block;
+  font-weight: 600;
+}
+
+.breadcrumb__item::after {
+  content: "/";
+}
+
+.breadcrumb__item:last-child {
+  color: #004876;
+}
+
+.breadcrumb__item:last-child::after {
+  content: "";
+}
+
+.breadcrumb__link:link,
+.breadcrumb__link:visited {
+  color: #07c;
+}
+
+.breadcrumb__link {
+  font-weight: 400;
+  color: #07c;
+  text-decoration: none;
+}
+
+#sidebar-wrapper h2,
+#newsbar.newsbar-sidebar-side #featured-resources-wrapper h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: white;
+}
+
+#sidebar-container .sidebar-nav h2 a:link,
+#sidebar-container .sidebar-nav h2 a:visited {
+  color: white;
+  text-decoration: underline;
+}
+
+#sidebar-container .sidebar-nav ul a.menu__link--active {
+  font-weight: bold;
+}
+
+#sidebar-container .sidebar-nav ul {
+  list-style: none;
+}
+
+#sidebar-container .sidebar-nav ul ul {
+  /* padding: 0 2rem;*/
+  list-style-type: disc;
+}
+
+// </style>< !--missing for some reason--><style>.open-now-container .open_now svg.indicator {
+//   color: #5c7f1a;
+// }
+
+.breadcrumb__item {
+  font-size: 1rem;
+}
+
 h1.h1 {
   font-family: 'Chronicle Text G2 A', 'CHRONICLE TEXT G2 B';
-  font-size: clamp(2.5rem, 4vw, 3rem);
-  line-height: 1.2;
+  font-size: var(--f3);
+  line-height: 1;
+  margin: var(--vr-line-height) 0;
 }
 
 #main-content.main-sidebar-side {
@@ -153,19 +108,21 @@ h1.h1 {
   background: none;
   padding: 0;
   flex: 0 0 auto;
-  white-space: nowrap;
+  /*    white-space: nowrap;*/
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 0;
-  min-width: max-content;
+  /*  min-width: max-content;*/
   align-items: flex-start;
   order: 1;
   display: flex;
+  flex-basis: 24rem;
 }
 
 #main-content.main-sidebar-side #sidebar-wrapper #sidebar-container {
   position: sticky;
   top: 3rem;
+  width: 100%;
 }
 
 #main-content.main-sidebar-side #sidebar-wrapper>* {
@@ -184,8 +141,10 @@ h1.h1 {
 
 #sidebar-container .sidebar-nav h2 {
   background-color: #014876;
-  line-height: 54px;
-  padding: 0 1.5rem;
+  /*  line-height: 54px;
+      padding: 0 1.5rem;*/
+  line-height: 1.5rem;
+  padding: .75rem 1.5rem;
 }
 
 #sidebar-container .sidebar-nav ul ul {
@@ -200,10 +159,8 @@ h1.h1 {
 
 #sidebar-container .sidebar-nav ul {
   font-size: 24px;
-}
-
-.breadcrumb__item {
-  font-size: 1rem;
+  padding: 1.5rem 2rem;
+  margin: 0;
 }
 
 #sidebar-wrapper .sidebar-nav-wrapper {
@@ -212,7 +169,7 @@ h1.h1 {
   /* else this won't stretch when stack */
 }
 
-.lits-location-teaser {
+#main-content.main-sidebar-side .lits-location-teaser {
   padding: 1.5rem;
   background: #f5f5f5;
   min-height: unset;
@@ -220,28 +177,32 @@ h1.h1 {
   margin: 1.5rem 0 0 0;
 }
 
-.lits-location-teaser address {
+#main-content.main-sidebar-side .lits-location-teaser address {
   margin: 1.5rem 0;
 }
 
-.lits-location-teaser p.service-desk-slogan {
+#main-content.main-sidebar-side .lits-location-teaser p.service-desk-slogan {
   font-style: italic;
   margin-top: 0
 }
 
-.lits-location-teaser address>* {
+#main-content.main-sidebar-side .lits-location-teaser address>* {
   display: block;
 }
 
-.lits-location-teaser h2 {
+#main-content.main-sidebar-side .lits-location-teaser h2 {
   margin-top: 0;
 }
 
-.lits-location-teaser h3 {
+#main-content.main-sidebar-side .lits-location-teaser h3 {
   margin-bottom: 0;
 }
 
-// ********************************* footer.twig ********************************* //
+#sidebar-container .sidebar-nav ul a:hover {
+  color: var(--link-blue);
+  text-decoration: underline var(--link-blue) solid;
+}
+
 // ********************************* SERVICE DESK PAGE ********************************* //
 // ********************************* _head.twig ********************************* //
 * {
@@ -333,63 +294,64 @@ h2 {
 p {
   margin: calc(1.5 * var(--vr-base)) 0;
 }
-.service_desk.lits_page {
-  // ********************************* breadcrumb.twig ********************************* //
-  // ********************************* top-nav.twig ********************************* //
-  // ********************************* menu-534.twig ********************************* //
-  .layout-zone {
-    /* do I recal these being nested, because that'll be a mess to deal with. */
-    padding: 0;
+
+// ********************************* breadcrumb.twig ********************************* //
+// ********************************* menu-534.twig ********************************* //
+.layout-zone {
+  /* do I recal these being nested, because that'll be a mess to deal with. */
+  padding: 0;
+  /* sigh */
+  max-width: var(--max-width);
+  padding: 0 var(--side-spacing);
+  margin: 0 auto;
+}
+
+
+@media (min-width: 56.25rem) {
+  #menubar .main-nav>.main-menu {
+    display: flex;
+    column-gap: 1.5rem;
+    justify-content: space-between;
+  }
+
+  nav#block-lits-theme-mainnavigation #main-nav>ul.main-menu {
+    display: flex;
     /* sigh */
-    max-width: var(--max-width);
-    padding: 0 var(--side-spacing);
-    margin: 0 auto;
   }
+}
 
+#menubar .main-menu .main-menu__item button {
+  font-size: 21px;
+  line-height: 3rem;
+  padding: 0;
+}
 
-  @media (min-width: 56.25rem) {
-    #menubar .main-nav>.main-menu {
-      display: flex;
-      column-gap: 1.5rem;
-      justify-content: space-between;
-    }
+#menubar .main-menu li.main-menu__item.main-menu__item--root.expandable {
+  padding: 0;
+}
 
-    nav#block-lits-theme-mainnavigation #main-nav>ul.main-menu {
-      display: flex;
-      /* sigh */
-    }
-  }
+#menubar {
+  /* padding-bottom: 0.5rem;*/
+  padding: 0;
+}
 
-  #menubar .main-menu .main-menu__item button {
-    font-size: 21px;
-    line-height: 3rem;
-    padding: 0;
-  }
+#main-menu-toggle-expand {
+  /*padding: 0.5rem 0;*/
+  padding: 0;
+  line-height: 3rem;
+}
 
-  #menubar .main-menu li.main-menu__item.main-menu__item--root.expandable {
-    padding: 0;
-  }
+.layout-zone.layout-container {
+  padding: 0;
+}
 
-  #menubar {
-    /* padding-bottom: 0.5rem;*/
-    padding: 0;
-  }
-
-  #main-menu-toggle-expand {
-    /*padding: 0.5rem 0;*/
-    padding: 0;
-    line-height: 3rem;
-  }
-
+@media (min-width: 56.25rem) {
   .layout-zone.layout-container {
-    padding: 0;
+    padding: 0 var(--side-spacing);
   }
+}
 
-  @media (min-width: 56.25rem) {
-    .layout-zone.layout-container {
-      padding: 0 var(--side-spacing);
-    }
-  }
+.service_desk.lits_page {
 
   // ********************************* service-desk-page.twig ********************************* //
   // ********************************* service-desk.twig ********************************* //
@@ -608,30 +570,33 @@ p {
     font-size: 27px;
     /* to do */
   }
-
-  // ********************************* footer.twig ********************************* //
-  .layout-zone {
-    max-width: var(--max-width);
-    margin: 0 auto;
-    padding: 0 var(--side-spacing);
-  }
-
-  #block-lits-theme-sharewithlits .social-media-links--platforms {
-    list-style: none;
-  }
-
-  #contact-us-tiles {
-    line-height: var(--vr-line-height);
-    font-size: var(--f-util);
-  }
-
-  #footer-hours-location {
-    font-size: var(--f-util);
-  }
 }
 
+// ********************************* footer.twig ********************************* //
+.layout-zone {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--side-spacing);
+}
+
+#block-lits-theme-sharewithlits .social-media-links--platforms {
+  list-style: none;
+}
+
+#contact-us-tiles {
+  line-height: var(--vr-line-height);
+  font-size: var(--f-util);
+}
+
+#footer-hours-location {
+  font-size: var(--f-util);
+}
 
 // ********************************* ABBY ********************************* //
+// General service desk
+.service-desk-banner {
+  --aspect-ratio: 4032 / 1453;
+}
 
 .lits-location-teaser.service-desk {
   .teaser-icon.grid-item {
@@ -642,9 +607,15 @@ p {
   h2 {
     color: $charcoal;
     font-size: 1.5em;
+
+    .service_desk.lits_page & {
+      color: $white;
+    }
+
   }
 
   a {
+    display: block;
     @include link;
   }
 
@@ -652,14 +623,31 @@ p {
     font-size: unset;
     font-style: italic;
     word-break: break-all;
-
-    br {
-      display: none;
-    }
   }
 
   .location-visit {
     font-size: inherit;
     line-height: inherit;
+  }
+}
+
+#main-content .lits-location-teaser.service-desk address>br {
+  display: none;
+}
+
+// Service desk page specifically
+.service_desk.lits_page {
+  .lits-location-teaser address {
+    margin-top: 0;
+    font-style: normal;
+  }
+
+  .location-visit {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .social-media-links--platforms {
+    padding: 0;
   }
 }

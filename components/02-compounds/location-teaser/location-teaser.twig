@@ -89,22 +89,19 @@
     </address>
   {% endif %}
 
-  {% if page or service_desk_page %}
-    <h2>Hours</h2>
-  {% endif %}
   <div class="layout-container">
     <div class="location-visit">
-      {% if content.open_now %}
-      {{ content.open_now }}
-      {% endif %}
-
       {% if page or service_desk_page %}
       <h2>Location</h2>
-      {% endif %}
-
+       {{ content.field_location[0]|striptags|trim }},  {{ content.field_building[0] }}
+      {% else %}
       {{ content.field_location[0] }}
       <br>
       {{ content.field_building[0] }}
+      {% endif %}
+      {% if content.open_now %}
+      {{ content.open_now }}
+      {% endif %}
     </div>
     {% if content.field_icon %}
     <div class="teaser-icon grid-item">
