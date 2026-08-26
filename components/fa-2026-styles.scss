@@ -351,7 +351,8 @@ p {
   }
 }
 
-.service_desk.lits_page {
+.service_desk.lits_page,
+.study_space.lits_page {
 
   // ********************************* service-desk-page.twig ********************************* //
   // ********************************* service-desk.twig ********************************* //
@@ -636,7 +637,8 @@ p {
 }
 
 // Service desk page specifically
-.service_desk.lits_page {
+.service_desk.lits_page,
+.study_space.lits_page {
   .lits-location-teaser address {
     margin-top: 0;
     font-style: normal;

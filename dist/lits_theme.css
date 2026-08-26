@@ -8062,48 +8062,57 @@ p {
     padding: 0 var(--side-spacing);
   }
 }
-.service_desk.lits_page {
+.service_desk.lits_page,
+.study_space.lits_page {
   /* ought to align this more with basic page but working with existing markup so... */
   /* this ratio needs to be set per-image as inline style when page is generated, if possible */
   /* alternative is just to set flex-basis to 67 and 33 or something. */
 }
-.service_desk.lits_page .layout-zone {
+.service_desk.lits_page .layout-zone,
+.study_space.lits_page .layout-zone {
   max-width: var(--max-width);
   margin: 0 auto;
   padding: 0 var(--side-spacing);
 }
-.service_desk.lits_page .service-desk-header {
+.service_desk.lits_page .service-desk-header,
+.study_space.lits_page .service-desk-header {
   margin: var(--vertical-spacing) 0;
 }
-.service_desk.lits_page .service-desk-title {
+.service_desk.lits_page .service-desk-title,
+.study_space.lits_page .service-desk-title {
   font-size: var(--f4);
   font-family: var(--serif);
   /*font-weight: 600;*/
   line-height: 1;
   margin: 0;
 }
-.service_desk.lits_page .service-desk-tagline {
+.service_desk.lits_page .service-desk-tagline,
+.study_space.lits_page .service-desk-tagline {
   font-size: var(--f2);
   line-height: 1.5;
   margin: 0;
 }
-.service_desk.lits_page .main-content-service-desk {
+.service_desk.lits_page .main-content-service-desk,
+.study_space.lits_page .main-content-service-desk {
   display: flex;
   flex-wrap: wrap;
   column-gap: var(--side-spacing);
   max-width: var(--max-width);
   margin: var(--side-spacing) auto;
 }
-.service_desk.lits_page .lits-location {
+.service_desk.lits_page .lits-location,
+.study_space.lits_page .lits-location {
   margin-top: 0;
 }
-.service_desk.lits_page .lits-location .location-sidebar-menu {
+.service_desk.lits_page .lits-location .location-sidebar-menu,
+.study_space.lits_page .lits-location .location-sidebar-menu {
   position: sticky;
   top: var(--vertical-spacing);
   background: var(--background-gray);
   padding: 1.5rem;
 }
-.service_desk.lits_page .lits-location .location-sidebar {
+.service_desk.lits_page .lits-location .location-sidebar,
+.study_space.lits_page .lits-location .location-sidebar {
   flex-grow: 1;
   /*  flex-basis: max-content; */
   /*min-width: max-content;*/
@@ -8117,22 +8126,27 @@ p {
   background: none;
   padding: 0;
 }
-.service_desk.lits_page .lits-location .location-sidebar h2 {
+.service_desk.lits_page .lits-location .location-sidebar h2,
+.study_space.lits_page .lits-location .location-sidebar h2 {
   color: inherit;
   margin-top: 0;
 }
 .service_desk.lits_page .lits-location .location-sidebar a:not(.button):link,
-.service_desk.lits_page .lits-location .location-sidebar a:not(.button):visited {
+.service_desk.lits_page .lits-location .location-sidebar a:not(.button):visited,
+.study_space.lits_page .lits-location .location-sidebar a:not(.button):link,
+.study_space.lits_page .lits-location .location-sidebar a:not(.button):visited {
   color: var(--link-blue);
 }
-.service_desk.lits_page .location-content {
+.service_desk.lits_page .location-content,
+.study_space.lits_page .location-content {
   flex-grow: 999;
   /*flex-basis:0;*/
   flex-basis: 30rem;
   padding: 0 !important;
   /* to fix properly */
 }
-.service_desk.lits_page .lits-location .location-bite {
+.service_desk.lits_page .lits-location .location-bite,
+.study_space.lits_page .lits-location .location-bite {
   padding: 0;
   background: none;
   color: inherit;
@@ -8142,25 +8156,31 @@ p {
   font-weight: 500;
   font-family: var(--serif);
 }
-.service_desk.lits_page .lits-location .location-hours {
+.service_desk.lits_page .lits-location .location-hours,
+.study_space.lits_page .lits-location .location-hours {
   padding: 0;
 }
-.service_desk.lits_page .lits-location .location-hours .hours {
+.service_desk.lits_page .lits-location .location-hours .hours,
+.study_space.lits_page .lits-location .location-hours .hours {
   margin-bottom: var(--vr-line-height);
 }
-.service_desk.lits_page .lits-location .location-content h2 {
+.service_desk.lits_page .lits-location .location-content h2,
+.study_space.lits_page .lits-location .location-content h2 {
   font-size: var(--f2);
   margin: var(--vr-base) 0;
 }
-.service_desk.lits_page :root {
+.service_desk.lits_page :root,
+.study_space.lits_page :root {
   --aspect-ratio: 4032 / 1453;
 }
-.service_desk.lits_page .service-desk-banner {
+.service_desk.lits_page .service-desk-banner,
+.study_space.lits_page .service-desk-banner {
   display: flex;
   width: 100%;
   flex-wrap: wrap;
 }
-.service_desk.lits_page .location-images {
+.service_desk.lits_page .location-images,
+.study_space.lits_page .location-images {
   min-width: 0;
   aspect-ratio: var(--aspect-ratio);
   /*  flex: 999 1 20rem;*/
@@ -8169,12 +8189,14 @@ p {
   flex-grow: 2;
   background: #5c7f1a;
 }
-.service_desk.lits_page .location-images img {
+.service_desk.lits_page .location-images img,
+.study_space.lits_page .location-images img {
   width: 100%;
   height: auto;
   display: block;
 }
-.service_desk.lits_page .location-teaser {
+.service_desk.lits_page .location-teaser,
+.study_space.lits_page .location-teaser {
   flex: 1 1 auto !important;
   /* to do properly */
   /* min-width: max-content !important;*/
@@ -8182,60 +8204,77 @@ p {
   /* max-width: none !important;*/
   /* to do properly */
 }
-.service_desk.lits_page picture {
+.service_desk.lits_page picture,
+.study_space.lits_page picture {
   margin: 0;
 }
-.service_desk.lits_page address {
+.service_desk.lits_page address,
+.study_space.lits_page address {
   font-style: normal;
 }
-.service_desk.lits_page .lits-location-teaser {
+.service_desk.lits_page .lits-location-teaser,
+.study_space.lits_page .lits-location-teaser {
   /*  min-height: 15rem;*/
   background-color: #a20067;
   color: white;
 }
-.service_desk.lits_page .lits-location-teaser address {
+.service_desk.lits_page .lits-location-teaser address,
+.study_space.lits_page .lits-location-teaser address {
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.service_desk.lits_page .lits-location-teaser .xlocation-visit {
+.service_desk.lits_page .lits-location-teaser .xlocation-visit,
+.study_space.lits_page .lits-location-teaser .xlocation-visit {
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.service_desk.lits_page .lits-location-teaser .location-visit .open-now-container {
+.service_desk.lits_page .lits-location-teaser .location-visit .open-now-container,
+.study_space.lits_page .lits-location-teaser .location-visit .open-now-container {
   margin-bottom: 0.5em;
 }
 .service_desk.lits_page .lits-location-teaser a:link,
-.service_desk.lits_page .lits-location-teaser a:visited {
+.service_desk.lits_page .lits-location-teaser a:visited,
+.study_space.lits_page .lits-location-teaser a:link,
+.study_space.lits_page .lits-location-teaser a:visited {
   color: white;
 }
-.service_desk.lits_page .lits-location-teaser a {
+.service_desk.lits_page .lits-location-teaser a,
+.study_space.lits_page .lits-location-teaser a {
   color: white;
   text-decoration: underline solid;
 }
-.service_desk.lits_page .open-now-container .closed_now svg.indicator {
+.service_desk.lits_page .open-now-container .closed_now svg.indicator,
+.study_space.lits_page .open-now-container .closed_now svg.indicator {
   color: #ef3340;
 }
 .service_desk.lits_page .lits-location-teaser h1,
-.service_desk.lits_page .lits-location-teaser h2 {
+.service_desk.lits_page .lits-location-teaser h2,
+.study_space.lits_page .lits-location-teaser h1,
+.study_space.lits_page .lits-location-teaser h2 {
   font-weight: 600;
   line-height: 2.4rem;
 }
-.service_desk.lits_page .lits-location-teaser address svg {
+.service_desk.lits_page .lits-location-teaser address svg,
+.study_space.lits_page .lits-location-teaser address svg {
   margin-right: 0.5em;
 }
-.service_desk.lits_page .lits-location-teaser .location-visit .open-now-container {
+.service_desk.lits_page .lits-location-teaser .location-visit .open-now-container,
+.study_space.lits_page .lits-location-teaser .location-visit .open-now-container {
   font-size: 1.2rem;
 }
-.service_desk.lits_page .lits-location-teaser address {
+.service_desk.lits_page .lits-location-teaser address,
+.study_space.lits_page .lits-location-teaser address {
   margin-bottom: 1em;
 }
-.service_desk.lits_page .location-teaser .lits-location-teaser {
+.service_desk.lits_page .location-teaser .lits-location-teaser,
+.study_space.lits_page .location-teaser .lits-location-teaser {
   padding: 1.5rem;
   height: 100%;
   margin: 0;
   font-size: 27px;
 }
-.service_desk.lits_page .location-teaser .lits-location-teaser h2 {
+.service_desk.lits_page .location-teaser .lits-location-teaser h2,
+.study_space.lits_page .location-teaser .lits-location-teaser h2 {
   font-size: 27px;
   /* to do */
 }
@@ -8306,15 +8345,18 @@ p {
   display: none;
 }
 
-.service_desk.lits_page .lits-location-teaser address {
+.service_desk.lits_page .lits-location-teaser address,
+.study_space.lits_page .lits-location-teaser address {
   margin-top: 0;
   font-style: normal;
 }
-.service_desk.lits_page .location-visit {
+.service_desk.lits_page .location-visit,
+.study_space.lits_page .location-visit {
   font-size: 1rem;
   line-height: 1.5rem;
 }
-.service_desk.lits_page .social-media-links--platforms {
+.service_desk.lits_page .social-media-links--platforms,
+.study_space.lits_page .social-media-links--platforms {
   padding: 0;
 }
 

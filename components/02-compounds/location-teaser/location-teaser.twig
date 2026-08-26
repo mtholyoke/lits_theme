@@ -91,7 +91,7 @@
 
   <div class="layout-container">
     <div class="location-visit">
-      {% if page or service_desk_page %}
+      {% if service_desk_page %}
       <h2>Location</h2>
        {{ content.field_location[0]|striptags|trim }},  {{ content.field_building[0] }}
       {% else %}

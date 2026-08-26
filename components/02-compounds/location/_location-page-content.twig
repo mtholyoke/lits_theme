@@ -53,6 +53,7 @@
       {% endblock location_hours %}
     </div>
 
+{% if service_desk_page %}
     <h2>Need assistance?</h2>
     <ul>
       <li>Email us at
@@ -64,6 +65,7 @@
       <li>Write us at
         {{ fields.name.content|striptags|trim }}, Mount Holyoke College, 50 College Street, South Hadley, MA 01075.</li>
     </ul>
+    {% endif  %}
   </div>
 </div>
 
