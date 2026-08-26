@@ -461,9 +461,9 @@ p {
   // ********************************* service-desk-banner.twig ********************************* //
   /* this ratio needs to be set per-image as inline style when page is generated, if possible */
   /* alternative is just to set flex-basis to 67 and 33 or something. */
-  :root {
-    --aspect-ratio: 4032 / 1453;
-  }
+  // :root {
+  //   --aspect-ratio: 4032 / 1453;
+  // }
 
   .service-desk-banner {
     display: flex;
@@ -595,9 +595,9 @@ p {
 
 // ********************************* ABBY ********************************* //
 // General service desk
-.service-desk-banner {
-  --aspect-ratio: 4032 / 1453;
-}
+// .service-desk-banner {
+//   --aspect-ratio: 4032 / 1453;
+// }
 
 .lits-location-teaser.service-desk {
   .teaser-icon.grid-item {

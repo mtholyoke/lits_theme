@@ -8169,10 +8169,6 @@ p {
   font-size: var(--f2);
   margin: var(--vr-base) 0;
 }
-.service_desk.lits_page :root,
-.study_space.lits_page :root {
-  --aspect-ratio: 4032 / 1453;
-}
 .service_desk.lits_page .service-desk-banner,
 .study_space.lits_page .service-desk-banner {
   display: flex;
@@ -8296,10 +8292,6 @@ p {
 
 #footer-hours-location {
   font-size: var(--f-util);
-}
-
-.service-desk-banner {
-  --aspect-ratio: 4032 / 1453;
 }
 
 .lits-location-teaser.service-desk .teaser-icon.grid-item {
