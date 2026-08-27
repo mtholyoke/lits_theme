@@ -268,10 +268,9 @@ html {
 
   --serif: 'CHRONICLE TEXT G2 A', 'CHRONICLE TEXT G2 B';
 
-  --link-blue: $med-blue;
+  --link-blue: #{$med-blue};
   ;
-  --background-gray: $barely-gray;
-
+  --background-gray: #{$barely-gray};
 }
 
 body {

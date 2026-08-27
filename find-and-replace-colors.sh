@@ -6,6 +6,8 @@ grep -Eo "rgba?\(.*\)" components/fa-2026-styles.scss  | sort | uniq
 grep -Eo "#[0-9a-h]+" components/fa-2026-styles.scss | sort | uniq
 
 
+sed -i .bak 's/--link-blue: #0277cc/--link-blue: #{$med-blue}/g' components/fa-2026-styles.scss 
+sed -i .bak 's/--background-gray: #f5f5f5/--background-gray: #{$barely-gray}/g' components/fa-2026-styles.scss 
 
 sed -i .bak 's/rgba(0, 0, 0, 0)/$fully-transparent/g' components/fa-2026-styles.scss 
 sed -i .bak 's/rgba(0, 0, 0, 0.2)/$dropdown-menu-shadow/g' components/fa-2026-styles.scss 

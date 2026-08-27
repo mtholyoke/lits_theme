@@ -7990,8 +7990,8 @@ html {
   /*--vertical-spacing: calc(2 * var(--vr-base));*/
   --vertical-spacing: var(--vr-line-height);
   --serif: "CHRONICLE TEXT G2 A", "CHRONICLE TEXT G2 B";
-  --link-blue: $med-blue;
-  --background-gray: $barely-gray;
+  --link-blue: #07c;
+  --background-gray: #f5f5f5;
 }
 
 body {
