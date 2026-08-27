@@ -773,6 +773,10 @@ img.lits_filter.inline.mhcgetit {
   vertical-align: middle;
 }
 
+pre {
+  white-space: break-spaces;
+}
+
 #main-content.main-sidebar-side article.node ul,
 #main-content.main-sidebar-side article.node ol,
 #sidebar-container ul,
@@ -2123,6 +2127,10 @@ img.lits_filter.inline.mhcgetit {
   vertical-align: middle;
 }
 
+pre {
+  white-space: break-spaces;
+}
+
 #main-content.main-sidebar-side article.node ul,
 #main-content.main-sidebar-side article.node ol,
 #sidebar-container ul,
@@ -2660,9 +2668,6 @@ ol {
   #news-items-container .news-item article.node--news-item {
     margin-left: calc(0.5 * 2rem);
   }
-}
-#news-items-container pre {
-  white-space: break-spaces;
 }
 
 article.node--news-item {
@@ -7836,15 +7841,15 @@ h1.h1, h1, .text-long h1, .ck-editor h1 {
   background: none;
   padding: 0;
   flex: 0 0 auto;
-  /*    white-space: nowrap;*/
+  /* white-space: nowrap;*/
   flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: 0;
-  /*  min-width: max-content;*/
+  flex-shrink: 1;
+  flex-basis: 23rem;
+  /* min-width: min-content;*/
+  min-width: 0;
   align-items: flex-start;
   order: 1;
   display: flex;
-  flex-basis: 24rem;
 }
 
 #main-content.main-sidebar-side #sidebar-wrapper #sidebar-container {
@@ -7868,40 +7873,38 @@ h1.h1, h1, .text-long h1, .ck-editor h1 {
 }
 
 #sidebar-container .sidebar-nav h2 {
-  background-color: #014876;
+  background-color: #004876;
   /*  line-height: 54px;
-      padding: 0 1.5rem;*/
+    padding: 0 1.5rem;*/
+  /* to do font size */
   line-height: 1.5rem;
   padding: 0.75rem 1.5rem;
 }
 
 #sidebar-container .sidebar-nav ul ul {
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 1.5em;
 }
 
 #sidebar-container .sidebar-nav .menu__item {
-  padding: 0.5rem 0;
   padding: 0;
-  line-height: 45px;
+  /*line-height: 45px;*/
+  /* to do, need a scaling vr var... */
+  line-height: 1.5;
+  margin: 0.5rem 0;
 }
 
 #sidebar-container .sidebar-nav ul {
-  font-size: 24px;
-  padding: 1.5rem 2rem;
+  font-size: var(--f-base);
+  padding: 1rem 2rem;
+  /* to do */
   margin: 0;
-}
-
-#sidebar-wrapper .sidebar-nav-wrapper {
-  padding: 0;
-  max-width: none;
-  /* else this won't stretch when stack */
 }
 
 #main-content.main-sidebar-side .lits-location-teaser {
   padding: 1.5rem;
   background: #f5f5f5;
   min-height: unset;
-  color: black;
+  color: #1a1a1a;
   margin: 1.5rem 0 0 0;
 }
 
@@ -7929,6 +7932,18 @@ h1.h1, h1, .text-long h1, .ck-editor h1 {
 #sidebar-container .sidebar-nav ul a:hover {
   color: var(--link-blue);
   text-decoration: underline var(--link-blue) solid;
+}
+
+#sidebar-wrapper .sidebar-nav-wrapper {
+  padding: 0;
+  max-width: none;
+  /* else this won't stretch when stack */
+}
+
+#sidebar-wrapper #sidebar-container .sidebar-nav-wrapper {
+  width: 100% !important;
+  /* need to sort this */
+  /* where is more specific stuff like #sidebar-wrapper #sidebar-container.menu-1.desk-0 .sidebar-nav-wrapper coming from? */
 }
 
 * {
@@ -7975,8 +7990,8 @@ html {
   /*--vertical-spacing: calc(2 * var(--vr-base));*/
   --vertical-spacing: var(--vr-line-height);
   --serif: "CHRONICLE TEXT G2 A", "CHRONICLE TEXT G2 B";
-  --link-blue: #0277cc;
-  --background-gray: #f5f5f5;
+  --link-blue: $med-blue;
+  --background-gray: $barely-gray;
 }
 
 body {
@@ -8000,7 +8015,7 @@ button {
 }
 
 a {
-  color: #0277cc;
+  color: #07c;
 }
 
 h2 {

@@ -17,6 +17,7 @@ sed -i .bak 's/#00a9e0/$light-blue/g' components/fa-2026-styles.scss
 sed -i .bak 's/#0277cc/$med-blue/g' components/fa-2026-styles.scss # looks like a typo
 sed -i .bak 's/#07c/$med-blue/g' components/fa-2026-styles.scss 
 sed -i .bak 's/#1a1a1a/$charcoal/g' components/fa-2026-styles.scss 
+sed -i .bak 's/black/$charcoal/g' components/fa-2026-styles.scss 
 sed -i .bak 's/#2c3e50/$dropdown-menu-hover-link-color/g' components/fa-2026-styles.scss 
 sed -i .bak 's/#333/$gray-darker/g' components/fa-2026-styles.scss 
 sed -i .bak 's/#34495e/$dropdown-menu-bg/g' components/fa-2026-styles.scss 
@@ -30,6 +31,9 @@ sed -i .bak 's/#e5e5e5/$gray-lightest/g' components/fa-2026-styles.scss
 sed -i .bak 's/#f1c400/$yellow/g' components/fa-2026-styles.scss # looks like a typo
 sed -i .bak 's/#f5f5f5/$barely-gray/g' components/fa-2026-styles.scss 
 sed -i .bak 's/#ff9e1b/$light-orange/g' components/fa-2026-styles.scss 
+sed -i .bak 's/#ef3340/$red/g' components/fa-2026-styles.scss 
+sed -i .bak 's/color: white/color: $white/g' components/fa-2026-styles.scss 
+
 
 echo
 echo "---------------"

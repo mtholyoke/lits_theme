@@ -382,6 +382,10 @@ img.lits_filter.inline.mhcgetit {
   vertical-align: middle;
 }
 
+pre {
+  white-space: break-spaces;
+}
+
 #main-content.main-sidebar-side article.node ul,
 #main-content.main-sidebar-side article.node ol,
 #sidebar-container ul,

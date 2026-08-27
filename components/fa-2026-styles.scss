@@ -2,6 +2,7 @@
 
 // ********************************* BASIC PAGE ********************************* //
 // ********************************* main-content.twig ********************************* //
+// < !-- still using but need to pull lin properly and tweak -->
 #block-lits-theme-breadcrumbs {
   margin-top: 1rem;
   font-size: 1rem;
@@ -24,7 +25,7 @@
 }
 
 .breadcrumb__item:last-child {
-  color: #004876;
+  color: $dark-blue;
 }
 
 .breadcrumb__item:last-child::after {
@@ -33,12 +34,12 @@
 
 .breadcrumb__link:link,
 .breadcrumb__link:visited {
-  color: #07c;
+  color: $med-blue;
 }
 
 .breadcrumb__link {
   font-weight: 400;
-  color: #07c;
+  color: $med-blue;
   text-decoration: none;
 }
 
@@ -46,12 +47,12 @@
 #newsbar.newsbar-sidebar-side #featured-resources-wrapper h2 {
   margin: 0;
   font-size: 1.25rem;
-  color: white;
+  color: $white;
 }
 
 #sidebar-container .sidebar-nav h2 a:link,
 #sidebar-container .sidebar-nav h2 a:visited {
-  color: white;
+  color: $white;
   text-decoration: underline;
 }
 
@@ -68,10 +69,12 @@
   list-style-type: disc;
 }
 
-// </style>< !--missing for some reason--><style>.open-now-container .open_now svg.indicator {
-//   color: #5c7f1a;
+// < !--missing for some reason-->
+// .open-now-container .open_now svg.indicator {
+//   color: $green;
 // }
 
+// < !--new and overrides -->
 .breadcrumb__item {
   font-size: 1rem;
 }
@@ -108,15 +111,15 @@ h1.h1 {
   background: none;
   padding: 0;
   flex: 0 0 auto;
-  /*    white-space: nowrap;*/
+  /* white-space: nowrap;*/
   flex-grow: 1;
-  flex-shrink: 0;
-  flex-basis: 0;
-  /*  min-width: max-content;*/
+  flex-shrink: 1;
+  flex-basis: 23rem;
+  /* min-width: min-content;*/
+  min-width: 0;
   align-items: flex-start;
   order: 1;
   display: flex;
-  flex-basis: 24rem;
 }
 
 #main-content.main-sidebar-side #sidebar-wrapper #sidebar-container {
@@ -136,44 +139,43 @@ h1.h1 {
 
 #sidebar-container .sidebar-nav {
   box-shadow: none;
-  background: #f5f5f5;
+  background: $barely-gray;
 }
 
 #sidebar-container .sidebar-nav h2 {
-  background-color: #014876;
+  background-color: $dark-blue;
   /*  line-height: 54px;
-      padding: 0 1.5rem;*/
+    padding: 0 1.5rem;*/
+
+  /* to do font size */
   line-height: 1.5rem;
   padding: .75rem 1.5rem;
 }
 
 #sidebar-container .sidebar-nav ul ul {
-  padding: 0 0 0 2rem;
+  padding: 0 0 0 1.5em;
 }
 
 #sidebar-container .sidebar-nav .menu__item {
-  padding: 0.5rem 0;
   padding: 0;
-  line-height: 45px;
+  /*line-height: 45px;*/
+  /* to do, need a scaling vr var... */
+  line-height: 1.5;
+  margin: .5rem 0;
 }
 
 #sidebar-container .sidebar-nav ul {
-  font-size: 24px;
-  padding: 1.5rem 2rem;
+  font-size: var(--f-base);
+  padding: 1rem 2rem;
+  /* to do */
   margin: 0;
-}
-
-#sidebar-wrapper .sidebar-nav-wrapper {
-  padding: 0;
-  max-width: none;
-  /* else this won't stretch when stack */
 }
 
 #main-content.main-sidebar-side .lits-location-teaser {
   padding: 1.5rem;
-  background: #f5f5f5;
+  background: $barely-gray;
   min-height: unset;
-  color: black;
+  color: $charcoal;
   margin: 1.5rem 0 0 0;
 }
 
@@ -203,6 +205,17 @@ h1.h1 {
   text-decoration: underline var(--link-blue) solid;
 }
 
+#sidebar-wrapper .sidebar-nav-wrapper {
+  padding: 0;
+  max-width: none;
+  /* else this won't stretch when stack */
+}
+
+#sidebar-wrapper #sidebar-container .sidebar-nav-wrapper {
+  width: 100% !important;
+  /* need to sort this */
+  /* where is more specific stuff like #sidebar-wrapper #sidebar-container.menu-1.desk-0 .sidebar-nav-wrapper coming from? */
+}
 // ********************************* SERVICE DESK PAGE ********************************* //
 // ********************************* _head.twig ********************************* //
 * {
@@ -255,9 +268,9 @@ html {
 
   --serif: 'CHRONICLE TEXT G2 A', 'CHRONICLE TEXT G2 B';
 
-  --link-blue: #0277cc;
+  --link-blue: $med-blue;
   ;
-  --background-gray: #f5f5f5;
+  --background-gray: $barely-gray;
 
 }
 
@@ -271,7 +284,7 @@ input,
 optgroup,
 select,
 textarea {
-  color: #1a1a1a;
+  color: $charcoal;
   font-family: "ars-maquette-web", sans-serif;
   font-size: var(--f-base);
   line-height: var(--vr-line-height);
@@ -283,7 +296,7 @@ button {
 }
 
 a {
-  color: #0277cc;
+  color: $med-blue;
 }
 
 h2 {
@@ -479,7 +492,7 @@ p {
     flex-basis: calc(18rem * var(--aspect-ratio));
     flex-shrink: 1;
     flex-grow: 2;
-    background: #5c7f1a;
+    background: $green;
 
   }
 
@@ -510,8 +523,8 @@ p {
 
   .lits-location-teaser {
     /*  min-height: 15rem;*/
-    background-color: #a20067;
-    color: white;
+    background-color: $raspberry;
+    color: $white;
   }
 
   .lits-location-teaser address {
@@ -530,16 +543,16 @@ p {
 
   .lits-location-teaser a:link,
   .lits-location-teaser a:visited {
-    color: white;
+    color: $white;
   }
 
   .lits-location-teaser a {
-    color: white;
+    color: $white;
     text-decoration: underline solid;
   }
 
   .open-now-container .closed_now svg.indicator {
-    color: #ef3340;
+    color: $red;
   }
 
   .lits-location-teaser h1,
