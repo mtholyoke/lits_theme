@@ -22,8 +22,8 @@
       banners.forEach(banner => {
         const images = banner.querySelectorAll(":scope .location-images img");
         images.forEach((image) => {
-          const width = image.getAttribute("width");
-          const height = image.getAttribute("height");
+          const width = image.width;
+          const height = image.height;
           banner.style.cssText = `--aspect-ratio: ${width} / ${height}`;
         });
       });
