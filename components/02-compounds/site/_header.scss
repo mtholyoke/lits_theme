@@ -150,7 +150,7 @@ header#page-header {
       }
 
       .logobar-branding-wrap a {
-        padding-right: 4.5rem;
+        margin-right: 4.5rem;
       }
     }
 
@@ -183,7 +183,6 @@ header#page-header {
       flex-flow: nowrap;
     }
 
-    .topnav-container li,
     .topnav-container li.desktop {
       display: none;
       margin: auto;
@@ -270,154 +269,7 @@ header#page-header {
   #block-lits-theme-scamalert a {
     @include button($bg: $raspberry, $border: 3px solid $white)
   }
-
-  // #logobar {
-  //   // .layout-stripe sets width 100%, margin 0, padding 0.
-  //   @include dark-blue-stripe;
-
-  //   a,
-  //   button,
-  //   button svg {
-  //     @include focus($white);
-  //   }
-  // }
-
-  // #logobar-container {
-  //   // .layout-zone sets clearfix and squishy edges.
-  //   display: flex;
-  //   flex-flow: row nowrap;
-  //   justify-content: space-between;
-  //   align-items: center;
-  //   min-height: $logo-container-height;
-  // }
-
-  // /* I.A. Logobar > Logo section */
-
-  // #logobar .logo-container {
-  //   display: flex;
-  //   flex-flow: row wrap;
-  //   justify-content: center;
-  //   align-items: center;
-  //   gap: $header-gap;
-
-  //   @include breakpoint($small-width) {
-  //     flex-flow: row nowrap;
-  //   }
-
-  //   & > * {
-  //     flex: 0 0 auto;
-  //   }
-
-  //   // On interior pages, there's always other stuff in the logobar
-  //   // Use wordmark logo only above small width
-  //   @include breakpoint($medium-width) {
-  //     justify-content: flex-start;
-  //     align-items: center;
-
-  //     & #logo {
-  //       display: flex; // pretty much just to vertically center the svg block element
-  //     }
-  //   }
-
-  //   @include breakpoint($medium-width) {
-  //     // at breakpoint on homepage, more stuff shows up in logobar so left align logo.
-  //     body.lits_homepage & {
-  //       justify-content: flex-start;
-  //     }
-  //   }
-
-  //   & #logo {
-  //     margin-top: $header-gap;
-  //     margin-bottom: $header-gap;
-
-  //     & img {
-  //       height: $logo-height;
-  //       display: block;// must be block; inline-block reserves vertical height for hanging letters, which we do not want
-  //       margin: auto;
-  //     }
-  //   }
-  // }
-
-  // /* I.B. Logobar > TopNav section */
-
-  // #logobar .topnav-container {
-  //   $font-size-nav-links: 1rem;
-  //   margin: auto 0;
-  //   list-style: none;
-  //   padding: 0;
-  //   display: flex;
-  //   flex-flow: column wrap;
-  //   gap: $header-gap;
-
-  //   @include breakpoint($small-width) {
-  //     flex-flow: row wrap;
-  //   }
-
-  //   & li {
-  //     display: none;
-  //     margin: auto;
-
-  //     &.search-toggle-container {
-  //       display: inline-block;
-  //     }
-
-  //     @include breakpoint($medium-width) {
-  //       display: inline-block;
-  //     }
-
-  //     a,
-  //     button {
-  //       font-size: $font-size-nav-links;
-  //     }
-
-  //     // Don't flash/repaint when FontAwesome replaces the i with svg
-  //     i,
-  //     svg {
-  //       display: inline-block;
-  //       width: $font-size-nav-links; 
-  //     }
-
-  //     .lits_homepage &.search-toggle-container {
-  //       display: none;
-  //     }
-  //   }
-
-  //   .toggle {
-  //     @include link-bluebg;
-
-  //     & {
-  //       background: none;
-  //       border: none;
-  //       display: inline-block;
-
-  //       .fa-xmark {
-  //         display: none;
-  //       }
-
-  //       .fa-magnifying-glass {
-  //         @include fontawesome-icon;
-
-  //         display: inline;
-  //       }
-  //     }
-
-  //     &[aria-expanded="true"] {
-  //       .fa-xmark {
-  //         @include fontawesome-icon;
-          
-  //         display: inline;
-  //       }
-
-  //       .fa-magnifying-glass {
-  //         display: none;
-  //       }
-  //     }
-  //   }
-
-  //   #block-lits-theme-scamalert a {
-  //     @include button($bg: $raspberry, $border: 3px solid $white)
-  //   }
-  // }
+  
   /* III. Search and menu container */
   #search-and-menu {
     display: flex;
@@ -494,9 +346,6 @@ header#page-header {
     background-color: $med-blue;
 
     // .layout-stripe sets width 100%, margin 0, padding 0.
-
-    // Last menu on mobile view needs a separator too <3
-    @include squishy-padding(bottom);
 
     @include breakpoint($medium-width) {
       padding: 0;

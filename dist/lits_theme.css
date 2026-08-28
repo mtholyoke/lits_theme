@@ -842,7 +842,7 @@ which opens opportunity for that to spacing be calculated based on viewport cons
   /* should switch all this to mobile-first instead of desktop-first */
 }
 #block-lits-theme-homepageintro .scaling-image .feature-container .feature {
-  max-width: 76rem;
+  max-width: calc(var(--max-width) + 3rem);
   padding: 0 4.5rem 3rem;
   position: relative;
   text-align: center;
@@ -6253,7 +6253,7 @@ header#page-header #logobar .logobar-branding-wrap a {
     align-items: center;
   }
   header#page-header #logobar .logobar-branding-wrap a {
-    padding-right: 4.5rem;
+    margin-right: 4.5rem;
   }
 }
 @media (min-width: 37.5rem) {
@@ -6281,7 +6281,6 @@ header#page-header #logobar .topnav-container {
   white-space: nowrap;
   flex-flow: nowrap;
 }
-header#page-header #logobar .topnav-container li,
 header#page-header #logobar .topnav-container li.desktop {
   display: none;
   margin: auto;
@@ -6458,19 +6457,6 @@ header#page-header #imagebar .layout-container, header#page-header #imagebar .st
 }
 header#page-header #menubar {
   background-color: #07c;
-}
-header#page-header #menubar {
-  padding-bottom: 0.5rem;
-}
-@media (min-width: 56.25rem) {
-  header#page-header #menubar {
-    padding-bottom: calc((0.5rem + ((100vw - 56.25rem) / 6)));
-  }
-}
-@media (min-width: 120rem) {
-  header#page-header #menubar {
-    padding-bottom: calc(0.5rem + math.div((120rem - 56.25rem), 6));
-  }
 }
 @media (min-width: 56.25rem) {
   header#page-header #menubar {
