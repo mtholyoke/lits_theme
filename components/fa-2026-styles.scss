@@ -604,7 +604,35 @@ p {
 #footer-hours-location {
   font-size: var(--f-util);
 }
+// ********************************* news.twig ********************************* //
+#newsbar {
+  margin: var(--side-spacing) auto;
+}
 
+#newsbar div#news-events {
+  padding: 0;
+  max-width: 50rem;
+  margin: auto;
+}
+
+#newsbar h2 {
+  line-height: var(--vr-extra-line-height);
+  font-size: var(--f3);
+  font-family: var(--serif);
+  text-align: center;
+  margin: var(--vr-line-height) 0;
+  line-height: 1.33333333333;
+}
+
+#newsbar article.node.node--news-item {
+  font-size: var(--f-base);
+}
+
+#newsbar a.see-all-posts {
+  width: 100%;
+  line-height: var(--vr-extra-line-height);
+  font-size: var(--f-base);
+}
 // ********************************* ABBY ********************************* //
 // General service desk
 // .service-desk-banner {
