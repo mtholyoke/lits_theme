@@ -10,12 +10,10 @@
  * @see templates/views/views-view-fields--about-lits-service-desks--detail-page.html.twig
  */
 #}
-
-
 <article class="lits-location {{ original_type }}">
   <div class="layout-container">
       <hgroup class="service-desk-header">
-        <h1 class="service-desk-title">{{ fields.name.content }}</h1>
+        <h1 class="service-desk-title">{{ fields.name.content ? fields.name.content : elements["#title"] }}</h1>
         <p class="service-desk-tagline">{{ fields.field_slogan.content }}</p> <!-- styling this right w/o a wrapping element woudl be ridiculous -->
       </hgroup>
 <div class="service-desk-banner">
