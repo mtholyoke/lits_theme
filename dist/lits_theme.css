@@ -8437,6 +8437,15 @@ header#page-header #imagebar {
     display: inline-block;
   }
 }
+header#page-header #logobar .topnav-container {
+  min-width: auto;
+}
+
+header#page-header #logobar .logo-container img {
+  height: clamp(1.5rem, 0.952vw + 1.286rem, 2rem);
+  min-width: 3rem;
+}
+
 .lits-location-teaser.service-desk .teaser-icon.grid-item {
   display: none;
 }

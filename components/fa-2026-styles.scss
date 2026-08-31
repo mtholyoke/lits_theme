@@ -771,7 +771,15 @@ header#page-header #imagebar {
     display: inline-block;
   }
 }
+// ********************************* header tweak ********************************* //
+header#page-header #logobar .topnav-container {
+  min-width: auto;
+}
 
+header#page-header #logobar .logo-container img {
+  height: clamp(1.5rem, 0.952vw + 1.286rem, 2rem);
+  min-width: 3rem;
+}
 // ********************************* ABBY ********************************* //
 // General service desk
 // .service-desk-banner {
