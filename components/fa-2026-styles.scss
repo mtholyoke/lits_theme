@@ -216,6 +216,7 @@ h1.h1 {
   /* need to sort this */
   /* where is more specific stuff like #sidebar-wrapper #sidebar-container.menu-1.desk-0 .sidebar-nav-wrapper coming from? */
 }
+
 // ********************************* SERVICE DESK PAGE ********************************* //
 // ********************************* _head.twig ********************************* //
 * {
@@ -604,6 +605,7 @@ p {
 #footer-hours-location {
   font-size: var(--f-util);
 }
+
 // ********************************* news.twig ********************************* //
 #newsbar {
   margin: var(--side-spacing) auto;
@@ -633,6 +635,144 @@ p {
   line-height: var(--vr-extra-line-height);
   font-size: var(--f-base);
 }
+
+// ********************************* search-one-fix-ish-with-tweaks.html ********************************* //
+/* why do I not need this locally? */
+.lits_homepage #block-lits-theme-litsunifiedsearchblock {
+  width: 100%;
+}
+
+/* what is setting .search > * to white ? */
+.search>* {
+  background: none;
+}
+
+/* overrides etc */
+#block-lits-theme-litsunifiedsearchblock .pe {
+  border: none;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe button.form-submit {
+  color: $charcoal;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-materials .optional-medium,
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-0 .optional-medium,
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-medium {
+  display: none;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe .optional-long,
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-long {
+  display: none;
+}
+
+
+button#edit-library-materials-search-go,
+button#edit-lits-site-search-go {
+  background: transparent;
+}
+
+// button#edit-library-materials-search-go:hover,
+// button#edit-lits-site-search-go:hover {
+//   /*background: ???*/
+// }
+
+
+/* spacing tweak */
+#block-lits-theme-litsunifiedsearchblock .pe {
+  padding: var(--side-spacing);
+}
+
+@media (width > 34rem) {
+  #block-lits-theme-litsunifiedsearchblock .pe {
+    padding: 0 3rem;
+    /* shouod this be var for sides? */
+  }
+}
+
+/* if gonna switch spacing at 34rem, should add background, and mobile background dark blue not $charcoal */
+header#page-header #imagebar {
+  background: $dark-blue;
+}
+
+@media (min-width: 34rem) {
+  header#page-header #imagebar {
+    display: block;
+    background-color: $white;
+    background-image: url('../images/banners/williston-beauty-xl-banner.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 60%;
+    background-size: cover;
+  }
+}
+
+/* okay you can only set style within the container, but also the container should be the entire component....need a wrapper so that variable padding can be outside the container */
+#block-lits-theme-litsunifiedsearchblock .pe {
+  container: search-form-container / inline-size;
+}
+
+@container search-form-container (width > 30rem) {
+
+  .pe form {
+    color: $charcoal;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe form {
+    flex-wrap: nowrap;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-prefix {
+    width: auto;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe select {
+    field-sizing: content;
+    padding-right: 2rem;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-query {
+    width: 100%;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-prefix {
+    width: auto;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock #edit-library-materials-search-go {
+    top: 0;
+  }
+}
+
+@container search-form-container (width > 33rem) {
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-medium {
+    display: inline-block;
+  }
+}
+
+@container search-form-container (width > 40rem) {
+
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-materials .optional-medium,
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-0 .optional-medium,
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-medium {
+    display: inline-block;
+  }
+}
+
+@container search-form-container (width > 50rem) {
+
+  #block-lits-theme-litsunifiedsearchblock .pe .optional-long,
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-long {
+    display: inline-block;
+  }
+}
+
+/* actual fix is to change MQ for placehodler text */
+#block-lits-theme-litsunifiedsearchblock .pe input[type=search] {
+  padding-right: 2rem;
+}
+
 // ********************************* ABBY ********************************* //
 // General service desk
 // .service-desk-banner {

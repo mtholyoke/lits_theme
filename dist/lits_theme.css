@@ -8324,6 +8324,120 @@ p {
   font-size: var(--f-base);
 }
 
+/* why do I not need this locally? */
+.lits_homepage #block-lits-theme-litsunifiedsearchblock {
+  width: 100%;
+}
+
+/* what is setting .search > * to white ? */
+.search > * {
+  background: none;
+}
+
+/* overrides etc */
+#block-lits-theme-litsunifiedsearchblock .pe {
+  border: none;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe button.form-submit {
+  color: #1a1a1a;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-materials .optional-medium,
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-0 .optional-medium,
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-medium {
+  display: none;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe .optional-long,
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-long {
+  display: none;
+}
+
+button#edit-library-materials-search-go,
+button#edit-lits-site-search-go {
+  background: transparent;
+}
+
+/* spacing tweak */
+#block-lits-theme-litsunifiedsearchblock .pe {
+  padding: var(--side-spacing);
+}
+
+@media (width > 34rem) {
+  #block-lits-theme-litsunifiedsearchblock .pe {
+    padding: 0 3rem;
+    /* shouod this be var for sides? */
+  }
+}
+/* if gonna switch spacing at 34rem, should add background, and mobile background dark blue not $charcoal */
+header#page-header #imagebar {
+  background: #004876;
+}
+
+@media (min-width: 34rem) {
+  header#page-header #imagebar {
+    display: block;
+    background-color: white;
+    background-image: url(84fb47261b62fcf9d46b.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 60%;
+    background-size: cover;
+  }
+}
+/* okay you can only set style within the container, but also the container should be the entire component....need a wrapper so that variable padding can be outside the container */
+#block-lits-theme-litsunifiedsearchblock .pe {
+  container: search-form-container/inline-size;
+}
+
+@container search-form-container (width > 30rem) {
+  .pe form {
+    color: #1a1a1a;
+  }
+  #block-lits-theme-litsunifiedsearchblock .pe form {
+    flex-wrap: nowrap;
+  }
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-prefix {
+    width: auto;
+  }
+  #block-lits-theme-litsunifiedsearchblock .pe select {
+    field-sizing: content;
+    padding-right: 2rem;
+  }
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-query {
+    width: 100%;
+  }
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-prefix {
+    width: auto;
+  }
+  #block-lits-theme-litsunifiedsearchblock #edit-library-materials-search-go {
+    top: 0;
+  }
+}
+@container search-form-container (width > 33rem) {
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-medium {
+    display: inline-block;
+  }
+}
+@container search-form-container (width > 40rem) {
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-materials .optional-medium,
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-0 .optional-medium,
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-medium {
+    display: inline-block;
+  }
+}
+@container search-form-container (width > 50rem) {
+  #block-lits-theme-litsunifiedsearchblock .pe .optional-long,
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-long {
+    display: inline-block;
+  }
+}
+/* actual fix is to change MQ for placehodler text */
+#block-lits-theme-litsunifiedsearchblock .pe input[type=search] {
+  padding-right: 2rem;
+}
+
 .lits-location-teaser.service-desk .teaser-icon.grid-item {
   display: none;
 }
