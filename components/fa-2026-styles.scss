@@ -642,6 +642,10 @@ p {
   width: 100%;
 }
 
+#block-lits-theme-litsunifiedsearchblock {
+  width: 100%;
+}
+
 /* what is setting .search > * to white ? */
 .search>* {
   background: none;
@@ -675,7 +679,7 @@ button#edit-lits-site-search-go {
 
 // button#edit-library-materials-search-go:hover,
 // button#edit-lits-site-search-go:hover {
-//   /*background: ???*/
+//   background: ;
 // }
 
 
@@ -766,11 +770,6 @@ header#page-header #imagebar {
   #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-long {
     display: inline-block;
   }
-}
-
-/* actual fix is to change MQ for placehodler text */
-#block-lits-theme-litsunifiedsearchblock .pe input[type=search] {
-  padding-right: 2rem;
 }
 
 // ********************************* ABBY ********************************* //

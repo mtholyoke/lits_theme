@@ -8329,6 +8329,10 @@ p {
   width: 100%;
 }
 
+#block-lits-theme-litsunifiedsearchblock {
+  width: 100%;
+}
+
 /* what is setting .search > * to white ? */
 .search > * {
   background: none;
@@ -8433,11 +8437,6 @@ header#page-header #imagebar {
     display: inline-block;
   }
 }
-/* actual fix is to change MQ for placehodler text */
-#block-lits-theme-litsunifiedsearchblock .pe input[type=search] {
-  padding-right: 2rem;
-}
-
 .lits-location-teaser.service-desk .teaser-icon.grid-item {
   display: none;
 }
