@@ -109,6 +109,10 @@
     position: relative;
   }
 
+  .has-link-tiles li:nth-child(3) {
+    order: 1;
+  }
+
   @container tiles (min-width: 60rem) {
 
     .has-link-tiles li {

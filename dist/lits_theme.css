@@ -4939,6 +4939,9 @@ ol.paragraph--numbered-list li p {
   margin: auto;
   position: relative;
 }
+.featured-resource-wrapper .has-link-tiles li:nth-child(3) {
+  order: 1;
+}
 @container tiles (min-width: 60rem) {
   .featured-resource-wrapper .has-link-tiles li {
     flex-basis: 16%;
@@ -8444,6 +8447,10 @@ header#page-header #logobar .topnav-container {
 header#page-header #logobar .logo-container img {
   height: clamp(1.5rem, 0.952vw + 1.286rem, 2rem);
   min-width: 3rem;
+}
+
+.featured-resource-wrapper .has-link-tiles ul li a:hover {
+  text-decoration: underline;
 }
 
 .lits-location-teaser.service-desk .teaser-icon.grid-item {

@@ -780,6 +780,10 @@ header#page-header #logobar .logo-container img {
   height: clamp(1.5rem, 0.952vw + 1.286rem, 2rem);
   min-width: 3rem;
 }
+// ********************************* featured resources tweak ********************************* //
+.featured-resource-wrapper .has-link-tiles ul li a:hover {
+  text-decoration: underline;
+}
 // ********************************* ABBY ********************************* //
 // General service desk
 // .service-desk-banner {
