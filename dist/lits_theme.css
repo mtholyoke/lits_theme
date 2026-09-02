@@ -8213,6 +8213,9 @@ article {
   padding: 0;
   background: none;
   color: inherit;
+}
+.service_desk.lits_page .lits-location .location-bite p,
+.study_space.lits_page .lits-location .location-bite p {
   font-size: var(--f-bite);
   line-height: var(--f-bite-line-height);
   /* fix */
