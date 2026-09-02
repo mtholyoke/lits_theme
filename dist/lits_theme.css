@@ -8523,6 +8523,27 @@ header#page-header #logobar .logo-container img {
   height: 3rem;
 }
 
+/* basic page */
+.lits-location-teaser.service-desk {
+  margin-bottom: var(--side-spacing);
+  background: var(--background-gray);
+  color: black;
+}
+
+#sidebar-container .sidebar-nav h2 {
+  font-size: var(--f-util);
+}
+
+#main-content.main-sidebar-side {
+  gap: var(--side-spacing);
+}
+
+/* menu */
+@media (min-width: 56.25rem) {
+  .main-menu__item .main-submenu--wrapper {
+    border: 1px solid #07c;
+  }
+}
 .lits-location-teaser.service-desk .teaser-icon.grid-item {
   display: none;
 }
