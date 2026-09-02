@@ -101,19 +101,28 @@ function _lits_theme_attach_study_space_icons(array &$variables, array $exclusio
 /**
  * Implements hook_preprocess_HOOK().
  *
- * Adds appropriate aria-hidden attribute to the LITS Unified Search form.
  * Adds links to the sidebar title for Archives and Special Collections.
  */
 function lits_theme_preprocess_block(&$variables) {
-  // Search form is hidden on most pages, but shows on homepage.
-  if ($variables['attributes']['id'] === 'block-lits_theme-litsunifiedsearchblock') {
-    $variables['attributes']['aria-hidden'] = 'true';
-    $route = \Drupal::service('current_route_match');
-    if ($route->getRouteName() === 'entity.node.canonical') {
-      $node = $route->getParameters()->get('node');
-      if ($node->bundle() === 'lits_homepage') {
-        $variables['attributes']['aria-hidden'] = 'false';
+  // Add targeting info to the homepage image
+  if ($variables['attributes']['id'] == 'block-lits-theme-homepageintro') {
+    if (array_key_exists('field_body', $variables['content']) && !array_key_exists("attributes", $variables['content']['field_body'])) {
+      $variables['content']['field_body']['#attributes'] = [];
+      if (!array_key_exists("class", $variables['content']['field_body']['#attributes'])) {
+        $variables['content']['field_body']['#attributes']['class'] = [];
       }
+    }
+    $variables['content']['field_body']['#attributes']['class'][] = 'homepageintro-body';
+  }
+
+  // Set search block as open if homepage
+  if ($variables['attributes']['id'] == 'block-lits-theme-litsunifiedsearchblock') {
+    if (\Drupal::service('path.matcher')->isFrontPage()) {
+      $variables['attributes']['class'][] = "open";
+      $variables['open_tab'] = 0;
+    } 
+    else {
+      $variables['open_tab'] = 1;
     }
   }
 
@@ -1067,6 +1076,7 @@ function lits_theme_preprocess_field(&$variables) {
       $jorgeImage = '/themes/contrib/lits_theme/images/logos/jorge-fools-day.png';
     }
     $variables['jorge_image_url'] = $jorgeImage;
+    $variables["attributes"]["class"][] = 'deprecated';
   }
 }
 

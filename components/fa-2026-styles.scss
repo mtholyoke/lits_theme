@@ -1,0 +1,947 @@
+@use "sass:math";
+
+// ********************************* BASIC PAGE ********************************* //
+// ********************************* main-content.twig ********************************* //
+// < !-- still using but need to pull lin properly and tweak -->
+#block-lits-theme-breadcrumbs {
+  margin-top: 1rem;
+  font-size: 1rem;
+}
+
+.breadcrumb {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  line-height: 1.4rem;
+}
+
+.breadcrumb__item {
+  display: inline-block;
+  font-weight: 600;
+}
+
+.breadcrumb__item::after {
+  content: "/";
+}
+
+.breadcrumb__item:last-child {
+  color: $dark-blue;
+}
+
+.breadcrumb__item:last-child::after {
+  content: "";
+}
+
+.breadcrumb__link:link,
+.breadcrumb__link:visited {
+  color: $med-blue;
+}
+
+.breadcrumb__link {
+  font-weight: 400;
+  color: $med-blue;
+  text-decoration: none;
+}
+
+#sidebar-wrapper h2,
+#newsbar.newsbar-sidebar-side #featured-resources-wrapper h2 {
+  margin: 0;
+  font-size: 1.25rem;
+  color: $white;
+}
+
+#sidebar-container .sidebar-nav h2 a:link,
+#sidebar-container .sidebar-nav h2 a:visited {
+  color: $white;
+  text-decoration: underline;
+}
+
+#sidebar-container .sidebar-nav ul a.menu__link--active {
+  font-weight: bold;
+}
+
+#sidebar-container .sidebar-nav ul {
+  list-style: none;
+}
+
+#sidebar-container .sidebar-nav ul ul {
+  /* padding: 0 2rem;*/
+  list-style-type: disc;
+}
+
+// < !--missing for some reason-->
+// .open-now-container .open_now svg.indicator {
+//   color: $green;
+// }
+
+// < !--new and overrides -->
+.breadcrumb__item {
+  font-size: 1rem;
+}
+
+h1.h1 {
+  font-family: 'Chronicle Text G2 A', 'CHRONICLE TEXT G2 B';
+  font-size: var(--f3);
+  line-height: 1;
+  margin: var(--vr-line-height) 0;
+}
+
+#main-content.main-sidebar-side {
+
+  padding: var(--side-spacing);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  margin: 0 auto;
+  flex-direction: row-reverse;
+  max-width: var(--max-width);
+}
+
+#main-content.main-sidebar-side #main-wrapper {
+  padding: 0;
+  flex: 1 1 30rem;
+  flex-grow: 999;
+  flex-shrink: 1;
+  flex-basis: 30rem;
+  min-width: min(100vw - 6rem, 30rem);
+  order: 0;
+}
+
+#main-content.main-sidebar-side #sidebar-wrapper {
+  background: none;
+  padding: 0;
+  flex: 0 0 auto;
+  /* white-space: nowrap;*/
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 23rem;
+  /* min-width: min-content;*/
+  min-width: 0;
+  align-items: flex-start;
+  order: 1;
+  display: flex;
+}
+
+#main-content.main-sidebar-side #sidebar-wrapper #sidebar-container {
+  position: sticky;
+  top: 3rem;
+  width: 100%;
+}
+
+#main-content.main-sidebar-side #sidebar-wrapper>* {
+  flex: 0 0 auto;
+  /* don't grow to fill leftover space */
+}
+
+#main-content.main-sidebar-side #main-wrapper {
+  box-shadow: none;
+}
+
+#sidebar-container .sidebar-nav {
+  box-shadow: none;
+  background: $barely-gray;
+}
+
+#sidebar-container .sidebar-nav h2 {
+  background-color: $dark-blue;
+  /*  line-height: 54px;
+    padding: 0 1.5rem;*/
+
+  /* to do font size */
+  line-height: 1.5rem;
+  padding: .75rem 1.5rem;
+}
+
+#sidebar-container .sidebar-nav ul ul {
+  padding: 0 0 0 1.5em;
+}
+
+#sidebar-container .sidebar-nav .menu__item {
+  padding: 0;
+  /*line-height: 45px;*/
+  /* to do, need a scaling vr var... */
+  line-height: 1.5;
+  margin: .5rem 0;
+}
+
+#sidebar-container .sidebar-nav ul {
+  font-size: var(--f-base);
+  padding: 1rem 2rem;
+  /* to do */
+  margin: 0;
+}
+
+#main-content.main-sidebar-side .lits-location-teaser {
+  padding: 1.5rem;
+  background: $barely-gray;
+  min-height: unset;
+  color: $charcoal;
+  margin: 1.5rem 0 0 0;
+}
+
+#main-content.main-sidebar-side .lits-location-teaser address {
+  margin: 1.5rem 0;
+}
+
+#main-content.main-sidebar-side .lits-location-teaser p.service-desk-slogan {
+  font-style: italic;
+  margin-top: 0
+}
+
+#main-content.main-sidebar-side .lits-location-teaser address>* {
+  display: block;
+}
+
+#main-content.main-sidebar-side .lits-location-teaser h2 {
+  margin-top: 0;
+}
+
+#main-content.main-sidebar-side .lits-location-teaser h3 {
+  margin-bottom: 0;
+}
+
+#sidebar-container .sidebar-nav ul a:hover {
+  color: var(--link-blue);
+  text-decoration: underline var(--link-blue) solid;
+}
+
+#sidebar-wrapper .sidebar-nav-wrapper {
+  padding: 0;
+  max-width: none;
+  /* else this won't stretch when stack */
+}
+
+#sidebar-wrapper #sidebar-container .sidebar-nav-wrapper {
+  width: 100% !important;
+  /* need to sort this */
+  /* where is more specific stuff like #sidebar-wrapper #sidebar-container.menu-1.desk-0 .sidebar-nav-wrapper coming from? */
+}
+
+// ********************************* SERVICE DESK PAGE ********************************* //
+// ********************************* _head.twig ********************************* //
+* {
+  box-sizing: border-box;
+}
+
+html {
+  /* if going to scale vertical rhythm, maybe should maybe just leave this at 16px... */
+  font-size: 1.125rem;
+  /* 18px */
+
+}
+
+ul {
+  list-style-type: disc;
+}
+
+*:focus {
+  outline: auto;
+}
+
+:root {
+  /* padding scaling from 360 to 900 viewport */
+  --side-spacing: clamp(0.75rem, 6.667vw + -0.75rem, 3rem);
+  /* .75 to 3rem */
+
+  /*  --max-width: 76rem;*/
+  /* current site is morw like 84rem but this is still real wide  */
+  --max-width: 80rem;
+
+  /* font scaling from 360 to 1200 viewport */
+  --f-small: 1rem;
+  /* 18? to 18 */
+  --f-util: 1.16666666667rem;
+  /* 21? to 21 */
+  --f-base: clamp(1.167rem, 0.317vw + 1.095rem, 1.333rem);
+  /* 21 to 24px, 260 to 1200 */
+  ;
+  --f1: clamp(1.333rem, 0.317vw + 1.262rem, 1.5rem);
+  --f2: clamp(1.5rem, 0.952vw + 1.286rem, 2rem);
+  --f-bite: clamp(1.5rem, 1.905vw + 1.071rem, 2.5rem);
+  --f-bite-line-height: clamp(1.8rem, 2.762vw + 1.179rem, 3.25rem);
+  --f3: clamp(2.5rem, 0.952vw + 2.286rem, 3rem);
+  --f4: clamp(2rem, 3.81vw + 1.143rem, 4rem);
+
+  --vr-base: clamp(0.889rem, 0.212vw + 0.841rem, 1rem);
+  /* 16? to 18 */
+  --vr-line-height: clamp(1.778rem, 0.423vw + 1.683rem, 2rem);
+  /* 32? to 36, i.e., ultimately 1.5 for anything with f-base, but right now 32 is not 31.5 */
+
+  /* really base is .5rem, and should really be dynamic 8 to 9 px, need to track down any components using these directly */
+  --vr-base: 1rem;
+  --vr-line-height: 2rem;
+  --vr-extra-line-height: 3rem;
+
+  /* prob want to scale this, e.g., 32ish to 36 */
+  /* in which case may want to address "side-spacing" too, since using for vert some places */
+  --vertical-spacing: var(--vr-line-height);
+
+  --serif: 'CHRONICLE TEXT G2 A', 'CHRONICLE TEXT G2 B';
+
+  --link-blue: #{$med-blue};
+  ;
+  --background-gray: #{$barely-gray};
+  --border-gray: #{$gray-border};
+
+}
+
+body {
+  margin: 0;
+}
+
+body,
+button,
+input,
+optgroup,
+select,
+textarea {
+  color: $charcoal;
+  font-family: "ars-maquette-web", sans-serif;
+  font-size: var(--f-base);
+  line-height: var(--vertical-spacing);
+
+}
+
+button {
+  cursor: pointer;
+}
+
+button {
+  line-height: calc(3 * var(--vr-base));
+}
+
+.breadcrumb__item {
+  font-size: 1rem;
+}
+
+a {
+  color: $med-blue;
+}
+
+/* 54 but want to update to 55 */
+h1,
+h1.h1 {
+  font-family: 'Chronicle Text G2 A', 'CHRONICLE TEXT G2 B';
+  font-size: var(--f3);
+  line-height: calc(var(--f3) * 1.25);
+  line-height: 1.25;
+  margin: calc(var(--vertical-spacing) - calc(.5 * var(--vr-base))) 0;
+}
+
+/* 36 */
+h2,
+.text-long h2 {
+  font-size: var(--f2);
+  line-height: var(--vr-extra-line-height);
+  line-height: 1.3333333333333;
+  margin: var(--vr-base) 0;
+}
+
+/* 27 but want to update to 28 */
+h3,
+.text-long h3 {
+  font-size: var(--f1);
+  /* prob want to scale line height */
+  line-height: var(--vertical-spacing);
+  margin: var(--vr-base) 0;
+  color: $charcoal;
+}
+
+/* 21 to 24 */
+p,
+.text-long p {
+  font-size: var(--f-base);
+  /* prob want to scale line height */
+  line-height: var(--vertical-spacing);
+  margin: calc(1.5 * var(--vr-base)) 0;
+}
+
+article {
+  margin-bottom: var(--side-spacing);
+}
+
+/* stuff for resource tiles and search */
+.field-resources {
+  border-bottom: 1px solid $gray-border;
+}
+
+.field-resources *:focus {
+  outline: none;
+}
+
+// ********************************* breadcrumb.twig ********************************* //
+// ********************************* menu-534.twig ********************************* //
+.layout-zone {
+  /* do I recal these being nested, because that'll be a mess to deal with. */
+  padding: 0;
+  /* sigh */
+  max-width: var(--max-width);
+  padding: 0 var(--side-spacing);
+  margin: 0 auto;
+}
+
+
+@media (min-width: 56.25rem) {
+  #menubar .main-nav>.main-menu {
+    display: flex;
+    column-gap: 1.5rem;
+    justify-content: space-between;
+  }
+
+  nav#block-lits-theme-mainnavigation #main-nav>ul.main-menu {
+    display: flex;
+    /* sigh */
+  }
+}
+
+#menubar .main-menu .main-menu__item button {
+  font-size: 21px;
+  line-height: 3rem;
+  padding: 0;
+}
+
+#menubar .main-menu li.main-menu__item.main-menu__item--root.expandable {
+  padding: 0;
+}
+
+#menubar {
+  /* padding-bottom: 0.5rem;*/
+  padding: 0;
+}
+
+#main-menu-toggle-expand {
+  /*padding: 0.5rem 0;*/
+  padding: 0;
+  line-height: 3rem;
+}
+
+.layout-zone.layout-container {
+  padding: 0;
+}
+
+@media (min-width: 56.25rem) {
+  .layout-zone.layout-container {
+    padding: 0 var(--side-spacing);
+  }
+}
+
+.service_desk.lits_page,
+.study_space.lits_page {
+
+  // ********************************* service-desk-page.twig ********************************* //
+  // ********************************* service-desk.twig ********************************* //
+  .layout-zone {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--side-spacing);
+  }
+
+  .service-desk-header {
+    margin: var(--vertical-spacing) 0;
+  }
+
+  .service-desk-title {
+    font-size: var(--f4);
+    font-family: var(--serif);
+    /*font-weight: 600;*/
+    line-height: 1;
+    margin: 0;
+  }
+
+  .service-desk-tagline {
+    font-size: var(--f2);
+    line-height: 1.5;
+    margin: 0;
+  }
+
+  /* ought to align this more with basic page but working with existing markup so... */
+  .main-content-service-desk {
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: var(--side-spacing);
+    max-width: var(--max-width);
+    margin: var(--side-spacing) auto;
+  }
+
+  .lits-location {
+    margin-top: 0;
+  }
+
+  .lits-location .location-sidebar-menu {
+    position: sticky;
+    top: var(--vertical-spacing);
+    background: var(--background-gray);
+    padding: 1.5rem;
+  }
+
+  .lits-location .location-sidebar {
+    flex-grow: 1;
+    /*  flex-basis: max-content; */
+    /*min-width: max-content;*/
+    /*flex-basis: min-content;*/
+    /*min-width: 22rem;*/
+    margin: 0;
+    /*align-self: flex-start;*/
+    color: inherit;
+    /* sigh */
+    flex-basis: 24rem;
+    background: none;
+    padding: 0;
+  }
+
+  .lits-location .location-sidebar h2 {
+    color: inherit;
+    margin-top: 0;
+  }
+
+  .lits-location .location-sidebar a:not(.button):link,
+  .lits-location .location-sidebar a:not(.button):visited {
+    color: var(--link-blue);
+  }
+
+  .location-content {
+    flex-grow: 999;
+    /*flex-basis:0;*/
+    flex-basis: 30rem;
+    padding: 0 !important;
+    /* to fix properly */
+
+  }
+
+  .lits-location .location-bite {
+    padding: 0;
+    background: none;
+    color: inherit;
+  }
+
+  .lits-location .location-bite p {
+    font-size: var(--f-bite);
+    line-height: var(--f-bite-line-height);
+    /* fix */
+    font-weight: 500;
+    font-family: var(--serif);
+  }
+
+  .lits-location .location-hours {
+    padding: 0;
+  }
+
+  .lits-location .location-hours .hours {
+    margin-bottom: var(--vr-line-height);
+  }
+
+  .lits-location .location-content h2 {
+    font-size: var(--f2);
+    margin: var(--vr-base) 0;
+  }
+
+  // ********************************* service-desk-banner.twig ********************************* //
+  /* this ratio needs to be set per-image as inline style when page is generated, if possible */
+  /* alternative is just to set flex-basis to 67 and 33 or something. */
+  // :root {
+  //   --aspect-ratio: 4032 / 1453;
+  // }
+
+  .service-desk-banner {
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+
+  }
+
+  .location-images {
+    min-width: 0;
+    aspect-ratio: var(--aspect-ratio);
+    /*  flex: 999 1 20rem;*/
+    flex-basis: calc(18rem * var(--aspect-ratio));
+    flex-shrink: 1;
+    flex-grow: 2;
+    background: $green;
+
+  }
+
+  .location-images img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .location-teaser {
+    flex: 1 1 auto !important;
+    /* to do properly */
+    /* min-width: max-content !important;*/
+    /* to do properly */
+    /* max-width: none !important;*/
+    /* to do properly */
+  }
+
+  // ********************************* service-desk-info.twig ********************************* //
+  // <!-- overrides -->
+  picture {
+    margin: 0;
+  }
+
+  address {
+    font-style: normal;
+  }
+
+  .lits-location-teaser {
+    /*  min-height: 15rem;*/
+    background-color: $raspberry;
+    color: $white;
+  }
+
+  .lits-location-teaser address {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .lits-location-teaser .xlocation-visit {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .lits-location-teaser .location-visit .open-now-container {
+    margin-bottom: 0.5em;
+  }
+
+  .lits-location-teaser a:link,
+  .lits-location-teaser a:visited {
+    color: $white;
+  }
+
+  .lits-location-teaser a {
+    color: $white;
+    text-decoration: underline solid;
+  }
+
+  .open-now-container .closed_now svg.indicator {
+    color: $red;
+  }
+
+  .lits-location-teaser h1,
+  .lits-location-teaser h2 {
+    font-weight: 600;
+    line-height: 2.4rem;
+  }
+
+  .lits-location-teaser address svg {
+    margin-right: 0.5em;
+  }
+
+  .lits-location-teaser .location-visit .open-now-container {
+    font-size: 1.2rem;
+  }
+
+  .lits-location-teaser address {
+    margin-bottom: 1em;
+  }
+
+  .location-teaser .lits-location-teaser {
+    padding: 1.5rem;
+    height: 100%;
+    margin: 0;
+    font-size: 27px;
+  }
+
+  .location-teaser .lits-location-teaser h2 {
+    font-size: 27px;
+    /* to do */
+  }
+}
+
+// ********************************* footer.twig ********************************* //
+.layout-zone {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--side-spacing);
+}
+
+#block-lits-theme-sharewithlits .social-media-links--platforms {
+  list-style: none;
+}
+
+#contact-us-tiles {
+  line-height: var(--vr-line-height);
+  font-size: var(--f-util);
+}
+
+#footer-hours-location {
+  font-size: var(--f-util);
+}
+
+// ********************************* news.twig ********************************* //
+#newsbar {
+  margin: var(--side-spacing) auto;
+}
+
+#newsbar div#news-events {
+  padding: 0;
+  max-width: 50rem;
+  margin: auto;
+}
+
+#newsbar h2 {
+  line-height: var(--vr-extra-line-height);
+  font-size: var(--f3);
+  font-family: var(--serif);
+  text-align: center;
+  margin: var(--vr-line-height) 0;
+  line-height: 1.33333333333;
+}
+
+#newsbar article.node.node--news-item {
+  font-size: var(--f-base);
+}
+
+#newsbar a.see-all-posts {
+  width: 100%;
+  line-height: var(--vr-extra-line-height);
+  font-size: var(--f-base);
+}
+
+// ********************************* search-one-fix-ish-with-tweaks.html ********************************* //
+/* why do I not need this locally? */
+.lits_homepage #block-lits-theme-litsunifiedsearchblock {
+  width: 100%;
+}
+
+#block-lits-theme-litsunifiedsearchblock {
+  width: 100%;
+}
+
+/* what is setting .search > * to white ? */
+.search>* {
+  background: none;
+}
+
+/* overrides etc */
+#block-lits-theme-litsunifiedsearchblock .pe {
+  border: none;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe button.form-submit {
+  color: $charcoal;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-materials .optional-medium,
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-0 .optional-medium,
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-medium {
+  display: none;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe .optional-long,
+#block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-long {
+  display: none;
+}
+
+
+button#edit-library-materials-search-go,
+button#edit-lits-site-search-go {
+  background: transparent;
+}
+
+// button#edit-library-materials-search-go:hover,
+// button#edit-lits-site-search-go:hover {
+//   background: ;
+// }
+
+
+/* spacing tweak */
+#block-lits-theme-litsunifiedsearchblock .pe {
+  padding: var(--side-spacing);
+}
+
+@media (width > 34rem) {
+  #block-lits-theme-litsunifiedsearchblock .pe {
+    padding: 0 3rem;
+    /* shouod this be var for sides? */
+  }
+}
+
+/* if gonna switch spacing at 34rem, should add background, and mobile background dark blue not $charcoal */
+header#page-header #imagebar {
+  background: $dark-blue;
+}
+
+@media (min-width: 34rem) {
+  header#page-header #imagebar {
+    display: block;
+    background-color: $white;
+    background-image: url('../images/banners/williston-beauty-xl-banner.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-y: 60%;
+    background-size: cover;
+  }
+}
+
+/* okay you can only set style within the container, but also the container should be the entire component....need a wrapper so that variable padding can be outside the container */
+#block-lits-theme-litsunifiedsearchblock .pe {
+  container: search-form-container / inline-size;
+}
+
+@container search-form-container (width > 30rem) {
+
+  .pe form {
+    color: $charcoal;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe form {
+    flex-wrap: nowrap;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-prefix {
+    width: auto;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe select {
+    field-sizing: content;
+    padding-right: 2rem;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-query {
+    width: 100%;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-prefix {
+    width: auto;
+  }
+
+  #block-lits-theme-litsunifiedsearchblock #edit-library-materials-search-go {
+    top: 0;
+  }
+}
+
+@container search-form-container (width > 33rem) {
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-medium {
+    display: inline-block;
+  }
+}
+
+@container search-form-container (width > 40rem) {
+
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-materials .optional-medium,
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-0 .optional-medium,
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-medium {
+    display: inline-block;
+  }
+}
+
+@container search-form-container (width > 50rem) {
+
+  #block-lits-theme-litsunifiedsearchblock .pe .optional-long,
+  #block-lits-theme-litsunifiedsearchblock .pe #pe-control-1 .optional-long {
+    display: inline-block;
+  }
+}
+
+// ********************************* header tweak ********************************* //
+header#page-header #logobar .topnav-container {
+  min-width: auto;
+}
+
+header#page-header #logobar .logo-container img {
+  height: clamp(1.5rem, 0.952vw + 1.286rem, 2rem);
+  min-width: 3rem;
+}
+
+// ********************************* featured resources tweak ********************************* //
+.featured-resource-wrapper .has-link-tiles ul li a:hover {
+  text-decoration: underline;
+}
+
+.field-resources {
+  border-bottom: 1px solid $gray-border;
+}
+
+// ********************************* search tweak ********************************* //
+#block-lits-theme-litsunifiedsearchblock .svg-inline--fa {
+  height: 3rem;
+}
+
+// ********************************* misc tweak ********************************* //
+/* basic page */
+
+.lits-location-teaser.service-desk {
+  margin-bottom: var(--side-spacing);
+  background: var(--background-gray);
+  color: $black;
+}
+
+#sidebar-container .sidebar-nav h2 {
+  font-size: var(--f-util);
+}
+
+#main-content.main-sidebar-side {
+  gap: var(--side-spacing);
+}
+
+/* menu */
+
+@media (min-width: 56.25rem) {
+  .main-menu__item .main-submenu--wrapper {
+    border: 1px solid $med-blue;
+  }
+}
+
+// ********************************* ABBY ********************************* //
+// General service desk
+// .service-desk-banner {
+//   --aspect-ratio: 4032 / 1453;
+// }
+
+.lits-location-teaser.service-desk {
+  .teaser-icon.grid-item {
+    display: none;
+  }
+
+  h1,
+  h2 {
+    color: $charcoal;
+    font-size: 1.5em;
+
+    .service_desk.lits_page & {
+      color: $white;
+    }
+
+  }
+
+  a {
+    display: block;
+    @include link;
+  }
+
+  address {
+    font-size: unset;
+    font-style: italic;
+    word-break: break-all;
+  }
+
+  .location-visit {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}
+
+#main-content .lits-location-teaser.service-desk address>br {
+  display: none;
+}
+
+// Service desk page specifically
+.service_desk.lits_page,
+.study_space.lits_page {
+  .lits-location-teaser address {
+    margin-top: 0;
+    font-style: normal;
+  }
+
+  .location-visit {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .social-media-links--platforms {
+    padding: 0;
+  }
+}

@@ -1,4 +1,15 @@
-<div id="newsbar" class="layout-stripe newsbar-sidebar-side">
+{{ content.field_resources }}
+
+<div id="resources" class="layout-zone">
+  {{ content.field_featured_resources }} {# old field #}
+</div>
+<div id="newsbar" class="layout-zone">
+  <div id="news-blocks" class="layout-zone">
+    {{ content.field_news_blocks }}
+  </div>
+
+  {# old field #}
+  {% if content.field_news_items["#items"] %}
   <div id="news-events" class="layout-zone">
     <h2>News &amp; events</h2>
     {{ content.field_news_items }}
@@ -7,6 +18,5 @@
       <span>See all posts</span>
     </a>
   </div>
-
-  {{ content.field_featured_resources }}
+  {% endif %}
 </div>

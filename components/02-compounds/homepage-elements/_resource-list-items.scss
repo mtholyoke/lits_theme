@@ -1,0 +1,88 @@
+/* 
+This is for the new featured resources – giving its own file so it's more obviously matched with the twig file.
+
+Original styles live in _featured-resources.scss
+*/
+.featured-resource-card {
+  background: $white;
+  width: 100%;
+  flex: 1 1 auto;
+  flex-basis: 26%;
+  /* starting point width, enough to ensure that 4 items don't get put on one line */
+  min-width: max(8rem, 34cqw);
+  /* width adequate for longest word in tile to not wrap */
+  min-height: 11rem;
+  /* 11 adequate for text in all rows wrapping? */
+  order: 0;
+  font-family: "ars-maquette-web", sans-serif;
+  display: block;
+
+
+  a {
+    text-decoration: none;
+    color: $dark-blue;
+    height: 100%;
+    display: flex;
+    flex-flow: column nowrap;
+    word-break: break-word;
+    padding: 1rem 1rem;
+    justify-content: center;
+    border-radius: 3px;
+    border-top: 5px solid $dark-blue;
+    /* to do, if class x, n-th... */
+    text-align: center;
+
+    span {
+      padding-top: 1rem;
+      text-align: center;
+      font-weight: 500;
+      font-size: 1.5rem;
+      font-size: clamp(1.25rem, 4vw, 1.5rem)
+    }
+
+    svg {
+      font-size: 3rem;
+      margin: 0 auto;
+
+      &:not(:host).svg-inline--fa,
+      &:not(:root).svg-inline--fa {
+        overflow: visible;
+        box-sizing: content-box;
+      }
+    }
+
+    .svg-inline--fa {
+      display: var(--fa-display, inline-block);
+      height: 1em;
+      overflow: visible;
+      vertical-align: -.125em;
+    }
+
+    .fontawesome-icon {
+      max-width: none;
+    }
+  }
+
+  &:nth-child(1) a {
+    border-top: 5px solid $red;
+  }
+
+  &:nth-child(2) a {
+    border-top: 5px solid $light-orange;
+  }
+
+  &:nth-child(3) a {
+    flex-basis: 100%;
+    order: 1;
+    border-top: 5px solid $light-green;
+  }
+
+  &:nth-child(4) a {
+    border-top: 5px solid $light-blue;
+  }
+
+  &:nth-child(5) a {
+    border-top: 5px solid $dark-red;
+  }
+
+}
