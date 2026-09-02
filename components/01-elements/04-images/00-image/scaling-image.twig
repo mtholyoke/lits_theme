@@ -36,26 +36,28 @@
       <div class="feature-text">
         {# Ridiculous because I don't _want_ Drupal adding containers and p tags #}
         <h1>{{ content.field_heading[0]['#text'] }}{{ content.field_heading_suffix[0]['#text'] | raw }}</h1>
-        <sub>{{ content.field_subtext }}</sub>
+        {% if content.field_subtext[0] %}<sub>{{ content.field_subtext }}</sub>{% endif %}
+
         {{ content.field_body }}
 
         {# Using link.twig here adds an id to the anchor tag that shouldn't be there and I couldn't get it to Go Away #}
         {% set ctaLink = content.field_link[0]['#url'] %}
-        {% set ctaText = content.field_link[0]['#title'] %}
-        {% set ctaClasses = create_attribute() %}
-        {% set ctaClasses = ctaClasses.addClass("cta") %}
-        {% set ctaAttributes = content.field_link[0]['#url'].getOption("attributes") %}
-        {% if ctaAttributes.class is defined %}
-          {% set ctaClasses = ctaClasses.addClass(ctaAttributes.class) %}
+        {% if ctaLink %}
+          {% set ctaText = content.field_link[0]['#title'] %}
+          {% set ctaClasses = create_attribute() %}
+          {% set ctaClasses = ctaClasses.addClass("cta") %}
+          {% set ctaAttributes = content.field_link[0]['#url'].getOption("attributes") %}
+          {% if ctaAttributes.class is defined %}
+            {% set ctaClasses = ctaClasses.addClass(ctaAttributes.class) %}
+          {% endif %}
+          <a{{ ctaClasses }}
+            {% for attribute, value in ctaAttributes %}
+              {% if attribute != "class" %}
+                {{ attribute }}="{{- value -}}"
+              {% endif %}
+            {% endfor %}
+            href="{{ ctaLink }}">{{ ctaText }}</a>
         {% endif %}
-        <a{{ ctaClasses }}
-          {% for attribute, value in ctaAttributes %}
-            {% if attribute != "class" %}
-              {{ attribute }}="{{- value -}}"
-            {% endif %}
-          {% endfor %}
-          href="{{ ctaLink }}">{{ ctaText }}</a>
-
 
 
       </div>
