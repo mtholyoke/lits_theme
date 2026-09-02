@@ -7940,16 +7940,25 @@ h1.h1, h1, .text-long h1, .ck-editor h1 {
 }
 
 html {
-  /* if going to scale vertical rhythm down for mobile, should maybe just leave this at 16px... */
+  /* if going to scale vertical rhythm, maybe should maybe just leave this at 16px... */
   font-size: 1.125rem;
   /* 18px */
+}
+
+ul {
+  list-style-type: disc;
+}
+
+*:focus {
+  outline: auto;
 }
 
 :root {
   /* padding scaling from 360 to 900 viewport */
   --side-spacing: clamp(0.75rem, 6.667vw + -0.75rem, 3rem);
   /* .75 to 3rem */
-  --max-width: 76rem;
+  /*  --max-width: 76rem;*/
+  /* current site is morw like 84rem but this is still real wide  */
   --max-width: 80rem;
   /* font scaling from 360 to 1200 viewport */
   --f-small: 1rem;
@@ -7958,29 +7967,27 @@ html {
   /* 21? to 21 */
   --f-base: clamp(1.167rem, 0.317vw + 1.095rem, 1.333rem);
   /* 21 to 24px, 260 to 1200 */
-  --f2: 2rem;
-  /* to do...? to 38 */
+  --f1: clamp(1.333rem, 0.317vw + 1.262rem, 1.5rem);
   --f2: clamp(1.5rem, 0.952vw + 1.286rem, 2rem);
-  --f3: 2.5rem;
-  /* to do...? to 48 */
   --f-bite: clamp(1.5rem, 1.905vw + 1.071rem, 2.5rem);
   --f-bite-line-height: clamp(1.8rem, 2.762vw + 1.179rem, 3.25rem);
   --f3: clamp(2.5rem, 0.952vw + 2.286rem, 3rem);
-  --f4: 4rem;
-  /* to do...? to 76 */
   --f4: clamp(2rem, 3.81vw + 1.143rem, 4rem);
   --vr-base: clamp(0.889rem, 0.212vw + 0.841rem, 1rem);
   /* 16? to 18 */
   --vr-line-height: clamp(1.778rem, 0.423vw + 1.683rem, 2rem);
   /* 32? to 36, i.e., ultimately 1.5 for anything with f-base, but right now 32 is not 31.5 */
+  /* really base is .5rem, and should really be dynamic 8 to 9 px, need to track down any components using these directly */
   --vr-base: 1rem;
   --vr-line-height: 2rem;
   --vr-extra-line-height: 3rem;
-  /*--vertical-spacing: calc(2 * var(--vr-base));*/
+  /* prob want to scale this, e.g., 32ish to 36 */
+  /* in which case may want to address "side-spacing" too, since using for vert some places */
   --vertical-spacing: var(--vr-line-height);
   --serif: "CHRONICLE TEXT G2 A", "CHRONICLE TEXT G2 B";
   --link-blue: #07c;
   --background-gray: #f5f5f5;
+  --border-gray: #aaa;
 }
 
 body {
@@ -7996,24 +8003,76 @@ textarea {
   color: #1a1a1a;
   font-family: "ars-maquette-web", sans-serif;
   font-size: var(--f-base);
-  line-height: var(--vr-line-height);
+  line-height: var(--vertical-spacing);
+}
+
+button {
+  cursor: pointer;
 }
 
 button {
   line-height: calc(3 * var(--vr-base));
 }
 
+.breadcrumb__item {
+  font-size: 1rem;
+}
+
 a {
   color: #07c;
 }
 
-h2 {
+/* 54 but want to update to 55 */
+h1,
+h1.h1,
+.text-long h1,
+.ck-editor h1 {
+  font-family: "Chronicle Text G2 A", "CHRONICLE TEXT G2 B";
+  font-size: var(--f3);
+  line-height: calc(var(--f3) * 1.25);
+  line-height: 1.25;
+  margin: calc(var(--vertical-spacing) - 0.5 * var(--vr-base)) 0;
+}
+
+/* 36 */
+h2,
+.text-long h2 {
   font-size: var(--f2);
+  line-height: var(--vr-extra-line-height);
+  line-height: 1.3333333333;
   margin: var(--vr-base) 0;
 }
 
-p {
+/* 27 but want to update to 28 */
+h3,
+.text-long h3 {
+  font-size: var(--f1);
+  /* prob want to scale line height */
+  line-height: var(--vertical-spacing);
+  margin: var(--vr-base) 0;
+  color: #1a1a1a;
+}
+
+/* 21 to 24 */
+p,
+.text-long p {
+  font-size: var(--f-base);
+  /* prob want to scale line height */
+  line-height: var(--vertical-spacing);
   margin: calc(1.5 * var(--vr-base)) 0;
+}
+
+article {
+  margin-bottom: var(--side-spacing);
+}
+
+/* stuff for resource tiles and search */
+.field-resources {
+  border-bottom: 1px solid #aaa;
+}
+
+.field-resources *:focus {
+  outline: none;
 }
 
 .layout-zone {
@@ -8451,6 +8510,14 @@ header#page-header #logobar .logo-container img {
 
 .featured-resource-wrapper .has-link-tiles ul li a:hover {
   text-decoration: underline;
+}
+
+.field-resources {
+  border-bottom: 1px solid #aaa;
+}
+
+#block-lits-theme-litsunifiedsearchblock .svg-inline--fa {
+  height: 3rem;
 }
 
 .lits-location-teaser.service-desk .teaser-icon.grid-item {

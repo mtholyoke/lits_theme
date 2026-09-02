@@ -2,12 +2,13 @@
 echo "---------------"
 echo "Before"
 echo "---------------"
-grep -Eo "rgba?\(.*\)" components/fa-2026-styles.scss  | sort | uniq
-grep -Eo "#[0-9a-h]+" components/fa-2026-styles.scss | sort | uniq
+grep -Eio "rgba?\(.*\)" components/fa-2026-styles.scss  | sort | uniq
+grep -Eio "#[0-9a-h]+" components/fa-2026-styles.scss | sort | uniq
 
 
 sed -i .bak 's/--link-blue: #0277cc/--link-blue: #{$med-blue}/g' components/fa-2026-styles.scss 
 sed -i .bak 's/--background-gray: #f5f5f5/--background-gray: #{$barely-gray}/g' components/fa-2026-styles.scss 
+sed -i .bak 's/--border-gray: #AAAAAA/--border-gray: #{$gray-border}/g' components/fa-2026-styles.scss 
 
 sed -i .bak 's/rgba(0, 0, 0, 0)/$fully-transparent/g' components/fa-2026-styles.scss 
 sed -i .bak 's/rgba(0, 0, 0, 0.2)/$dropdown-menu-shadow/g' components/fa-2026-styles.scss 
@@ -34,6 +35,7 @@ sed -i .bak 's/#f1c400/$yellow/g' components/fa-2026-styles.scss # looks like a 
 sed -i .bak 's/#f5f5f5/$barely-gray/g' components/fa-2026-styles.scss 
 sed -i .bak 's/#ff9e1b/$light-orange/g' components/fa-2026-styles.scss 
 sed -i .bak 's/#ef3340/$red/g' components/fa-2026-styles.scss 
+sed -i .bak 's/#aaa/$gray-border/g' components/fa-2026-styles.scss 
 sed -i .bak 's/color: white/color: $white/g' components/fa-2026-styles.scss 
 
 
