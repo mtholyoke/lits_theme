@@ -7953,6 +7953,18 @@ ul {
   outline: auto;
 }
 
+a:focus,
+button:focus {
+  outline: none;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline-offset: 2px;
+  outline: 3px solid #004876;
+  outline: auto;
+}
+
 :root {
   /* padding scaling from 360 to 900 viewport */
   --side-spacing: clamp(0.75rem, 6.667vw + -0.75rem, 3rem);
@@ -8043,7 +8055,7 @@ h2,
   margin: var(--vr-base) 0;
 }
 
-/* 27 but want to update to 28 */
+/* 24 but want to update to 27 or 28 */
 h3,
 .text-long h3 {
   font-size: var(--f1);
@@ -8066,13 +8078,51 @@ article {
   margin-bottom: var(--side-spacing);
 }
 
-/* stuff for resource tiles and search */
+/* stuff for search focus */
+.form-item__select:focus {
+  outline: auto;
+  outline-offset: 0;
+}
+
+#block-lits-theme-litsunifiedsearchblock .pe .form-item-library-materials-search-query {
+  z-index: 2;
+}
+
+#block-lits-theme-litsunifiedsearchblock #edit-library-materials-search-go {
+  z-index: 3;
+}
+
+.form-item__textfield:focus {
+  outline: 3px solid #FFC107;
+  outline-offset: 0;
+}
+
+/* stuff for resource tiles */
 .field-resources {
   border-bottom: 1px solid #aaa;
 }
 
 .field-resources *:focus {
+  outline: auto;
+}
+
+.field-resources button:focus {
   outline: none;
+}
+
+.has-link-tiles:has(.accordion-control button:focus-visible) .accordion-control {
+  outline: auto;
+}
+
+.featured-resource-wrapper .accordion-control button:after,
+.featured-resource-wrapper .active .accordion-control button:after {
+  content: "⌃";
+  font-family: sans-serif;
+}
+
+/* search results */
+.google-json-api-search h2.didyoumean {
+  font-size: var(--f1);
 }
 
 .layout-zone {
@@ -8527,7 +8577,7 @@ header#page-header #logobar .logo-container img {
 .lits-location-teaser.service-desk {
   margin-bottom: var(--side-spacing);
   background: var(--background-gray);
-  color: black;
+  color: #1a1a1a;
 }
 
 #sidebar-container .sidebar-nav h2 {
