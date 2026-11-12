@@ -524,7 +524,11 @@ function lits_theme_preprocess_node__news_item__teaser(&$variables) {
     $uri = $val[0]['uri'];
   }
   $url = Url::fromUri($uri);
-  $variables['target_url'] = $url->toRenderArray();
+  $variables['target_url'] = [
+    '#url' => $url,
+    '#options' => $url->getOptions(),
+    '#access_callback' => [$url::class, 'renderAccess'],
+  ];
   $variables['more_icon'] = 'fa-chevron-right';
   if ($url->isExternal()) {
     $variables['more_icon'] = 'fa-share-from-square';
@@ -915,7 +919,7 @@ function lits_theme_preprocess_page(&$variables) {
           ];
         }
         break;
-      case 'search.view_google_json_api_search':        
+      case 'search.view_google_json_api_search':
         // Set the <h1> and <title> to indicate these are search results.
         $variables['page']['content']['lits_theme_page_title'] = [
             '#markup' =>  t(
@@ -1056,7 +1060,7 @@ function lits_theme_preprocess_taxonomy_term__service_desks(&$variables) {
 
 /**
  * Implements hook_preprocess_HOOK().
- * 
+ *
  * April Fools tweak
  */
 function lits_theme_preprocess_field(&$variables) {
@@ -1102,7 +1106,7 @@ function lits_theme_preprocess_field__media__name__document(&$variables) {
     $path = \Drupal::service('extension.list.module')->getPath('lits_filter');
     $url_generator = \Drupal::service('file_url_generator');
     $pdficon_url = $url_generator->generateAbsoluteString($path . '/images/pdf.png');
-    $pdficon_replacement = '<img class="lits_filter inline pdficon" alt="PDF" src="' . $pdficon_url . '">'; 
+    $pdficon_replacement = '<img class="lits_filter inline pdficon" alt="PDF" src="' . $pdficon_url . '">';
 
     $url = \Drupal::service('file_url_generator')->generate($file->getFileUri());
 
@@ -1150,7 +1154,7 @@ function lits_theme_preprocess_taxonomy_term__tags(&$variables) {
 
 /**
  * Helper function that loads all ancestors (parents or children) of the given id
- * 
+ *
  */
 function _lits_theme_generate_all_ancestors_of_tag($ancestor_type, $tid, $separator) {
   $ancestors = [];
@@ -1177,7 +1181,7 @@ function _lits_theme_generate_all_ancestors_of_tag($ancestor_type, $tid, $separa
           '#markup' => $separator,
         ]
       ];
-    }      
+    }
   }
   return [
     'array' => $ancestorsWithSeparators,
@@ -1187,7 +1191,7 @@ function _lits_theme_generate_all_ancestors_of_tag($ancestor_type, $tid, $separa
 
 /**
  * Helper-to-the-helper function that loads all ancestors (parents or children) of the given id
- * 
+ *
  */
 function _lits_theme_generate_all_ancestors_of_tag_details($ancestor_type, $tid, $separator, &$ancestors=[]) {
   if ($ancestor_type == 'children') {
@@ -1246,7 +1250,7 @@ function _lits_theme_get_site_tag_render_array($tid) {
  */
 function lits_theme_preprocess_views_view_list__site_tag_index__page_1(&$variables) {
   $variables['attributes']['class'][] = 'views-view-list-site-tag-index-page-1';
-  
+
   // Figure out what the tag relationships are since Drupal doesn't seem to care
   $sortedTags = _lits_theme_sort_site_tags();
   // Index the view rows by tid
