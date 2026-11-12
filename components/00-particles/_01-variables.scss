@@ -35,21 +35,45 @@ $space-one-seventh: math.div($space, 7);
 $space-one-eighth: math.div($space, 8);
 
 /**
-* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos
+* Default margin
 */
-// $logo-font-size: 17px;
-$logo-container-max-height: 60px;
+$default-margin: 0.75rem;
 
-// wordmark values
-$o-ratio: math.div(19.893, 40.849); // height of 'o' in wordmark svg vs height of svg as measured in Illustrator
-$word-logo-image-max-height: $logo-container-max-height * $o-ratio;
-$word-default-margin: math.div($word-logo-image-max-height, 2);
-// $word-logo-font-size: $word-default-margin; // The size of the 'o' should be the font-size also TODO: this sort of looks small...
-$word-logo-font-size: 19px;
+/**
+* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos and other header parts
+*/
+$logo-container-height: 4.5rem;
+$logo-height: 4rem;
+$logo-font-size: $default-margin * 6.5; // 4.875rem
+$header-gap: $default-margin * 2; // 1.5rem
 
-// monogram values
-$c-ratio: math.div(64.9, 108); // height of 'c' in wordmark svg vs height of svg as measured in Illustrator
-$mono-logo-image-max-height: $logo-container-max-height * (1 - $c-ratio);
-$mono-default-margin: math.div($mono-logo-image-max-height, 2);
-// $mono-logo-font-size: $mono-default-margin; // The size of the 'c' should be the font-size also TODO: this sort of looks small...
-$mono-logo-font-size: 19px;
+/**
+ search variables 
+*/
+$search-gap: $default-margin * 4; // 3rem
+$search-font-size: $default-margin * 2; // 1.5rem
+$search-rounding: 5px;
+$search-inner-padding: $default-margin * 2; // 1.5rem
+
+/* Per Andrew's design for homepage intro feature */
+:root {
+  --side-spacing: 0rem;
+}
+
+@media (min-width:20rem) {
+
+  :root {
+    --side-spacing: 1.5rem;
+  }
+}
+
+@media (min-width:34rem) {
+
+  :root {
+    --side-spacing: 3rem;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}

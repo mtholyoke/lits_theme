@@ -106,7 +106,7 @@ __webpack_require__.r(__webpack_exports__);
         // if there is a '#' in the URL (someone linking directly to an anchor):
         if (window.location.hash) {
           openAccordion(window.location.hash);
-          const scrollMore = !!navigator.userAgent.match(/Trident.*rv:11\./) || window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge\
+          const scrollMore = !!navigator.userAgent.match(/Trident.*rv:11\./) || window.navigator.userAgent.indexOf("Edge") > -1; // IE 11 || Edge
           Drupal.lits_theme.scrollToHash(context, $(window.location.hash), scrollMore);
         }
       });
@@ -155,16 +155,18 @@ __webpack_require__.r(__webpack_exports__);
       // This is LibGuides HTML and that means it's not worth trying to mess with it
       return;
     }
-    // const $body = $("body", context);
-    // // focus the element
-    console.log($anchorTarget);
+    const $body = $("body", context);
+    // focus the element
     Drupal.lits_theme.focusOnElement($anchorTarget);
     var scrollToElement = document.getElementById($anchorTarget.attr("id"));
     if (document.getElementById($anchorTarget.attr("id") + "-button")) {
       // Then this is an accordionish thing, and scrolling to the toggle is better
       scrollToElement = document.getElementById($anchorTarget.attr("id") + "-button");
     }
-    console.log(scrollToElement);
+    if (!$anchorTarget.attr("id").startsWith("paragraph")) {
+      // Don't try to mess with offset for non-accordions it's like, always wrong
+      return;
+    }
     // offset().top doesn't seem to work reliably in IE11 on page load
     const scrollTop = scrollToElement.offsetTop;
     let scrollDelay = 0;
@@ -195,9 +197,6 @@ __webpack_require__.r(__webpack_exports__);
     const $button = $container.find("button");
     const $content = $container.find(`#${$button.attr("aria-controls")}`);
     let callback = null;
-    if ($container.attr("id") === "search-toggle-container") {
-      callback = Drupal.lits_theme.positionMenu;
-    }
     if (action === "close") {
       $button.attr("aria-expanded", "false").attr("aria-pressed", "false");
       $("header").css("overflow", "hidden");
@@ -321,13 +320,33 @@ __webpack_require__.r(__webpack_exports__);
       const $document = $(document, context);
       $document.click(event => {
         const $closest = $(event.target).closest(".expandable");
-        const $expandables = $(".expandable--open").not(".accordion").not("#search-toggle-container") // don't close the search bar unless it's explicitly closed
-        .not($closest);
+        const $expandables = $(".expandable--open").not(".accordion").not($closest);
         if ($expandables.length) {
           $expandables.each((i, element) => {
             Drupal.lits_theme.toggleExpandable($(element), "close");
           });
         }
+      });
+    }
+  };
+
+  // TODO: should only one be open at a time? Unclear.
+  Drupal.behaviors.litsThemeTopnavContainerToggleHandler = {
+    attach: context => {
+      $('.toggle', context).each(function (index, toggle) {
+        $(toggle).click(event => {
+          containerId = `#${$(toggle).attr("aria-controls")}`;
+          $container = $(containerId);
+          $container.slideToggle(400, function () {
+            $container.toggleClass("open");
+            $(toggle).attr("aria-expanded", function (i, attr) {
+              return attr == 'true' ? 'false' : 'true';
+            });
+            $(toggle).attr("aria-pressed", function (i, attr) {
+              return attr == 'true' ? 'false' : 'true';
+            });
+          });
+        });
       });
     }
   };
@@ -448,6 +467,69 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 /* 5 */
+/***/ (() => {
+
+window.addEventListener('load', () => {
+  //if viewport is mobile, close all initially, else set height for active
+  const viewportWidth = window.innerWidth;
+  var setActive = false;
+  if (viewportWidth > 1200) {
+    setActive = true;
+  }
+  // Select all accordion headers or items and add listeners
+  const accordionItems = document.querySelectorAll('.accordion-item');
+  accordionItems.forEach(item => {
+    //if active, show content. if not, hide content. 
+    // need this here, to provide the initial state that the click will transition from
+    // the css is not applied yet, so the listener we set below can't get that from content.style
+    const content = item.querySelector('.accordion-content');
+    if (item.classList.contains('active') && setActive) {
+      // Set the max-height to the actual height of the content for the transition
+      console.debug(content);
+      content.style.maxHeight = content.scrollHeight + 'px';
+      //content.style.maxHeight - 'none';
+    } else {
+      content.style.maxHeight = 0; // Collapse the content
+      item.classList.remove('active');
+    }
+    // add listener for header
+    const header = item.querySelector('.accordion-control button');
+    header.addEventListener('click', () => {
+      // on click, toggle class
+      item.classList.toggle('active');
+      //if now active, show content. if not, hide content.
+      if (item.classList.contains('active')) {
+        // Set the max-height to the actual height of the content for the transition
+        content.style.maxHeight = content.scrollHeight + 'px';
+      } else {
+        content.style.maxHeight = 0; // Collapse the content
+      }
+    });
+  });
+});
+//listen for viewport changes and fix height (this is lame)
+window.addEventListener('load', event => {
+  //if viewport is mobile, close all initially, else set height for active
+  const viewportWidth = window.innerWidth;
+  var setActive = false;
+  if (viewportWidth > 1200) {
+    setActive = true;
+  }
+  window.addEventListener("resize", () => {
+    const accordionItems = document.querySelectorAll('.accordion-item');
+    accordionItems.forEach(item => {
+      const content = item.querySelector('.accordion-content');
+      if (item.classList.contains('active') && setActive) {
+        // Set the max-height to the actual height of the content for the transition
+        content.style.maxHeight = content.scrollHeight + 'px';
+      }
+      ;
+    });
+  });
+});
+
+/***/ }),
+/* 6 */
 /***/ (() => {
 
 /**
@@ -587,6 +669,41 @@ __webpack_require__.r(__webpack_exports__);
   };
 })(jQuery, Drupal);
 
+/***/ }),
+/* 7 */
+/***/ (() => {
+
+/**
+ * @file
+ * Functions and behaviors for the service desk pages
+ */
+
+(($, Drupal) => {
+  Drupal.lits_theme = Drupal.lits_theme || {};
+
+  /**
+   * Sets the aspect ratio for banner images on service desk pages
+   *
+   * @type {Drupal~behavior}
+   *
+   * @prop {Drupal~behaviorAttach} attach
+   *   Calls the resize function on window resize.
+   */
+  Drupal.behaviors.litsThemeLocationBannerImage = {
+    attach: context => {
+      const banners = context.querySelectorAll(".service-desk-banner");
+      banners.forEach(banner => {
+        const images = banner.querySelectorAll(":scope .location-images img");
+        images.forEach(image => {
+          const width = image.width;
+          const height = image.height;
+          banner.style.cssText = `--aspect-ratio: ${width} / ${height}`;
+        });
+      });
+    }
+  };
+})(jQuery, Drupal);
+
 /***/ })
 /******/ 	]);
 /************************************************************************/
@@ -615,8 +732,10 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	__webpack_modules__[2](0, {}, __webpack_require__);
 /******/ 	__webpack_modules__[3](0, {}, __webpack_require__);
 /******/ 	__webpack_modules__[4](0, {}, __webpack_require__);
+/******/ 	__webpack_modules__[5](0, {}, __webpack_require__);
+/******/ 	__webpack_modules__[6](0, {}, __webpack_require__);
 /******/ 	var __webpack_exports__ = {};
-/******/ 	__webpack_modules__[5](0, __webpack_exports__, __webpack_require__);
+/******/ 	__webpack_modules__[7](0, __webpack_exports__, __webpack_require__);
 /******/ 	
 /******/ })()
 ;

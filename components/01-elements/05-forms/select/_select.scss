@@ -33,10 +33,6 @@
 
   // WARNING: this may not meet accessibility guidelines for focus.
   @include focus;
-
-  .lits_homepage #block-lits-theme-litsunifiedsearchblock & {
-    @include focus($light-orange);
-  }
 }
 
 @supports ( -webkit-appearance: none ) or ( appearance: none ) or ( ( -moz-appearance: none ) and ( mask-type: alpha ) ) {

@@ -1,280 +1,329 @@
 /**
  * @file
- * Styles for the unified search form, in the header of almsot every page.
+ * Styles for the unified search form, in the header of almost every page.
  */
-
 #block-lits-theme-litsunifiedsearchblock {
-  background-color: $dark-blue;
-  padding: 1rem;
+  display: none;
 
+  .svg-inline--fa {
+    @include fontawesome-icon;
+  }
+  
   .lits_homepage & {
-    padding: 1.6rem;
+    display: block;
   }
 
-  #litsunifiedsearchblock-label {
-    font-size: 1.5rem;
+  div.search {
+    position: relative;
+    background: transparent;
+    text-align: center;
+  }
+
+  .search-heading {
+    position: relative;
+    z-index: 1;
     color: $white;
-    font-weight: bold;
-    margin: 0 0 1rem; // Top margin not needed, whitespace above handled by containing element padding
+    margin: 1.5rem 1.5rem 0;
   }
-}
 
-#lits-search-unified-search-form {
-  display: flex;
-  flex-flow: column wrap;
-  justify-content: space-between;
-  align-items: flex-start;
+  .pe .form-item {
+    max-width: unset;
+  }
 
-  /** Field containers */
-  & .search-selection-container,
-  & .search-query-container,
-  #edit-lits-search-go {
-    flex: 1 1 auto;
+  .pe button {
+    border: unset;
+    color: unset;
     width: 100%;
-    max-width: 100%;
+    text-align: left;
+    margin: 0;
+
+    &.pe-control-button {
+      background: unset;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      align-items: center;
+
+      .button-text {
+        max-width: calc(100% - 1.5rem);
+      }
+    }
   }
 
-  & #edit-search-query {
+  .pe .pe-control {
+    margin: 0;
+  }
+
+  .pe input::placeholder,
+  .pe textarea::placeholder {
+    color: transparent;
+  }
+
+
+  .pe {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 60rem;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem;
+    z-index: 1;
+    position: relative;
+  }
+
+  .pe .pe-content {
+    padding: 3rem;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+  }
+
+  .pe>*:nth-child(1) {
+    border-top: 1px solid $gray;
+  }
+
+  .pe>* {
+    border-bottom: 1px solid $gray;
+  }
+
+  .pe .pe-control.active {
+    border-bottom: none;
+
+    button svg {
+      transform: rotate(180deg);
+    }
+  }
+
+
+  .pe>* {
+    order: 1;
+    width: 100%;
+    background: $white;
+  }
+
+  .pe button,
+  .pe input,
+  .pe select {
+    font-size: 1.5rem;
+  }
+
+
+  .pe div,
+  .pe button {
+    padding: .75rem 1.5rem;
+  }
+
+  .pe div {
+    width: 100%;
+    padding: 0;
+  }
+
+  .pe .optional-medium,
+  .pe .optional-long {
+    display: none;
+  }
+
+  .pe input[type="search"] {
+    width: 100%;
+    height: 3rem;
+    padding: .75rem;
+    padding-right: 3rem;
+  }
+
+  .pe select { // Like input, except select has built in top and bottom padding in addition to the padding rules??
+    width: 100%;
+    height: 3rem;
+    padding: 0 0 0 0.75rem
+  }
+
+  .form-item-library-materials-search-5c-only {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+
+    input {
+      height: 1em;
+      width: 1em;
+      margin-right: 0.75rem;
+    }
+
+    label {
+      color: $charcoal;
+      font-weight: normal;
+    }
+  }
+
+  .pe form {
+    position: relative;
+    margin: 0;
+    container: search-form / inline-size;
+    display: flex;
+    flex-flow: row wrap;
+  }
+
+  .pe form button {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 3rem;
+    text-align: center;
+    padding: 0;
+    height: 3rem;
+  }
+
+  #edit-library-materials-search-go {
+    top: 4.2rem;
+  }
+
+  @container search-form (width > 25em) {
+    .pe .form-item-library-materials-search-prefix {
+      width: 11em;
+    }
+    .pe .form-item-library-materials-search-query {
+      width: calc(100% - 11em);
+    }
+
+    #edit-library-materials-search-go {
+      top: 0;
+    }
+  }
+
+  // .pe label,
+  .form-item-library-materials-search-prefix label,
+  .form-item-library-materials-search-query label,
+  .form-item-lits-site-search-query label,
+  .no {
+    @include visually-hidden; 
+    
+    white-space: nowrap;
+    /* added line */
+  }
+
+
+  .pe .pe-content {
+    padding: 1.5rem;
+  }
+
+  .pe div {
     width: 100%;
   }
 
-  /** Fields */
+  @media (width > 24rem) {
+    .pe .optional-medium {
+      display: inline-block;
+    }
+  }
 
-  // Visually separate fields
-  & .form-item {
-    margin: 0 0 2rem;
+  @media (width > 30rem) {
+    .search-heading {
+      display: none;
+    }
 
-    @include breakpoint($medium-width) {
-      & {
-        margin: 0; // showing fields horizontally, no bottom whitespace needed
+    .pe {
+
+      padding: 0rem 1.5rem;
+      margin: 3rem auto;
+    }
+  }
+
+
+  @media (width > 30rem) {
+
+    h1.pe-control {
+      background: $med-blue;
+    }
+
+    h1.pe-control.active {
+      background: $white;
+    }
+
+    .pe button {
+      color: $white;
+      
+      &.pe-control-button svg {
+        display: none;
       }
     }
 
-    & input,
-    & select {
-      height: 3rem;
-    }
-  }
+    .pe button.pe-control-button {
+      display: block;
 
-  .lits_homepage & {
-    #edit-search-selection,
-    #edit-search-query {
-      border: 1px solid $white;
-    }
-  }
-
-  #edit-search-selection,
-  #edit-search-query {
-    border-radius: 0;
-  }
-
-  & #edit-lits-search-go {
-    /* Don't let the search button grow */
-    flex: 0 1 auto;
-    width: auto;
-
-    @include button($margin: auto);
-
-    .lits_homepage & {
-      border: 3px solid $light-blue;
-    }
-
-    .lits_page & {
-      padding: 12px;
-    }
-  }
-
-  /** 900px+ */
-  @include breakpoint($medium-width) {
-    & {
-      flex-flow: row wrap;
-    }
-
-    /** Field containers */
-    & .search-selection-container {
-      flex: 0 0 auto;
-      width: 13rem; // make sure pulldown text is always readable and search help doesn't wrap
-      padding-right: 1rem;
-    }
-
-    & .search-query-container {
-      flex: 1 0 auto;
-      width: 33%;
-      padding-right: 1rem;
-
-      & input {
+      .button-text {
         max-width: 100%;
       }
     }
 
-    & #edit-lits-search-go {
-      min-width: 0;
-      margin: 0;
-    }
-  }
-}
-
-/* II.A.3. Description */
-
-.search-selection-container .form-item__description {
-  position: relative;
-  width: 100%;
-  margin: 0.5em 0 0;
-}
-
-/* II.A.3.a. Button */
-
-.search-detail-button {
-  width: 1em;
-  // height: calc(3em + 1px);
-  padding: 0;
-  float: right;
-  border: none;
-  background: none;
-
-  @include link-on-gray;
-
-  .lits_homepage & {
-    @include link-on-blue;
-  }
-
-  .narrow {
-    svg.fa-circle-question {
-      display: inline-block;
-    }
-
-    svg.fa-xmark {
-      display: none;
-    }
-  }
-
-  .wide {
-    display: none;
-
-    svg {
-      margin: 0 0.2rem;
-    }
-  }
-
-  @include breakpoint($medium-width) {
-    width: auto;
-    float: none;
-    font-size: 0.9rem;
-    text-align: left;
-
-    .narrow {
-      display: none;
-    }
-
-    .wide {
-      display: inline;
-    }
-  }
-}
-
-.expandable--open > .search-detail-button {
-  .narrow {
-    svg.fa-circle-question {
-      display: none;
-    }
-
-    svg.fa-xmark {
-      display: inline-block;
-    }
-  }
-
-  .wide svg {
-    transform: rotate(180deg);
-  }
-}
-
-/* II.A.3.b. Content */
-
-#search-detail-content {
-  display: none;
-  width: 100%;
-  padding: 0.5rem;
-  clear: both;
-  border: 2px solid $med-blue;
-  background: $white;
-  color: $dark-blue;
-  font-size: 0.9rem;
-  line-height: 1.4;
-
-  $layout-container_width: calc(100vw - calc(2 * calc(0.5rem + calc(calc(100vw - #{$medium-width}) / 6))));
-
-  @include breakpoint($medium-width) {
-    // width of layout-container, then subtract the padding on the search container
-    width: calc(#{$layout-container_width} - 2rem);
-  }
-
-  @include breakpoint($max-width) {
-    // layout-container (maxes out at 1564px at and above 1920px window), then subtract the padding on the search container
-    width: calc(1564px - 2rem);
-  }
-
-  .lits_homepage & {
-    @include breakpoint($medium-width) {
-      // width of layout-container, then subtract the padding on the search container
-      width: calc(#{$layout-container_width} - 3.2rem);
-    }
-
-    @include breakpoint($large-width) {
-      // width of layout-container, then get 60% (search container size), then subtract the padding on the search container
-      width: calc(calc(#{$layout-container_width} * 0.6) - 3.2rem);
-    }
-
-    @include breakpoint($max-width) {
-      // layout-container (maxes out at 1564px at and above 1920px window), then get 60% (search container size), then subtract the padding on the search container
-      width: calc(calc(1564px * 0.6) - 3.2rem);
-    }
-  }
-
-  dl {
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: flex-start;
-
-    dt,
-    dd {
-      flex: 0 0 auto;
-      margin: 0;
-      padding: 0.5rem;
-      width: 100%;
-    }
-
-    dt {
+    .pe .active button.pe-control-button {
       font-weight: bold;
+      color: $charcoal;
     }
 
-    @include breakpoint($medium-width) {
-      dt {
-        width: 13rem - 1rem; // the width of the search dropdown, minus the padding on the search help text container
-        padding: 0.5rem 0;
-      }
+    .pe .pe-content {
+      padding: 3rem;
+    }
 
-      dd {
-        width: calc(100% - 12rem); // the width of the container, minus the length of the label/dt above
-        padding: 0.5rem 0 0.5rem 0.9rem; // pad the left of the label out to line up with the text in the text field
-      }
+    .pe>*:nth-child(odd) {
+      order: 0;
+    }
+
+    .pe h1 {
+      width: auto;
+    }
+
+    .pe .pe-content,
+    .pe .pe-control {
+      border: none;
+    }
+
+    .pe .optional-medium,
+    .pe .optional-long {
+      display: none;
     }
   }
-}
 
-/** Interior pages */
-.lits_page #searchbar {
-  #searchbar-background {
-    background-color: $pale-gray;
-    color: $dark-blue;
+  @media (width > 34rem) {
+
+    .pe {
+      padding: 0 3rem;
+      margin: 6rem auto;
+    }
   }
 
-  & #block-lits-theme-litsunifiedsearchblock {
-    background-color: inherit;
-    color: inherit;
-    width: 100%;
 
-    & #litsunifiedsearchblock-label {
-      color: inherit;
+  @media (width > 48rem) {
+
+    .pe input::placeholder,
+    .pe textarea::placeholder {
+      color: grey;
+    }
+  }
+
+  @media (width > 39rem) { //624
+    .pe #pe-control-lits .optional-medium,
+    .pe #pe-control-1 .optional-medium {
+      display: inline-block;
+    }
+  }
+
+
+  @media (width > 51rem) { //805
+    .pe #pe-control-materials .optional-medium,
+    .pe #pe-control-0 .optional-medium {
+      display: inline-block;
+    }
+  }
+
+  @media (width > 51rem) { //805
+    .pe .optional-medium,
+    .pe #pe-control-1 .optional-long {
+      display: inline-block;
+    }
+  }
+
+  @media (width > 56rem) { //896
+    .pe .optional-long {
+      display: inline-block;
     }
   }
 }

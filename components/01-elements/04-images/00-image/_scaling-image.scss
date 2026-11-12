@@ -1,0 +1,136 @@
+/* container queries so don't have to factor in spacing around container for ideal transition points
+which opens opportunity for that to spacing be calculated based on viewport constantly, etc. */
+#block-lits-theme-homepageintro .scaling-image {
+.feature-container {
+    margin: 0;
+    font-family: "ars-maquette-web", sans-serif;
+    /* container queries so don't have to factor in spacing around container for ideal transition points
+  which opens opportunity for that spacing to be cacluclated based on viewport constantly, etc. */
+    container-type: inline-size;
+    container-name: contain;
+
+    /* should switch all this to mobile-first instead of desktop-first */
+    .feature {
+      max-width: calc(var(--max-width) + 3rem);
+      padding: 0 4.5rem 3rem;
+      position: relative;
+      text-align: center;
+      margin: 0 auto;
+
+      .why {
+        font-weight: bold;
+        font-size: 1.375rem;
+        margin: 0 auto 1.5rem auto;
+        display: none;
+      }
+
+      .cta {
+        font-size: 1.5rem;
+        font-size: clamp(1.25rem, 4vw, 1.5rem);
+        width: 8em;
+        display: block;
+        padding: .375rem .75rem;
+        margin: 1.5rem auto 0;
+        background: #{$med-blue};
+        color: white;
+        font-weight: 400;
+        border-radius: 2px;
+        text-decoration: none;
+      }
+    }
+
+    .feature-image {
+      /* placeholder image */
+      /* some of this sizing is image specific, based on background size, aspect ratio, etc. */
+      height: 35rem;
+      width: 100%;
+      background-size: 110%;
+      background-position-x: 61%;
+      background-position-y: 32%;
+      margin: 0;
+      position: relative;
+    }
+
+    .feature-text {
+      text-align: center;
+      padding: 1.875rem 1.5rem;
+      /* a little extra on top and bottom, with auto height */
+      display: inline-block;
+      width: 29rem;
+      background: #{$yellow};
+      max-width: 100%;
+      align-items: center;
+      left: 0rem;
+      bottom: 0rem;
+      position: absolute;
+
+      h1 {
+        margin: 0 auto 1.5rem auto;
+        align-content: space-around;
+        font-family: 'Chronicle Text G2 A', 'Chronicle Text G2 B', serif;
+        font-size: 3rem;
+        font-size: clamp(2rem, 8vw, 3rem);
+        font-weight: 600;
+        line-height: 1;
+        margin: 0 auto;
+      }
+
+      sub {
+        font-family: 'Chronicle Text G2 A', 'Chronicle Text G2 B', serif;
+        font-size: 2.25rem;
+        font-size: clamp(1.5rem, 6vw, 2.25rem);
+        display: inline-block;
+        line-height: 1.3;
+        padding: .375rem .375rem;
+        /*ideally this would reduce for mobile */
+        margin: -.75rem auto 1.5rem auto;
+        /* reducing margin because of height from padding */
+        margin: 0;
+        position: unset; // Drupal has a normalize rule that messes with this
+      }
+    }
+
+    @container contain (max-width: 57rem) {
+
+      .feature {
+        padding: 0;
+      }
+
+      .feature-image {
+        height: calc(2/3 * (100cqw - var(--side-spacing) - var(--side-spacing)));
+        /* for full size height, not sure what was doing before but was wrong  */
+      }
+
+      .feature-text {
+        width: calc(100% - 6rem);
+        min-width: 28rem;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        position: relative;
+        margin: -3rem auto 0rem;
+        max-width: 34rem;
+      }
+    }
+
+    @container contain (max-width: 34rem) {
+
+      .feature-text {
+        left: 0;
+        right: 0;
+        min-width: auto;
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        height: auto;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  @media (min-width:34rem) {
+    .feature-container {
+      margin: var(--side-spacing);
+    }
+  }
+}

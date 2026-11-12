@@ -6,11 +6,11 @@
  */
 
 /* Breakpoints */
-$min-width: 300px;
-$small-width: 600px;
-$medium-width: 900px;
-$large-width: 1200px;
-$max-width: 1920px;
+$min-width: 18.75rem; //300px
+$small-width: 37.5rem; //600px
+$medium-width: 56.25rem; //900px
+$large-width: 75rem; //1200px
+$max-width: 120rem; // 1920px
 $content-max-width: $max-width;
 
 /**
@@ -41,21 +41,6 @@ $content-max-width: $max-width;
  */
 @function linear-squish($width) {
   @return '((100vw - #{$width}) / #{squish-factor()})';
-}
-
-/**
- * Convert rem to px for Sass calculation.
- *
- * @param number(rem) $rem
- *   Value in rem to convert.
- * @return number(px)
- *   Number of pixels corresponding to input.
- *
- * TODO: Is there a better place for helper functions?
- * TODO: Is 1rem => 16px explicitly specified anywhere?
- */
-@function rem-to-px($rem) {
-  @return math.div($rem, 1rem) * 16px;
 }
 
 /**
@@ -159,7 +144,7 @@ $content-max-width: $max-width;
       }
 
       // Stop increasing when we reach $scale times $max-padding.
-      $delta: rem-to-px($max-padding - $min-padding);
+      $delta: $max-padding - $min-padding;
 
       @include breakpoint($medium-width + (squish-factor() * $delta)) {
         padding-#{$side}: calc(#{$scale} * #{$max-padding});
@@ -196,7 +181,7 @@ $content-max-width: $max-width;
       }
 
       // Stop increasing when we reach $scale times $max-margin.
-      $delta: rem-to-px($max-margin - $min-margin);
+      $delta: $max-margin - $min-margin;
 
       @include breakpoint($medium-width + (squish-factor() * $delta)) {
         margin-#{$side}: calc(#{$scale} * #{$max-margin});

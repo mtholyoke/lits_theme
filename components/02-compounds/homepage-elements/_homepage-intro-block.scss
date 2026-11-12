@@ -1,0 +1,9 @@
+.feature .text-long a {
+  @include button(
+    $bg: $med-blue,
+    $margin: 0 auto,
+    $padding: .375rem .75rem,
+    $font-size: 1em,
+    $font-weight: 500,
+  );
+}

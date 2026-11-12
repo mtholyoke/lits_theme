@@ -5,10 +5,14 @@
   $hoverColor: $white, 
   $focusColor: null, 
   $border: none, 
+  $borderright: null, 
+  $borderleft: null, 
+  $bordertop: null, 
   $margin:  15px 0, 
   $padding: 10px,
   $font-size: 0.9em,
-  $font-weight: normal
+  $font-weight: normal,
+  $display: block
 ) {
   & {
     background-color: $bg;
@@ -22,9 +26,21 @@
     margin: $margin;
     font-weight: $font-weight;
     font-style: normal;
-    display: block;
+    display: $display;
     text-decoration: none;
     text-align: center;
+
+    @if ($borderright) {
+      border-right: $borderright;
+    }
+
+    @if ($borderleft) {
+      border-left: $borderleft;
+    }
+
+    @if ($bordertop) {
+      border-top: $bordertop;
+    }
   }
 
   &:visited {
@@ -42,10 +58,6 @@
 
   @else {
     @include focus;
-  }
-
-  .lits_homepage #block-lits-theme-litsunifiedsearchblock & {
-    @include focus($light-orange);
   }
 }
 

@@ -82,10 +82,10 @@
 
     div {
       flex: 1 1 auto;
-      width: 49%;
+      width: 33%;
       padding: 1rem;
 
-      &#main-menu_hours-accounts-divider {
+      &.main-menu_hours-accounts-divider {
         padding-left: 0;
         padding-right: 0;
         width: 1px;

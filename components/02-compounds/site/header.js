@@ -21,13 +21,34 @@
         const $closest = $(event.target).closest(".expandable");
         const $expandables = $(".expandable--open")
           .not(".accordion")
-          .not("#search-toggle-container") // don't close the search bar unless it's explicitly closed
           .not($closest);
         if ($expandables.length) {
           $expandables.each((i, element) => {
             Drupal.lits_theme.toggleExpandable($(element), "close");
           });
         }
+      });
+    }
+  };
+
+
+  // TODO: should only one be open at a time? Unclear.
+  Drupal.behaviors.litsThemeTopnavContainerToggleHandler = {
+    attach: context => {
+      $('.toggle', context).each(function(index, toggle) {
+        $(toggle).click(event => {
+          containerId = `#${$(toggle).attr("aria-controls")}`;
+          $container = $(containerId);
+          $container.slideToggle(400, function() {
+            $container.toggleClass("open");
+            $(toggle).attr("aria-expanded", function (i, attr) {
+              return attr == 'true' ? 'false' : 'true'
+            });
+            $(toggle).attr("aria-pressed", function (i, attr) {
+              return attr == 'true' ? 'false' : 'true'
+            });
+          });
+        });
       });
     }
   };
