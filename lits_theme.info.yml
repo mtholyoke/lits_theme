@@ -7,7 +7,7 @@ version: VERSION
 libraries:
   - lits_theme/base
   - core/normalize
-core_version_requirement: ^10
+core_version_requirement: ^10.6 || ^11.4
 dependencies:
   - drupal:emulsify_tools
 generator: 'starterkit_theme:9.5.10'
