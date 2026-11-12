@@ -142,11 +142,12 @@ function lits_theme_preprocess_block__system_menu_block(&$variables) {
   $markup = '<a href="/' . $variables['derivative_plugin_id'] . '">' . $variables['configuration']['label'] . '</a>';
 
   // Sidebar menus need a shared class for styling.
-  if ($variables['content']['#attributes']['data-region'] === 'sidebar') {
-    $variables['attributes']['class'][] = 'sidebar-nav';
-    $markup = 'In the ' . $markup . ' section';
+  if (array_key_exists('#attributes', $variables['content'])) {
+    if ($variables['content']['#attributes']['data-region'] === 'sidebar') {
+      $variables['attributes']['class'][] = 'sidebar-nav';
+      $markup = 'In the ' . $markup . ' section';
+    }
   }
-
   $variables['configuration']['label'] = ['#markup' => $markup];
 }
 
