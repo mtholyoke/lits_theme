@@ -902,10 +902,11 @@ function lits_theme_preprocess_page(&$variables) {
         break;
 
       // Service desk hours pages.
-      // Bento search results page.
+      // Search results page.
       // Service desks index page.
       case 'lits_hours.service_desk_hours':
       case 'lits_search.lits':
+      case 'search.view_lits_vertex_search':
         $variables['sidebar_location'] = 'none';
         break;
 
@@ -919,17 +920,7 @@ function lits_theme_preprocess_page(&$variables) {
             '#markup' => t('<h1 class="h1">Search results for <span class="search-query">all study spaces</span></h1>'),
           ];
         }
-        break;
-      case 'search.view_google_json_api_search':
-        // Set the <h1> and <title> to indicate these are search results.
-        $variables['page']['content']['lits_theme_page_title'] = [
-            '#markup' =>  t(
-              '<h1 class="h1">Search results for <span class="search-query">@q</span></h1>
-              <h2 class="didyoumean">Did you mean to <a href="/search/library?q=@q">search for library materials</a>?</h2>',
-              ['@q' => \Drupal::request()->get('keys')]
-            )
-        ];
-
+        $variables['sidebar_location'] = 'none';
         break;
     }
   }
