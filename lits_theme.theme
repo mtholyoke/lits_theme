@@ -899,11 +899,11 @@ function lits_theme_preprocess_page(&$variables) {
         }
         break;
 
+      // LITS Complex hours page.
       // Service desk hours pages.
       // Search results page.
-      // Service desks index page.
+      case 'lits_hours.lits_complex_hours':
       case 'lits_hours.service_desk_hours':
-      case 'lits_search.lits':
       case 'search.view_lits_vertex_search':
         $variables['sidebar_location'] = 'none';
         break;
