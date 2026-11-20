@@ -17,18 +17,22 @@
 {{ page.header }}
 
 <div id="main-content" class="main-sidebar-{{ sidebar_location }}">
+
+	{% if sidebar_location != 'none' %}
+		<aside id="sidebar-wrapper" class="sidebar-{{ sidebar_location }}" role="complementary">
+			{{ rendered_sidebar|raw }}
+		</aside>
+	{% endif %}
+
   <main id="main-wrapper" class="layout-zone">
     <div id="messagebar" class="layout-stripe">
      {{ page.content.lits_theme_messages }}
     </div>
-    {{ page.content|without("lits_theme_messages") }}
-  </main>{# /#main-wrapper #}
 
-  {% if sidebar_location != 'none' %}
-  <aside id="sidebar-wrapper" class="sidebar-{{ sidebar_location }}" role="complementary">
-    {{ rendered_sidebar|raw }}
-  </aside>
-  {% endif %}
+    {{ page.content|without("lits_theme_messages")|without("lits_theme_views_block__service_desk_block_block_1") }}
+    {{ page.content.lits_theme_views_block__service_desk_block_block_1 }}
+
+  </main>{# /#main-wrapper #}
 </div>
 
 {{ page.footer }}

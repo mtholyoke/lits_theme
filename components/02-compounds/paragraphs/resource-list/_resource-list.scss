@@ -1,0 +1,140 @@
+.featured-resource-wrapper {
+  background: none;
+  box-shadow: none;
+  // xmax-width: 82rem;
+  // xmax-width: 73rem;
+  margin: 0 auto;
+  // display: flex;
+  // flex-flow: wrap;
+  gap: 3rem;
+  /* why doesn't sublime recognize? browser support adequate to not need to use margin for row gaps? */
+  container-type: inline-size;
+  container-name: tiles;
+  display: block;
+
+  .accordion-content {
+    max-height: 0;
+    /* overflow: visible;*/
+    overflow: hidden;
+    transition: max-height 0.3s ease-out;
+    display: none;
+  }
+
+  .active .accordion-content {
+    max-height: none;
+    transition: max-height 0.3s ease-out;
+    display: block;
+  }
+
+  .accordion-control {
+    cursor: pointer;
+    transition: 0.4s;
+    display: flex;
+    gap: .75rem;
+
+    button {
+      width: 100%;
+      border: none;
+      background: transparent;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+
+      &:after {
+        content: '⌃';
+        transform: rotate(180deg);
+        width: 3rem;
+        font-size: 3rem;
+        font-size: clamp(1.5rem, 8vw, 3rem);
+        text-align: center;
+      }
+    }
+  }
+
+  .active .accordion-control button:after {
+    content: '⌃';
+    transform: none;
+    margin-top: .75rem;
+  }
+
+  /* this css is a mess, a lot of the earlier rules get overridden later and should be removed, but something from the first bit is needed */
+
+  .has-link-tiles {
+    text-align: center;
+    /*    padding: 1.5rem 0.75rem; */
+    background: $gray-lightest;
+    border-top: 1px solid $gray-border;
+    flex-grow: 1;
+    flex-basis: 28rem;
+    /* starting point width, determines when blocks of tiles will stack */
+    padding: 0rem 3rem;
+    padding: 0 var(--side-spacing);
+    container-type: inline-size;
+    container-name: tile-group;
+
+    h2 {
+      // font-size: 1.5em;
+      margin: 0;
+      font-family: 'Chronicle Text G2 A', 'Chronicle Text G2 B', serif;
+      font-size: 3rem;
+      font-size: clamp(1.5rem, 8vw, 3rem);
+      line-height: 1.333333;
+      padding: 1rem 0;
+      flex-grow: 1;
+    }
+
+    ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-around;
+      gap: 1rem;
+      /* why doesn't sublime recognize? browser support adequate to not need to use margin for row gaps? */
+      margin-top: 1rem;
+      margin-bottom: 3rem;
+    }
+  }
+
+  // @media (width > 20rem) {
+  //   .has-link-tiles {
+  //     /*        padding:1.5rem;*/
+  //   }
+  // }
+
+  .featured-resource {
+    max-width: 76rem;
+    margin: auto;
+    position: relative;
+  }
+
+  .has-link-tiles li:nth-child(3) {
+    order: 1;
+  }
+
+  @container tiles (min-width: 60rem) {
+
+    .has-link-tiles li {
+      flex-basis: 16%;
+      min-width: 0;
+    }
+
+    .has-link-tiles li:nth-child(3) {
+      flex-basis: 26%;
+      flex-basis: 18%;
+      /* better */
+      // transform: scaley(1.13);
+      transform: scale(1.13); // Make it bigger
+      margin: 0 1rem; // transform eats the gap, so add it as a margin (and match to the gap property)
+      order: 0;
+    }
+  }
+
+}
+
+// @media (min-width:60rem) {
+//   .featured-resource-wrapper {
+//     margin: 3rem auto 0;
+//   }
+// }

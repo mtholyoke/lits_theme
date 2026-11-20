@@ -5,10 +5,36 @@
 /* Primary colors */
 /* Background colors */
 /* Accent colors */
+/* New colors */
 /** new colors **/
 /**
-* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos
+* Default margin
 */
+/**
+* Used to set the font size for "LITS" in logobar and to add whitespace to the MHC logos and other header parts
+*/
+/**
+ search variables 
+*/
+/* Per Andrew's design for homepage intro feature */
+:root {
+  --side-spacing: 0rem;
+}
+
+@media (min-width: 20rem) {
+  :root {
+    --side-spacing: 1.5rem;
+  }
+}
+@media (min-width: 34rem) {
+  :root {
+    --side-spacing: 3rem;
+  }
+}
+* {
+  box-sizing: border-box;
+}
+
 /**
  * @file
  * Reusable styles for links.
@@ -354,6 +380,10 @@ img.lits_filter.inline {
 }
 img.lits_filter.inline.mhcgetit {
   vertical-align: middle;
+}
+
+pre {
+  white-space: break-spaces;
 }
 
 #main-content.main-sidebar-side article.node ul,
