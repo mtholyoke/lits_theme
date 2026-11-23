@@ -6,6 +6,7 @@
     "license": "MIT",
     "minimum-stability": "beta",
     "require": {
-        "drupal/emulsify_tools": "^2.0"
+        "drupal/emulsify_tools": "^2.0",
+        "drupal/stable9": "^1.0"
     }
 }
