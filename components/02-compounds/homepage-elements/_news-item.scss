@@ -78,6 +78,10 @@ article.node--news-item {
     color: $med-blue;
   }
 
+  p {
+    word-wrap: break-word;
+  }
+
   .more-link {
     flex-grow: 0;
     font-size: 0.9rem;

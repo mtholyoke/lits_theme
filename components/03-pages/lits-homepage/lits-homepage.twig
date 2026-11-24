@@ -7,24 +7,9 @@
  * @see template_preprocess_page()
 */
 #}
-{% set unified_search_block = page.header.lits_theme_litsunifiedsearchblock %}
-{% set library_materials_search_block = page.header.lits_theme_librarymaterialssearchblock %}
-{% set lits_site_search_block = page.header.lits_theme_litssitesearchblock %}
-
-
-{% set lits_heading = {
-  "lits_theme_litsunifiedsearchblock": {
-    "#markup": "",
-  },
-  "lits_theme_librarymaterialssearchblock": {
-    "#markup": "",
-},
-  "lits_theme_litssitesearchblock": {
-    "#markup": "",
-}} %}
 
 {% if page.header %}
-  {{ page.header|merge(lits_heading) }}
+  {{ page.header }}
 {% endif %}
 
 <main id="main-content" role="main" class="main main-home">
@@ -33,25 +18,12 @@
 </div>
 <div id="titlebar" class="layout-stripe">
   <div class="layout-zone layout-container">
-    <div id="title-wrapper">
-      <h1>Welcome to LITS: <br><span class="subtitle">Library, Information, and Technology Services</span></h1>
-      <p>Your place to do research, find library materials and get technology support.</p>
-    </div>
-    <div id="search-blocks-container">
-<div id="search-blocks-wrapper">
-
-        {{ library_materials_search_block }}
-        {{ lits_site_search_block }}
-        {{ unified_search_block }}
-      </div>
-    </div>
-
     {{ page.content.lits_theme_local_tasks }}
     {{ page.content.lits_theme_local_actions }}
   </div>
 </div>
 
-{{ page.content|without("lits_theme_messages")|without("lits_theme_local_tasks")|without("lits_theme_local_actions") }} {# go see  @templates/homepage-elements/lits-homepage-page-content.twig #}
+{{ page.content|without("lits_theme_messages")|without("lits_theme_local_tasks")|without("lits_theme_local_actions") }}
 
 </main>
 

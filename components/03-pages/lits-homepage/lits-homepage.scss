@@ -9,7 +9,24 @@
 // }
 // TODO: remove that image file if we don’t need it.
 // TODO: move the actual college logo from db into theme!
+$homepage-margin: 1rem;
 
+.lits_homepage {
+  /* 0. LITS intro */
+  .deprecated.featured-resources-wrapper,
+  #news-blocks,
+  #news-events {
+    margin: $homepage-margin auto;
+  }
+
+  .field-news-blocks {
+    background-color: $dark-blue;
+  }
+
+  main h2:not(:has(a)) {
+    font-family: 'Chronicle-bold', helvetica, serif;
+  }
+}
 /* I. Titlebar */
 
 #titlebar {
@@ -100,15 +117,17 @@ h1 .subtitle {
 
 #newsbar {
   // .layout-stripe sets width 100%, margin 0, padding 0.
-  margin-bottom: 2px;
   // Contains div.layout-zone for squishy edges.
 
-  h2,
-  &.newsbar-sidebar-side #featured-resources-wrapper h2 { // my bad, ew
+  & > .featured-resources-wrapper h2 { // my bad, ew
     padding: 0;
     margin: 1em 0;
     font-size: 1.5em;
     line-height: 2rem;
+  }
+
+  #news-events > h2 {
+    text-align: center;
   }
 
   a.see-all-posts {
@@ -117,77 +136,7 @@ h1 .subtitle {
 
     & {
       width: 10rem;
-      margin-bottom: 2rem;
-    }
-  }
-
-  .has-link-tiles {
-    ul {
-      margin-top: -0.5rem;
-    }
-
-    li {
-      width: 100%;
-
-      @include breakpoint($small-width) {
-        width: 41%;
-      }
-
-      @include breakpoint($large-width) {
-        width: 26%;
-      }
-
-      a {
-        border-radius: 0;
-        background-color: $white;
-        box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-        justify-content: center; // ugh also
-      }
-
-      &:nth-child(6n+1) a {
-        border-top: 4px solid $raspberry;
-      }
-
-      &:nth-child(6n+2) a {
-        border-top: 4px solid $gray;
-      }
-
-      &:nth-child(6n+3) a {
-        border-top: 4px solid $light-blue;
-      }
-
-      &:nth-child(6n+4) a {
-        border-top: 4px solid $light-green;
-      }
-
-      &:nth-child(6n+5) a {
-        border-top: 4px solid $light-orange;
-      }
-
-      &:nth-child(6n+6) a {
-        border-top: 4px solid $red;
-      }
-
-      &.tdx-tile {
-        width: 100%;
-
-        svg {
-          overflow: visible;
-          box-sizing: content-box;
-          display: var(--fa-display, inline-block);
-          height: 2em;
-          vertical-align: -0.125em;
-        }
-
-        img {
-          height: 5em;
-          margin: auto;
-        }
-
-        a {
-          border-top: 4px solid $dark-blue !important;
-        }
-      }
+      margin: 0 auto 2rem auto;
     }
   }
 
@@ -196,152 +145,6 @@ h1 .subtitle {
 
     .news-item {
       width: 100%;
-    }
-  }
-
-  // Sidebar-ify
-  &.newsbar-sidebar-side {
-    // Set up flex defaults so the sidebar position can depend on viewport size.
-    @extend .layout-container;
-
-    #news-events {
-      box-shadow: 0 2px 2px rgba(0, 0, 0, 0.4);
-      @include responsive-basis(100%, 62%, 62%, stretch);
-      @include squishy-padding(bottom);
-
-      @include breakpoint($medium-width) {
-        box-shadow: 2px 0 2px rgba(0, 0, 0, 0.4);
-
-        // Override default squishy-padding from .layout-zone:
-        @include squishy-padding(left, stretch);
-        @include squishy-gutter(right);
-      }
-    }
-
-    #featured-resources-wrapper {
-      @extend #sidebar-wrapper;
-
-      @include responsive-basis(100%, 38%, 38%, stretch);
-
-      & {
-        box-shadow: 2px 0 2px rgba(0, 0, 0, 0.4);
-      }
-
-      @include breakpoint($medium-width) {
-        // Establish this as a layout-zone-right.
-        @include squishy-padding(right, stretch);
-        @include squishy-gutter(left);
-
-        #featured-resources {
-          flex-direction: column;
-
-          & > * {
-            width: 100%;
-          }
-        }
-      }
-    }
-  }
-
-  &.newsbar-sidebar-side #featured-resources-wrapper {
-    padding-top: 0;
-  }
-}
-
-/* 0. Helper styles - Link tiles (eg featured resources, formerly quick links and remote guides) */
-.lits_homepage .has-link-tiles {
-  // .layout-stripe sets width 100%, margin 0, padding 0.
-  padding-bottom: 2rem;
-  // Contains div.layout-zone for squishy edges.
-
-  h2 {
-    margin-top: 0;
-    padding-top: 2rem;
-  }
-
-  ul {
-    @include list-reset;
-
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: space-around;
-
-    li {
-      flex: 1 1 auto;
-      width: 100%;
-      margin: 0.5rem;
-
-      @include breakpoint($small-width) {
-        width: 46%;
-      }
-
-      @include breakpoint($medium-width) {
-        width: 31%;
-      }
-
-      @include breakpoint($large-width) {
-        width: 14%;
-        min-height: 10rem;
-      }
-
-      .fontawesome-icons {
-        text-align: center;
-      }
-
-      a {
-        @include rounded-corners;
-
-        background-color: $gray-lightest;
-        height: 100%;
-        display: flex;
-        flex-flow: column nowrap;
-        justify-content: flex-start;
-        word-break: break-word;
-        padding: 1rem;
-
-        @include breakpoint($large-width) {
-          padding: 1rem calc(0.25 * 1rem);
-        }
-
-        & {
-          @include link-on-gray;
-        }
-
-        svg {
-          font-size: 3rem;
-          margin: 0 auto;
-        }
-
-        span {
-          padding-top: 1rem;
-          text-align: center;
-          font-weight: bold;
-        }
-      }
-
-      &:nth-child(6n+1) svg {
-        color: $raspberry;
-      }
-
-      &:nth-child(6n+2) svg {
-        color: $gray;
-      }
-
-      &:nth-child(6n+3) svg {
-        color: $light-blue;
-      }
-
-      &:nth-child(6n+4) svg {
-        color: $light-green;
-      }
-
-      &:nth-child(6n+5) svg {
-        color: $light-orange;
-      }
-
-      &:nth-child(6n+6) svg {
-        color: $red;
-      }
     }
   }
 }

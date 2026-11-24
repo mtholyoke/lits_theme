@@ -8,14 +8,37 @@
  */
 #}
 
-<div {{ attributes }}>
-  {{ title_prefix }}
-  {% if label %}
-    <h2 class="block-title" {{ title_attributes.addClass('h2') }}>{{ label }}</h2>
-  {% endif %}
-  {{ title_suffix }}
-  <p id="litsunifiedsearchblock-label">I want to...</p>
-  {% block content %}
-    {{ content }}
-  {% endblock %}
+{{ attach_library('lits_search/unified_search') }}
+{% block content %}
+<div {{ attributes.addClass("search") }}>
+	<h2 class="search-heading">Search and Discover</h2>
+	<div class="pe">
+
+    {% for form in content %}
+      {% if loop.index0 == open_tab %}
+        {% set pressed = "true" %}
+        {% set hidden  = "false" %}
+      {% else %}
+        {% set pressed = "false" %}
+        {% set hidden  = "true" %}
+      {% endif %}
+
+      <h1 class="pe-control{% if pressed == "true" %} active{% endif %}" id="pe-control-{{loop.index0}}">
+        <button class="pe-control-button" aria-expanded="{{ pressed }}" aria-pressed="{{ pressed }}" aria-controls="content-{{loop.index0}}">
+          <div class="button-text">
+            {{ form['#title'] | raw }}
+          </div>
+          <!-- ugh don't wait for font awesome -->
+          <svg class="svg-inline--fa fa-chevron-down" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+            <path fill="currentColor" d="M224 416c-8.188 0-16.38-3.125-22.62-9.375l-192-192c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L224 338.8l169.4-169.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-192 192C240.4 412.9 232.2 416 224 416z"></path>
+          </svg>
+          <!-- <i class="fas fa-chevron-down"></i> Font Awesome fontawesome.com -->
+        </button>
+      </h1>
+      <div id="content-{{loop.index0}}" aria-hidden="{{ hidden }}" class="pe-content{% if pressed =="true" %} active{% endif %}">
+        {{ form['form'] }}
+      </div>
+    {% endfor %}
+	</div>
 </div>
+{% endblock %}
